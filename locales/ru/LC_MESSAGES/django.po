@@ -1,0 +1,141 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-04 16:38+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\core\settings.py:114
+msgid "Kazakh"
+msgstr ""
+
+#: .\core\settings.py:115
+msgid "Russian"
+msgstr ""
+
+#: .\core\settings.py:116
+msgid "English"
+msgstr ""
+
+#: .\main\apps.py:8
+msgid "Main"
+msgstr "Главная"
+
+#: .\main\models\generics.py:7
+msgid "Category name"
+msgstr "Название категории"
+
+#: .\main\models\generics.py:8 .\main\models\generics.py:23
+#: .\main\models\generics.py:37 .\main\models\generics.py:59
+#: .\main\models\generics.py:78 .\main\models\generics.py:96
+msgid "Priority"
+msgstr "Приоритет"
+
+#: .\main\models\generics.py:14 .\main\models\generics.py:21
+msgid "Category"
+msgstr "Категория"
+
+#: .\main\models\generics.py:15
+msgid "Categories"
+msgstr "Категории"
+
+#: .\main\models\generics.py:22
+msgid "Topic name"
+msgstr "Название темы"
+
+#: .\main\models\generics.py:29 .\main\models\generics.py:35
+msgid "Topic"
+msgstr "Тема"
+
+#: .\main\models\generics.py:30
+msgid "Topics"
+msgstr "Темы"
+
+#: .\main\models\generics.py:36
+msgid "Chapter name"
+msgstr "Название раздела"
+
+#: .\main\models\generics.py:43 .\main\models\generics.py:56
+msgid "Chapter"
+msgstr "Раздел"
+
+#: .\main\models\generics.py:44
+msgid "Chapters"
+msgstr "Разделы"
+
+#: .\main\models\generics.py:50
+msgid "Is text content"
+msgstr "Текстовый контент"
+
+#: .\main\models\generics.py:51
+msgid "Is file content"
+msgstr "Файловый контент"
+
+#: .\main\models\generics.py:52
+msgid "Is image content"
+msgstr "Имиджный контент"
+
+#: .\main\models\generics.py:53
+msgid "Is all content"
+msgstr "Все контенты"
+
+#: .\main\models\generics.py:57 .\main\models\generics.py:76
+#: .\main\models\generics.py:94
+msgid "Title"
+msgstr "Заголовка"
+
+#: .\main\models\generics.py:58 .\main\models\generics.py:77
+msgid "Description"
+msgstr "Описание"
+
+#: .\main\models\generics.py:60
+msgid "Last update"
+msgstr "Последнее обновление"
+
+#: .\main\models\generics.py:63
+msgid "Content type"
+msgstr "Тип контента"
+
+#: .\main\models\generics.py:69 .\main\models\generics.py:75
+#: .\main\models\generics.py:93
+msgid "Content"
+msgstr "Контент"
+
+#: .\main\models\generics.py:70
+msgid "Contents"
+msgstr "Контенты"
+
+#: .\main\models\generics.py:84
+msgid "Text content"
+msgstr "Текстовый контент"
+
+#: .\main\models\generics.py:85
+msgid "Text contents"
+msgstr "Текстовые контенты"
+
+#: .\main\models\generics.py:95
+msgid "File"
+msgstr "Файл"
+
+#: .\main\models\generics.py:102
+msgid "File content"
+msgstr "Файловый контент"
+
+#: .\main\models\generics.py:103
+msgid "File contents"
+msgstr "Файловые контенты"

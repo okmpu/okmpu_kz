@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-04 16:38+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: .\core\settings.py:114
+msgid "Kazakh"
+msgstr "Қазақша"
+
+#: .\core\settings.py:115
+msgid "Russian"
+msgstr "Русский"
+
+#: .\core\settings.py:116
+msgid "English"
+msgstr "English"
+
+#: .\main\apps.py:8
+msgid "Main"
+msgstr "Басты қосымша"
+
+#: .\main\models\generics.py:7
+msgid "Category name"
+msgstr "Категория атауы"
+
+#: .\main\models\generics.py:8 .\main\models\generics.py:23
+#: .\main\models\generics.py:37 .\main\models\generics.py:59
+#: .\main\models\generics.py:78 .\main\models\generics.py:96
+msgid "Priority"
+msgstr "Басымдылық индексі"
+
+#: .\main\models\generics.py:14 .\main\models\generics.py:21
+msgid "Category"
+msgstr "Категория"
+
+#: .\main\models\generics.py:15
+msgid "Categories"
+msgstr "Категориялар"
+
+#: .\main\models\generics.py:22
+msgid "Topic name"
+msgstr "Тақырып атауы"
+
+#: .\main\models\generics.py:29 .\main\models\generics.py:35
+msgid "Topic"
+msgstr "Тақырып"
+
+#: .\main\models\generics.py:30
+msgid "Topics"
+msgstr "Тақырыптар"
+
+#: .\main\models\generics.py:36
+msgid "Chapter name"
+msgstr "Бөлім атауы"
+
+#: .\main\models\generics.py:43 .\main\models\generics.py:56
+msgid "Chapter"
+msgstr "Бөлім"
+
+#: .\main\models\generics.py:44
+msgid "Chapters"
+msgstr "Бөлімдер"
+
+#: .\main\models\generics.py:50
+msgid "Is text content"
+msgstr "Мәтіндік контент"
+
+#: .\main\models\generics.py:51
+msgid "Is file content"
+msgstr "Файлдық контент"
+
+#: .\main\models\generics.py:52
+msgid "Is image content"
+msgstr "Суреттік контент"
+
+#: .\main\models\generics.py:53
+msgid "Is all content"
+msgstr "Толық контент"
+
+#: .\main\models\generics.py:57 .\main\models\generics.py:76
+#: .\main\models\generics.py:94
+msgid "Title"
+msgstr "Тақырып"
+
+#: .\main\models\generics.py:58 .\main\models\generics.py:77
+msgid "Description"
+msgstr "Сипаттама"
+
+#: .\main\models\generics.py:60
+msgid "Last update"
+msgstr "Соңғы өзгеріс"
+
+#: .\main\models\generics.py:63
+msgid "Content type"
+msgstr "Контент типі"
+
+#: .\main\models\generics.py:69 .\main\models\generics.py:75
+#: .\main\models\generics.py:93
+msgid "Content"
+msgstr "Контент"
+
+#: .\main\models\generics.py:70
+msgid "Contents"
+msgstr "Контенттер"
+
+#: .\main\models\generics.py:84
+msgid "Text content"
+msgstr "Мәтіндік контент"
+
+#: .\main\models\generics.py:85
+msgid "Text contents"
+msgstr "Мәтіндік контенттер"
+
+#: .\main\models\generics.py:95
+msgid "File"
+msgstr "Файл"
+
+#: .\main\models\generics.py:102
+msgid "File content"
+msgstr "Файлдық контент"
+
+#: .\main\models\generics.py:103
+msgid "File contents"
+msgstr "Файлдық контенттер"
