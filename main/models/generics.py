@@ -50,7 +50,7 @@ class Chapter(models.Model):
     class Meta:
         verbose_name = _('Chapter')
         verbose_name_plural = _('Chapters')
-        ordering = ('-index', )
+        ordering = ('index', )
 
 
 class Content(models.Model):
@@ -77,7 +77,7 @@ class Content(models.Model):
     class Meta:
         verbose_name = _('Content')
         verbose_name_plural = _('Contents')
-        ordering = ('-index', )
+        ordering = ('index', )
 
 
 class TextContent(models.Model):
