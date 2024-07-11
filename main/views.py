@@ -3,8 +3,9 @@ from rest_framework import views, permissions, status
 from rest_framework.response import Response
 
 from main.models import Category, Topic, Chapter, Content
-from main.serializers.generics import CategorySerializer, TopicSerializer, TopicListSerializer, ChapterListSerializer, \
-    ContentListSerializer, ContentSerializer
+from main.serializers.context import CategoryListSerializer, TopicListSerializer
+from main.serializers.content import ContentSerializer
+from main.serializers.topic import TopicSerializer, ChapterListSerializer, ContentListSerializer
 
 
 # Generic context API
@@ -15,12 +16,24 @@ class ContextAPIView(views.APIView):
         categories = Category.objects.all()
         topics = Topic.objects.all()
 
-        categories = CategorySerializer(categories, many=True)
+        categories = CategoryListSerializer(categories, many=True)
         topics = TopicListSerializer(topics, many=True)
 
         context = {
             'categories': categories.data,
             'topics': topics.data
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+
+# Main API
+class MainAPIView(views.APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+    def get(self, request):
+
+        context = {
+            'message': 'Main API view'
         }
         return Response(context, status=status.HTTP_200_OK)
 
@@ -35,7 +48,7 @@ class TopicAPIView(views.APIView):
         chapters = Chapter.objects.filter(topic=topic)
         contents = Content.objects.filter(chapter__in=chapters)
 
-        topic = TopicSerializer(topic, partial=True)
+        topic = TopicSerializer(topic, partial=True, context={'request': request})
         chapters = ChapterListSerializer(chapters, many=True)
         contents = ContentListSerializer(contents, many=True)
 

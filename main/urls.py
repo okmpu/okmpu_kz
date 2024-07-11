@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import ContextAPIView, TopicAPIView, ContentAPIView
+from .views import ContextAPIView, MainAPIView, TopicAPIView, ContentAPIView
 
 urlpatterns = [
-    path('', ContextAPIView.as_view()),
+    path('', MainAPIView.as_view()),
+    path('context/', ContextAPIView.as_view()),
     path('<slug>/<topic_slug>/', TopicAPIView.as_view()),
     path('<slug>/<topic_slug>/<chapter_slug>/<content_slug>/', ContentAPIView.as_view()),
 ]

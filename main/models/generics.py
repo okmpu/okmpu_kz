@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-# Main navigation
+# Navigation
 class Category(models.Model):
     name = models.CharField(verbose_name=_('Category name'), max_length=255)
     slug = models.SlugField(verbose_name=_('Slug'), max_length=255, default='slug')
@@ -37,6 +37,7 @@ class Topic(models.Model):
         ordering = ('index', )
 
 
+# Chapter
 class Chapter(models.Model):
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE, verbose_name=_('Topic'))
     name = models.CharField(verbose_name=_('Chapter name'), max_length=255)
@@ -53,6 +54,7 @@ class Chapter(models.Model):
         ordering = ('index', )
 
 
+# Content
 class Content(models.Model):
     CONTENT_TYPE = (
         ('TXT', _('Is text content')),
@@ -80,6 +82,7 @@ class Content(models.Model):
         ordering = ('index', )
 
 
+# Text
 class TextContent(models.Model):
     content = models.ForeignKey(Content, on_delete=models.CASCADE, verbose_name=_('Content'))
     description = models.TextField(verbose_name=_('Description'), blank=True, null=True)
@@ -94,6 +97,7 @@ class TextContent(models.Model):
         ordering = ('-index', )
 
 
+# File
 class FileContent(models.Model):
     def file_path(self):
         return '/category/{}/{}/{}'.format(self.content.chapter.topic, self.content.chapter, self.content)

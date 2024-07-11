@@ -37,7 +37,7 @@ class FileContentTabInline(TranslationTabularInline):
     extra = 1
 
 
-class ContentAdmin(TranslationAdmin, SummernoteModelAdmin):
+class ContentAdmin(TranslationAdmin):
     list_display = ('title', 'chapter', 'last_update', 'index', )
     search_fields = ('title', 'chapter', )
     list_filter = ('chapter', )
