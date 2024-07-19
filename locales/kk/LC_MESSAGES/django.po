@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-04 16:38+0500\n"
+"POT-Creation-Date: 2024-07-19 16:34+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,122 +18,160 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: .\core\settings.py:114
+#: .\core\settings.py:130
 msgid "Kazakh"
 msgstr "Қазақша"
 
-#: .\core\settings.py:115
+#: .\core\settings.py:131
 msgid "Russian"
 msgstr "Русский"
 
-#: .\core\settings.py:116
+#: .\core\settings.py:132
 msgid "English"
 msgstr "English"
 
-#: .\main\apps.py:8
-msgid "Main"
-msgstr "Басты қосымша"
+#: .\main\content\apps.py:7
+msgid "Main | Contents"
+msgstr "Басты қосымша | Контенттер"
 
-#: .\main\models\generics.py:7
-msgid "Category name"
-msgstr "Категория атауы"
+#: .\main\content\models.py:8 .\main\content\models.py:25
+#: .\main\content\models.py:43 .\main\university\models.py:6
+msgid "Name"
+msgstr "Атауы"
 
-#: .\main\models\generics.py:8 .\main\models\generics.py:23
-#: .\main\models\generics.py:37 .\main\models\generics.py:59
-#: .\main\models\generics.py:78 .\main\models\generics.py:96
+#: .\main\content\models.py:9 .\main\content\models.py:26
+#: .\main\content\models.py:44 .\main\content\models.py:63
+msgid "Slug"
+msgstr "Кілттік сөз"
+
+#: .\main\content\models.py:10 .\main\content\models.py:27
+#: .\main\content\models.py:45 .\main\content\models.py:65
+#: .\main\content\models.py:86 .\main\content\models.py:104
+#: .\main\content\models.py:122 .\main\content\models.py:142
 msgid "Priority"
 msgstr "Басымдылық индексі"
 
-#: .\main\models\generics.py:14 .\main\models\generics.py:21
-msgid "Category"
-msgstr "Категория"
+#: .\main\content\models.py:11
+msgid "Dropdown"
+msgstr "Ашылмалы тізім"
 
-#: .\main\models\generics.py:15
-msgid "Categories"
-msgstr "Категориялар"
+#: .\main\content\models.py:17 .\main\content\models.py:24
+#: .\main\content\models.py:40
+msgid "Section"
+msgstr "Тарау"
 
-#: .\main\models\generics.py:22
-msgid "Topic name"
-msgstr "Тақырып атауы"
+#: .\main\content\models.py:18
+msgid "Sections"
+msgstr "Тараулар"
 
-#: .\main\models\generics.py:29 .\main\models\generics.py:35
-msgid "Topic"
-msgstr "Тақырып"
-
-#: .\main\models\generics.py:30
-msgid "Topics"
-msgstr "Тақырыптар"
-
-#: .\main\models\generics.py:36
-msgid "Chapter name"
-msgstr "Бөлім атауы"
-
-#: .\main\models\generics.py:43 .\main\models\generics.py:56
-msgid "Chapter"
+#: .\main\content\models.py:33 .\main\content\models.py:41
+#: .\main\content\models.py:59
+msgid "Subsection"
 msgstr "Бөлім"
 
-#: .\main\models\generics.py:44
-msgid "Chapters"
+#: .\main\content\models.py:34
+msgid "Subsections"
 msgstr "Бөлімдер"
 
-#: .\main\models\generics.py:50
-msgid "Is text content"
-msgstr "Мәтіндік контент"
+#: .\main\content\models.py:46
+msgid "Multiple content"
+msgstr "Көпконтентті"
 
-#: .\main\models\generics.py:51
-msgid "Is file content"
-msgstr "Файлдық контент"
+#: .\main\content\models.py:52 .\main\content\models.py:60
+#: .\main\content\models.py:82 .\main\content\models.py:99
+#: .\main\content\models.py:117 .\main\content\models.py:135
+msgid "Chapter"
+msgstr "Бөлімше"
 
-#: .\main\models\generics.py:52
-msgid "Is image content"
-msgstr "Суреттік контент"
+#: .\main\content\models.py:53
+msgid "Chapters"
+msgstr "Бөлімшелер"
 
-#: .\main\models\generics.py:53
-msgid "Is all content"
-msgstr "Толық контент"
-
-#: .\main\models\generics.py:57 .\main\models\generics.py:76
-#: .\main\models\generics.py:94
+#: .\main\content\models.py:62 .\main\content\models.py:102
+#: .\main\content\models.py:120
 msgid "Title"
 msgstr "Тақырып"
 
-#: .\main\models\generics.py:58 .\main\models\generics.py:77
+#: .\main\content\models.py:64 .\main\content\models.py:85
+#: .\main\content\models.py:103
 msgid "Description"
 msgstr "Сипаттама"
 
-#: .\main\models\generics.py:60
+#: .\main\content\models.py:66
 msgid "Last update"
 msgstr "Соңғы өзгеріс"
 
-#: .\main\models\generics.py:63
-msgid "Content type"
-msgstr "Контент типі"
-
-#: .\main\models\generics.py:69 .\main\models\generics.py:75
-#: .\main\models\generics.py:93
+#: .\main\content\models.py:74 .\main\content\models.py:83
+#: .\main\content\models.py:100 .\main\content\models.py:118
+#: .\main\content\models.py:136
 msgid "Content"
 msgstr "Контент"
 
-#: .\main\models\generics.py:70
+#: .\main\content\models.py:75
 msgid "Contents"
 msgstr "Контенттер"
 
-#: .\main\models\generics.py:84
+#: .\main\content\models.py:92
 msgid "Text content"
 msgstr "Мәтіндік контент"
 
-#: .\main\models\generics.py:85
+#: .\main\content\models.py:93
 msgid "Text contents"
 msgstr "Мәтіндік контенттер"
 
-#: .\main\models\generics.py:95
+#: .\main\content\models.py:110
+msgid "According content"
+msgstr "Аккординг контент"
+
+#: .\main\content\models.py:111
+msgid "According contents"
+msgstr "Аккординг контенттер"
+
+#: .\main\content\models.py:121
 msgid "File"
 msgstr "Файл"
 
-#: .\main\models\generics.py:102
+#: .\main\content\models.py:128
 msgid "File content"
 msgstr "Файлдық контент"
 
-#: .\main\models\generics.py:103
+#: .\main\content\models.py:129
 msgid "File contents"
 msgstr "Файлдық контенттер"
+
+#: .\main\content\models.py:138
+msgid "User"
+msgstr "Қолданушы"
+
+#: .\main\content\models.py:139
+msgid "Image"
+msgstr "Сурет"
+
+#: .\main\content\models.py:140
+msgid "Profession"
+msgstr "Мамандығы"
+
+#: .\main\content\models.py:141
+msgid "About"
+msgstr "Өзі жайлы"
+
+#: .\main\content\models.py:148
+msgid "Staff content"
+msgstr "Қызметкер контент"
+
+#: .\main\content\models.py:149
+msgid "Staff contents"
+msgstr "Қызметкер контенттер"
+
+#: .\main\university\apps.py:7
+msgid "Main | University"
+msgstr "Басты қосымша | Университет"
+
+#: .\main\university\models.py:12
+msgid "Faculty"
+msgstr ""
+
+#: .\main\university\models.py:13
+msgid "Faculties"
+msgstr ""
+

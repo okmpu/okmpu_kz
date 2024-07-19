@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG')
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -27,13 +27,27 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'corsheaders',
+    'csp',
     'django_summernote',
 
-    'main.apps.MainConfig'
+    # Main app
+    'main.apps.MainConfig',
+    'main.content.apps.ContentConfig',
+    'main.university.apps.UniversityConfig',
+
 ]
 
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    # ...
+]
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_FRAME_ANCESTORS = (
+    "'self'",
+    "http://localhost:3000",
+    # ...
+)
 SILENCED_SYSTEM_CHECKS = ['security.W019']
 
 
@@ -52,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'core.middleware.AllowIframeMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -121,7 +136,7 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 MODELTRANSLATION_LANGUAGES = ('ru', 'kk', 'en', )
 
 MODELTRANSLATION_TRANSLATION_FILES = (
-    'main.translations.generics',
+    'main.content.translations',
 )
 
 
@@ -179,11 +194,4 @@ DJOSER = {
     'SET_PASSWORD_RETYPE': True,
     'PASSWORD_RESET_CONFIRM_URL': 'accounts/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
-
-    # 'SERIALIZERS': {
-    #     'user_create': 'accounts.serializers.UserSerializer',
-    #     'user': 'accounts.serializers.UserSerializer',
-    #     'current_user': 'accounts.serializers.UserSerializer',
-    #     'user_delete': 'djoser.serializers.UserSerializer',
-    # }
 }
