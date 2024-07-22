@@ -171,6 +171,10 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
+# Domain
+DOMAIN = config('DOMAIN')
+SITE_NAME = config('SITE_NAME')
+
 # Simple JWT settings
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
@@ -178,12 +182,6 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'BLACKLIST_AFTER_ROTATION': False,
 }
-
-
-# Domain
-DOMAIN = config('DOMAIN')
-SITE_NAME = config('SITE_NAME')
-
 
 # Djoser settings
 DJOSER = {

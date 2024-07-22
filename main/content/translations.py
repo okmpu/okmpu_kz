@@ -1,16 +1,8 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Section, Chapter, Subsection, Content, Text, File
+from .models import Category, Content, TextContent, FileContent, PopupContent, StaffContent
 
 
-class SectionTranslationOptions(TranslationOptions):
-    fields = ('name', )
-
-
-class SubsectionTranslationOptions(TranslationOptions):
-    fields = ('name', )
-
-
-class ChapterTranslationOptions(TranslationOptions):
+class CategoryTranslationOptions(TranslationOptions):
     fields = ('name', )
 
 
@@ -18,17 +10,25 @@ class ContentTranslationOptions(TranslationOptions):
     fields = ('title', 'description', )
 
 
-class TextTranslationOptions(TranslationOptions):
+class TextContentTranslationOptions(TranslationOptions):
     fields = ('description', )
 
 
-class FileTranslationOptions(TranslationOptions):
-    fields = ('title', )
+class PopupContentTranslationOptions(TranslationOptions):
+    fields = ('trigger', 'description', )
 
 
-translator.register(Section, SectionTranslationOptions)
-translator.register(Subsection, SubsectionTranslationOptions)
-translator.register(Chapter, ChapterTranslationOptions)
+class FileContentTranslationOptions(TranslationOptions):
+    fields = ('caption', )
+
+
+class StaffContentTranslationOptions(TranslationOptions):
+    fields = ('profession', 'about', )
+
+
+translator.register(Category, CategoryTranslationOptions)
 translator.register(Content, ContentTranslationOptions)
-translator.register(Text, TextTranslationOptions)
-translator.register(File, FileTranslationOptions)
+translator.register(TextContent, TextContentTranslationOptions)
+translator.register(PopupContent, PopupContentTranslationOptions)
+translator.register(FileContent, FileContentTranslationOptions)
+translator.register(StaffContent, StaffContentTranslationOptions)
