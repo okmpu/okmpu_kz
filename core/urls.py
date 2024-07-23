@@ -11,7 +11,7 @@ urlpatterns = [
     re_path(r'^auth/', include('djoser.urls.jwt')),
 
     # apps...
-    path('main/', include('main.urls')),
+    path('api/main/', include('main.urls')),
 ]
 
 urlpatterns += [re_path(r'^i18n/', include('django.conf.urls.i18n'))]

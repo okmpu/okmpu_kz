@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-21 12:06+0000\n"
+"POT-Creation-Date: 2024-07-23 05:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,15 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: core/settings.py:130
+#: core/settings.py:131
 msgid "Kazakh"
 msgstr "Қазақша"
 
-#: core/settings.py:131
+#: core/settings.py:132
 msgid "Russian"
 msgstr "Русский"
 
-#: core/settings.py:132
+#: core/settings.py:133
 msgid "English"
 msgstr "English"
 
@@ -36,114 +36,177 @@ msgstr "English"
 msgid "Main | Contents"
 msgstr "Главная | Контенты"
 
-#: main/content/models.py:7
+#: main/content/models.py:8
+#, fuzzy
+#| msgid "Content"
+msgid "Content app"
+msgstr "Контент"
+
+#: main/content/models.py:9
+#, fuzzy
+#| msgid "Main | University"
+msgid "University app"
+msgstr "Главная | Университет"
+
+#: main/content/models.py:11
 msgid "Name"
 msgstr "Название"
 
-#: main/content/models.py:8 main/content/models.py:29
+#: main/content/models.py:12 main/content/models.py:36
 msgid "Slug"
 msgstr "Ключ"
 
-#: main/content/models.py:11
+#: main/content/models.py:13
+msgid "App name"
+msgstr ""
+
+#: main/content/models.py:16
 msgid "Parent"
 msgstr "Родительская категория"
 
-#: main/content/models.py:18 main/content/models.py:26
-msgid "Category"
-msgstr "Категория"
-
-#: main/content/models.py:19
-msgid "Categories"
-msgstr "Категории"
-
-#: main/content/models.py:28
-msgid "Title"
-msgstr "Заголовка"
-
-#: main/content/models.py:30 main/content/models.py:49
-#: main/content/models.py:68
-msgid "Description"
-msgstr "Описание"
-
-#: main/content/models.py:31 main/content/models.py:50
-#: main/content/models.py:69 main/content/models.py:88
-#: main/content/models.py:109
+#: main/content/models.py:18 main/content/models.py:38
+#: main/content/models.py:57 main/content/models.py:76
+#: main/content/models.py:95 main/content/models.py:116
 msgid "Priority"
 msgstr "Приоритет"
 
-#: main/content/models.py:32
+#: main/content/models.py:24 main/content/models.py:33
+msgid "Category"
+msgstr "Категория"
+
+#: main/content/models.py:25
+msgid "Categories"
+msgstr "Категории"
+
+#: main/content/models.py:35 main/public/models.py:8 main/public/models.py:23
+#: main/public/models.py:39 main/public/models.py:55
+msgid "Title"
+msgstr "Заголовка"
+
+#: main/content/models.py:37 main/content/models.py:56
+#: main/content/models.py:75 main/public/models.py:26 main/public/models.py:42
+#: main/public/models.py:57
+msgid "Description"
+msgstr "Описание"
+
+#: main/content/models.py:39
 msgid "Last update"
 msgstr "Последнее обновление"
 
-#: main/content/models.py:38 main/content/models.py:47
-#: main/content/models.py:65 main/content/models.py:84
-#: main/content/models.py:103
+#: main/content/models.py:45 main/content/models.py:54
+#: main/content/models.py:72 main/content/models.py:91
+#: main/content/models.py:110
 msgid "Content"
 msgstr "Контент"
 
-#: main/content/models.py:39
+#: main/content/models.py:46
 msgid "Contents"
 msgstr "Контенты"
 
-#: main/content/models.py:56
+#: main/content/models.py:63
 msgid "Text content"
 msgstr "Текстовый контент"
 
-#: main/content/models.py:57
+#: main/content/models.py:64
 msgid "Text contents"
 msgstr "Текстовые контенты"
 
-#: main/content/models.py:67
+#: main/content/models.py:74
 msgid "Trigger"
 msgstr "Триггер"
 
-#: main/content/models.py:75
+#: main/content/models.py:82
 msgid "Popup content"
 msgstr "Попап контент"
 
-#: main/content/models.py:76
+#: main/content/models.py:83
 msgid "Popup contents"
 msgstr "Попап контенты"
 
-#: main/content/models.py:86
+#: main/content/models.py:93
 msgid "Caption"
 msgstr "Подпись"
 
-#: main/content/models.py:87
+#: main/content/models.py:94
 msgid "File"
 msgstr "Файл"
 
-#: main/content/models.py:94
+#: main/content/models.py:101
 msgid "File content"
 msgstr "Файловый контент"
 
-#: main/content/models.py:95
+#: main/content/models.py:102
 msgid "File contents"
 msgstr "Файловые контенты"
 
-#: main/content/models.py:105
+#: main/content/models.py:112
 msgid "User"
 msgstr "Пользователь"
 
-#: main/content/models.py:106
+#: main/content/models.py:113
 msgid "Image"
 msgstr "Изображение"
 
-#: main/content/models.py:107
+#: main/content/models.py:114
 msgid "Profession"
 msgstr "Профессия"
 
-#: main/content/models.py:108
+#: main/content/models.py:115 main/public/models.py:10
 msgid "About"
 msgstr "О себе"
 
-#: main/content/models.py:115
+#: main/content/models.py:122
 msgid "Staff content"
 msgstr "Струдник контент"
 
-#: main/content/models.py:116
+#: main/content/models.py:123
 msgid "Staff contents"
 msgstr "Струдник контенты"
+
+#: main/public/apps.py:7
+msgid "Main | Public"
+msgstr "Главная | Публикация"
+
+#: main/public/models.py:9 main/public/models.py:24 main/public/models.py:40
+msgid "Poster"
+msgstr "Постер"
+
+#: main/public/models.py:11 main/public/models.py:27 main/public/models.py:43
+#: main/public/models.py:58
+msgid "Date created"
+msgstr "Дата создание"
+
+#: main/public/models.py:17
+msgid "Headliner"
+msgstr "Хэдлайнер"
+
+#: main/public/models.py:18
+msgid "Headliners"
+msgstr "Хэдлайнеры"
+
+#: main/public/models.py:25 main/public/models.py:41 main/public/models.py:56
+msgid "Author"
+msgstr "Автор"
+
+#: main/public/models.py:33 main/public/models.py:34
+msgid "News"
+msgstr "Новости"
+
+#: main/public/models.py:49
+msgid "Announcement"
+msgstr "Объявление"
+
+#: main/public/models.py:50
+msgid "Announcements"
+msgstr "Объявления"
+
+#: main/public/models.py:64
+msgid "Vacancy"
+msgstr "Вакансия"
+
+#: main/public/models.py:65
+msgid "Vacancies"
+msgstr "Вакансии"
 
 #: main/university/apps.py:7
 msgid "Main | University"

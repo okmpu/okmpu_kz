@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'main.content.apps.ContentConfig',
     'main.university.apps.UniversityConfig',
+    'main.public.apps.PublicConfig',
 
 ]
 
@@ -137,6 +138,7 @@ MODELTRANSLATION_LANGUAGES = ('ru', 'kk', 'en', )
 
 MODELTRANSLATION_TRANSLATION_FILES = (
     'main.content.translations',
+    'main.public.translations',
 )
 
 

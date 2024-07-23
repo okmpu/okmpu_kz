@@ -23,6 +23,7 @@ class CategoryListAPIView(views.APIView):
         return Response(context, status=status.HTTP_200_OK)
 
 
+# ContentDetail
 class ContentDetail(views.APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
 
