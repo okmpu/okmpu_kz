@@ -6,7 +6,7 @@ from .models import Category, Content, TextContent, FileContent, PopupContent, S
 
 class CategoryAdmin(TranslationAdmin):
     list_display = ('name', 'slug', 'app_name', 'parent', 'index', )
-    list_filter = ('parent',)
+    list_filter = ('parent', 'app_name', 'multiple',)
     search_fields = ('name', 'slug', )
     prepopulated_fields = {'slug': ('name_en', )}
 

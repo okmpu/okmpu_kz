@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Content, TextContent
+from .models import Category, Content, TextContent, PopupContent, FileContent
 
 
 class CategoryListSerializer(serializers.ModelSerializer):
@@ -30,7 +30,7 @@ class ContentURLSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('id', 'name_kk', 'name_ru', 'name_en', 'slug', )
+        fields = ('id', 'name_kk', 'name_ru', 'name_en', 'slug', 'multiple', )
 
 
 class GenericCategorySerializer(serializers.ModelSerializer):
@@ -49,3 +49,15 @@ class TextContentSerializer(serializers.ModelSerializer):
     class Meta:
         model = TextContent
         exclude = ('description', )
+
+
+class PopupContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PopupContent
+        exclude = ('trigger', 'description', )
+
+
+class FileContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FileContent
+        exclude = ('caption', )

@@ -15,6 +15,7 @@ class Category(models.Model):
         'self', on_delete=models.CASCADE, related_name='children',
         null=True, blank=True, verbose_name=_('Parent')
     )
+    multiple = models.BooleanField(_('Multiple'), default=False)
     index = models.PositiveSmallIntegerField(verbose_name=_('Priority'), default=0)
 
     def __str__(self):
@@ -65,7 +66,7 @@ class TextContent(models.Model):
         ordering = ('index', )
 
 
-# According content
+# Popup content
 class PopupContent(models.Model):
     content = models.ForeignKey(
         Content, on_delete=models.CASCADE,
@@ -76,7 +77,7 @@ class PopupContent(models.Model):
     index = models.PositiveSmallIntegerField(verbose_name=_('Priority'), default=0)
 
     def __str__(self):
-        return self.content
+        return '{} {}'.format(self.content, self.trigger)
 
     class Meta:
         verbose_name = _('Popup content')
