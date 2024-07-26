@@ -5,10 +5,10 @@ from django.utils.translation import gettext_lazy as _
 
 # Headliner
 class Headliner(models.Model):
-    title = models.CharField(_('Title'), max_length=255)
+    title = models.CharField(_('Title'), max_length=64)
     poster = models.ImageField(_('Poster'), upload_to='public/headliners/', blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
-    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+    src = models.CharField(_('Source URL'), max_length=128, default='/')
 
     def __str__(self):
         return self.title
@@ -37,7 +37,7 @@ class News(models.Model):
 # Announcement
 class Announcement(models.Model):
     title = models.CharField(_('Title'), max_length=255)
-    poster = models.ImageField(_('Poster'), upload_to='public/announcement/', blank=True, null=True)
+    poster = models.ImageField(_('Poster'), upload_to='public/announcements/', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)

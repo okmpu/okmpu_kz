@@ -92,7 +92,7 @@ class FileContent(models.Model):
         related_name='file_contents', verbose_name=_('Content')
     )
     caption = models.CharField(verbose_name=_('Caption'), max_length=255)
-    file = models.FileField(verbose_name=_('File'), upload_to='category/contents/files/')
+    file = models.FileField(verbose_name=_('File'), upload_to='content/category/files/')
     index = models.PositiveSmallIntegerField(verbose_name=_('Priority'), default=0)
 
     def __str__(self):
@@ -111,7 +111,7 @@ class StaffContent(models.Model):
         related_name='staff_contents', null=True, blank=True, verbose_name=_('Content')
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'))
-    image = models.ImageField(_('Image'), upload_to='category/contents/staff/', blank=True, null=True)
+    image = models.ImageField(_('Image'), upload_to='content/category/staff/', blank=True, null=True)
     profession = models.CharField(_('Profession'), max_length=255)
     about = models.TextField(_('About'), blank=True, null=True)
     index = models.PositiveSmallIntegerField(verbose_name=_('Priority'), default=0)

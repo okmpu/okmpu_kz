@@ -139,6 +139,7 @@ MODELTRANSLATION_LANGUAGES = ('ru', 'kk', 'en', )
 MODELTRANSLATION_TRANSLATION_FILES = (
     'main.content.translations',
     'main.public.translations',
+    'main.university.translations',
 )
 
 

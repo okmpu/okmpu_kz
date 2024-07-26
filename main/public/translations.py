@@ -1,5 +1,4 @@
 from modeltranslation.translator import translator, TranslationOptions
-
 from main.public.models import Headliner, Announcement, News, Vacancy
 
 

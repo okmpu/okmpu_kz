@@ -5,7 +5,7 @@ from main.public.models import Headliner, News, Announcement, Vacancy
 
 
 class HeadlinerAdmin(TranslationAdmin):
-    list_display = ('title', 'poster', 'date_created', )
+    list_display = ('title', 'poster', 'src', )
 
 
 class NewsAdmin(TranslationAdmin, SummernoteModelAdmin):
