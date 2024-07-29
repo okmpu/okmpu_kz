@@ -8,7 +8,7 @@ class CategoryListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        exclude = ('name', )
+        exclude = ('name', 'parent', 'index',)
 
     def get_children(self, obj):
         children_qs = Category.objects.filter(parent=obj)
