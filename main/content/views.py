@@ -17,7 +17,7 @@ class ContentDetail(views.APIView):
         section = get_object_or_404(Category, slug=section_slug)
 
         # Sidebar
-        sub_categories = Category.objects.filter(parent=category, parent__app_name='content')
+        sub_categories = Category.objects.filter(parent=category)
         contents = Content.objects.all()
 
         # Content
