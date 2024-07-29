@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -24,6 +25,7 @@ class Faculty(models.Model):
         verbose_name_plural = _('Faculties')
 
 
+# Department
 class Department(models.Model):
     faculty = models.ForeignKey(
         Faculty, on_delete=models.CASCADE,
@@ -45,6 +47,7 @@ class Department(models.Model):
 class Program(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
+    departments = models.ManyToManyField(Department, verbose_name=_('Departments'), related_name='programs')
 
     def __str__(self):
         return self.name
@@ -64,3 +67,19 @@ class Specialty(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.code, self.name)
+
+
+# Personals
+class Personal(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'))
+    image = models.ImageField(_('Image'), upload_to='university/personals/', blank=True, null=True)
+    profession = models.CharField(_('Profession'), max_length=128)
+    phone = models.CharField(_('Phone'), max_length=32, default='+7')
+    about = models.TextField(_('About'), blank=True, null=True)
+
+    def __str__(self):
+        return '{} {} - {}'.format(self.user.first_name, self.user.last_name, self.profession)
+
+    class Meta:
+        verbose_name = _('Personal')
+        verbose_name_plural = _('Personals')

@@ -14,7 +14,7 @@ class HeadlinerSerializer(serializers.ModelSerializer):
 class ProgramListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Program
-        exclude = ('name',)
+        exclude = ('name', 'departments', )
 
 
 # Academics

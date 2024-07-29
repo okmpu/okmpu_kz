@@ -7,22 +7,6 @@ from .serializers import CategoryListSerializer, ContentURLSerializer, ContentSe
     TextContentSerializer, PopupContentSerializer, FileContentSerializer
 
 
-class CategoryListAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
-
-    def get(self, request):
-        categories = Category.objects.filter(parent=None)
-        contents = Content.objects.all()
-
-        categories = CategoryListSerializer(categories, many=True)
-        contents = ContentURLSerializer(contents, many=True)
-        context = {
-            'categories': categories.data,
-            'contents': contents.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
-
-
 # ContentDetail
 class ContentDetail(views.APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
