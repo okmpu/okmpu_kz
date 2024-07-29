@@ -5,17 +5,19 @@ from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
     APP_NAME = (
+        ('none', _('None')),
         ('content', _('Content app')),
         ('university', _('University app')),
     )
     name = models.CharField(_('Name'), max_length=100)
     slug = models.SlugField(_('Slug'), max_length=100)
-    app_name = models.CharField(_('App name'), choices=APP_NAME, default='content')
+    app_name = models.CharField(_('App name'), choices=APP_NAME, default='none')
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, related_name='children',
         null=True, blank=True, verbose_name=_('Parent')
     )
     multiple = models.BooleanField(_('Multiple'), default=False)
+    target = models.BooleanField(_('Target'), default=False)
     index = models.PositiveSmallIntegerField(verbose_name=_('Priority'), default=0)
 
     def __str__(self):

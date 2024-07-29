@@ -40,7 +40,7 @@ msgstr "Контент"
 
 #: main/content/models.py:9
 msgid "University app"
-msgstr "Басты қосымша | Университет"
+msgstr "Университет"
 
 #: main/content/models.py:11 main/university/models.py:13
 #: main/university/models.py:34 main/university/models.py:48
