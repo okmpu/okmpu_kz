@@ -1,8 +1,8 @@
 from rest_framework import views, status, permissions
 from rest_framework.response import Response
 
-from main.content.models import Category, Content
-from main.content.serializers import CategoryListSerializer, ContentURLSerializer
+from main.content.models import Category
+from main.content.serializers import CategoryListSerializer
 from main.public.models import Headliner, News, Announcement, Vacancy
 from main.serializers import HeadlinerSerializer, NewsSerializer, AnnouncementSerializer, VacancySerializer, \
     ProgramListSerializer, FacultyListSerializer
@@ -15,13 +15,10 @@ class CategoryListAPIView(views.APIView):
 
     def get(self, request):
         categories = Category.objects.filter(parent=None)
-        contents = Content.objects.all()
 
         categories = CategoryListSerializer(categories, many=True)
-        contents = ContentURLSerializer(contents, many=True)
         context = {
             'categories': categories.data,
-            'contents': contents.data,
         }
         return Response(context, status=status.HTTP_200_OK)
 
