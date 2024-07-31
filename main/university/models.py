@@ -47,7 +47,9 @@ class Department(models.Model):
 class Program(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
-    departments = models.ManyToManyField(Department, verbose_name=_('Departments'), related_name='programs')
+    departments = models.ManyToManyField(
+        Department, related_name='programs', verbose_name=_('Departments'), blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -67,6 +69,10 @@ class Specialty(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.code, self.name)
+
+    class Meta:
+        verbose_name = _('Specialty')
+        verbose_name_plural = _('Specialties')
 
 
 # Personals

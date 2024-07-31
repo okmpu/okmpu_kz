@@ -5,7 +5,8 @@ from main.public.models import Headliner, News, Announcement, Vacancy
 
 
 class HeadlinerAdmin(TranslationAdmin):
-    list_display = ('title', 'poster', 'src', )
+    list_display = ('title', 'poster', 'src', 'order', )
+    search_fields = ('title', )
 
 
 class NewsAdmin(TranslationAdmin, SummernoteModelAdmin):

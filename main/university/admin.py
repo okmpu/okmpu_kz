@@ -40,6 +40,7 @@ class ProgramAdmin(TranslationAdmin):
     search_fields = ('name', 'slug', )
     filter_horizontal = ('departments', )
     inlines = [SpecialtyTab, ]
+    prepopulated_fields = {'slug': ('name_en', )}
 
 
 class PersonalAdmin(TranslationAdmin):

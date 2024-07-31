@@ -9,6 +9,7 @@ class Headliner(models.Model):
     poster = models.ImageField(_('Poster'), upload_to='public/headliners/', blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
     src = models.CharField(_('Source URL'), max_length=128, default='/')
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return self.title

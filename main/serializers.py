@@ -7,7 +7,7 @@ from main.university.models import Program, Faculty
 class HeadlinerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Headliner
-        exclude = ('title', 'about',)
+        exclude = ('title', 'about', )
 
 
 # Admission section
