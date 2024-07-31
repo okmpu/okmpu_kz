@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Category, Content, TextContent, FileContent, PopupContent, StaffContent
+from .models import Category, Content, TextContent, FileContent
 
 
 class CategoryTranslationOptions(TranslationOptions):
@@ -11,24 +11,14 @@ class ContentTranslationOptions(TranslationOptions):
 
 
 class TextContentTranslationOptions(TranslationOptions):
-    fields = ('description', )
-
-
-class PopupContentTranslationOptions(TranslationOptions):
-    fields = ('trigger', 'description', )
+    fields = ('body', )
 
 
 class FileContentTranslationOptions(TranslationOptions):
     fields = ('caption', )
 
 
-class StaffContentTranslationOptions(TranslationOptions):
-    fields = ('profession', 'about', )
-
-
 translator.register(Category, CategoryTranslationOptions)
 translator.register(Content, ContentTranslationOptions)
 translator.register(TextContent, TextContentTranslationOptions)
-translator.register(PopupContent, PopupContentTranslationOptions)
 translator.register(FileContent, FileContentTranslationOptions)
-translator.register(StaffContent, StaffContentTranslationOptions)
