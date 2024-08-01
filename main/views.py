@@ -32,8 +32,8 @@ class HomeAPIView(views.APIView):
         programs = Program.objects.all()
         academics = Faculty.objects.all()[:8]
         # public
-        news = News.objects.filter()[:3]
-        announcements = Announcement.objects.filter()[:3]
+        news = News.objects.filter()[:6]
+        announcements = Announcement.objects.filter()[:6]
         vacancies = Vacancy.objects.filter()[:3]
 
         # serializers
