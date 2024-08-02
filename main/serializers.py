@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from main.public.models import Headliner, News, Announcement, Vacancy
+from main.public.models import Headliner, News, Announcement, Vacancy, Event
 from main.university.models import Program, Faculty
 
 
@@ -28,12 +28,18 @@ class FacultyListSerializer(serializers.ModelSerializer):
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
-        exclude = ('title', 'description',)
+        exclude = ('title', 'description', )
 
 
 class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
+        exclude = ('title', 'description',)
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
         exclude = ('title', 'description',)
 
 

@@ -38,7 +38,6 @@ class News(models.Model):
 # Announcement
 class Announcement(models.Model):
     title = models.CharField(_('Title'), max_length=255)
-    poster = models.ImageField(_('Poster'), upload_to='public/announcements/', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
@@ -49,6 +48,22 @@ class Announcement(models.Model):
     class Meta:
         verbose_name = _('Announcement')
         verbose_name_plural = _('Announcements')
+
+
+# Events
+class Event(models.Model):
+    title = models.CharField(_('Title'), max_length=255)
+    poster = models.ImageField(_('Poster'), upload_to='public/events/', blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
+    description = models.TextField(_('Description'), blank=True, null=True)
+    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Event')
+        verbose_name_plural = _('Events')
 
 
 # Vacancy

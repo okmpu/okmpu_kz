@@ -3,9 +3,9 @@ from rest_framework.response import Response
 
 from main.content.models import Category
 from main.content.serializers import CategoryListSerializer
-from main.public.models import Headliner, News, Announcement, Vacancy
-from main.serializers import HeadlinerSerializer, NewsSerializer, AnnouncementSerializer, VacancySerializer, \
-    ProgramListSerializer, FacultyListSerializer
+from main.public.models import Headliner, News, Announcement, Event
+from main.serializers import HeadlinerSerializer, NewsSerializer, AnnouncementSerializer, \
+    ProgramListSerializer, FacultyListSerializer, EventSerializer
 from main.university.models import Program, Faculty
 
 
@@ -15,10 +15,13 @@ class CategoryListAPIView(views.APIView):
 
     def get(self, request):
         categories = Category.objects.filter(parent=None)
+        academics = Faculty.objects.all()[:6]
 
         categories = CategoryListSerializer(categories, many=True)
+        academics = FacultyListSerializer(academics, many=True, context={'request': request})
         context = {
             'categories': categories.data,
+            'academics': academics.data
         }
         return Response(context, status=status.HTTP_200_OK)
 
@@ -30,11 +33,11 @@ class HomeAPIView(views.APIView):
     def get(self, request):
         headliners = Headliner.objects.filter()[:3]
         programs = Program.objects.all()
-        academics = Faculty.objects.all()[:8]
         # public
         news = News.objects.filter()[:6]
         announcements = Announcement.objects.filter()[:6]
-        vacancies = Vacancy.objects.filter()[:3]
+        events = Event.objects.filter()[:3]
+        academics = Faculty.objects.all()[:6]
 
         # serializers
         headliners = HeadlinerSerializer(headliners, many=True, context={'request': request})
@@ -42,7 +45,7 @@ class HomeAPIView(views.APIView):
         academics = FacultyListSerializer(academics, many=True, context={'request': request})
         news = NewsSerializer(news, many=True, context={'request': request})
         announcements = AnnouncementSerializer(announcements, many=True, context={'request': request})
-        vacancies = VacancySerializer(vacancies, many=True, context={'request': request})
+        events = EventSerializer(events, many=True, context={'request': request})
 
         context = {
             'headliners': headliners.data,
@@ -50,6 +53,6 @@ class HomeAPIView(views.APIView):
             'academics': academics.data,
             'news': news.data,
             'announcements': announcements.data,
-            'vacancies': vacancies.data,
+            'events': events.data,
         }
         return Response(context, status=status.HTTP_200_OK)
