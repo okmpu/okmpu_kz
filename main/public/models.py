@@ -33,6 +33,7 @@ class News(models.Model):
     class Meta:
         verbose_name = _('News')
         verbose_name_plural = _('News')
+        ordering = ('-date_created', )
 
 
 # Announcement
@@ -48,6 +49,7 @@ class Announcement(models.Model):
     class Meta:
         verbose_name = _('Announcement')
         verbose_name_plural = _('Announcements')
+        ordering = ('-date_created',)
 
 
 # Events
@@ -64,6 +66,7 @@ class Event(models.Model):
     class Meta:
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
+        ordering = ('-date_created',)
 
 
 # Vacancy
@@ -79,3 +82,4 @@ class Vacancy(models.Model):
     class Meta:
         verbose_name = _('Vacancy')
         verbose_name_plural = _('Vacancies')
+        ordering = ('-date_created',)

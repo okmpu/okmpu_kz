@@ -3,9 +3,9 @@ from rest_framework.response import Response
 
 from main.content.models import Category
 from main.content.serializers import CategoryListSerializer
-from main.public.models import Headliner, News, Announcement, Event
+from main.public.models import Headliner, News, Announcement, Event, Vacancy
 from main.serializers import HeadlinerSerializer, NewsSerializer, AnnouncementSerializer, \
-    ProgramListSerializer, FacultyListSerializer, EventSerializer
+    ProgramListSerializer, FacultyListSerializer, EventSerializer, VacancySerializer
 from main.university.models import Program, Faculty
 
 
@@ -38,6 +38,7 @@ class HomeAPIView(views.APIView):
         announcements = Announcement.objects.filter()[:6]
         events = Event.objects.filter()[:3]
         academics = Faculty.objects.all()[:6]
+        vacancies = Vacancy.objects.all()[:6]
 
         # serializers
         headliners = HeadlinerSerializer(headliners, many=True, context={'request': request})

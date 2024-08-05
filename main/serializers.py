@@ -26,9 +26,34 @@ class FacultyListSerializer(serializers.ModelSerializer):
 
 # Public section
 class NewsSerializer(serializers.ModelSerializer):
+    description_en = serializers.SerializerMethodField()
+    description_ru = serializers.SerializerMethodField()
+    description_kk = serializers.SerializerMethodField()
+
     class Meta:
         model = News
         exclude = ('title', 'description', )
+
+    def get_description_en(self, obj):
+        request = self.context.get('request')
+        description = obj.description_en
+        if request:
+            description = description.replace('/media/', request.build_absolute_uri('/media/'))
+        return description
+
+    def get_description_ru(self, obj):
+        request = self.context.get('request')
+        description = obj.description_ru
+        if request:
+            description = description.replace('/media/', request.build_absolute_uri('/media/'))
+        return description
+
+    def get_description_kk(self, obj):
+        request = self.context.get('request')
+        description = obj.description_kk
+        if request:
+            description = description.replace('/media/', request.build_absolute_uri('/media/'))
+        return description
 
 
 class AnnouncementSerializer(serializers.ModelSerializer):
@@ -44,6 +69,31 @@ class EventSerializer(serializers.ModelSerializer):
 
 
 class VacancySerializer(serializers.ModelSerializer):
+    description_en = serializers.SerializerMethodField()
+    description_ru = serializers.SerializerMethodField()
+    description_kk = serializers.SerializerMethodField()
+
     class Meta:
         model = Vacancy
-        exclude = ('title', 'description',)
+        exclude = ('title', 'description', )
+
+    def get_description_en(self, obj):
+        request = self.context.get('request')
+        description = obj.description_en
+        if request:
+            description = description.replace('/media/', request.build_absolute_uri('/media/'))
+        return description
+
+    def get_description_ru(self, obj):
+        request = self.context.get('request')
+        description = obj.description_ru
+        if request:
+            description = description.replace('/media/', request.build_absolute_uri('/media/'))
+        return description
+
+    def get_description_kk(self, obj):
+        request = self.context.get('request')
+        description = obj.description_kk
+        if request:
+            description = description.replace('/media/', request.build_absolute_uri('/media/'))
+        return description
