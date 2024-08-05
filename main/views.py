@@ -36,9 +36,8 @@ class HomeAPIView(views.APIView):
         # public
         news = News.objects.filter()[:6]
         announcements = Announcement.objects.filter()[:6]
-        events = Event.objects.filter()[:3]
+        events = Event.objects.filter()[:4]
         academics = Faculty.objects.all()[:6]
-        vacancies = Vacancy.objects.all()[:6]
 
         # serializers
         headliners = HeadlinerSerializer(headliners, many=True, context={'request': request})
