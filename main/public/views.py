@@ -28,7 +28,7 @@ class NewsDetailAPIView(views.APIView):
         news = get_object_or_404(News, pk=pk)
         similar_news = News.objects.filter(user=news.user)[:8]
         news = NewsDetailSerializer(news, partial=True, context={'request': request})
-        similar_news = NewsListSerializer(similar_news, many=True)
+        similar_news = NewsListSerializer(similar_news, many=True, context={'request': request})
 
         context = {
             'news': news.data,
@@ -56,11 +56,17 @@ class AnnouncementDetailAPIView(views.APIView):
 
     def get(self, request, pk):
         announcement = get_object_or_404(Announcement, pk=pk)
+        announcements = Announcement.objects.filter(user=announcement.user)
         announcement = AnnouncementDetailSerializer(announcement, partial=True, context={'request': request})
-        return Response(announcement.data, status=status.HTTP_200_OK)
+        announcements = AnnouncementListSerializer(announcements, many=True, context={'request': request})
+        context = {
+            'announcement': announcement.data,
+            'announcements': announcements.data
+        }
+        return Response(context, status=status.HTTP_200_OK)
 
 
-# News API
+# Events API
 # ----------------------------------------------------------------------------------------------------------------------
 class EventsAPIView(views.APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
@@ -79,8 +85,12 @@ class EventDetailAPIView(views.APIView):
 
     def get(self, request, pk):
         event = get_object_or_404(Event, pk=pk)
+        events = Event.objects.filter(user=event.user)
         event = EventDetailSerializer(event, partial=True, context={'request': request})
+        events = EventListSerializer(events, many=True, context={'request': request})
+
         context = {
-            'event': event.data
+            'event': event.data,
+            'events': events.data
         }
         return Response(context, status=status.HTTP_200_OK)
