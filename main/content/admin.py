@@ -2,7 +2,7 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline
 from django_summernote.admin import SummernoteModelAdminMixin
-from .models import Category, Content, TextContent, FileContent, ImageContent, ContentItem
+from .models import Category, Content, TextContent, FileContent, ImageContent, StaffContent
 
 
 class CategoryAdmin(TranslationAdmin):
@@ -27,9 +27,9 @@ class ImageContentTabular(admin.TabularInline):
     extra = 0
 
 
-class ContentItemInline(admin.TabularInline):
-    model = ContentItem
-    extra = 1
+class StaffContentTabular(TranslationTabularInline):
+    model = StaffContent
+    extra = 0
 
 
 class ContentAdmin(TranslationAdmin):
@@ -37,7 +37,7 @@ class ContentAdmin(TranslationAdmin):
     list_filter = ('category',)
     search_fields = ('title', 'slug', )
     prepopulated_fields = {'slug': ('title_en', )}
-    inlines = [ContentItemInline, TextContentTabular, ImageContentTabular, FileContentTabular, ]
+    inlines = [TextContentTabular, ImageContentTabular, FileContentTabular, StaffContentTabular, ]
 
 
 admin.site.register(Category, CategoryAdmin)

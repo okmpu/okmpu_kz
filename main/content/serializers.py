@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Content, TextContent, FileContent, ImageContent, ContentItem, Category
+from .models import Content, TextContent, FileContent, ImageContent, Category, StaffContent
 
 
 # CategoryList serializers
@@ -32,9 +32,34 @@ class ContentURLSerializer(serializers.ModelSerializer):
 # ----------------------------------------------------------------------------------------------------------------------
 # TextContent
 class TextContentSerializer(serializers.ModelSerializer):
+    body_en = serializers.SerializerMethodField()
+    body_ru = serializers.SerializerMethodField()
+    body_kk = serializers.SerializerMethodField()
+
     class Meta:
         model = TextContent
-        exclude = ('id', 'body', 'content', )
+        exclude = ('body', 'content', )
+
+    def get_body_en(self, obj):
+        request = self.context.get('request')
+        body = obj.body_en
+        if request and body:
+            body = body.replace('/media/', request.build_absolute_uri('/media/'))
+        return body
+
+    def get_body_ru(self, obj):
+        request = self.context.get('request')
+        body = obj.body_ru
+        if request and body:
+            body = body.replace('/media/', request.build_absolute_uri('/media/'))
+        return body
+
+    def get_body_kk(self, obj):
+        request = self.context.get('request')
+        body = obj.body_kk
+        if request and body:
+            body = body.replace('/media/', request.build_absolute_uri('/media/'))
+        return body
 
 
 # FileContent
@@ -43,12 +68,6 @@ class FileContentSerializer(serializers.ModelSerializer):
         model = FileContent
         exclude = ('caption', 'content', )
 
-    def get_file_url(self, obj):
-        request = self.context.get('request')
-        if request:
-            return request.build_absolute_uri(obj.file.url)
-        return obj.file.url
-
 
 # ImageContent
 class ImageContentSerializer(serializers.ModelSerializer):
@@ -56,44 +75,20 @@ class ImageContentSerializer(serializers.ModelSerializer):
         model = ImageContent
         fields = ('id', 'image', )
 
-    def get_image_url(self, obj):
-        request = self.context.get('request')
-        if request:
-            return request.build_absolute_uri(obj.image.url)
-        return obj.image.url
 
-
-# ContentItem
-class ContentItemSerializer(serializers.ModelSerializer):
-    content_object = serializers.SerializerMethodField()
-
+# StaffContent
+class StaffContentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ContentItem
-        fields = ('id', 'order', 'content_object', )
-
-    def get_content_object(self, obj):
-        context = self.context
-        if obj.content_type.model == 'textcontent':
-            return {
-                'type': 'text_content',
-                'content': TextContentSerializer(obj.content_object, context=context).data
-            }
-        elif obj.content_type.model == 'filecontent':
-            return {
-                'type': 'file_content',
-                'content': FileContentSerializer(obj.content_object, context=context).data
-            }
-        elif obj.content_type.model == 'imagecontent':
-
-            return {
-                'type': 'image_content',
-                'content': ImageContentSerializer(obj.content_object, context=context).data
-            }
+        model = StaffContent
+        exclude = ('full_name', 'profession', 'bio', 'content', )
 
 
 # Content
 class ContentSerializer(serializers.ModelSerializer):
-    items = ContentItemSerializer(many=True, read_only=True)
+    text_contents = TextContentSerializer(many=True)
+    file_contents = FileContentSerializer(many=True)
+    image_contents = ImageContentSerializer(many=True)
+    staff_contents = StaffContentSerializer(many=True)
 
     class Meta:
         model = Content

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -51,23 +52,12 @@ class Content(models.Model):
         ordering = ('order', )
 
 
-# ContentItem
-class ContentItem(models.Model):
-    content = models.ForeignKey(Content, related_name='items', on_delete=models.CASCADE, verbose_name=_('Content'))
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField(_('Object ID'))
-    content_object = GenericForeignKey('content_type', 'object_id')
-    order = models.PositiveIntegerField(_('Order'), default=0)
-
-    class Meta:
-        verbose_name = _('Content item')
-        verbose_name_plural = _('Content items')
-        ordering = ('order', )
-
-
 # Text content
 class TextContent(models.Model):
-    content = models.ForeignKey(Content, on_delete=models.CASCADE, verbose_name=_('Content'))
+    content = models.ForeignKey(
+        Content, on_delete=models.CASCADE,
+        related_name='text_contents', verbose_name=_('Content')
+    )
     body = models.TextField(verbose_name=_('Body'), blank=True, null=True)
 
     def __str__(self):
@@ -80,7 +70,10 @@ class TextContent(models.Model):
 
 # File content
 class ImageContent(models.Model):
-    content = models.ForeignKey(Content, on_delete=models.CASCADE, verbose_name=_('Content'))
+    content = models.ForeignKey(
+        Content, on_delete=models.CASCADE,
+        related_name='image_contents', verbose_name=_('Content')
+    )
     image = models.ImageField(verbose_name=_('Image'), upload_to='content/category/images/')
 
     def __str__(self):
@@ -93,7 +86,10 @@ class ImageContent(models.Model):
 
 # File content
 class FileContent(models.Model):
-    content = models.ForeignKey(Content, on_delete=models.CASCADE, verbose_name=_('Content'))
+    content = models.ForeignKey(
+        Content, on_delete=models.CASCADE,
+        related_name='file_contents', verbose_name=_('Content')
+    )
     caption = models.CharField(verbose_name=_('Caption'), max_length=255)
     file = models.FileField(verbose_name=_('File'), upload_to='content/category/files/')
 
@@ -103,3 +99,24 @@ class FileContent(models.Model):
     class Meta:
         verbose_name = _('File content')
         verbose_name_plural = _('File contents')
+
+
+# Staff content
+class StaffContent(models.Model):
+    content = models.ForeignKey(
+        Content, on_delete=models.CASCADE,
+        related_name='staff_contents', verbose_name=_('Content')
+    )
+    full_name = models.CharField(verbose_name=_('Full name'), max_length=128)
+    image = models.ImageField(verbose_name=_('Image'), upload_to='content/category/staff/', blank=True, null=True)
+    profession = models.CharField(verbose_name=_('Profession'), max_length=128)
+    bio = models.TextField(verbose_name=_('Bio'), blank=True, null=True)
+    phone = models.CharField(verbose_name=_('Phone'), max_length=32, default='')
+    email = models.EmailField(verbose_name=_('Email'), max_length=64, default='example@gmail.com')
+
+    def __str__(self):
+        return 'ID: {} '.format(self.pk) + _('Staff content')
+
+    class Meta:
+        verbose_name = _('Staff content')
+        verbose_name_plural = _('Staff contents')
