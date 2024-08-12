@@ -119,3 +119,4 @@ class StaffContent(models.Model):
     class Meta:
         verbose_name = _('Staff content')
         verbose_name_plural = _('Staff contents')
+        ordering = ('order', )
