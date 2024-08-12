@@ -1,8 +1,5 @@
-from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.contrib.contenttypes.fields import GenericForeignKey
-from django.contrib.contenttypes.models import ContentType
 
 
 class Category(models.Model):
@@ -19,6 +16,7 @@ class Category(models.Model):
         null=True, blank=True, verbose_name=_('Parent')
     )
     multiple = models.BooleanField(_('Multiple'), default=False)
+    url = models.CharField(_('URL'), max_length=128, blank=True, null=True)
     target = models.BooleanField(_('Target'), default=False)
     order = models.PositiveIntegerField(_('Order'), default=0)
 
@@ -111,8 +109,8 @@ class StaffContent(models.Model):
     image = models.ImageField(verbose_name=_('Image'), upload_to='content/category/staff/', blank=True, null=True)
     profession = models.CharField(verbose_name=_('Profession'), max_length=128)
     bio = models.TextField(verbose_name=_('Bio'), blank=True, null=True)
-    phone = models.CharField(verbose_name=_('Phone'), max_length=32, default='')
-    email = models.EmailField(verbose_name=_('Email'), max_length=64, default='example@gmail.com')
+    phone = models.CharField(verbose_name=_('Phone'), max_length=32, blank=True, null=True)
+    email = models.EmailField(verbose_name=_('Email'), max_length=64, blank=True, null=True)
 
     def __str__(self):
         return 'ID: {} '.format(self.pk) + _('Staff content')
