@@ -11,17 +11,17 @@ class HeadlinerAdmin(TranslationAdmin):
 
 class NewsAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'date_created', )
-    list_filter = ('user', )
+    list_filter = ('user', 'department', )
 
 
 class AnnouncementAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'date_created', )
-    list_filter = ('user', )
+    list_filter = ('user', 'department', )
 
 
 class EventAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'date_created', )
-    list_filter = ('user', )
+    list_filter = ('user', 'department', )
 
 
 class VacancyAdmin(TranslationAdmin, SummernoteModelAdmin):

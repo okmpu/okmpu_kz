@@ -11,7 +11,7 @@ class NewsDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        exclude = ('title', 'description', )
+        exclude = ('title', 'description', 'department', )
 
     def get_description_en(self, obj):
         request = self.context.get('request')
@@ -44,7 +44,7 @@ class AnnouncementDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Announcement
-        exclude = ('title', 'description', )
+        exclude = ('title', 'description', 'department',)
 
     def get_description_en(self, obj):
         request = self.context.get('request')
@@ -77,7 +77,7 @@ class EventDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        exclude = ('title', 'description', )
+        exclude = ('title', 'description', 'department',)
 
     def get_description_en(self, obj):
         request = self.context.get('request')

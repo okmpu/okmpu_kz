@@ -64,6 +64,10 @@ class Specialty(models.Model):
         Program, on_delete=models.CASCADE,
         related_name='program_items', verbose_name=_('Program')
     )
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='department_specialities', verbose_name=_('Department')
+    )
     code = models.CharField(_('Code'), max_length=128)
     name = models.CharField(_('Name'), max_length=128)
 
@@ -75,12 +79,35 @@ class Specialty(models.Model):
         verbose_name_plural = _('Specialties')
 
 
+# Projects
+class Project(models.Model):
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='projects', verbose_name=_('Department')
+    )
+    name = models.CharField(_('Name'), max_length=128)
+    author = models.CharField(_('Author'), max_length=128)
+    file = models.FileField(_('File'), upload_to='university/faculties/projects/', null=True, blank=True)
+    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Project')
+        verbose_name_plural = _('Projects')
+
+
 # Personals
 class Personal(models.Model):
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='department_personals', verbose_name=_('Department')
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'))
     image = models.ImageField(_('Image'), upload_to='university/personals/', blank=True, null=True)
     profession = models.CharField(_('Profession'), max_length=128)
-    phone = models.CharField(_('Phone'), max_length=32, default='+7')
+    phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
 
     def __str__(self):
