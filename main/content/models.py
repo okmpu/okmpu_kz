@@ -111,6 +111,7 @@ class StaffContent(models.Model):
     bio = models.TextField(verbose_name=_('Bio'), blank=True, null=True)
     phone = models.CharField(verbose_name=_('Phone'), max_length=32, blank=True, null=True)
     email = models.EmailField(verbose_name=_('Email'), max_length=64, blank=True, null=True)
+    order = models.PositiveIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return 'ID: {} '.format(self.pk) + _('Staff content')
