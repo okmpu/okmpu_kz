@@ -3,10 +3,10 @@ from rest_framework.response import Response
 
 from main.content.models import Category
 from main.content.serializers import CategoryListSerializer
-from main.public.models import Headliner, News, Announcement, Event
+from main.public.models import Headliner, News, Announcement, Event, Program
 from main.serializers import HeadlinerSerializer, NewsListSerializer, AnnouncementListSerializer, \
-    ProgramListSerializer, FacultyListSerializer, EventListSerializer
-from main.university.models import Program, Faculty
+    FacultyListSerializer, EventListSerializer, ProgramListSerializer
+from main.university.models import Faculty
 
 
 # Context API

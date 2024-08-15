@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from main.university.models import Faculty, Department, Program, Specialty, Personal, Project
+from main.university.models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty
 
 
 class FacultyTranslationOptions(TranslationOptions):
@@ -14,12 +14,12 @@ class ProgramTranslationOptions(TranslationOptions):
     fields = ('name', )
 
 
-class ProjectTranslationOptions(TranslationOptions):
-    fields = ('name', 'author', )
-
-
 class SpecialtyTranslationOptions(TranslationOptions):
     fields = ('name', )
+
+
+class ProjectTranslationOptions(TranslationOptions):
+    fields = ('name', 'author', )
 
 
 class PersonalTranslationOptions(TranslationOptions):
@@ -28,7 +28,7 @@ class PersonalTranslationOptions(TranslationOptions):
 
 translator.register(Faculty, FacultyTranslationOptions)
 translator.register(Department, DepartmentTranslationOptions)
-translator.register(Program, ProgramTranslationOptions)
-translator.register(Specialty, SpecialtyTranslationOptions)
+translator.register(FacultyProgram, ProgramTranslationOptions)
+translator.register(FacultySpecialty, SpecialtyTranslationOptions)
 translator.register(Personal, PersonalTranslationOptions)
 translator.register(Project, ProjectTranslationOptions)

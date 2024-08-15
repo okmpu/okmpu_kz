@@ -1,12 +1,26 @@
 from django.contrib import admin
-from modeltranslation.admin import TranslationAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from django_summernote.admin import SummernoteModelAdmin
-from main.public.models import Headliner, News, Announcement, Vacancy, Event
+from main.public.models import Headliner, News, Announcement, Vacancy, Event, Specialty, Program
 
 
 class HeadlinerAdmin(TranslationAdmin):
     list_display = ('title', 'poster', 'src', 'order', )
     search_fields = ('title', )
+
+
+# Programs
+# ----------------------------------------------------------------------------------------------------------------------
+class SpecialtyTab(TranslationTabularInline):
+    model = Specialty
+    extra = 0
+
+
+class ProgramAdmin(TranslationAdmin):
+    list_display = ('name', 'slug', )
+    search_fields = ('name', 'slug', )
+    inlines = [SpecialtyTab, ]
+    prepopulated_fields = {'slug': ('name_en', )}
 
 
 class NewsAdmin(TranslationAdmin, SummernoteModelAdmin):
@@ -30,6 +44,7 @@ class VacancyAdmin(TranslationAdmin, SummernoteModelAdmin):
 
 
 admin.site.register(Headliner, HeadlinerAdmin)
+admin.site.register(Program, ProgramAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(Event, EventAdmin)

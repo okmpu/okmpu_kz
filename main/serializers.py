@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from main.public.models import Headliner, News, Announcement, Vacancy, Event
-from main.university.models import Program, Faculty
+from main.public.models import Headliner, News, Announcement, Vacancy, Event, Program
+from main.university.models import Faculty
 
 
 # Carousel section
@@ -16,7 +16,7 @@ class HeadlinerSerializer(serializers.ModelSerializer):
 class ProgramListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Program
-        exclude = ('name', 'departments', )
+        exclude = ('name', )
 
 
 # Public section

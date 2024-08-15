@@ -2,20 +2,14 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from main.public.models import News, Event
-from main.university.models import Faculty, Department, Program, Project, Personal
+from main.university.models import Faculty, Department, Project, Personal, FacultySpecialty, FacultyProgram
 
 
 class FacultySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Faculty
-        exclude = ('name', 'about',)
-
-
-class ProgramSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Program
-        exclude = ('name', 'departments', )
+        exclude = ('name', 'about', )
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -23,6 +17,21 @@ class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Department
         exclude = ('name', 'about', 'faculty', )
+
+
+# Programs
+class FacultySpecialtySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FacultySpecialty
+        exclude = ('name', )
+
+
+class FacultyProgramSerializer(serializers.ModelSerializer):
+    program_items = FacultySpecialtySerializer(many=True)
+
+    class Meta:
+        model = FacultyProgram
+        exclude = ('name', 'department', )
 
 
 class ProjectSerializer(serializers.ModelSerializer):

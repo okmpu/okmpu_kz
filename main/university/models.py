@@ -44,11 +44,12 @@ class Department(models.Model):
 
 
 # Programs
-class Program(models.Model):
+class FacultyProgram(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
-    departments = models.ManyToManyField(
-        Department, related_name='programs', verbose_name=_('Departments'), blank=True
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='programs', verbose_name=_('Department')
     )
 
     def __str__(self):
@@ -59,14 +60,10 @@ class Program(models.Model):
         verbose_name_plural = _('Programs')
 
 
-class Specialty(models.Model):
+class FacultySpecialty(models.Model):
     program = models.ForeignKey(
-        Program, on_delete=models.CASCADE,
+        FacultyProgram, on_delete=models.CASCADE,
         related_name='program_items', verbose_name=_('Program')
-    )
-    department = models.ForeignKey(
-        Department, on_delete=models.CASCADE,
-        related_name='department_specialities', verbose_name=_('Department')
     )
     code = models.CharField(_('Code'), max_length=128)
     name = models.CharField(_('Name'), max_length=128)

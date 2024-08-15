@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
-from .models import Faculty, Department, Program, Specialty, Personal, Project
+from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty
 
 
 # Faculty
@@ -28,19 +28,18 @@ class DepartmentAdmin(TranslationAdmin):
     prepopulated_fields = {'slug': ('name_en', )}
 
 
-# Programs
+# FacultyPrograms
 # ----------------------------------------------------------------------------------------------------------------------
-class SpecialtyTab(TranslationTabularInline):
-    model = Specialty
+class FacultySpecialtyTab(TranslationTabularInline):
+    model = FacultySpecialty
     extra = 0
 
 
-class ProgramAdmin(TranslationAdmin):
+class FacultyProgramAdmin(TranslationAdmin):
     list_display = ('name', 'slug', )
-    list_filter = ('departments', )
+    list_filter = ('department', )
     search_fields = ('name', 'slug', )
-    filter_horizontal = ('departments', )
-    inlines = [SpecialtyTab, ]
+    inlines = [FacultySpecialtyTab, ]
     prepopulated_fields = {'slug': ('name_en', )}
 
 
@@ -58,6 +57,6 @@ class PersonalAdmin(TranslationAdmin):
 
 admin.site.register(Faculty, FacultyAdmin)
 admin.site.register(Department, DepartmentAdmin)
-admin.site.register(Program, ProgramAdmin)
+admin.site.register(FacultyProgram, FacultyProgramAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Personal, PersonalAdmin)

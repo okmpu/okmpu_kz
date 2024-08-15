@@ -15,6 +15,7 @@ urlpatterns = [
     # university apps urls...
     path('university/faculties/', university_views.FacultiesAPIView.as_view()),
     path('university/faculties/<slug>/', university_views.FacultyDetailAPIView.as_view()),
+    path('university/faculties/<slug>/programs/', university_views.ProgramsFacultyAPIView.as_view()),
 
     # public app urls...
     path('public/news/', main_views.NewsAPIView.as_view()),
