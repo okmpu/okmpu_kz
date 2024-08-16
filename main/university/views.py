@@ -28,11 +28,11 @@ class FacultyDetailAPIView(views.APIView):
     def get(self, request, slug):
         faculty = get_object_or_404(Faculty, slug=slug)
         departments = Department.objects.filter(faculty=faculty)
-        projects = Project.objects.filter(department__in=departments)
-        personals = Personal.objects.filter(department__in=departments)
-        news = News.objects.filter(department__in=departments)
-        events = Event.objects.filter(department__in=departments)
-        announcements = Announcement.objects.filter(department__in=departments)
+        projects = Project.objects.filter(department__in=departments)[:3]
+        personals = Personal.objects.filter(department__in=departments)[:3]
+        news = News.objects.filter(department__in=departments)[:3]
+        events = Event.objects.filter(department__in=departments)[:3]
+        announcements = Announcement.objects.filter(department__in=departments)[:3]
 
         faculty = FacultySerializer(faculty, partial=True, context={'request': request})
         departments = DepartmentSerializer(departments, many=True)
@@ -65,5 +65,60 @@ class ProgramsFacultyAPIView(views.APIView):
         programs = FacultyProgramSerializer(programs, many=True)
         context = {
             'programs': programs.data,
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+
+# Faculty Projects API
+class ProjectsFacultyAPIView(views.APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+    def get(self, request, slug):
+        faculty = get_object_or_404(Faculty, slug=slug)
+        departments = Department.objects.filter(faculty=faculty)
+        projects = Project.objects.filter(department__in=departments)
+        projects = ProjectSerializer(projects, many=True, context={'request': request})
+        context = {
+            'projects': projects.data,
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+
+# Faculty Personals API
+class PersonalsFacultyAPIView(views.APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+    def get(self, request, slug):
+        faculty = get_object_or_404(Faculty, slug=slug)
+        departments = Department.objects.filter(faculty=faculty)
+        personals = Personal.objects.filter(department__in=departments)
+        personals = PersonalSerializer(personals, many=True, context={'request': request})
+        context = {
+            'personals': [
+                {
+                    'id': 1,
+                    'name_kk': 'Кафедра басшылығы',
+                    'name_ru': 'Руководство кафедры',
+                    'name_en': 'Department management',
+                    'type': 'management',
+                    'results': personals.data
+                },
+                {
+                    'id': 2,
+                    'name_kk': 'Оқытушылар',
+                    'name_ru': 'Преподаватели',
+                    'name_en': 'Teachers',
+                    'type': 'teachers',
+                    'results': personals.data
+                },
+                {
+                    'id': 3,
+                    'name_kk': 'Студенттер',
+                    'name_ru': 'Студенты',
+                    'name_en': 'Students',
+                    'type': 'students',
+                    'results': personals.data
+                },
+            ]
         }
         return Response(context, status=status.HTTP_200_OK)
