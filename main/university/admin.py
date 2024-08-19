@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django_summernote.admin import SummernoteModelAdmin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty
 
@@ -11,7 +12,7 @@ class DepartmentTab(TranslationTabularInline):
     prepopulated_fields = {'slug': ('name_en',)}
 
 
-class FacultyAdmin(TranslationAdmin):
+class FacultyAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('name', 'faculty_type', 'slug', )
     list_filter = ('faculty_type', )
     search_fields = ('name', 'slug',)

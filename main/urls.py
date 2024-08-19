@@ -18,6 +18,8 @@ urlpatterns = [
     path('university/faculties/<slug>/programs/', university_views.ProgramsFacultyAPIView.as_view()),
     path('university/faculties/<slug>/projects/', university_views.ProjectsFacultyAPIView.as_view()),
     path('university/faculties/<slug>/personals/', university_views.PersonalsFacultyAPIView.as_view()),
+    path('university/faculties/<slug>/publics/', university_views.PublicsFacultyAPIView.as_view()),
+    path('university/faculties/<slug>/about/', university_views.AboutFacultyAPIView.as_view()),
 
     # public app urls...
     path('public/news/', main_views.NewsAPIView.as_view()),

@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from main.public.models import News, Event, Announcement
 from main.university.models import Faculty, Project, Department, Personal, FacultyProgram
 from main.university.serializers import FacultySerializer, DepartmentSerializer, ProjectSerializer, \
-    PersonalSerializer, NewsSerializer, EventsSerializer, FacultyProgramSerializer
+    PersonalSerializer, NewsSerializer, EventsSerializer, FacultyProgramSerializer, AboutFacultySerializer
 
 
 # Faculties API
@@ -91,8 +91,9 @@ class PersonalsFacultyAPIView(views.APIView):
     def get(self, request, slug):
         faculty = get_object_or_404(Faculty, slug=slug)
         departments = Department.objects.filter(faculty=faculty)
-        personals = Personal.objects.filter(department__in=departments)
-        personals = PersonalSerializer(personals, many=True, context={'request': request})
+        managements = Personal.objects.filter(department__in=departments, p_type='MANAGEMENT')
+        teachers = Personal.objects.filter(department__in=departments, p_type='TEACHER')
+        students = Personal.objects.filter(department__in=departments, p_type='STUDENT')
         context = {
             'personals': [
                 {
@@ -101,7 +102,7 @@ class PersonalsFacultyAPIView(views.APIView):
                     'name_ru': 'Руководство кафедры',
                     'name_en': 'Department management',
                     'type': 'management',
-                    'results': personals.data
+                    'results': PersonalSerializer(managements, many=True, context={'request': request}).data
                 },
                 {
                     'id': 2,
@@ -109,7 +110,7 @@ class PersonalsFacultyAPIView(views.APIView):
                     'name_ru': 'Преподаватели',
                     'name_en': 'Teachers',
                     'type': 'teachers',
-                    'results': personals.data
+                    'results': PersonalSerializer(teachers, many=True, context={'request': request}).data
                 },
                 {
                     'id': 3,
@@ -117,8 +118,46 @@ class PersonalsFacultyAPIView(views.APIView):
                     'name_ru': 'Студенты',
                     'name_en': 'Students',
                     'type': 'students',
-                    'results': personals.data
+                    'results': PersonalSerializer(students, many=True, context={'request': request}).data
                 },
             ]
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+
+# FacultyDetail API
+class PublicsFacultyAPIView(views.APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+    def get(self, request, slug):
+        faculty = get_object_or_404(Faculty, slug=slug)
+        departments = Department.objects.filter(faculty=faculty)
+        news = News.objects.filter(department__in=departments)
+        events = Event.objects.filter(department__in=departments)
+        announcements = Announcement.objects.filter(department__in=departments)
+
+        news = NewsSerializer(news, many=True, context={'request': request})
+        events = EventsSerializer(events, many=True, context={'request': request})
+        announcements = NewsSerializer(announcements, many=True, context={'request': request})
+
+        context = {
+            'news': news.data,
+            'events': events.data,
+            'announcements': announcements.data,
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+
+# AboutFaculty API
+class AboutFacultyAPIView(views.APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+    def get(self, request, slug):
+        faculty = get_object_or_404(Faculty, slug=slug)
+
+        about_faculty = AboutFacultySerializer(faculty, partial=True, context={'request': request})
+
+        context = {
+            'about': about_faculty.data,
         }
         return Response(context, status=status.HTTP_200_OK)

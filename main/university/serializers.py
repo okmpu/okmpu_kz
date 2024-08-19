@@ -67,3 +67,34 @@ class EventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         exclude = ('title', 'description', 'department', 'user', )
+
+
+class AboutFacultySerializer(serializers.ModelSerializer):
+    about_en = serializers.SerializerMethodField()
+    about_ru = serializers.SerializerMethodField()
+    about_kk = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Faculty
+        fields = ('id', 'about_ru', 'about_en', 'about_kk', )
+
+    def get_about_en(self, obj):
+        request = self.context.get('request')
+        about = obj.about_en
+        if request and about:
+            about = about.replace('/media/', request.build_absolute_uri('/media/'))
+        return about
+
+    def get_about_ru(self, obj):
+        request = self.context.get('request')
+        about = obj.about_ru
+        if request and about:
+            about = about.replace('/media/', request.build_absolute_uri('/media/'))
+        return about
+
+    def get_about_kk(self, obj):
+        request = self.context.get('request')
+        about = obj.about_kk
+        if request and about:
+            about = about.replace('/media/', request.build_absolute_uri('/media/'))
+        return about

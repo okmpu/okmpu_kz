@@ -97,6 +97,12 @@ class Project(models.Model):
 
 # Personals
 class Personal(models.Model):
+    PERSONAL_TYPE = (
+        ('STUDENT', _('Student')),
+        ('TEACHER', _('Teacher')),
+        ('MANAGEMENT', _('Management')),
+    )
+
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
         related_name='department_personals', verbose_name=_('Department')
@@ -104,6 +110,7 @@ class Personal(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'))
     image = models.ImageField(_('Image'), upload_to='university/personals/', blank=True, null=True)
     profession = models.CharField(_('Profession'), max_length=128)
+    p_type = models.CharField(_('Personal type'), max_length=128, choices=PERSONAL_TYPE, default='MANAGEMENT')
     phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
 
