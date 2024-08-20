@@ -22,7 +22,7 @@ class FacultyAdmin(TranslationAdmin, SummernoteModelAdmin):
 
 # Department
 # ----------------------------------------------------------------------------------------------------------------------
-class DepartmentAdmin(TranslationAdmin):
+class DepartmentAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('name', 'faculty', 'slug', )
     list_filter = ('faculty', )
     search_fields = ('name', 'slug', 'faculty', )

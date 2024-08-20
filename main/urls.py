@@ -21,6 +21,13 @@ urlpatterns = [
     path('university/faculties/<slug>/publics/', university_views.PublicsFacultyAPIView.as_view()),
     path('university/faculties/<slug>/about/', university_views.AboutFacultyAPIView.as_view()),
 
+    path('university/departments/<slug>/', university_views.DepartmentDetailAPIView.as_view()),
+    path('university/departments/<slug>/programs/', university_views.DepartmentProgramsAPIView.as_view()),
+    path('university/departments/<slug>/projects/', university_views.DepartmentProjectsAPIView.as_view()),
+    path('university/departments/<slug>/personals/', university_views.DepartmentPersonalsAPIView.as_view()),
+    path('university/departments/<slug>/publics/', university_views.DepartmentPublicsAPIView.as_view()),
+    path('university/departments/<slug>/about/', university_views.DepartmentAboutAPIView.as_view()),
+
     # public app urls...
     path('public/news/', main_views.NewsAPIView.as_view()),
     path('public/news/<pk>/', main_views.NewsDetailAPIView.as_view()),
