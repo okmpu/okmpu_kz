@@ -51,8 +51,8 @@ class ProjectAdmin(TranslationAdmin):
 
 
 class PersonalAdmin(TranslationAdmin):
-    list_display = ('user', 'profession', 'department', 'phone', )
-    search_fields = ('user', 'profession', 'department', )
+    list_display = ('full_name', 'profession', 'department', 'phone', )
+    search_fields = ('full_name', 'profession', 'department', )
     list_filter = ('department', )
 
 

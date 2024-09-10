@@ -107,7 +107,7 @@ class Personal(models.Model):
         Department, on_delete=models.CASCADE,
         related_name='department_personals', verbose_name=_('Department')
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name=_('User'))
+    full_name = models.CharField(_('Full name'), max_length=128, blank=True, null=True)
     image = models.ImageField(_('Image'), upload_to='university/personals/', blank=True, null=True)
     profession = models.CharField(_('Profession'), max_length=128)
     p_type = models.CharField(_('Personal type'), max_length=128, choices=PERSONAL_TYPE, default='MANAGEMENT')
@@ -115,7 +115,7 @@ class Personal(models.Model):
     about = models.TextField(_('About'), blank=True, null=True)
 
     def __str__(self):
-        return '{} {} - {}'.format(self.user.first_name, self.user.last_name, self.profession)
+        return '{} - {}'.format(self.full_name, self.profession)
 
     class Meta:
         verbose_name = _('Personal')

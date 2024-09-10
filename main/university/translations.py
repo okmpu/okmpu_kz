@@ -23,7 +23,7 @@ class ProjectTranslationOptions(TranslationOptions):
 
 
 class PersonalTranslationOptions(TranslationOptions):
-    fields = ('profession', 'about', )
+    fields = ('full_name', 'profession', 'about', )
 
 
 translator.register(Faculty, FacultyTranslationOptions)

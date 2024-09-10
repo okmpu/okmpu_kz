@@ -41,18 +41,10 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 # Personal
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('id', 'first_name', 'last_name', 'username', 'email' )
-
-
 class PersonalSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-
     class Meta:
         model = Personal
-        exclude = ('department', 'profession', 'about', )
+        exclude = ('full_name', 'department', 'profession', 'about', )
 
 
 class NewsSerializer(serializers.ModelSerializer):
