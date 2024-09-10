@@ -33,7 +33,7 @@ class HomeAPIView(views.APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
 
     def get(self, request):
-        headliners = Headliner.objects.filter()[:3]
+        headliners = Headliner.objects.filter()[:5]
         programs = Program.objects.all()
         # public
         news = News.objects.filter()[:6]

@@ -18,6 +18,7 @@ class Headliner(models.Model):
     class Meta:
         verbose_name = _('Headliner')
         verbose_name_plural = _('Headliners')
+        ordering = ('order', )
 
 
 # Programs
