@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from main.public.models import News, Announcement, Event
+from main.public.models import News, Announcement, Event, Program, Specialty
 
 
 # News
@@ -99,3 +99,18 @@ class EventDetailSerializer(serializers.ModelSerializer):
         if request:
             description = description.replace('/media/', request.build_absolute_uri('/media/'))
         return description
+
+
+# Program
+class SpecialtySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Specialty
+        exclude = ('name', )
+
+
+class ProgramSerializer(serializers.ModelSerializer):
+    program_items = SpecialtySerializer(many=True)
+
+    class Meta:
+        model = Program
+        exclude = ('name', )

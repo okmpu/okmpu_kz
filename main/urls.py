@@ -1,6 +1,6 @@
 from django.urls import path
 from main.content.views import ContentDetail
-from main.views import CategoryListAPIView, HomeAPIView
+from main.views import CategoryListAPIView, HomeAPIView, ProgramAPIView
 from main.public import views as main_views
 from main.university import views as university_views
 
@@ -8,6 +8,7 @@ urlpatterns = [
     # main app urls...
     path('', HomeAPIView.as_view()),
     path('categories/', CategoryListAPIView.as_view()),
+    path('program/<slug>/', ProgramAPIView.as_view()),
 
     # content app urls...
     path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', ContentDetail.as_view()),
