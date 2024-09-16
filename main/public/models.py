@@ -5,6 +5,7 @@ from main.university.models import Department
 
 
 # Headliner
+# ----------------------------------------------------------------------------------------------------------------------
 class Headliner(models.Model):
     title = models.CharField(_('Title'), max_length=64)
     poster = models.ImageField(_('Poster'), upload_to='public/headliners/', blank=True, null=True)
@@ -22,6 +23,7 @@ class Headliner(models.Model):
 
 
 # Programs
+# ----------------------------------------------------------------------------------------------------------------------
 class Program(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
@@ -51,6 +53,7 @@ class Specialty(models.Model):
 
 
 # News
+# ----------------------------------------------------------------------------------------------------------------------
 class News(models.Model):
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
@@ -72,6 +75,7 @@ class News(models.Model):
 
 
 # Announcement
+# ----------------------------------------------------------------------------------------------------------------------
 class Announcement(models.Model):
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
@@ -92,6 +96,7 @@ class Announcement(models.Model):
 
 
 # Events
+# ----------------------------------------------------------------------------------------------------------------------
 class Event(models.Model):
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
@@ -113,6 +118,7 @@ class Event(models.Model):
 
 
 # Vacancy
+# ----------------------------------------------------------------------------------------------------------------------
 class Vacancy(models.Model):
     title = models.CharField(_('Title'), max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
@@ -126,3 +132,36 @@ class Vacancy(models.Model):
         verbose_name = _('Vacancy')
         verbose_name_plural = _('Vacancies')
         ordering = ('-date_created',)
+
+
+# Journal
+# ----------------------------------------------------------------------------------------------------------------------
+class Journal(models.Model):
+    title = models.CharField(_('Title'), max_length=255)
+    file = models.FileField(_('File'), upload_to='public/journals/', blank=True, null=True)
+    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Journal')
+        verbose_name_plural = _('Journals')
+        ordering = ('-date_created',)
+
+
+# Journal
+# ----------------------------------------------------------------------------------------------------------------------
+class Partner(models.Model):
+    name = models.CharField(_('Partner name'), max_length=255)
+    poster = models.ImageField(_('Poster'), upload_to='public/journals/', blank=True, null=True)
+    url = models.CharField(_('URL'), max_length=255)
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Partner')
+        verbose_name_plural = _('Partners')
+        ordering = ('order', )

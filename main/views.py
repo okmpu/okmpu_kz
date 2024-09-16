@@ -62,7 +62,7 @@ class HomeAPIView(views.APIView):
         return Response(context, status=status.HTTP_200_OK)
 
 
-# Home API View
+# Program API View
 # ----------------------------------------------------------------------------------------------------------------------
 class ProgramAPIView(views.APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]

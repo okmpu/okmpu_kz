@@ -1,7 +1,7 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from django_summernote.admin import SummernoteModelAdmin
-from main.public.models import Headliner, News, Announcement, Vacancy, Event, Specialty, Program
+from main.public.models import Headliner, News, Announcement, Vacancy, Event, Specialty, Program, Journal, Partner
 
 
 class HeadlinerAdmin(TranslationAdmin):
@@ -43,9 +43,19 @@ class VacancyAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_filter = ('user', )
 
 
+class JournalAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_created', )
+
+
+class PartnerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'url', 'order', )
+
+
 admin.site.register(Headliner, HeadlinerAdmin)
 admin.site.register(Program, ProgramAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
+admin.site.register(Journal, JournalAdmin)
+admin.site.register(Partner, PartnerAdmin)

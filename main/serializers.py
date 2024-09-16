@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from main.public.models import Headliner, News, Announcement, Vacancy, Event, Program
+from main.public.models import Headliner, News, Announcement, Vacancy, Event, Program, Journal, Partner
 from main.university.models import Faculty
 
 
@@ -46,6 +46,21 @@ class VacancySerializer(serializers.ModelSerializer):
         model = Vacancy
         exclude = ('title', 'description', )
 
+
+# Journals
+class JournalSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Journal
+        fields = ('id', 'title', 'file', 'date_created', )
+
+
+# Journals
+class PartnerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Partner
+        fields = ('id', 'name', 'url', 'order', )
 
 # Academics
 # ----------------------------------------------------------------------------------------------------------------------
