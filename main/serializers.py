@@ -52,15 +52,17 @@ class JournalSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Journal
-        fields = ('id', 'title', 'file', 'date_created', )
+        fields = ('id', 'title', 'poster', 'file', 'date_created', )
 
 
-# Journals
+# Partners
+# ----------------------------------------------------------------------------------------------------------------------
 class PartnerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Partner
-        fields = ('id', 'name', 'url', 'order', )
+        fields = ('id', 'name', 'poster', 'url', 'order', )
+
 
 # Academics
 # ----------------------------------------------------------------------------------------------------------------------

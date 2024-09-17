@@ -138,6 +138,7 @@ class Vacancy(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Journal(models.Model):
     title = models.CharField(_('Title'), max_length=255)
+    poster = models.ImageField(_('Poster'), upload_to='public/journals/', blank=True, null=True)
     file = models.FileField(_('File'), upload_to='public/journals/', blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
 
@@ -154,7 +155,7 @@ class Journal(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Partner(models.Model):
     name = models.CharField(_('Partner name'), max_length=255)
-    poster = models.ImageField(_('Poster'), upload_to='public/journals/', blank=True, null=True)
+    poster = models.ImageField(_('Poster'), upload_to='public/partners/', blank=True, null=True)
     url = models.CharField(_('URL'), max_length=255)
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
