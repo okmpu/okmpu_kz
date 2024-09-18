@@ -27,6 +27,8 @@ class Headliner(models.Model):
 class Program(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
+
 
     def __str__(self):
         return self.name
@@ -34,6 +36,7 @@ class Program(models.Model):
     class Meta:
         verbose_name = _('Program')
         verbose_name_plural = _('Programs')
+        ordering = ('order', )
 
 
 class Specialty(models.Model):
