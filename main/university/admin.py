@@ -37,7 +37,7 @@ class FacultySpecialtyTab(TranslationTabularInline):
 
 
 class FacultyProgramAdmin(TranslationAdmin):
-    list_display = ('name', 'slug', )
+    list_display = ('name', 'slug', 'department', )
     list_filter = ('department', )
     search_fields = ('name', 'slug', )
     inlines = [FacultySpecialtyTab, ]

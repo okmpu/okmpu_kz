@@ -61,6 +61,7 @@ class FacultyProgram(models.Model):
     class Meta:
         verbose_name = _('Program')
         verbose_name_plural = _('Programs')
+        ordering = ('order', )
 
 
 class FacultySpecialty(models.Model):
