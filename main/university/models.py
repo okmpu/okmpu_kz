@@ -31,6 +31,8 @@ class Department(models.Model):
         Faculty, on_delete=models.CASCADE,
         related_name='departments', verbose_name=_('Faculty')
     )
+    image = models.ImageField(_('Image'), upload_to='university/faculties/avatars', null=True, blank=True)
+    poster = models.ImageField(_('Poster'), upload_to='university/faculties/posters', null=True, blank=True)
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
     about = models.TextField(_('About'), blank=True, null=True)
@@ -51,6 +53,7 @@ class FacultyProgram(models.Model):
         Department, on_delete=models.CASCADE,
         related_name='programs', verbose_name=_('Department')
     )
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return self.name
