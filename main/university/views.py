@@ -177,7 +177,7 @@ class DepartmentDetailAPIView(views.APIView):
         events = Event.objects.filter(department=department)[:3]
         announcements = Announcement.objects.filter(department=department)[:3]
 
-        department = DepartmentSerializer(department, partial=True)
+        department = DepartmentSerializer(department, partial=True, context={'request': request})
         projects = ProjectSerializer(projects, many=True, context={'request': request})
         personals = PersonalSerializer(personals, many=True, context={'request': request})
         news = NewsSerializer(news, many=True, context={'request': request})
