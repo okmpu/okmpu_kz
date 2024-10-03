@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from main.public.models import News, Event
-from main.university.models import Faculty, Department, Project, Personal, FacultySpecialty, FacultyProgram
+from main.university.models import Faculty, Department, Project, Personal, FacultySpecialty, FacultyProgram, Success
 
 
 class FacultySerializer(serializers.ModelSerializer):
@@ -34,10 +34,17 @@ class FacultyProgramSerializer(serializers.ModelSerializer):
         exclude = ('name', 'department', )
 
 
+# Projects
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        exclude = ('name', 'author', 'department', )
+        exclude = ('name', 'author', 'faculty', 'department', )
+
+
+class SuccessSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Success
+        exclude = ('title', 'description', 'faculty', 'department', )
 
 
 # Personal
@@ -47,6 +54,7 @@ class PersonalSerializer(serializers.ModelSerializer):
         exclude = ('full_name', 'department', 'profession', 'about', )
 
 
+# News
 class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -54,6 +62,7 @@ class NewsSerializer(serializers.ModelSerializer):
         exclude = ('title', 'description', 'department', 'user', )
 
 
+# Events
 class EventsSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -61,6 +70,7 @@ class EventsSerializer(serializers.ModelSerializer):
         exclude = ('title', 'description', 'department', 'user', )
 
 
+# About faculty
 class AboutFacultySerializer(serializers.ModelSerializer):
     about_en = serializers.SerializerMethodField()
     about_ru = serializers.SerializerMethodField()
@@ -92,6 +102,7 @@ class AboutFacultySerializer(serializers.ModelSerializer):
         return about
 
 
+# About department
 class AboutDepartmentSerializer(serializers.ModelSerializer):
     about_en = serializers.SerializerMethodField()
     about_ru = serializers.SerializerMethodField()

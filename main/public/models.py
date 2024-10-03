@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from main.university.models import Department
+from main.university.models import Department, Faculty
 
 
 # Headliner
@@ -57,9 +57,13 @@ class Specialty(models.Model):
 # News
 # ----------------------------------------------------------------------------------------------------------------------
 class News(models.Model):
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='faculty_news', verbose_name=_('Faculty'), blank=True, null=True
+    )
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
-        related_name='news', verbose_name=_('Department'), blank=True, null=True
+        related_name='department_news', verbose_name=_('Department'), blank=True, null=True
     )
     title = models.CharField(_('Title'), max_length=255)
     poster = models.ImageField(_('Poster'), upload_to='public/news/', blank=True, null=True)
@@ -79,9 +83,13 @@ class News(models.Model):
 # Announcement
 # ----------------------------------------------------------------------------------------------------------------------
 class Announcement(models.Model):
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='faculty_announcements', verbose_name=_('Faculty'), blank=True, null=True
+    )
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
-        related_name='announcements', verbose_name=_('Department'), blank=True, null=True
+        related_name='department_announcements', verbose_name=_('Department'), blank=True, null=True
     )
     title = models.CharField(_('Title'), max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
@@ -100,9 +108,13 @@ class Announcement(models.Model):
 # Events
 # ----------------------------------------------------------------------------------------------------------------------
 class Event(models.Model):
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='faculty_events', verbose_name=_('Faculty'), blank=True, null=True
+    )
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
-        related_name='events', verbose_name=_('Department'), blank=True, null=True
+        related_name='department_events', verbose_name=_('Department'), blank=True, null=True
     )
     title = models.CharField(_('Title'), max_length=255)
     poster = models.ImageField(_('Poster'), upload_to='public/events/', blank=True, null=True)

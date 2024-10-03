@@ -24,18 +24,18 @@ class ProgramAdmin(TranslationAdmin):
 
 
 class NewsAdmin(TranslationAdmin, SummernoteModelAdmin):
-    list_display = ('title', 'user', 'date_created', )
-    list_filter = ('user', 'department', )
+    list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
+    list_filter = ('user', 'faculty', 'department', )
 
 
 class AnnouncementAdmin(TranslationAdmin, SummernoteModelAdmin):
-    list_display = ('title', 'user', 'date_created', )
-    list_filter = ('user', 'department', )
+    list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
+    list_filter = ('user', 'faculty', 'department', )
 
 
 class EventAdmin(TranslationAdmin, SummernoteModelAdmin):
-    list_display = ('title', 'user', 'date_created', )
-    list_filter = ('user', 'department', )
+    list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
+    list_filter = ('user', 'faculty', 'department', )
 
 
 class VacancyAdmin(TranslationAdmin, SummernoteModelAdmin):

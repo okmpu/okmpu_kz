@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404
 from rest_framework import views, status, permissions
 from rest_framework.response import Response
+from django.db.models import Q
 
 from main.public.models import News, Event, Announcement
-from main.university.models import Faculty, Project, Department, Personal, FacultyProgram
+from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success
 from main.university.serializers import FacultySerializer, DepartmentSerializer, ProjectSerializer, \
     PersonalSerializer, NewsSerializer, EventsSerializer, FacultyProgramSerializer, AboutFacultySerializer, \
-    AboutDepartmentSerializer
+    AboutDepartmentSerializer, SuccessSerializer
 
 
 # Faculties API
@@ -29,15 +30,17 @@ class FacultyDetailAPIView(views.APIView):
     def get(self, request, slug):
         faculty = get_object_or_404(Faculty, slug=slug)
         departments = Department.objects.filter(faculty=faculty)
-        projects = Project.objects.filter(department__in=departments)[:3]
-        personals = Personal.objects.filter(department__in=departments)[:3]
-        news = News.objects.filter(department__in=departments)[:3]
-        events = Event.objects.filter(department__in=departments)[:3]
-        announcements = Announcement.objects.filter(department__in=departments)[:3]
+        projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        personals = Personal.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
 
         faculty = FacultySerializer(faculty, partial=True, context={'request': request})
         departments = DepartmentSerializer(departments, many=True)
         projects = ProjectSerializer(projects, many=True, context={'request': request})
+        achievements = SuccessSerializer(achievements, many=True, context={'request': request})
         personals = PersonalSerializer(personals, many=True, context={'request': request})
         news = NewsSerializer(news, many=True, context={'request': request})
         events = EventsSerializer(events, many=True, context={'request': request})
@@ -47,6 +50,7 @@ class FacultyDetailAPIView(views.APIView):
             'faculty': faculty.data,
             'departments': departments.data,
             'projects': projects.data,
+            'achievements': achievements.data,
             'personals': personals.data,
             'news': news.data,
             'events': events.data,
@@ -77,10 +81,25 @@ class ProjectsFacultyAPIView(views.APIView):
     def get(self, request, slug):
         faculty = get_object_or_404(Faculty, slug=slug)
         departments = Department.objects.filter(faculty=faculty)
-        projects = Project.objects.filter(department__in=departments)
+        projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
         projects = ProjectSerializer(projects, many=True, context={'request': request})
         context = {
             'projects': projects.data,
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+
+# Faculty Achievements API
+class AchievementsFacultyAPIView(views.APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+    def get(self, request, slug):
+        faculty = get_object_or_404(Faculty, slug=slug)
+        departments = Department.objects.filter(faculty=faculty)
+        achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+        achievements = ProjectSerializer(achievements, many=True, context={'request': request})
+        context = {
+            'achievements': achievements.data,
         }
         return Response(context, status=status.HTTP_200_OK)
 
@@ -133,9 +152,9 @@ class PublicsFacultyAPIView(views.APIView):
     def get(self, request, slug):
         faculty = get_object_or_404(Faculty, slug=slug)
         departments = Department.objects.filter(faculty=faculty)
-        news = News.objects.filter(department__in=departments)
-        events = Event.objects.filter(department__in=departments)
-        announcements = Announcement.objects.filter(department__in=departments)
+        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
 
         news = NewsSerializer(news, many=True, context={'request': request})
         events = EventsSerializer(events, many=True, context={'request': request})
@@ -155,7 +174,6 @@ class AboutFacultyAPIView(views.APIView):
 
     def get(self, request, slug):
         faculty = get_object_or_404(Faculty, slug=slug)
-
         about_faculty = AboutFacultySerializer(faculty, partial=True, context={'request': request})
 
         context = {
@@ -219,6 +237,21 @@ class DepartmentProjectsAPIView(views.APIView):
         projects = ProjectSerializer(projects, many=True, context={'request': request})
         context = {
             'projects': projects.data,
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+
+# Department Achievements API
+class DepartmentAchievementsAPIView(views.APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+
+    def get(self, request, slug):
+        faculty = get_object_or_404(Faculty, slug=slug)
+        departments = Department.objects.filter(faculty=faculty)
+        achievements = Success.objects.filter(department__in=departments)
+        achievements = ProjectSerializer(achievements, many=True, context={'request': request})
+        context = {
+            'achievements': achievements.data,
         }
         return Response(context, status=status.HTTP_200_OK)
 

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
-from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty
+from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty, Success
 
 
 # Faculty
@@ -45,19 +45,26 @@ class FacultyProgramAdmin(TranslationAdmin):
 
 
 class ProjectAdmin(TranslationAdmin):
-    list_display = ('name', 'author', 'department', 'date_created', )
-    search_fields = ('name', 'author', 'department', )
-    list_filter = ('department', )
+    list_display = ('name', 'author', 'faculty', 'department', 'date_created', )
+    search_fields = ('name', 'author', 'faculty', 'department', )
+    list_filter = ('faculty', 'department', )
+
+
+class SuccessAdmin(TranslationAdmin):
+    list_display = ('title', 'faculty', 'department', 'date_created', )
+    search_fields = ('name', 'faculty', 'department', )
+    list_filter = ('faculty', 'department', )
 
 
 class PersonalAdmin(TranslationAdmin):
     list_display = ('full_name', 'profession', 'department', 'phone', )
-    search_fields = ('full_name', 'profession', 'department', )
-    list_filter = ('department', )
+    search_fields = ('full_name', 'profession', 'faculty', 'department', )
+    list_filter = ('faculty', 'department', )
 
 
 admin.site.register(Faculty, FacultyAdmin)
 admin.site.register(Department, DepartmentAdmin)
 admin.site.register(FacultyProgram, FacultyProgramAdmin)
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Success, SuccessAdmin)
 admin.site.register(Personal, PersonalAdmin)
