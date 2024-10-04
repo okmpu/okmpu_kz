@@ -69,7 +69,7 @@ class News(models.Model):
     poster = models.ImageField(_('Poster'), upload_to='public/news/', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
-    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+    date_created = models.DateTimeField(_('Date created'))
 
     def __str__(self):
         return self.title
@@ -94,7 +94,7 @@ class Announcement(models.Model):
     title = models.CharField(_('Title'), max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
-    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+    date_created = models.DateTimeField(_('Date created'))
 
     def __str__(self):
         return self.title
@@ -120,7 +120,7 @@ class Event(models.Model):
     poster = models.ImageField(_('Poster'), upload_to='public/events/', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
-    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+    date_created = models.DateTimeField(_('Date created'))
 
     def __str__(self):
         return self.title
