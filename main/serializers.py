@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from main.public.models import Headliner, News, Announcement, Vacancy, Event, Program, Journal, Partner
 from main.university.models import Faculty
@@ -21,33 +22,42 @@ class ProgramListSerializer(serializers.ModelSerializer):
 
 # Public section
 # ----------------------------------------------------------------------------------------------------------------------
+# Author
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name', )
+
+
+# News
 class NewsListSerializer(serializers.ModelSerializer):
+    user = AuthorSerializer(read_only=True)
 
     class Meta:
         model = News
         fields = ('id', 'title_ru', 'title_en', 'title_kk', 'poster', 'user', 'date_created', )
 
 
+# Announcements
 class AnnouncementListSerializer(serializers.ModelSerializer):
+    user = AuthorSerializer(read_only=True)
+
     class Meta:
         model = Announcement
         fields = ('id', 'title_ru', 'title_en', 'title_kk', 'user', 'date_created', )
 
 
+# Events
 class EventListSerializer(serializers.ModelSerializer):
+    user = AuthorSerializer(read_only=True)
+
     class Meta:
         model = Event
         fields = ('id', 'title_ru', 'title_en', 'title_kk', 'poster', 'user', 'date_created', )
 
 
-class VacancySerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Vacancy
-        exclude = ('title', 'description', )
-
-
-# Journals
+# Journals section
+# ----------------------------------------------------------------------------------------------------------------------
 class JournalSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -55,7 +65,7 @@ class JournalSerializer(serializers.ModelSerializer):
         fields = ('id', 'title', 'poster', 'file', 'date_created', )
 
 
-# Partners
+# Partners section
 # ----------------------------------------------------------------------------------------------------------------------
 class PartnerSerializer(serializers.ModelSerializer):
 
@@ -64,7 +74,7 @@ class PartnerSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'poster', 'url', 'order', )
 
 
-# Academics
+# Academics section
 # ----------------------------------------------------------------------------------------------------------------------
 class FacultyListSerializer(serializers.ModelSerializer):
     class Meta:

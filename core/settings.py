@@ -41,14 +41,17 @@ INSTALLED_APPS = [
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://zhanibekov.vercel.app'
+    'https://zhanibekov.vercel.app',
+    'https://okmpu.kz'
     # ...
 ]
+
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_FRAME_ANCESTORS = (
     "'self'",
     'http://localhost:3000',
-    'https://zhanibekov.vercel.app'
+    'https://zhanibekov.vercel.app',
+    'https://okmpu.kz'
     # ...
 )
 SILENCED_SYSTEM_CHECKS = ['security.W019']

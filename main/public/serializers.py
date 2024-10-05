@@ -1,10 +1,20 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from main.public.models import News, Announcement, Event, Program, Specialty
+
+
+# Author
+# ----------------------------------------------------------------------------------------------------------------------
+class AuthorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'first_name', 'last_name', )
 
 
 # News
 # ----------------------------------------------------------------------------------------------------------------------
 class NewsDetailSerializer(serializers.ModelSerializer):
+    user = AuthorSerializer(read_only=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
@@ -38,6 +48,7 @@ class NewsDetailSerializer(serializers.ModelSerializer):
 # Announcement
 # ----------------------------------------------------------------------------------------------------------------------
 class AnnouncementDetailSerializer(serializers.ModelSerializer):
+    user = AuthorSerializer(read_only=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
@@ -71,6 +82,7 @@ class AnnouncementDetailSerializer(serializers.ModelSerializer):
 # Events
 # ----------------------------------------------------------------------------------------------------------------------
 class EventDetailSerializer(serializers.ModelSerializer):
+    user = AuthorSerializer(read_only=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
@@ -102,6 +114,7 @@ class EventDetailSerializer(serializers.ModelSerializer):
 
 
 # Program
+# ----------------------------------------------------------------------------------------------------------------------
 class SpecialtySerializer(serializers.ModelSerializer):
     class Meta:
         model = Specialty
