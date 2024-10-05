@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Content, TextContent, FileContent, ImageContent, Category, StaffContent
 
 
-# CategoryList serializers
+# CategoryList
 # ----------------------------------------------------------------------------------------------------------------------
 class CategoryListSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
@@ -21,14 +21,14 @@ class CategoryListSerializer(serializers.ModelSerializer):
         return obj.app_name
 
 
-# Content list serializers
+# Content list
 class ContentURLSerializer(serializers.ModelSerializer):
     class Meta:
         model = Content
         fields = ('id', 'title_kk', 'title_ru', 'title_en', 'category', 'slug', )
 
 
-# ContentDetail serializers
+# ContentDetail
 # ----------------------------------------------------------------------------------------------------------------------
 # TextContent
 class TextContentSerializer(serializers.ModelSerializer):
