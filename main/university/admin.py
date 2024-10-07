@@ -57,7 +57,7 @@ class SuccessAdmin(TranslationAdmin):
 
 
 class PersonalAdmin(TranslationAdmin):
-    list_display = ('full_name', 'profession', 'department', 'phone', )
+    list_display = ('full_name', 'profession', 'department', 'order', )
     search_fields = ('full_name', 'profession', 'faculty', 'department', )
     list_filter = ('faculty', 'department', )
 
