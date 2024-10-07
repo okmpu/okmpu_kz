@@ -118,9 +118,9 @@ class PersonalsFacultyAPIView(views.APIView):
             'personals': [
                 {
                     'id': 1,
-                    'name_kk': 'Кафедра басшылығы',
-                    'name_ru': 'Руководство кафедры',
-                    'name_en': 'Department management',
+                    'name_kk': 'Факультет басшылығы',
+                    'name_ru': 'Руководство факультета',
+                    'name_en': 'Faculty management',
                     'type': 'management',
                     'results': PersonalSerializer(managements, many=True, context={'request': request}).data
                 },
