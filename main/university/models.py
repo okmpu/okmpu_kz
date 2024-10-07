@@ -147,6 +147,7 @@ class Personal(models.Model):
     p_type = models.CharField(_('Personal type'), max_length=128, choices=PERSONAL_TYPE, default='MANAGEMENT')
     phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return '{} - {}'.format(self.full_name, self.profession)
@@ -154,3 +155,4 @@ class Personal(models.Model):
     class Meta:
         verbose_name = _('Personal')
         verbose_name_plural = _('Personals')
+        ordering = ('order', )
