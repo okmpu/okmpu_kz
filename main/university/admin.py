@@ -50,7 +50,7 @@ class ProjectAdmin(TranslationAdmin):
     list_filter = ('faculty', 'department', )
 
 
-class SuccessAdmin(TranslationAdmin):
+class SuccessAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'faculty', 'department', 'date_created', )
     search_fields = ('name', 'faculty', 'department', )
     list_filter = ('faculty', 'department', )

@@ -114,6 +114,7 @@ class Success(models.Model):
         related_name='department_achievements', verbose_name=_('Department'), null=True, blank=True
     )
     title = models.CharField(_('Title'), max_length=128)
+    file = models.FileField(_('File'), upload_to='university/faculties/achievements/', null=True, blank=True)
     description = models.TextField(_('Description'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
 

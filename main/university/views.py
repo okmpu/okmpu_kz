@@ -97,7 +97,7 @@ class AchievementsFacultyAPIView(views.APIView):
         faculty = get_object_or_404(Faculty, slug=slug)
         departments = Department.objects.filter(faculty=faculty)
         achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-        achievements = ProjectSerializer(achievements, many=True, context={'request': request})
+        achievements = SuccessSerializer(achievements, many=True, context={'request': request})
         context = {
             'achievements': achievements.data,
         }
@@ -246,10 +246,9 @@ class DepartmentAchievementsAPIView(views.APIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
 
     def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        departments = Department.objects.filter(faculty=faculty)
-        achievements = Success.objects.filter(department__in=departments)
-        achievements = ProjectSerializer(achievements, many=True, context={'request': request})
+        department = get_object_or_404(Department, slug=slug)
+        achievements = Success.objects.filter(department=department)
+        achievements = SuccessSerializer(achievements, many=True, context={'request': request})
         context = {
             'achievements': achievements.data,
         }
