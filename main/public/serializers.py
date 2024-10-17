@@ -62,7 +62,7 @@ class AnnouncementFileSerializer(serializers.ModelSerializer):
 
 class AnnouncementDetailSerializer(serializers.ModelSerializer):
     user = AuthorSerializer(read_only=True)
-    announcement_files = AnnouncementFileSerializer(read_only=True)
+    announcement_files = AnnouncementFileSerializer(many=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
