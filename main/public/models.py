@@ -2,13 +2,17 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from main.university.models import Department, Faculty
+from main.validators import validate_file_size
 
 
 # Headliner
 # ----------------------------------------------------------------------------------------------------------------------
 class Headliner(models.Model):
     title = models.CharField(_('Title'), max_length=64)
-    poster = models.ImageField(_('Poster'), upload_to='public/headliners/', blank=True, null=True)
+    poster = models.ImageField(
+        _('Poster'), upload_to='public/headliners/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
     about = models.TextField(_('About'), blank=True, null=True)
     src = models.CharField(_('Source URL'), max_length=128, default='/')
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
@@ -66,7 +70,10 @@ class News(models.Model):
         related_name='department_news', verbose_name=_('Department'), blank=True, null=True
     )
     title = models.CharField(_('Title'), max_length=255)
-    poster = models.ImageField(_('Poster'), upload_to='public/news/', blank=True, null=True)
+    poster = models.ImageField(
+        _('Poster'), upload_to='public/news/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'))
@@ -78,6 +85,21 @@ class News(models.Model):
         verbose_name = _('News')
         verbose_name_plural = _('News')
         ordering = ('-date_created', )
+
+
+class NewsFile(models.Model):
+    own = models.ForeignKey(News, on_delete=models.CASCADE, verbose_name=_('News'))
+    file = models.FileField(
+        _('File'), upload_to='public/news/files/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
+
+    def __str__(self):
+        return '{}'.format(self.own)
+
+    class Meta:
+        verbose_name = _('News file')
+        verbose_name_plural = _('News files')
 
 
 # Announcement
@@ -105,6 +127,21 @@ class Announcement(models.Model):
         ordering = ('-date_created',)
 
 
+class AnnouncementFile(models.Model):
+    own = models.ForeignKey(Announcement, on_delete=models.CASCADE, verbose_name=_('Announcement'))
+    file = models.FileField(
+        _('File'), upload_to='public/announcement/files/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
+
+    def __str__(self):
+        return '{}'.format(self.own)
+
+    class Meta:
+        verbose_name = _('Announcement file')
+        verbose_name_plural = _('Announcement files')
+
+
 # Events
 # ----------------------------------------------------------------------------------------------------------------------
 class Event(models.Model):
@@ -117,7 +154,10 @@ class Event(models.Model):
         related_name='department_events', verbose_name=_('Department'), blank=True, null=True
     )
     title = models.CharField(_('Title'), max_length=255)
-    poster = models.ImageField(_('Poster'), upload_to='public/events/', blank=True, null=True)
+    poster = models.ImageField(
+        _('Poster'), upload_to='public/events/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'))
@@ -129,6 +169,21 @@ class Event(models.Model):
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
         ordering = ('-date_created',)
+
+
+class EventFile(models.Model):
+    own = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name=_('Event'))
+    file = models.FileField(
+        _('File'), upload_to='public/events/files/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
+
+    def __str__(self):
+        return '{}'.format(self.own)
+
+    class Meta:
+        verbose_name = _('Event file')
+        verbose_name_plural = _('Event files')
 
 
 # Vacancy
@@ -152,7 +207,10 @@ class Vacancy(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Journal(models.Model):
     title = models.CharField(_('Title'), max_length=255)
-    poster = models.ImageField(_('Poster'), upload_to='public/journals/', blank=True, null=True)
+    poster = models.ImageField(
+        _('Poster'), upload_to='public/journals/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
     file = models.FileField(_('File'), upload_to='public/journals/', blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
 
@@ -169,7 +227,10 @@ class Journal(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Partner(models.Model):
     name = models.CharField(_('Partner name'), max_length=255)
-    poster = models.ImageField(_('Poster'), upload_to='public/partners/', blank=True, null=True)
+    poster = models.ImageField(
+        _('Poster'), upload_to='public/partners/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
     url = models.CharField(_('URL'), max_length=255)
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
 

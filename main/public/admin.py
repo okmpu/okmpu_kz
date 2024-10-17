@@ -1,7 +1,8 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from django_summernote.admin import SummernoteModelAdmin
-from main.public.models import Headliner, News, Announcement, Vacancy, Event, Specialty, Program, Journal, Partner
+from main.public.models import Headliner, News, Announcement, Vacancy, Event, Specialty, Program, Journal, Partner, \
+    NewsFile, AnnouncementFile, EventFile
 
 
 class HeadlinerAdmin(TranslationAdmin):
@@ -23,19 +24,38 @@ class ProgramAdmin(TranslationAdmin):
     prepopulated_fields = {'slug': ('name_en', )}
 
 
+# News
+class NewsFileTab(admin.TabularInline):
+    model = NewsFile
+    extra = 0
+
+
 class NewsAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
     list_filter = ('user', 'faculty', 'department', )
+    inlines = [NewsFileTab, ]
 
+
+# Announcement
+class AnnouncementFileTab(admin.TabularInline):
+    model = AnnouncementFile
+    extra = 0
 
 class AnnouncementAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
     list_filter = ('user', 'faculty', 'department', )
+    inlines = [AnnouncementFileTab, ]
 
+
+# Event
+class EventFileTab(admin.TabularInline):
+    model = EventFile
+    extra = 0
 
 class EventAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
     list_filter = ('user', 'faculty', 'department', )
+    inlines = [EventFileTab, ]
 
 
 class VacancyAdmin(TranslationAdmin, SummernoteModelAdmin):
@@ -56,6 +76,6 @@ admin.site.register(Program, ProgramAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(Event, EventAdmin)
-admin.site.register(Vacancy, VacancyAdmin)
+# admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(Journal, JournalAdmin)
 admin.site.register(Partner, PartnerAdmin)

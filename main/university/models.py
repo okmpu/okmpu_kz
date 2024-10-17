@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from main.validators import validate_file_size
+
 
 # Faculty
 class Faculty(models.Model):
@@ -12,8 +14,14 @@ class Faculty(models.Model):
     )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
-    image = models.ImageField(_('Image'), upload_to='university/faculties/avatars', null=True, blank=True)
-    poster = models.ImageField(_('Poster'), upload_to='university/faculties/posters', null=True, blank=True)
+    image = models.ImageField(
+        _('Image'), upload_to='university/faculties/avatars',
+        null=True, blank=True, validators=[validate_file_size]
+    )
+    poster = models.ImageField(
+        _('Poster'), upload_to='university/faculties/posters',
+        null=True, blank=True, validators=[validate_file_size]
+    )
     faculty_type = models.CharField(_('Faculty type'), choices=FACULTY_TYPE, default='DEFAULT', max_length=16)
     about = models.TextField(_('About'), blank=True, null=True)
 
@@ -31,8 +39,14 @@ class Department(models.Model):
         Faculty, on_delete=models.CASCADE,
         related_name='departments', verbose_name=_('Faculty')
     )
-    image = models.ImageField(_('Image'), upload_to='university/faculties/avatars', null=True, blank=True)
-    poster = models.ImageField(_('Poster'), upload_to='university/faculties/posters', null=True, blank=True)
+    image = models.ImageField(
+        _('Image'), upload_to='university/faculties/avatars',
+        null=True, blank=True, validators=[validate_file_size]
+    )
+    poster = models.ImageField(
+        _('Poster'), upload_to='university/faculties/posters',
+        null=True, blank=True, validators=[validate_file_size]
+    )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
     about = models.TextField(_('About'), blank=True, null=True)
@@ -92,7 +106,10 @@ class Project(models.Model):
     )
     name = models.CharField(_('Name'), max_length=128)
     author = models.CharField(_('Author'), max_length=128)
-    file = models.FileField(_('File'), upload_to='university/faculties/projects/', null=True, blank=True)
+    file = models.FileField(
+        _('File'), upload_to='university/faculties/projects/',
+        null=True, blank=True, validators=[validate_file_size]
+    )
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
 
     def __str__(self):
@@ -114,7 +131,10 @@ class Success(models.Model):
         related_name='department_achievements', verbose_name=_('Department'), null=True, blank=True
     )
     title = models.CharField(_('Title'), max_length=128)
-    file = models.FileField(_('File'), upload_to='university/faculties/achievements/', null=True, blank=True)
+    file = models.FileField(
+        _('File'), upload_to='university/faculties/achievements/',
+        null=True, blank=True, validators=[validate_file_size]
+    )
     description = models.TextField(_('Description'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
 
@@ -143,7 +163,10 @@ class Personal(models.Model):
         related_name='department_personals', verbose_name=_('Department'), null=True, blank=True
     )
     full_name = models.CharField(_('Full name'), max_length=128, blank=True, null=True)
-    image = models.ImageField(_('Image'), upload_to='university/personals/', blank=True, null=True)
+    image = models.ImageField(
+        _('Image'), upload_to='university/personals/',
+        blank=True, null=True, validators=[validate_file_size]
+    )
     profession = models.CharField(_('Profession'), max_length=128)
     p_type = models.CharField(_('Personal type'), max_length=128, choices=PERSONAL_TYPE, default='MANAGEMENT')
     phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
