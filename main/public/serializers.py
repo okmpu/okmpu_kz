@@ -21,7 +21,7 @@ class NewFileSerializer(serializers.ModelSerializer):
 
 class NewsDetailSerializer(serializers.ModelSerializer):
     user = AuthorSerializer(read_only=True)
-    news_files = NewFileSerializer(read_only=True)
+    news_files = NewFileSerializer(many=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
@@ -103,7 +103,7 @@ class EventFileSerializer(serializers.ModelSerializer):
 
 class EventDetailSerializer(serializers.ModelSerializer):
     user = AuthorSerializer(read_only=True)
-    event_files = EventFileSerializer(read_only=True)
+    event_files = EventFileSerializer(many=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
