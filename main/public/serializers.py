@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from main.public.models import News, Announcement, Event, Program, Specialty
+from main.public.models import News, Announcement, Event, Program, Specialty, NewsFile, AnnouncementFile, EventFile
 
 
 # Author
@@ -13,8 +13,15 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 # News
 # ----------------------------------------------------------------------------------------------------------------------
+class NewFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewsFile
+        fields = ('id', 'title', 'file', )
+
+
 class NewsDetailSerializer(serializers.ModelSerializer):
     user = AuthorSerializer(read_only=True)
+    news_files = NewFileSerializer(read_only=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
@@ -47,8 +54,15 @@ class NewsDetailSerializer(serializers.ModelSerializer):
 
 # Announcement
 # ----------------------------------------------------------------------------------------------------------------------
+class AnnouncementFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnnouncementFile
+        fields = ('id', 'title', 'file', )
+
+
 class AnnouncementDetailSerializer(serializers.ModelSerializer):
     user = AuthorSerializer(read_only=True)
+    announcement_files = AnnouncementFileSerializer(read_only=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()
@@ -81,8 +95,15 @@ class AnnouncementDetailSerializer(serializers.ModelSerializer):
 
 # Events
 # ----------------------------------------------------------------------------------------------------------------------
+class EventFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EventFile
+        fields = ('id', 'title', 'file', )
+
+
 class EventDetailSerializer(serializers.ModelSerializer):
     user = AuthorSerializer(read_only=True)
+    event_files = EventFileSerializer(read_only=True)
     description_en = serializers.SerializerMethodField()
     description_ru = serializers.SerializerMethodField()
     description_kk = serializers.SerializerMethodField()

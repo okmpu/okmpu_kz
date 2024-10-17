@@ -88,7 +88,8 @@ class News(models.Model):
 
 
 class NewsFile(models.Model):
-    own = models.ForeignKey(News, on_delete=models.CASCADE, verbose_name=_('News'))
+    own = models.ForeignKey(News, on_delete=models.CASCADE, related_name='news_files', verbose_name=_('News'))
+    title = models.CharField(_('Title'), max_length=128, default='')
     file = models.FileField(
         _('File'), upload_to='public/news/files/',
         blank=True, null=True, validators=[validate_file_size]
@@ -128,7 +129,7 @@ class Announcement(models.Model):
 
 
 class AnnouncementFile(models.Model):
-    own = models.ForeignKey(Announcement, on_delete=models.CASCADE, verbose_name=_('Announcement'))
+    own = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='announcement_files', verbose_name=_('Announcement'))
     file = models.FileField(
         _('File'), upload_to='public/announcement/files/',
         blank=True, null=True, validators=[validate_file_size]
@@ -172,7 +173,7 @@ class Event(models.Model):
 
 
 class EventFile(models.Model):
-    own = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name=_('Event'))
+    own = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_files', verbose_name=_('Event'))
     file = models.FileField(
         _('File'), upload_to='public/events/files/',
         blank=True, null=True, validators=[validate_file_size]
