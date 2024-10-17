@@ -96,7 +96,7 @@ class NewsFile(models.Model):
     )
 
     def __str__(self):
-        return '{}'.format(self.own)
+        return self.title
 
     class Meta:
         verbose_name = _('News file')
@@ -130,13 +130,14 @@ class Announcement(models.Model):
 
 class AnnouncementFile(models.Model):
     own = models.ForeignKey(Announcement, on_delete=models.CASCADE, related_name='announcement_files', verbose_name=_('Announcement'))
+    title = models.CharField(_('Title'), max_length=128, default='')
     file = models.FileField(
         _('File'), upload_to='public/announcement/files/',
         blank=True, null=True, validators=[validate_file_size]
     )
 
     def __str__(self):
-        return '{}'.format(self.own)
+        return self.title
 
     class Meta:
         verbose_name = _('Announcement file')
@@ -174,13 +175,14 @@ class Event(models.Model):
 
 class EventFile(models.Model):
     own = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='event_files', verbose_name=_('Event'))
+    title = models.CharField(_('Title'), max_length=128, default='')
     file = models.FileField(
         _('File'), upload_to='public/events/files/',
         blank=True, null=True, validators=[validate_file_size]
     )
 
     def __str__(self):
-        return '{}'.format(self.own)
+        return self.title
 
     class Meta:
         verbose_name = _('Event file')
