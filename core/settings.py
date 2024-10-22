@@ -69,7 +69,8 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
+    'core.middleware.CustomLocaleMiddleware',
+    # 'django.middleware.locale.LocaleMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'core.middleware.AllowIframeMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -78,6 +79,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+USE_ACCEPT_LANGUAGE_HEADER = False
 
 ROOT_URLCONF = 'core.urls'
 
