@@ -1,17 +1,448 @@
 {% extends 'src/base.html' %}
+{% load static %}
+
+{% block title %}
+Басты бет - Zhanibekov University
+{% endblock %}
 
 {% block content %}
-<div class="container mx-auto p-4">
+<div class="">
 
-    <a href="#"
-        class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <!-- Headliners -->
+    <!-- ============================================================================================================================= -->
+    <div id="default-carousel" class="relative w-full" data-carousel="slide" data-aos="fade-up">
+        <!-- Carousel wrapper -->
+        <div class="relative h-56 md:h-96 xl:h-[70vh] overflow-hidden">
+            {% for item in headliners %}
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="{{ item.poster.url }}"
+                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Slider indicators -->
+        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+            {% for item in headliners %}
+            <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                data-carousel-slide-to="{{ item.id }}">
+            </button>
+            {% endfor %}
+        </div>
+        <!-- Slider controls -->
+        <button type="button"
+            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-prev>
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 1 1 5l4 4" />
+                </svg>
+                <span class="sr-only">Previous</span>
+            </span>
+        </button>
+        <button type="button"
+            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-next>
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                </svg>
+                <span class="sr-only">Next</span>
+            </span>
+        </button>
+    </div>
 
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            {{ user }}
-        </h5>
-        <p class="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions
-            of 2021 so far, in reverse chronological order.</p>
-    </a>
+
+    <!-- Programs -->
+    <!-- ============================================================================================================================= -->
+    <div class="border-b" data-aos="fade-up">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">Біздің бағдарламалар</h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-gray-500 block text-center">
+                    Біз педагогика саласындағы бакалавриат, магистратура
+                    және қосымша білім беру бағдарламаларын ұсынамыз
+                </span>
+            </div>
+
+            <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 mt-4">
+                {% for item in programs %}
+                <a href="#"
+                    class="flex flex-col items-center p-6 bg-blue-500 text-white rounded-lg transition-all shadow hover:bg-gray-100 hover:text-black">
+                    {% if item.slug == 'bachelor' %}
+                    <svg class="w-20 h-20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd"
+                            d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    {% elif item.slug == 'magistracy' %}
+                    <svg class="w-20 h-20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                            d="M8.737 8.737a21.49 21.49 0 0 1 3.308-2.724m0 0c3.063-2.026 5.99-2.641 7.331-1.3 1.827 1.828.026 6.591-4.023 10.64-4.049 4.049-8.812 5.85-10.64 4.023-1.33-1.33-.736-4.218 1.249-7.253m6.083-6.11c-3.063-2.026-5.99-2.641-7.331-1.3-1.827 1.828-.026 6.591 4.023 10.64m3.308-9.34a21.497 21.497 0 0 1 3.308 2.724m2.775 3.386c1.985 3.035 2.579 5.923 1.248 7.253-1.336 1.337-4.245.732-7.295-1.275M14 12a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
+                    </svg>
+                    {% else %}
+                    <svg class="w-20 h-20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m7.171 12.906-2.153 6.411 2.672-.89 1.568 2.34 1.825-5.183m5.73-2.678 2.154 6.411-2.673-.89-1.568 2.34-1.825-5.183M9.165 4.3c.58.068 1.153-.17 1.515-.628a1.681 1.681 0 0 1 2.64 0 1.68 1.68 0 0 0 1.515.628 1.681 1.681 0 0 1 1.866 1.866c-.068.58.17 1.154.628 1.516a1.681 1.681 0 0 1 0 2.639 1.682 1.682 0 0 0-.628 1.515 1.681 1.681 0 0 1-1.866 1.866 1.681 1.681 0 0 0-1.516.628 1.681 1.681 0 0 1-2.639 0 1.681 1.681 0 0 0-1.515-.628 1.681 1.681 0 0 1-1.867-1.866 1.681 1.681 0 0 0-.627-1.515 1.681 1.681 0 0 1 0-2.64c.458-.361.696-.935.627-1.515A1.681 1.681 0 0 1 9.165 4.3ZM14 9a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
+                    </svg>
+                    {% endif %}
+                    <div>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight">
+                            {{ item.name }}
+                        </h5>
+                    </div>
+                </a>
+                {% endfor %}
+                <a href="https://talapker.okmpu.kz" target="_blank"
+                    class="flex flex-col items-center p-6 bg-blue-500 text-white rounded-lg transition-all shadow hover:bg-gray-100 hover:text-black">
+                    <svg class="w-20 h-20 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13.213 9.787a3.391 3.391 0 0 0-4.795 0l-3.425 3.426a3.39 3.39 0 0 0 4.795 4.794l.321-.304m-.321-4.49a3.39 3.39 0 0 0 4.795 0l3.424-3.426a3.39 3.39 0 0 0-4.794-4.795l-1.028.961" />
+                    </svg>
+
+                    <div>
+                        <h5 class="mb-2 text-2xl font-semibold tracking-tight">
+                            Talapker
+                        </h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Publics -->
+    <!-- ============================================================================================================================= -->
+    <div class="border-b" data-aos="fade-up">
+        <div class="container flex flex-col lg:flex-row items-start gap-6 mx-auto px-4 py-16">
+            <!-- Announcements -->
+            <div class="grid gap-4 w-full lg:max-w-md">
+                <div>
+                    <h1 class="font-bold text-2xl">Хабарландырулар</h1>
+                </div>
+
+                <div class="grid gap-2">
+                    {% for item in announcements %}
+                    <a href="#" class="rounded-lg border overflow-hidden flex gap-2 transition-all hover:bg-gray-100">
+                        <div class="p-6 flex justify-center items-center bg-amber-500">
+                            <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+
+                        <div class="flex-1 p-2">
+                            <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
+                            <span class="text-gray-500">{{ item.date_created }}</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                <a href="#"
+                    class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                    Барлығын қарап шығу
+                    <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="flex-1 grid gap-4">
+                <div class="flex items-center justify-between">
+                    <h1 class="font-bold text-2xl">Жаңалықтар</h1>
+
+                    <a href="#"
+                        class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Барлығын қарап шығу
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+                    {% for item in news %}
+                    <a href="#" class="border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
+                        <div class="overflow-hidden">
+                            <img src="{{ item.poster.url }}" class="w-full" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                            <span class="text-gray-500">{{ item.date_created }}</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Events -->
+    <!-- ============================================================================================================================= -->
+    <div class="border-b" data-aos="fade-up">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                    Іс шаралар
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-gray-500 block text-center">
+                    Университетімізде болып жатқан іс-шаралар
+                </span>
+            </div>
+
+            <swiper-container class="mySwiper mt-8" pagination="true" pagination-clickable="true" space-between="20"
+                navigation="true" slides-per-view="4">
+                {% for item in events %}
+                <swiper-slide>
+                    <a href="#" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
+                        <div class="overflow-hidden">
+                            <img src="{{ item.poster.url }}" class="w-full" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                            <span class="text-gray-500">{{ item.date_created }}</span>
+                        </div>
+                    </a>
+                </swiper-slide>
+                {% endfor %}
+            </swiper-container>
+        </div>
+    </div>
+
+
+    <!-- About -->
+    <!-- ============================================================================================================================= -->
+    <div class="border-b" data-aos="fade-up">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">Біз жайлы</h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-gray-500 block text-center">
+                    Ғасырға жуық жасы бар біздің университет жайлы толық біліңіздер
+                </span>
+            </div>
+
+            <div class="grid gap-8 grid-cols-1 lg:grid-cols-2 mt-8">
+                <div class="">
+                    <h1 class="text-2xl font-bold text-amber-500">
+                        Біздің университет
+                    </h1>
+                    <span class="block text-gray-500 text-justify">
+                        Білім-ғылымның, тәрбиенің алтын бесігі, қасиетті
+                        қарашаңырақ – Өзбекәлі Жәнібеков атындағы Оңтүстік Қазақстан
+                        педагогикалық университеті Шымкент қаласының орталығында, А.Байтұрсынов
+                        көшесінде орналасқан. Университет 1937 жылдан бері жұмыс атқарып келеді.
+                        Ғасырға жуық уақытта көптеген жетістіктерге жетіп, мыңдаған шәкірт
+                        тәрбиелеп шығарған. Түлектері қазіргі таңда Қазақстан және шет елдерде
+                        қызмет атқаруда. Университет түлектерінің білім ұясына алғыстары шексіз!
+                    </span>
+
+                    <a href="#"
+                        class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Толығырақ
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div>
+                    <img src="{% static '/images/about.jpg' %}" class="rounded-lg" alt="">
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Faculties -->
+    <!-- ============================================================================================================================= -->
+    <div class="border-b" data-aos="fade-up">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                    Академиялық оқыту
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-gray-500 block text-center">
+                    Факультеттер, жоғарғы оқу орнынан кейінгі білім беру институы,
+                    колледж және департаменттердің құрылымдық бөлімдері
+                </span>
+            </div>
+
+            <swiper-container class="mySwiper mt-8" pagination="true" pagination-clickable="true" space-between="20"
+                navigation="true" slides-per-view="4">
+                {% for item in academics %}
+                <swiper-slide>
+                    <a href="#" class="p-6 grid gap-4 rounded-lg border transition-all hover:bg-gray-100">
+                        <div class="w-36 h-36 rounded-full border overflow-hidden mx-auto">
+                            <img src="{{ item.image.url }}" class="w-full h-full" alt="">
+                        </div>
+                        <div class="grid gap-4 text-center">
+                            <h1 class="text-center font-semibold text-2xl line-clamp-1">
+                                {{ item.name }}
+                            </h1>
+                        </div>
+                    </a>
+                </swiper-slide>
+                {% endfor %}
+            </swiper-container>
+        </div>
+    </div>
+
+
+    <!-- Partners -->
+    <!-- ============================================================================================================================= -->
+    <div class="border-b" data-aos="fade-up">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                    Біздің серіктестер
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-gray-500 block text-center">
+                    Біздің университет білім берудің жоғары сапасын және
+                    студенттердің кәсіби өсуін қамтамасыз ету үшін жетекші
+                    білім беру және ғылыми ұйымдармен ынтымақтасады
+                </span>
+            </div>
+
+            <swiper-container class="mySwiper mt-8" pagination="true" pagination-clickable="true" space-between="20"
+                navigation="true" slides-per-view="5">
+                {% for item in partners %}
+                <swiper-slide>
+                    <a href="#" target="_blank" class="border rounded-lg overflow-hidden block h-40">
+                        <img src="{{ item.poster.url }}" alt="Image" class="w-full" />
+                    </a>
+                </swiper-slide>
+                {% endfor %}
+            </swiper-container>
+        </div>
+    </div>
+
+
+    <!-- Contacts -->
+    <!-- ============================================================================================================================= -->
+    <div class="" data-aos="fade-up">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                    Бізбен байланыс
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-gray-500 block text-center">
+                    Бізбен байланысуға болатын барлық ресурстар
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 mt-8 gap-8 lg:flex">
+                <div class="flex-1">
+                    <div class="relative overflow-hidden h-96 lg:h-full rounded-xl">
+                        <iframe src="https://yandex.ru/map-widget/v1/?indoorLevel=1&ll=69.593311%2C42.320968&mode=search&oid=125570740268&ol=biz&z=17.09" width="100%" height="100%" frame-border="1" allow-full-screen=true style="position: 'relative';"></iframe>
+                    </div>
+                </div>
+
+                <div class="w-full grid gap-8 lg:max-w-lg">
+                    
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-foreground text-2xl font-bold">Мекен-жайы</h1>
+                            <span class="text-gray-500">Шымкент, А.Байтұрсынов N13</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-foreground text-2xl font-bold">Қабылдау комиссиясы</h1>
+                            <div class="grid">
+                                <span class="text-gray-500">8 7252 21-41-01</span>
+                                <span class="text-gray-500">8 708 438 65 62</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-foreground text-2xl font-bold">Университет кеңсесі</h1>
+                            <span class="text-gray-500">8 7252 30-14-59</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-foreground text-2xl font-bold">Call орталық</h1>
+                            <div class="grid">
+                                <span class="text-gray-500">8 7252 40-07-05</span>
+                                <span class="text-gray-500">8 708 438 65 61</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg class="w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-foreground text-2xl font-bold">Сенім телефондары</h1>
+                            <div class="grid">
+                                <span class="text-gray-500">+7 (7252) 21-40-05</span>
+                                <span class="text-gray-500">+7 (7252) 21-03-70</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 {% endblock content %}

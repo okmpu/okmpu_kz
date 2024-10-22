@@ -3,7 +3,7 @@ from pathlib import Path
 from decouple import config
 from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
-from django.middleware.locale import LocaleMiddleware
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
@@ -95,7 +95,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'main.context_processors.categories'
+                'main.context_processors.categories',
+                'main.context_processors.faculties'
             ],
         },
     },
