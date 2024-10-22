@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from rest_framework import views, status, permissions
 from rest_framework.response import Response
 
@@ -9,6 +9,15 @@ from main.public.serializers import ProgramSerializer
 from main.serializers import HeadlinerSerializer, NewsListSerializer, AnnouncementListSerializer, \
     FacultyListSerializer, EventListSerializer, ProgramListSerializer, JournalSerializer, PartnerSerializer
 from main.university.models import Faculty
+
+
+# Home page
+def home(request):
+    user = request.user
+    context = {
+        'user': user
+    }
+    return render(request, 'src/index.html', context)
 
 
 # Context API

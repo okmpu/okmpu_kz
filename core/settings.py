@@ -3,7 +3,7 @@ from pathlib import Path
 from decouple import config
 from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
-
+from django.middleware.locale import LocaleMiddleware
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'main.content.apps.ContentConfig',
     'main.university.apps.UniversityConfig',
     'main.public.apps.PublicConfig',
-
 ]
 
 
@@ -93,6 +92,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.categories'
             ],
         },
     },
@@ -152,8 +152,8 @@ LOCALE_PATHS = [
     BASE_DIR / 'locales'
 ]
 
-LANGUAGE_CODE = 'ru'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'kk'
+TIME_ZONE = 'Asia/Almaty'
 USE_I18N = True
 USE_TZ = True
 
