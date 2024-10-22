@@ -138,8 +138,8 @@ LANGUAGES = (
     ('en', _('English')),
 )
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
-MODELTRANSLATION_LANGUAGES = ('ru', 'kk', 'en', )
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'kk'
+MODELTRANSLATION_LANGUAGES = ('kk', 'ru', 'en', )
 
 MODELTRANSLATION_TRANSLATION_FILES = (
     'main.content.translations',
