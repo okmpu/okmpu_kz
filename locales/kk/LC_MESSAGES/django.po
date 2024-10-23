@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-17 05:16+0000\n"
+"POT-Creation-Date: 2024-10-23 12:45+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: core/settings.py:136
+#: core/settings.py:140
 msgid "Kazakh"
 msgstr "Қазақша"
 
-#: core/settings.py:137
+#: core/settings.py:141
 msgid "Russian"
 msgstr "Русский"
 
-#: core/settings.py:138
+#: core/settings.py:142
 msgid "English"
 msgstr "English"
 
@@ -71,7 +71,7 @@ msgstr "Иелік категория"
 msgid "Multiple"
 msgstr "Көпмәнділік"
 
-#: main/content/models.py:19 main/public/models.py:234
+#: main/content/models.py:19 main/public/models.py:237
 msgid "URL"
 msgstr ""
 
@@ -81,7 +81,7 @@ msgstr "Жаңа бет"
 
 #: main/content/models.py:21 main/content/models.py:42
 #: main/content/models.py:114 main/public/models.py:18 main/public/models.py:34
-#: main/public/models.py:235 main/university/models.py:70
+#: main/public/models.py:238 main/university/models.py:70
 #: main/university/models.py:174
 msgid "Order"
 msgstr ""
@@ -95,14 +95,15 @@ msgid "Categories"
 msgstr "Категориялар"
 
 #: main/content/models.py:38 main/public/models.py:11 main/public/models.py:72
-#: main/public/models.py:116 main/public/models.py:156
-#: main/public/models.py:192 main/public/models.py:209
+#: main/public/models.py:92 main/public/models.py:117 main/public/models.py:133
+#: main/public/models.py:158 main/public/models.py:178
+#: main/public/models.py:195 main/public/models.py:212
 #: main/university/models.py:133
 msgid "Title"
 msgstr "Тақырып"
 
-#: main/content/models.py:40 main/public/models.py:78 main/public/models.py:118
-#: main/public/models.py:162 main/public/models.py:194
+#: main/content/models.py:40 main/public/models.py:78 main/public/models.py:119
+#: main/public/models.py:164 main/public/models.py:197
 #: main/university/models.py:138
 msgid "Description"
 msgstr "Сипаттама"
@@ -151,8 +152,8 @@ msgstr "Суреттік контенттер"
 msgid "Caption"
 msgstr "Тақырыбы"
 
-#: main/content/models.py:92 main/public/models.py:93 main/public/models.py:133
-#: main/public/models.py:177 main/public/models.py:214
+#: main/content/models.py:92 main/public/models.py:94 main/public/models.py:135
+#: main/public/models.py:180 main/public/models.py:217
 #: main/university/models.py:110 main/university/models.py:135
 msgid "File"
 msgstr "Файл"
@@ -197,8 +198,8 @@ msgstr "Қызметкерлер контенттер"
 msgid "Main | Public"
 msgstr "Басты қосымша | Публикация"
 
-#: main/public/models.py:13 main/public/models.py:74 main/public/models.py:158
-#: main/public/models.py:211 main/public/models.py:231
+#: main/public/models.py:13 main/public/models.py:74 main/public/models.py:160
+#: main/public/models.py:214 main/public/models.py:234
 #: main/university/models.py:22 main/university/models.py:47
 msgid "Poster"
 msgstr "Постер"
@@ -241,27 +242,27 @@ msgstr "Мамандық"
 msgid "Specialties"
 msgstr "Мамандықтар"
 
-#: main/public/models.py:66 main/public/models.py:110 main/public/models.py:150
+#: main/public/models.py:66 main/public/models.py:111 main/public/models.py:152
 #: main/university/models.py:32 main/university/models.py:40
 #: main/university/models.py:101 main/university/models.py:127
 #: main/university/models.py:159
 msgid "Faculty"
 msgstr "Факультет"
 
-#: main/public/models.py:70 main/public/models.py:114 main/public/models.py:154
+#: main/public/models.py:70 main/public/models.py:115 main/public/models.py:156
 #: main/university/models.py:58 main/university/models.py:68
 #: main/university/models.py:105 main/university/models.py:131
 #: main/university/models.py:163
 msgid "Department"
 msgstr "Кафедра"
 
-#: main/public/models.py:77 main/public/models.py:117 main/public/models.py:161
-#: main/public/models.py:193 main/university/models.py:108
+#: main/public/models.py:77 main/public/models.py:118 main/public/models.py:163
+#: main/public/models.py:196 main/university/models.py:108
 msgid "Author"
 msgstr "Автор"
 
-#: main/public/models.py:79 main/public/models.py:119 main/public/models.py:163
-#: main/public/models.py:195 main/public/models.py:215
+#: main/public/models.py:79 main/public/models.py:120 main/public/models.py:165
+#: main/public/models.py:198 main/public/models.py:218
 #: main/university/models.py:113 main/university/models.py:139
 msgid "Date created"
 msgstr "Шыққан уақыты"
@@ -270,71 +271,71 @@ msgstr "Шыққан уақыты"
 msgid "News"
 msgstr "Жаңалықтар"
 
-#: main/public/models.py:101
+#: main/public/models.py:102
 msgid "News file"
 msgstr "Жаңалық құжаты"
 
-#: main/public/models.py:102
+#: main/public/models.py:103
 msgid "News files"
 msgstr "Жаңалық құжаттары"
 
-#: main/public/models.py:125 main/public/models.py:131
+#: main/public/models.py:126 main/public/models.py:132
 msgid "Announcement"
 msgstr "Хабарландыру"
 
-#: main/public/models.py:126
+#: main/public/models.py:127
 msgid "Announcements"
 msgstr "Хабарландырулар"
 
-#: main/public/models.py:141
+#: main/public/models.py:143
 msgid "Announcement file"
 msgstr "Хабарландыру құжаты"
 
-#: main/public/models.py:142
+#: main/public/models.py:144
 msgid "Announcement files"
 msgstr "Хабарландыру құжаттары"
 
-#: main/public/models.py:169 main/public/models.py:175
+#: main/public/models.py:171 main/public/models.py:177
 msgid "Event"
 msgstr "Іс-шара"
 
-#: main/public/models.py:170
+#: main/public/models.py:172
 msgid "Events"
 msgstr "Іс-шаралар"
 
-#: main/public/models.py:185
+#: main/public/models.py:188
 msgid "Event file"
 msgstr "Іс-шара құжаты"
 
-#: main/public/models.py:186
+#: main/public/models.py:189
 msgid "Event files"
 msgstr "Іс-шара құжаттары"
 
-#: main/public/models.py:201
+#: main/public/models.py:204
 msgid "Vacancy"
 msgstr "Вакансия"
 
-#: main/public/models.py:202
+#: main/public/models.py:205
 msgid "Vacancies"
 msgstr "Вакансиялар"
 
-#: main/public/models.py:221
+#: main/public/models.py:224
 msgid "Journal"
 msgstr "Журнал"
 
-#: main/public/models.py:222
+#: main/public/models.py:225
 msgid "Journals"
 msgstr "Журналдар"
 
-#: main/public/models.py:229
+#: main/public/models.py:232
 msgid "Partner name"
 msgstr "Серіктес атауы"
 
-#: main/public/models.py:241
+#: main/public/models.py:244
 msgid "Partner"
 msgstr "Серіктес"
 
-#: main/public/models.py:242
+#: main/public/models.py:245
 msgid "Partners"
 msgstr "Серіктестер"
 
@@ -405,3 +406,7 @@ msgstr "Персонал"
 #: main/university/models.py:181
 msgid "Personals"
 msgstr "Персоналдар"
+
+#: templates/src/base.html:103
+msgid "Home page"
+msgstr "Басты бет"
