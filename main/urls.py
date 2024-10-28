@@ -1,4 +1,6 @@
 from django.urls import path
+from setuptools.extern import names
+
 from main.content.views import ContentDetail, content_detail
 from main import views
 from main.public import views as main_views
@@ -6,6 +8,7 @@ from main.university import views as university_views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('programs/<slug>/', views.program_detail, name='program_detail'),
 
     # content urls
     path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content_detail, name='content_detail'),

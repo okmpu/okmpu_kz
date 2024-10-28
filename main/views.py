@@ -12,6 +12,7 @@ from main.university.models import Faculty
 
 
 # Home page
+# ----------------------------------------------------------------------------------------------------------------------
 def home(request):
     headliners = Headliner.objects.filter()[:5]
     programs = Program.objects.all()
@@ -33,6 +34,17 @@ def home(request):
         'partners': partners
     }
     return render(request, 'src/index.html', context)
+
+
+# Program page
+# ----------------------------------------------------------------------------------------------------------------------
+def program_detail(request, slug):
+    program = get_object_or_404(Program, slug=slug)
+
+    context = {
+        'program': program
+    }
+    return render(request, 'src/programs.html', context)
 
 
 # Context API

@@ -73,7 +73,7 @@
 
             <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 mt-4">
                 {% for item in programs %}
-                <a href="#"
+                <a href="{% url 'program_detail' item.slug %}"
                     class="flex flex-col items-center p-6 bg-blue-700 text-white rounded-lg transition-all shadow hover:bg-gray-100 hover:text-black">
                     {% if item.slug == 'bachelor' %}
                     <svg class="w-20 h-20" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -102,7 +102,7 @@
                     </div>
                 </a>
                 {% endfor %}
-                <a href="https://talapker.okmpu.kz" target="_blank"
+                <a href="https://talapker.okmpu.edu.kz" target="_blank"
                     class="flex flex-col items-center p-6 bg-blue-500 text-white rounded-lg transition-all shadow hover:bg-gray-100 hover:text-black">
                     <svg class="w-20 h-20 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         width="24" height="24" fill="none" viewBox="0 0 24 24">
