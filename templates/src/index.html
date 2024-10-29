@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Басты бет - Zhanibekov University
+    Басты бет - Zhanibekov University
 {% endblock %}
 
 {% block content %}
@@ -123,38 +123,38 @@
 
     <!-- Publics -->
     <!-- ============================================================================================================================= -->
-    <div class="border-b" data-aos="fade-up">
+    <div class="border-b">
         <div class="container flex flex-col lg:flex-row items-start gap-6 mx-auto px-4 py-16">
             <!-- Announcements -->
-            <div class="grid gap-4 w-full lg:max-w-md">
+            <div class="grid gap-4 w-full lg:max-w-md" data-aos="fade-up" data-aos-duration="500">
                 <div>
                     <h1 class="font-bold text-2xl">Хабарландырулар</h1>
                 </div>
 
                 <div class="grid gap-2">
                     {% for item in announcements %}
-                    <a href="#" class="rounded-lg border overflow-hidden flex gap-2 transition-all hover:bg-gray-100">
-                        <div class="p-6 flex justify-center items-center bg-amber-500">
-                            <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd"
-                                    d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
-                                    clip-rule="evenodd" />
-                                <path fill-rule="evenodd"
-                                    d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </div>
+                        <a href="{% url 'announcement' item.pk %}" class="rounded-lg border overflow-hidden flex gap-2 transition-all hover:bg-gray-100">
+                            <div class="p-6 flex justify-center items-center bg-amber-500">
+                                <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
 
-                        <div class="flex-1 p-2">
-                            <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
-                            <span class="text-gray-500">{{ item.date_created }}</span>
-                        </div>
-                    </a>
+                            <div class="flex-1 p-2">
+                                <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
                     {% endfor %}
                 </div>
 
-                <a href="#"
+                <a href="{% url 'announcements' %}"
                     class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                     Барлығын қарап шығу
                     <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -169,7 +169,7 @@
                 <div class="flex items-center justify-between">
                     <h1 class="font-bold text-2xl">Жаңалықтар</h1>
 
-                    <a href="#"
+                    <a href="{% url 'news' %}"
                         class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                         Барлығын қарап шығу
                         <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -182,15 +182,19 @@
 
                 <div class="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
                     {% for item in news %}
-                    <a href="#" class="border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
-                        <div class="overflow-hidden">
-                            <img src="{{ item.poster.url }}" class="w-full" alt="">
-                        </div>
-                        <div class="p-4">
-                            <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
-                            <span class="text-gray-500">{{ item.date_created }}</span>
-                        </div>
-                    </a>
+                        <a 
+                            href="{% url 'news_detail' item.id %}" 
+                            class="border rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                            data-aos="fade-up" data-aos-duration="{{ item.id }}00"
+                        >
+                            <div class="overflow-hidden">
+                                <img src="{{ item.poster.url }}" class="w-full" alt="">
+                            </div>
+                            <div class="p-4">
+                                <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
@@ -215,19 +219,31 @@
             <swiper-container class="mySwiper mt-8" pagination="true" pagination-clickable="true" space-between="20"
                 navigation="true" slides-per-view="4">
                 {% for item in events %}
-                <swiper-slide>
-                    <a href="#" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
-                        <div class="overflow-hidden">
-                            <img src="{{ item.poster.url }}" class="w-full" alt="">
-                        </div>
-                        <div class="p-4">
-                            <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
-                            <span class="text-gray-500">{{ item.date_created }}</span>
-                        </div>
-                    </a>
-                </swiper-slide>
+                    <swiper-slide>
+                        <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
+                            <div class="overflow-hidden">
+                                <img src="{{ item.poster.url }}" class="w-full" alt="">
+                            </div>
+                            <div class="p-4">
+                                <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
+                    </swiper-slide>
                 {% endfor %}
             </swiper-container>
+
+            <div class="flex justify-center">
+                <a href="{% url 'events' %}"
+                    class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                    Барлығын қарап шығу
+                    <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 5h12m0 0L9 1m4 4L9 9" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
 

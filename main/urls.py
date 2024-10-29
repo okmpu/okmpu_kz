@@ -1,6 +1,4 @@
 from django.urls import path
-from setuptools.extern import names
-
 from main.content.views import ContentDetail, content_detail
 from main import views
 from main.public import views as main_views
@@ -10,21 +8,19 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('programs/<slug>/', views.program_detail, name='program_detail'),
 
+    # public app urls...
+    path('publics/news/', main_views.news_view, name='news'),
+    path('publics/news/<pk>/', main_views.news_view, name='news_detail'),
+    path('publics/announcements/', main_views.announcement_view, name='announcements'),
+    path('publics/announcements/<pk>/', main_views.announcement_view, name='announcement'),
+    path('publics/events/', main_views.event_view, name='events'),
+    path('publics/events/<pk>/', main_views.event_view, name='event_detail'),
+
     # content urls
     path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content_detail, name='content_detail'),
 
-
     # API
     # ------------------------------------------------------------------------------------------------------------------
-    # main app urls...
-    path('api/main/', views.HomeAPIView.as_view()),
-    path('api/main/categories/', views.CategoryListAPIView.as_view()),
-    path('api/main/program/<slug>/', views.ProgramAPIView.as_view()),
-
-    # content app urls...
-
-    path('api/main/content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', ContentDetail.as_view()),
-
     # university apps urls...
     path('api/main/university/faculties/', university_views.FacultiesAPIView.as_view()),
     path('api/main/university/faculties/<slug>/', university_views.FacultyDetailAPIView.as_view()),
@@ -42,12 +38,4 @@ urlpatterns = [
     path('api/main/university/departments/<slug>/personals/', university_views.DepartmentPersonalsAPIView.as_view()),
     path('api/main/university/departments/<slug>/publics/', university_views.DepartmentPublicsAPIView.as_view()),
     path('api/main/university/departments/<slug>/about/', university_views.DepartmentAboutAPIView.as_view()),
-
-    # public app urls...
-    path('api/main/public/news/', main_views.NewsAPIView.as_view()),
-    path('api/main/public/news/<pk>/', main_views.NewsDetailAPIView.as_view()),
-    path('api/main/public/announcements/', main_views.AnnouncementsAPIView.as_view()),
-    path('api/main/public/announcements/<pk>/', main_views.AnnouncementDetailAPIView.as_view()),
-    path('api/main/public/events/', main_views.EventsAPIView.as_view()),
-    path('api/main/public/events/<pk>/', main_views.EventDetailAPIView.as_view()),
 ]
