@@ -21,7 +21,7 @@
         </button>
     
         <aside id="default-sidebar"
-            class="fixed top-0 left-0 z-40 sm:static w-64 h-screen sm:h-auto transition-transform -translate-x-full sm:translate-x-0"
+            class="fixed top-0 left-0 z-40 sm:static bg-white w-64 h-screen sm:h-auto transition-transform -translate-x-full sm:translate-x-0"
             aria-label="Sidebar">
             <div class="h-full px-3 py-4 overflow-y-auto">
                 <ul class="space-y-2 font-medium">
@@ -48,9 +48,10 @@
         </aside>
 
         <div class="py-4 pl-8">
-            <div class="border-b">
+            <div class="border-b grid gap-4 pb-4">
+                <img src="{{ item.poster.url }}" class="rounded-lg" alt="">
                 <h1 class="text-2xl lg:text-3xl xl:text-4xl font-bold">{{ item.title }}</h1>
-                <div class="flex justify-between text-gray-500 py-4">
+                <div class="flex justify-between text-gray-500">
                     <span>{{ item.date_created }}</span>
                     <span>{{ item.user.first_name }} {{ item.user.last_name }}</span>
                 </div>
@@ -58,6 +59,59 @@
             <div class="py-4 text-gray-500">
                 {{ item.description|safe }}
             </div>
+
+            <div class="grid">
+                <h1 class="text-2xl font-bold">Осыған ұқсастар</h1>
+                <div class="py-4 grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+                    {% for item in similar_items %}
+                        {% if code == 'news' %}
+                            <a 
+                                href="{% url 'news_detail' item.id %}" 
+                                class="border rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                                data-aos="fade-up"
+                            >
+                                <div class="overflow-hidden">
+                                    <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                </div>
+                                <div class="p-4">
+                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                    <span class="text-gray-500">{{ item.date_created }}</span>
+                                </div>
+                            </a>
+                        {% elif code == 'event' %}
+                            <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
+                                <div class="overflow-hidden">
+                                    <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                </div>
+                                <div class="p-4">
+                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                    <span class="text-gray-500">{{ item.date_created }}</span>
+                                </div>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'announcement' item.pk %}" class="rounded-lg border overflow-hidden grid transition-all hover:bg-gray-100">
+                                <div class="p-6 flex justify-center items-center bg-amber-500">
+                                    <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd"
+                                            d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+                                            clip-rule="evenodd" />
+                                        <path fill-rule="evenodd"
+                                            d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+            
+                                <div class="flex-1 p-2">
+                                    <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
+                                    <span class="text-gray-500">{{ item.date_created }}</span>
+                                </div>
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </div>
 {% endblock content %}

@@ -166,7 +166,7 @@
             </div>
 
             <div class="flex-1 grid gap-4">
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between" data-aos="fade-up">
                     <h1 class="font-bold text-2xl">Жаңалықтар</h1>
 
                     <a href="{% url 'news' %}"
@@ -185,7 +185,7 @@
                         <a 
                             href="{% url 'news_detail' item.id %}" 
                             class="border rounded-lg overflow-hidden transition-all hover:bg-gray-100"
-                            data-aos="fade-up" data-aos-duration="{{ item.id }}00"
+                            data-aos="fade-up"
                         >
                             <div class="overflow-hidden">
                                 <img src="{{ item.poster.url }}" class="w-full" alt="">
