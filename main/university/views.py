@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from rest_framework import views, status, permissions
 from rest_framework.response import Response
 from django.db.models import Q
@@ -8,6 +8,15 @@ from main.university.models import Faculty, Project, Department, Personal, Facul
 from main.university.serializers import FacultySerializer, DepartmentSerializer, ProjectSerializer, \
     PersonalSerializer, NewsSerializer, EventsSerializer, FacultyProgramSerializer, AboutFacultySerializer, \
     AboutDepartmentSerializer, SuccessSerializer
+
+
+# Faculties page
+def faculties_view(request):
+    items = Faculty.objects.all()
+    context = {
+        'faculties': items
+    }
+    return render(request, 'src/university/faculties.html', context)
 
 
 # Faculties API

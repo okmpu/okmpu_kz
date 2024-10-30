@@ -19,6 +19,9 @@ urlpatterns = [
     # content urls
     path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content_detail, name='content_detail'),
 
+    # university apps urls...
+    path('university/faculties/', university_views.faculties_view, name='faculties'),
+
     # API
     # ------------------------------------------------------------------------------------------------------------------
     # university apps urls...

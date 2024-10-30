@@ -1,0 +1,29 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+{% block title %}
+Факультеттер - Zhanibekov University
+{% endblock %}
+
+{% block content %}
+<!-- Faculties -->
+<!-- ============================================================================================================================= -->
+<div class="border-b" data-aos="fade-up">
+    <div class="container mx-auto px-4 py-16">
+        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {% for item in faculties %}
+                <a href="#" class="p-6 grid gap-4 rounded-lg border transition-all hover:bg-gray-100">
+                    <div class="w-36 h-36 rounded-full border overflow-hidden mx-auto">
+                        <img src="{{ item.image.url }}" class="w-full h-full" alt="">
+                    </div>
+                    <div class="grid gap-4 text-center">
+                        <h1 class="text-center font-semibold text-2xl line-clamp-1">
+                            {{ item.name }}
+                        </h1>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
