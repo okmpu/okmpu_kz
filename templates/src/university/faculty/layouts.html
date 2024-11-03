@@ -1,0 +1,57 @@
+{% extends 'src/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <div>
+            <div
+                style="background-image: url('{% if faculty.poster %}{{ faculty.poster.url }}{% else %}/static/images/poster.png{% endif %}');"
+                class="h-80 bg-cover bg-center"
+            ></div>
+            <div class="flex h-full w-full py-5 border-b">
+                <div class="flex items-center justify-center gap-4">
+                    <img
+                        src="{% if faculty.image %}{{ faculty.image.url }}{% else %}{% static '/images/poster.png' %}{% endif %}"
+                        alt="Image"
+                        class="w-28 rounded-full border"
+                    />
+                    <div>
+                        <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-6xl">
+                            {{ faculty.name }}
+                        </h1>
+                        <span class="text-gray-500">Факультет</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar -->
+        <ul class="flex">
+            <li>
+                {% url 'faculty_detail' faculty.slug as faculty_detail_url %}
+                <a
+                    href="{{ faculty_detail_url }}"
+                    class="border-b-4 text-xl block font-semibold p-2 transition-all hover:border-blue-700 {% if request.path == faculty_detail_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                >
+                    Басты бет
+                </a>
+            </li>
+            
+            <li>
+                {% url 'faculty_programs' faculty.slug as faculty_programs_url %}
+                <a
+                    href="{{ faculty_programs_url }}"
+                    class="border-b-4 block text-xl font-semibold p-2 transition-all hover:border-blue-700 {% if request.path == faculty_programs_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                >
+                    Оқу бағдарламалары
+                </a>
+            </li>
+        </ul>
+
+        <div>
+            {% block faculty_content %}
+            {% endblock faculty_content %}
+        </div>
+    </div>
+{% endblock content %}

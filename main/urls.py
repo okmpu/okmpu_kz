@@ -21,13 +21,12 @@ urlpatterns = [
 
     # university apps urls...
     path('university/faculties/', university_views.faculties_view, name='faculties'),
+    path('university/faculties/<slug>/', university_views.faculty_detail_view, name='faculty_detail'),
+    path('university/faculties/<slug>/programs/', university_views.faculty_programs_view, name='faculty_programs'),
 
     # API
     # ------------------------------------------------------------------------------------------------------------------
     # university apps urls...
-    path('api/main/university/faculties/', university_views.FacultiesAPIView.as_view()),
-    path('api/main/university/faculties/<slug>/', university_views.FacultyDetailAPIView.as_view()),
-    path('api/main/university/faculties/<slug>/programs/', university_views.ProgramsFacultyAPIView.as_view()),
     path('api/main/university/faculties/<slug>/projects/', university_views.ProjectsFacultyAPIView.as_view()),
     path('api/main/university/faculties/<slug>/achievements/', university_views.AchievementsFacultyAPIView.as_view()),
     path('api/main/university/faculties/<slug>/personals/', university_views.PersonalsFacultyAPIView.as_view()),

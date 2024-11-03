@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from django.db.models import Q
 
 from main.public.models import News, Event, Announcement
-from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success
+from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty
 from main.university.serializers import FacultySerializer, DepartmentSerializer, ProjectSerializer, \
     PersonalSerializer, NewsSerializer, EventsSerializer, FacultyProgramSerializer, AboutFacultySerializer, \
     AboutDepartmentSerializer, SuccessSerializer
@@ -19,68 +19,38 @@ def faculties_view(request):
     return render(request, 'src/university/faculties.html', context)
 
 
-# Faculties API
-class FacultiesAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+# Faculty pages
+def faculty_detail_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    departments = Department.objects.filter(faculty=faculty)
+    projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    personals = Personal.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
 
-    def get(self, request):
-        faculties = Faculty.objects.all()
-        faculties = FacultySerializer(faculties, many=True, context={'request': request})
-        context = {
-            'faculties': faculties.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
-
-
-# FacultyDetail API
-class FacultyDetailAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
-
-    def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        departments = Department.objects.filter(faculty=faculty)
-        projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-        achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-        personals = Personal.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-
-        faculty = FacultySerializer(faculty, partial=True, context={'request': request})
-        departments = DepartmentSerializer(departments, many=True)
-        projects = ProjectSerializer(projects, many=True, context={'request': request})
-        achievements = SuccessSerializer(achievements, many=True, context={'request': request})
-        personals = PersonalSerializer(personals, many=True, context={'request': request})
-        news = NewsSerializer(news, many=True, context={'request': request})
-        events = EventsSerializer(events, many=True, context={'request': request})
-        announcements = NewsSerializer(announcements, many=True, context={'request': request})
-
-        context = {
-            'faculty': faculty.data,
-            'departments': departments.data,
-            'projects': projects.data,
-            'achievements': achievements.data,
-            'personals': personals.data,
-            'news': news.data,
-            'events': events.data,
-            'announcements': announcements.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
+    context = {
+        'faculty': faculty,
+        'departments': departments,
+        'projects': projects,
+        'achievements': achievements,
+        'personals': personals,
+        'news': news,
+        'events': events,
+        'announcements': announcements,
+    }
+    return render(request, 'src/university/faculty/index.html', context)
 
 
-# Faculty Programs API
-class ProgramsFacultyAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
-
-    def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        departments = Department.objects.filter(faculty=faculty)
-        programs = FacultyProgram.objects.filter(department__in=departments)
-        programs = FacultyProgramSerializer(programs, many=True)
-        context = {
-            'programs': programs.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
+def faculty_programs_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    departments = Department.objects.filter(faculty=faculty)
+    programs = FacultyProgram.objects.filter(department__in=departments)
+    context = {
+        'faculty': faculty,
+    }
+    return render(request, 'src/university/faculty/programs.html', context)
 
 
 # Faculty Projects API
