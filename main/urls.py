@@ -23,16 +23,15 @@ urlpatterns = [
     path('university/faculties/', university_views.faculties_view, name='faculties'),
     path('university/faculties/<slug>/', university_views.faculty_detail_view, name='faculty_detail'),
     path('university/faculties/<slug>/programs/', university_views.faculty_programs_view, name='faculty_programs'),
+    path('university/faculties/<slug>/projects/', university_views.faculty_projects_view, name='faculty_projects'),
+    path('university/faculties/<slug>/achievements/', university_views.faculty_achievements_view, name='faculty_achievements'),
+    path('university/faculties/<slug>/personals/', university_views.faculty_personals_view, name='faculty_personals'),
+    path('university/faculties/<slug>/publics/', university_views.faculty_publics_view, name='faculty_publics'),
+    path('university/faculties/<slug>/about/', university_views.faculty_about_view, name='faculty_about'),
 
     # API
     # ------------------------------------------------------------------------------------------------------------------
     # university apps urls...
-    path('api/main/university/faculties/<slug>/projects/', university_views.ProjectsFacultyAPIView.as_view()),
-    path('api/main/university/faculties/<slug>/achievements/', university_views.AchievementsFacultyAPIView.as_view()),
-    path('api/main/university/faculties/<slug>/personals/', university_views.PersonalsFacultyAPIView.as_view()),
-    path('api/main/university/faculties/<slug>/publics/', university_views.PublicsFacultyAPIView.as_view()),
-    path('api/main/university/faculties/<slug>/about/', university_views.AboutFacultyAPIView.as_view()),
-
     path('api/main/university/departments/<slug>/', university_views.DepartmentDetailAPIView.as_view()),
     path('api/main/university/departments/<slug>/programs/', university_views.DepartmentProgramsAPIView.as_view()),
     path('api/main/university/departments/<slug>/projects/', university_views.DepartmentProjectsAPIView.as_view()),

@@ -1,0 +1,51 @@
+{% extends 'src/university/faculty/layouts.html' %}
+{% load static %}
+
+{% block title %}
+    Ғылыми жұмыстар - Zhanibekov University
+{% endblock %}
+
+{% block faculty_content %}
+<div class="py-8">
+    <!-- Projects -->
+    {% if projects|length > 0 %}
+        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {% for item in projects %}
+                <a 
+                    href="{{ item.file.url }}"
+                    target="_blank"
+                    class="grid gap-2 items-center border overflow-hidden rounded-lg transition-all hover:bg-gray-100"
+                >
+                    <div class="py-6 bg-blue-700 flex justify-center">
+                        <svg class="w-16 h-16 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M4.857 3A1.857 1.857 0 0 0 3 4.857v4.286C3 10.169 3.831 11 4.857 11h4.286A1.857 1.857 0 0 0 11 9.143V4.857A1.857 1.857 0 0 0 9.143 3H4.857Zm10 0A1.857 1.857 0 0 0 13 4.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 21 9.143V4.857A1.857 1.857 0 0 0 19.143 3h-4.286Zm-10 10A1.857 1.857 0 0 0 3 14.857v4.286C3 20.169 3.831 21 4.857 21h4.286A1.857 1.857 0 0 0 11 19.143v-4.286A1.857 1.857 0 0 0 9.143 13H4.857ZM18 14a1 1 0 1 0-2 0v2h-2a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2v-2Z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+
+                    <div class="flex-1 px-4 py-2">
+                        <h1 class="font-semibold line-clamp-3">
+                            {{ item.name }}
+                        </h1>
+                        <div class="grid text-gray-500">
+                            <div class="flex items-center gap-2">
+                                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>
+                                    {{ item.author }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-500">
+                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                            </svg>
+                            <span>{{ item.date_created }}</span>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock faculty_content %}

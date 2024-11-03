@@ -1,0 +1,101 @@
+{% extends 'src/university/faculty/layouts.html' %}
+{% load static %}
+
+{% block title %}
+    Публикациялар - Zhanibekov University
+{% endblock %}
+
+
+{% block faculty_content %}
+<div class="py-8">
+    <ul class="flex flex-wrap font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+        <li class="me-2">
+            <button id="news-tab" data-tabs-target="#news" type="button" role="tab" aria-controls="news" aria-selected="true" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
+                Жаңалықтар
+            </button>
+        </li>
+        <li class="me-2">
+            <button id="announcements-tab" data-tabs-target="#announcements" type="button" role="tab" aria-controls="announcements" aria-selected="false" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
+                Хабарландырулар
+            </button>
+        </li>
+        <li class="me-2">
+            <button id="events-tab" data-tabs-target="#events" type="button" role="tab" aria-controls="events" aria-selected="false" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
+                Іс-шаралар
+            </button>
+        </li>
+    </ul>
+    <div id="defaultTabContent">
+        <div class="hidden bg-white rounded-lg dark:bg-gray-800" id="news" role="tabpanel"
+            aria-labelledby="news-tab"
+        >
+            <div class="p-4 flex-1 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {% for item in news %}
+                    <a 
+                        href="{% url 'news_detail' item.id %}" 
+                        class="border rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                        data-aos="fade-up"
+                    >
+                        <div class="overflow-hidden">
+                            <img src="{{ item.poster.url }}" class="w-full" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                            <span class="text-gray-500">{{ item.date_created }}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="defaultTabContent">
+        <div class="hidden bg-white rounded-lg dark:bg-gray-800" id="announcements" role="tabpanel"
+            aria-labelledby="announcements-tab"
+        >
+            <div class="p-4 flex-1 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {% for item in announcements %}
+                    <a href="{% url 'announcement' item.pk %}" class="rounded-lg border overflow-hidden grid transition-all hover:bg-gray-100">
+                        <div class="p-6 flex justify-center items-center bg-amber-500">
+                            <svg class="w-16 h-16 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </div>
+
+                        <div class="flex-1 p-2">
+                            <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
+                            <span class="text-gray-500">{{ item.date_created }}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="defaultTabContent">
+        <div class="hidden bg-white rounded-lg dark:bg-gray-800" id="events" role="tabpanel"
+            aria-labelledby="events-tab"
+        >
+            <div class="p-4 flex-1 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {% for item in events %}
+                    <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
+                        <div class="overflow-hidden">
+                            <img src="{{ item.poster.url }}" class="w-full" alt="">
+                        </div>
+                        <div class="p-4">
+                            <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                            <span class="text-gray-500">{{ item.date_created }}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock faculty_content %}

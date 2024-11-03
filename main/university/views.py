@@ -45,120 +45,95 @@ def faculty_detail_view(request, slug):
 
 def faculty_programs_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
-    departments = Department.objects.filter(faculty=faculty)
-    programs = FacultyProgram.objects.filter(department__in=departments)
     context = {
         'faculty': faculty,
     }
     return render(request, 'src/university/faculty/programs.html', context)
 
 
-# Faculty Projects API
-class ProjectsFacultyAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
-
-    def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        departments = Department.objects.filter(faculty=faculty)
-        projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-        projects = ProjectSerializer(projects, many=True, context={'request': request})
-        context = {
-            'projects': projects.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
+def faculty_projects_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    departments = Department.objects.filter(faculty=faculty)
+    projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+    context = {
+        'faculty': faculty,
+        'projects': projects
+    }
+    return render(request, 'src/university/faculty/projects.html', context)
 
 
-# Faculty Achievements API
-class AchievementsFacultyAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
-
-    def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        departments = Department.objects.filter(faculty=faculty)
-        achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-        achievements = SuccessSerializer(achievements, many=True, context={'request': request})
-        context = {
-            'achievements': achievements.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
+def faculty_achievements_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    departments = Department.objects.filter(faculty=faculty)
+    achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+    context = {
+        'faculty': faculty,
+        'achievements': achievements
+    }
+    return render(request, 'src/university/faculty/achievements.html', context)
 
 
-# Faculty Personals API
-class PersonalsFacultyAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
-
-    def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        departments = Department.objects.filter(faculty=faculty)
-        managements = Personal.objects.filter(department__in=departments, p_type='MANAGEMENT')
-        teachers = Personal.objects.filter(department__in=departments, p_type='TEACHER')
-        students = Personal.objects.filter(department__in=departments, p_type='STUDENT')
-        context = {
-            'personals': [
-                {
-                    'id': 1,
-                    'name_kk': 'Факультет басшылығы',
-                    'name_ru': 'Руководство факультета',
-                    'name_en': 'Faculty management',
-                    'type': 'management',
-                    'results': PersonalSerializer(managements, many=True, context={'request': request}).data
-                },
-                {
-                    'id': 2,
-                    'name_kk': 'Оқытушылар',
-                    'name_ru': 'Преподаватели',
-                    'name_en': 'Teachers',
-                    'type': 'teachers',
-                    'results': PersonalSerializer(teachers, many=True, context={'request': request}).data
-                },
-                {
-                    'id': 3,
-                    'name_kk': 'Студенттер',
-                    'name_ru': 'Студенты',
-                    'name_en': 'Students',
-                    'type': 'students',
-                    'results': PersonalSerializer(students, many=True, context={'request': request}).data
-                },
-            ]
-        }
-        return Response(context, status=status.HTTP_200_OK)
+def faculty_personals_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    departments = Department.objects.filter(faculty=faculty)
+    managements = Personal.objects.filter(department__in=departments, p_type='MANAGEMENT')
+    teachers = Personal.objects.filter(department__in=departments, p_type='TEACHER')
+    students = Personal.objects.filter(department__in=departments, p_type='STUDENT')
+    context = {
+        'faculty': faculty,
+        'personals': [
+            {
+                'id': 1,
+                'name_kk': 'Факультет басшылығы',
+                'name_ru': 'Руководство факультета',
+                'name_en': 'Faculty management',
+                'type': 'management',
+                'results': managements
+            },
+            {
+                'id': 2,
+                'name_kk': 'Оқытушылар',
+                'name_ru': 'Преподаватели',
+                'name_en': 'Teachers',
+                'type': 'teachers',
+                'results': teachers
+            },
+            {
+                'id': 3,
+                'name_kk': 'Студенттер',
+                'name_ru': 'Студенты',
+                'name_en': 'Students',
+                'type': 'students',
+                'results': students
+            },
+        ]
+    }
+    return render(request, 'src/university/faculty/personals.html', context)
 
 
-# FacultyDetail API
-class PublicsFacultyAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+def faculty_publics_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    departments = Department.objects.filter(faculty=faculty)
+    news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+    events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
 
-    def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        departments = Department.objects.filter(faculty=faculty)
-        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-
-        news = NewsSerializer(news, many=True, context={'request': request})
-        events = EventsSerializer(events, many=True, context={'request': request})
-        announcements = NewsSerializer(announcements, many=True, context={'request': request})
-
-        context = {
-            'news': news.data,
-            'events': events.data,
-            'announcements': announcements.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
+    context = {
+        'faculty': faculty,
+        'news': news,
+        'events': events,
+        'announcements': announcements,
+    }
+    return render(request, 'src/university/faculty/publics.html', context)
 
 
-# AboutFaculty API
-class AboutFacultyAPIView(views.APIView):
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, ]
+def faculty_about_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
 
-    def get(self, request, slug):
-        faculty = get_object_or_404(Faculty, slug=slug)
-        about_faculty = AboutFacultySerializer(faculty, partial=True, context={'request': request})
-
-        context = {
-            'about': about_faculty.data,
-        }
-        return Response(context, status=status.HTTP_200_OK)
+    context = {
+        'faculty': faculty,
+    }
+    return render(request, 'src/university/faculty/about.html', context)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
