@@ -1,0 +1,14 @@
+{% extends 'src/university/department/layouts.html' %}
+{% load static %}
+
+{% block title %}
+    Факультет жайлы - Zhanibekov University
+{% endblock %}
+
+{% block department_content %}
+<div class="py-8">
+    <div class="text-gray-500">
+        {{ department.about|safe }}
+    </div>
+</div>
+{% endblock department_content %}

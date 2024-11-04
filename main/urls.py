@@ -29,14 +29,12 @@ urlpatterns = [
     path('university/faculties/<slug>/publics/', university_views.faculty_publics_view, name='faculty_publics'),
     path('university/faculties/<slug>/about/', university_views.faculty_about_view, name='faculty_about'),
 
-    # API
-    # ------------------------------------------------------------------------------------------------------------------
-    # university apps urls...
-    path('api/main/university/departments/<slug>/', university_views.DepartmentDetailAPIView.as_view()),
-    path('api/main/university/departments/<slug>/programs/', university_views.DepartmentProgramsAPIView.as_view()),
-    path('api/main/university/departments/<slug>/projects/', university_views.DepartmentProjectsAPIView.as_view()),
-    path('api/main/university/departments/<slug>/achievements/', university_views.DepartmentAchievementsAPIView.as_view()),
-    path('api/main/university/departments/<slug>/personals/', university_views.DepartmentPersonalsAPIView.as_view()),
-    path('api/main/university/departments/<slug>/publics/', university_views.DepartmentPublicsAPIView.as_view()),
-    path('api/main/university/departments/<slug>/about/', university_views.DepartmentAboutAPIView.as_view()),
+    path('university/departments/<slug>/', university_views.department_detail_view, name='department_detail'),
+    path('university/departments/<slug>/programs/', university_views.department_programs_view, name='department_programs'),
+    path('university/departments/<slug>/projects/', university_views.department_projects_view, name='department_projects'),
+    path('university/departments/<slug>/achievements/', university_views.department_achievements_view, name='department_achievements'),
+    path('university/departments/<slug>/personals/', university_views.department_personals_view, name='department_personals'),
+    path('university/departments/<slug>/publics/', university_views.department_publics_view, name='department_publics'),
+    path('university/departments/<slug>/about/', university_views.department_about_view, name='department_about'),
+
 ]
