@@ -51,7 +51,9 @@
 
         <div class="py-4 pl-8">
             <div class="border-b grid gap-4 pb-4">
-                <img src="{{ item.poster.url }}" class="rounded-lg" alt="">
+                {% if item.poster %}
+                    <img src="{{ item.poster.url }}" class="rounded-lg" alt="">
+                {% endif %}
                 <h1 class="text-2xl lg:text-3xl xl:text-4xl font-bold">{{ item.title }}</h1>
                 <div class="flex justify-between text-gray-500">
                     <span>{{ item.date_created }}</span>
@@ -73,7 +75,7 @@
                                 data-aos="fade-up"
                             >
                                 <div class="overflow-hidden">
-                                    <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                    <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}" class="w-full" alt="">
                                 </div>
                                 <div class="p-4">
                                     <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
@@ -83,7 +85,7 @@
                         {% elif code == 'event' %}
                             <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
                                 <div class="overflow-hidden">
-                                    <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                    <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}" class="w-full" alt="">
                                 </div>
                                 <div class="p-4">
                                     <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>

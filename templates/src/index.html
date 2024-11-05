@@ -191,7 +191,7 @@
                             data-aos="fade-up"
                         >
                             <div class="overflow-hidden">
-                                <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}" class="w-full" alt="">
                             </div>
                             <div class="p-4">
                                 <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>

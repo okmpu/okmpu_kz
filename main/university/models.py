@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from main.validators import validate_file_size
+from main.validators import validate_file_size, validate_logo, validate_poster
 
 
 # Faculty
@@ -16,11 +16,11 @@ class Faculty(models.Model):
     slug = models.CharField(_('Slug'), max_length=128)
     image = models.ImageField(
         _('Image'), upload_to='university/faculties/avatars',
-        null=True, blank=True, validators=[validate_file_size]
+        null=True, blank=True, validators=[validate_logo]
     )
     poster = models.ImageField(
         _('Poster'), upload_to='university/faculties/posters',
-        null=True, blank=True, validators=[validate_file_size]
+        null=True, blank=True, validators=[validate_poster]
     )
     faculty_type = models.CharField(_('Faculty type'), choices=FACULTY_TYPE, default='DEFAULT', max_length=16)
     about = models.TextField(_('About'), blank=True, null=True)
@@ -41,11 +41,11 @@ class Department(models.Model):
     )
     image = models.ImageField(
         _('Image'), upload_to='university/faculties/avatars',
-        null=True, blank=True, validators=[validate_file_size]
+        null=True, blank=True, validators=[validate_logo]
     )
     poster = models.ImageField(
         _('Poster'), upload_to='university/faculties/posters',
-        null=True, blank=True, validators=[validate_file_size]
+        null=True, blank=True, validators=[validate_poster]
     )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
@@ -165,7 +165,7 @@ class Personal(models.Model):
     full_name = models.CharField(_('Full name'), max_length=128, blank=True, null=True)
     image = models.ImageField(
         _('Image'), upload_to='university/personals/',
-        blank=True, null=True, validators=[validate_file_size]
+        blank=True, null=True, validators=[validate_logo]
     )
     profession = models.CharField(_('Profession'), max_length=128)
     p_type = models.CharField(_('Personal type'), max_length=128, choices=PERSONAL_TYPE, default='MANAGEMENT')

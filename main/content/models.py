@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from main.validators import validate_logo, validate_poster
 
 
 class Category(models.Model):
@@ -106,7 +107,10 @@ class StaffContent(models.Model):
         related_name='staff_contents', verbose_name=_('Content')
     )
     full_name = models.CharField(verbose_name=_('Full name'), max_length=128)
-    image = models.ImageField(verbose_name=_('Image'), upload_to='content/category/staff/', blank=True, null=True)
+    image = models.ImageField(
+        verbose_name=_('Image'), upload_to='content/category/staff/',
+        validators=[validate_logo], blank=True, null=True
+    )
     profession = models.CharField(verbose_name=_('Profession'), max_length=128)
     bio = models.TextField(verbose_name=_('Bio'), blank=True, null=True)
     phone = models.CharField(verbose_name=_('Phone'), max_length=32, blank=True, null=True)

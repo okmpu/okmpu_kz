@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from main.university.models import Department, Faculty
-from main.validators import validate_file_size
+from main.validators import validate_file_size, validate_poster
 
 
 # Headliner
@@ -11,7 +11,7 @@ class Headliner(models.Model):
     title = models.CharField(_('Title'), max_length=64)
     poster = models.ImageField(
         _('Poster'), upload_to='public/headliners/',
-        blank=True, null=True, validators=[validate_file_size]
+        blank=True, null=True, validators=[validate_poster]
     )
     about = models.TextField(_('About'), blank=True, null=True)
     src = models.CharField(_('Source URL'), max_length=128, default='/')
@@ -72,7 +72,7 @@ class News(models.Model):
     title = models.CharField(_('Title'), max_length=255)
     poster = models.ImageField(
         _('Poster'), upload_to='public/news/',
-        blank=True, null=True, validators=[validate_file_size]
+        blank=True, null=True, validators=[validate_poster]
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
@@ -158,7 +158,7 @@ class Event(models.Model):
     title = models.CharField(_('Title'), max_length=255)
     poster = models.ImageField(
         _('Poster'), upload_to='public/events/',
-        blank=True, null=True, validators=[validate_file_size]
+        blank=True, null=True, validators=[validate_poster]
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
