@@ -1,5 +1,7 @@
 {% extends 'src/base.html' %}
 {% load static %}
+{% load i18n %}
+
 
 {% block title %}
     {{ item.title }} - Zhanibekov University
@@ -28,19 +30,19 @@
                     <li>
                         <a href="{% url 'news' %}"
                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group {% if request.path == '/publics/news/' %}bg-gray-100{% endif %}">
-                            <span class="ms-3">Жаңалықтар</span>
+                            <span class="ms-3">{% translate 'News' %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'announcements' %}"
                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group {% if request.path == '/publics/announcements/' %}bg-gray-100{% endif %}">
-                            <span class="ms-3">Хабарландырулар</span>
+                            <span class="ms-3">{% translate 'Announcements' %}</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'events' %}"
                             class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group {% if request.path == '/publics/events/' %}bg-gray-100{% endif %}">
-                            <span class="ms-3">Іс-шаралар</span>
+                            <span class="ms-3">{% translate 'Events' %}</span>
                         </a>
                     </li>
                 </ul>
@@ -61,7 +63,7 @@
             </div>
 
             <div class="grid">
-                <h1 class="text-2xl font-bold">Осыған ұқсастар</h1>
+                <h1 class="text-2xl font-bold">{% translate 'Similar' %}</h1>
                 <div class="py-4 grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                     {% for item in similar_items %}
                         {% if code == 'news' %}

@@ -1,5 +1,6 @@
 {% extends 'src/base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block content %}
@@ -21,7 +22,7 @@
                         <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-6xl">
                             {{ department.name }}
                         </h1>
-                        <span class="text-gray-500">Кафедра</span>
+                        <span class="text-gray-500">{% translate 'Department' %}</span>
                         <a href="{% url 'faculty_detail' department.faculty.slug %}" class="font-medium text-blue-600 hover:underline">{{ department.faculty.name }}</a>
                     </div>
                 </div>
@@ -35,7 +36,7 @@
                     href="{{ department_detail_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_detail_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    Басты бет
+                    {% translate 'Home page' %}
                 </a>
             </li>
             <li>
@@ -44,7 +45,7 @@
                     href="{{ department_programs_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_programs_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    Оқу бағдарламалары
+                    {% translate 'Programs' %}
                 </a>
             </li>
             <li>
@@ -53,7 +54,7 @@
                     href="{{ department_projects_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_projects_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    Ғылыми жұмыстар
+                    {% translate 'Science projects' %}
                 </a>
             </li>
             <li>
@@ -62,7 +63,7 @@
                     href="{{ department_achievements_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_achievements_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    Жетістіктер
+                    {% translate 'Achievements' %}
                 </a>
             </li>
             <li>
@@ -71,7 +72,7 @@
                     href="{{ department_personals_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_personals_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    Кафедра мүшелері
+                    {% translate 'Department members' %}
                 </a>
             </li>
             <li>
@@ -80,7 +81,7 @@
                     href="{{ department_publics_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_publics_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    Публикациялар
+                    {% translate 'Publications' %}
                 </a>
             </li>
             <li>
@@ -89,7 +90,7 @@
                     href="{{ department_about_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    Кафедра жайлы
+                    {% translate 'Department about' %}
                 </a>
             </li>
         </ul>

@@ -1,14 +1,17 @@
 {% extends 'src/university/department/layouts.html' %}
 {% load static %}
+{% load i18n %}
+
 
 {% block title %}
-    Оқу бағдарламалары - Zhanibekov University
+    {% translate 'Programs' %} - Zhanibekov University
 {% endblock %}
+
 
 {% block department_content %}
 <div class="grid gap-4 pt-8">
     <div>
-        <span class="text-gray-500">Факультен бойынша берілген кафедралардың мамандық шифр кодтары мен атаулары</span>
+        <span class="text-gray-500">{% translate 'Specialty ciphers and names of the Department' %}</span>
     </div>
     
     <div class="flex items-center p-4 text-gray-800 rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-gray-300"
@@ -20,7 +23,7 @@
         </svg>
         <span class="sr-only">Info</span>
         <div>
-            Толық ақпаратты: 
+            {% translate 'Detailed information:' %} 
             <a href="https://talapker.okmpu.edu.kz/"
                 target="_blank"
                 class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
@@ -55,10 +58,10 @@
                         <thead class="uppercase bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3">
-                                    Бағдарлама шифр коды
+                                    {% translate 'Program cipher code' %}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Бағдарлама атауы
+                                    {% translate 'Program name' %}
                                 </th>
                             </tr>
                         </thead>

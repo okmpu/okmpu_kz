@@ -1,5 +1,6 @@
 {% extends 'src/university/department/layouts.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     {{ department.name }} - Zhanibekov University
@@ -13,10 +14,10 @@
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <h1 class="font-bold text-2xl">
-                        Ғылыми жұмыстар
+                        {% translate 'Science projects' %}
                     </h1>
                     <a href="{% url 'department_projects' department.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        Толығырақ
+                        {% translate 'Read more' %}
                         <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
@@ -68,10 +69,10 @@
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <h1 class="font-bold text-2xl">
-                        Факультет жетістіктері
+                        {% translate 'Achievements' %}
                     </h1>
                     <a href="{% url 'department_achievements' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        Толығырақ
+                        {% translate 'Read more' %}
                         <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
@@ -137,10 +138,10 @@
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <h1 class="font-bold text-2xl">
-                        Факультет мүшелері
+                        {% translate 'Department members' %}
                     </h1>
                     <a href="{% url 'department_personals' department.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        Толығырақ
+                        {% translate 'Read more' %}
                         <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
@@ -228,9 +229,9 @@
             {% if news|length > 0 %}
                 <div class="grid gap-4">
                     <div class="flex justify-between items-center">
-                        <h1 class="font-bold text-2xl">Жаңалықтар</h1>
+                        <h1 class="font-bold text-2xl">{% translate 'News' %}</h1>
                         <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Толығырақ
+                            {% translate 'Read more' %}
                             <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
@@ -255,13 +256,6 @@
                         {% endfor %}
                     </div>
                 </div>
-            {% else %}
-                <div class="flex flex-col items-center">
-                    <svg class="w-10 h-10 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 5V4a1 1 0 0 0-1-1H8.914a1 1 0 0 0-.707.293L4.293 7.207A1 1 0 0 0 4 7.914V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5M9 3v4a1 1 0 0 1-1 1H4m11.383.772 2.745 2.746m1.215-3.906a2.089 2.089 0 0 1 0 2.953l-6.65 6.646L9 17.95l.739-3.692 6.646-6.646a2.087 2.087 0 0 1 2.958 0Z"/>
-                    </svg>
-                    <span class="text-gray-500">Әзірге жаңалықтар жоқ</span>
-                </div>
             {% endif %}
         </div>
 
@@ -270,9 +264,9 @@
             {% if announcements|length > 0 %}
                 <div class="grid gap-4">
                     <div class="flex justify-between items-center">
-                        <h1 class="font-bold text-2xl">Хабарландырулар</h1>
+                        <h1 class="font-bold text-2xl">{% translate 'Announcements' %}</h1>
                         <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Толығырақ
+                            {% translate 'Read more' %}
                             <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                             </svg>
@@ -304,13 +298,6 @@
                             </a>
                         {% endfor %}
                     </div>
-                </div>
-            {% else %}
-                <div class="flex flex-col items-center">
-                    <svg class="w-10 h-10 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 10.5h.01m-4.01 0h.01M8 10.5h.01M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-6.6a1 1 0 0 0-.69.275l-2.866 2.723A.5.5 0 0 1 8 18.635V17a1 1 0 0 0-1-1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/>
-                    </svg>
-                    <span class="text-gray-500">Әзірге хабарландырулар жоқ</span>
                 </div>
             {% endif %}
         </div>

@@ -1,13 +1,14 @@
 {% extends 'src/base.html' %}
+{% load i18n %}
 {% load static %}
 
+
 {% block title %}
-    Басты бет - Zhanibekov University
+    {% translate 'Home page' %} - Zhanibekov University
 {% endblock %}
 
 {% block content %}
-<div class="">
-
+<div>
     <!-- Headliners -->
     <!-- ============================================================================================================================= -->
     <div id="default-carousel" class="relative w-full" data-carousel="slide" data-aos="fade-up">
@@ -63,11 +64,13 @@
     <div class="border-b" data-aos="fade-up">
         <div class="container mx-auto px-4 py-16">
             <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
-                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">Біздің бағдарламалар</h1>
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">{% translate 'Our programs' %}</h1>
                 <div class="h-2 bg-amber-500 w-48"></div>
                 <span class="text-gray-500 block text-center">
-                    Біз педагогика саласындағы бакалавриат, магистратура
-                    және қосымша білім беру бағдарламаларын ұсынамыз
+                    {% blocktrans %}
+                        We are a bachelor's, master's degree in pedagogy
+                        and offer additional educational programs
+                    {% endblocktrans %}
                 </span>
             </div>
 
@@ -128,7 +131,7 @@
             <!-- Announcements -->
             <div class="grid gap-4 w-full lg:max-w-md" data-aos="fade-up" data-aos-duration="500">
                 <div>
-                    <h1 class="font-bold text-2xl">Хабарландырулар</h1>
+                    <h1 class="font-bold text-2xl">{% translate 'Announcements' %}</h1>
                 </div>
 
                 <div class="grid gap-2">
@@ -156,7 +159,7 @@
 
                 <a href="{% url 'announcements' %}"
                     class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                    Барлығын қарап шығу
+                    {% translate 'View all' %}
                     <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -167,11 +170,11 @@
 
             <div class="flex-1 grid gap-4">
                 <div class="flex items-center justify-between" data-aos="fade-up">
-                    <h1 class="font-bold text-2xl">Жаңалықтар</h1>
+                    <h1 class="font-bold text-2xl">{% translate 'News' %}</h1>
 
                     <a href="{% url 'news' %}"
                         class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        Барлығын қарап шығу
+                        {% translate 'View all' %}
                         <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -208,11 +211,13 @@
         <div class="container mx-auto px-4 py-16">
             <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
                 <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                    Іс шаралар
+                    {% translate 'Events' %}
                 </h1>
                 <div class="h-2 bg-amber-500 w-48"></div>
                 <span class="text-gray-500 block text-center">
-                    Университетімізде болып жатқан іс-шаралар
+                    {% blocktrans %}
+                        Events taking place at the University
+                    {% endblocktrans %}
                 </span>
             </div>
 
@@ -236,7 +241,7 @@
             <div class="flex justify-center">
                 <a href="{% url 'events' %}"
                     class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                    Барлығын қарап шығу
+                    {% translate 'View all' %}
                     <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -253,31 +258,38 @@
     <div class="border-b" data-aos="fade-up">
         <div class="container mx-auto px-4 py-16">
             <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
-                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">Біз жайлы</h1>
+                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                    {% translate 'About of University' %}
+                </h1>
                 <div class="h-2 bg-amber-500 w-48"></div>
                 <span class="text-gray-500 block text-center">
-                    Ғасырға жуық жасы бар біздің университет жайлы толық біліңіздер
+                    {% blocktrans %}
+                        Learn more about our university, which is almost a century old
+                    {% endblocktrans %}
                 </span>
             </div>
 
             <div class="grid gap-8 grid-cols-1 lg:grid-cols-2 mt-8">
                 <div class="">
                     <h1 class="text-2xl font-bold text-amber-500">
-                        Біздің университет
+                        {% translate 'Our University' %}
                     </h1>
                     <span class="block text-gray-500 text-justify">
-                        Білім-ғылымның, тәрбиенің алтын бесігі, қасиетті
-                        қарашаңырақ – Өзбекәлі Жәнібеков атындағы Оңтүстік Қазақстан
-                        педагогикалық университеті Шымкент қаласының орталығында, А.Байтұрсынов
-                        көшесінде орналасқан. Университет 1937 жылдан бері жұмыс атқарып келеді.
-                        Ғасырға жуық уақытта көптеген жетістіктерге жетіп, мыңдаған шәкірт
-                        тәрбиелеп шығарған. Түлектері қазіргі таңда Қазақстан және шет елдерде
-                        қызмет атқаруда. Университет түлектерінің білім ұясына алғыстары шексіз!
+                        {% blocktrans %}
+                            The Golden Cradle of education and science, the sacred 
+                            Qarachanrak - Uzbekali Zhanibekov South Kazakhstan Pedagogical 
+                            University is located in the center of Shymkent, on A. Baitursynov 
+                            street. The university has been operating since 1937. For almost a 
+                            century, he has achieved many successes and trained thousands of 
+                            students. Graduates are currently working in Kazakhstan and abroad. 
+                            Graduates of the University are very grateful to the educational 
+                            institution!
+                        {% endblocktrans %}
                     </span>
 
                     <a href="#"
                         class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        Толығырақ
+                        {% translate 'Read more' %}
                         <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -294,23 +306,23 @@
             <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                 <div class="p-6 bg-blue-500 rounded-lg text-white text-center">
                     <h1 class="text-4xl font-bold">7 100</h1>
-                    <span>Студент</span>
+                    <span>{% translate 'Students' %}</span>
                 </div>
                 <div class="p-6 bg-blue-500 rounded-lg text-white text-center">
                     <h1 class="text-4xl font-bold">2 773</h1>
-                    <span>Грант</span>
+                    <span>{% translate 'Grant' %}</span>
                 </div>
                 <div class="p-6 bg-blue-500 rounded-lg text-white text-center">
                     <h1 class="text-4xl font-bold">6 047</h1>
-                    <span>Бакалавр</span>
+                    <span>{% translate 'Bachelor' %}</span>
                 </div>
                 <div class="p-6 bg-blue-500 rounded-lg text-white text-center">
                     <h1 class="text-4xl font-bold">518</h1>
-                    <span>Магистр</span>
+                    <span>{% translate 'Master stundent' %}</span>
                 </div>
                 <div class="p-6 bg-blue-500 rounded-lg text-white text-center">
                     <h1 class="text-4xl font-bold">33</h1>
-                    <span>Докторант</span>
+                    <span>{% translate 'Doctoral student' %}</span>
                 </div>
             </div>
         </div>
@@ -323,12 +335,14 @@
         <div class="container mx-auto px-4 py-16">
             <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
                 <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                    Академиялық оқыту
+                    {% translate 'Academic learning' %}
                 </h1>
                 <div class="h-2 bg-amber-500 w-48"></div>
                 <span class="text-gray-500 block text-center">
-                    Факультеттер, жоғарғы оқу орнынан кейінгі білім беру институы,
-                    колледж және департаменттердің құрылымдық бөлімдері
+                    {% blocktrans %}
+                        Faculties, Institute of postgraduate education, 
+                        college and structural divisions of departments
+                    {% endblocktrans %}
                 </span>
             </div>
 
@@ -352,7 +366,7 @@
             <div class="flex justify-center mt-4">
                 <a href="{% url 'faculties' %}"
                     class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                    Барлығын қарап шығу
+                    {% translate 'View all' %}
                     <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -370,13 +384,15 @@
         <div class="container mx-auto px-4 py-16">
             <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
                 <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                    Біздің серіктестер
+                    {% translate 'Our partners' %}
                 </h1>
                 <div class="h-2 bg-amber-500 w-48"></div>
                 <span class="text-gray-500 block text-center">
-                    Біздің университет білім берудің жоғары сапасын және
-                    студенттердің кәсіби өсуін қамтамасыз ету үшін жетекші
-                    білім беру және ғылыми ұйымдармен ынтымақтасады
+                    {% blocktrans %}
+                        Our university cooperates with leading educational and scientific 
+                        organizations to ensure the high quality of education and professional 
+                        growth of students
+                    {% endblocktrans %}
                 </span>
             </div>
 
@@ -400,11 +416,13 @@
         <div class="container mx-auto px-4 py-16">
             <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
                 <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                    Бізбен байланыс
+                    {% translate 'Contact us' %}
                 </h1>
                 <div class="h-2 bg-amber-500 w-48"></div>
                 <span class="text-gray-500 block text-center">
-                    Бізбен байланысуға болатын барлық ресурстар
+                    {% blocktrans %}
+                        All the resources you can contact us
+                    {% endblocktrans %}
                 </span>
             </div>
 
@@ -424,7 +442,7 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h1 class="text-foreground text-2xl font-bold">Мекен-жайы</h1>
+                            <h1 class="text-foreground text-2xl font-bold">{% translate 'Address' %}</h1>
                             <span class="text-gray-500">Шымкент, А.Байтұрсынов N13</span>
                         </div>
                     </div>
@@ -436,7 +454,7 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h1 class="text-foreground text-2xl font-bold">Қабылдау комиссиясы</h1>
+                            <h1 class="text-foreground text-2xl font-bold">{% translate 'Selection committee' %}</h1>
                             <div class="grid">
                                 <span class="text-gray-500">8 7252 21-41-01</span>
                                 <span class="text-gray-500">8 708 438 65 62</span>
@@ -451,7 +469,7 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h1 class="text-foreground text-2xl font-bold">Университет кеңсесі</h1>
+                            <h1 class="text-foreground text-2xl font-bold">{% translate 'University office' %}</h1>
                             <span class="text-gray-500">8 7252 30-14-59</span>
                         </div>
                     </div>
@@ -463,7 +481,7 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h1 class="text-foreground text-2xl font-bold">Call орталық</h1>
+                            <h1 class="text-foreground text-2xl font-bold">{% translate 'Call center' %}</h1>
                             <div class="grid">
                                 <span class="text-gray-500">8 7252 40-07-05</span>
                                 <span class="text-gray-500">8 708 438 65 61</span>
@@ -478,7 +496,7 @@
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h1 class="text-foreground text-2xl font-bold">Сенім телефондары</h1>
+                            <h1 class="text-foreground text-2xl font-bold">{% translate 'Helplines' %}</h1>
                             <div class="grid">
                                 <span class="text-gray-500">+7 (7252) 21-40-05</span>
                                 <span class="text-gray-500">+7 (7252) 21-03-70</span>

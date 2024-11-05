@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-23 12:45+0500\n"
+"POT-Creation-Date: 2024-11-05 11:29+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -229,6 +229,10 @@ msgid "Program"
 msgstr "Программа"
 
 #: main/public/models.py:41 main/university/models.py:77
+#: templates/src/university/department/layouts.html:48
+#: templates/src/university/department/programs.html:7
+#: templates/src/university/faculty/layouts.html:46
+#: templates/src/university/faculty/programs.html:7
 msgid "Programs"
 msgstr "Программы"
 
@@ -248,6 +252,7 @@ msgstr "Специальности"
 #: main/university/models.py:32 main/university/models.py:40
 #: main/university/models.py:101 main/university/models.py:127
 #: main/university/models.py:159
+#: templates/src/university/faculty/layouts.html:24
 msgid "Faculty"
 msgstr "Факультет"
 
@@ -255,6 +260,9 @@ msgstr "Факультет"
 #: main/university/models.py:58 main/university/models.py:68
 #: main/university/models.py:105 main/university/models.py:131
 #: main/university/models.py:163
+#: templates/src/university/department/layouts.html:25
+#: templates/src/university/faculty/index.html:28
+#: templates/src/university/faculty/programs.html:55
 msgid "Department"
 msgstr "Кафедра"
 
@@ -270,6 +278,12 @@ msgid "Date created"
 msgstr "Дата создание"
 
 #: main/public/models.py:85 main/public/models.py:86 main/public/models.py:91
+#: templates/src/base.html:194 templates/src/index.html:173
+#: templates/src/publics/index.html:32
+#: templates/src/publics/public_detail.html:33
+#: templates/src/university/department/index.html:232
+#: templates/src/university/department/publics.html:15
+#: templates/src/university/faculty/publics.html:15
 msgid "News"
 msgstr "Новости"
 
@@ -285,7 +299,12 @@ msgstr "Файлы новости"
 msgid "Announcement"
 msgstr "Объявление"
 
-#: main/public/models.py:127
+#: main/public/models.py:127 templates/src/base.html:197
+#: templates/src/index.html:134 templates/src/publics/index.html:38
+#: templates/src/publics/public_detail.html:39
+#: templates/src/university/department/index.html:267
+#: templates/src/university/department/publics.html:20
+#: templates/src/university/faculty/publics.html:20
 msgid "Announcements"
 msgstr "Объявления"
 
@@ -301,7 +320,11 @@ msgstr "Файлы объявления"
 msgid "Event"
 msgstr "Мероприятие"
 
-#: main/public/models.py:172
+#: main/public/models.py:172 templates/src/base.html:200
+#: templates/src/index.html:214 templates/src/publics/index.html:44
+#: templates/src/publics/public_detail.html:45
+#: templates/src/university/department/publics.html:25
+#: templates/src/university/faculty/publics.html:25
 msgid "Events"
 msgstr "Мероприятия"
 
@@ -361,7 +384,8 @@ msgstr "Колледж"
 msgid "Faculty type"
 msgstr "Тип факультета"
 
-#: main/university/models.py:33
+#: main/university/models.py:33 templates/src/base.html:206
+#: templates/src/university/faculties.html:5
 msgid "Faculties"
 msgstr "Факультеты"
 
@@ -382,6 +406,10 @@ msgid "Success"
 msgstr "Успех"
 
 #: main/university/models.py:146
+#: templates/src/university/department/index.html:72
+#: templates/src/university/department/layouts.html:66
+#: templates/src/university/faculty/index.html:94
+#: templates/src/university/faculty/layouts.html:64
 msgid "Achievements"
 msgstr "Достижения"
 
@@ -409,6 +437,254 @@ msgstr "Персонал"
 msgid "Personals"
 msgstr "Персоналы"
 
-#: templates/src/base.html:103
+#: templates/src/base.html:49 templates/src/base.html:238
+msgid "Library"
+msgstr "Библиотека"
+
+#: templates/src/base.html:106 templates/src/base.html:191
+#: templates/src/index.html:7
+#: templates/src/university/department/layouts.html:39
+#: templates/src/university/faculty/layouts.html:37
 msgid "Home page"
 msgstr "Главная"
+
+#: templates/src/base.html:187
+msgid "Navigation"
+msgstr "Навигация"
+
+#: templates/src/base.html:218
+msgid "Resources"
+msgstr "Ресурсы"
+
+#: templates/src/base.html:256
+msgid "All copyrights are protected."
+msgstr "Все авторские права защищены."
+
+#: templates/src/index.html:67
+msgid "Our programs"
+msgstr "Наши программы"
+
+#: templates/src/index.html:70
+msgid ""
+"\n"
+"                        We are a bachelor's, master's degree in pedagogy\n"
+"                        and offer additional educational programs\n"
+"                    "
+msgstr ""
+"Мы имеем степень бакалавра, магистра педагогики и предлагаем дополнительные "
+"образовательные программы"
+
+#: templates/src/index.html:162 templates/src/index.html:177
+#: templates/src/index.html:244 templates/src/index.html:369
+msgid "View all"
+msgstr "Посмотреть все"
+
+#: templates/src/index.html:218
+msgid ""
+"\n"
+"                        Events taking place at the University\n"
+"                    "
+msgstr "События, происходящие в университете"
+
+#: templates/src/index.html:262
+msgid "About of University"
+msgstr "Об университете"
+
+#: templates/src/index.html:266
+msgid ""
+"\n"
+"                        Learn more about our university, which is almost a "
+"century old\n"
+"                    "
+msgstr "Узнайте больше о нашем университете, которому почти сто лет"
+
+#: templates/src/index.html:275
+msgid "Our University"
+msgstr "Наш университет"
+
+#: templates/src/index.html:278
+msgid ""
+"\n"
+"                            The Golden Cradle of education and science, the "
+"sacred \n"
+"                            Qarachanrak - Uzbekali Zhanibekov South "
+"Kazakhstan Pedagogical \n"
+"                            University is located in the center of Shymkent, "
+"on A. Baitursynov \n"
+"                            street. The university has been operating since "
+"1937. For almost a \n"
+"                            century, he has achieved many successes and "
+"trained thousands of \n"
+"                            students. Graduates are currently working in "
+"Kazakhstan and abroad. \n"
+"                            Graduates of the University are very grateful to "
+"the educational \n"
+"                            institution!\n"
+"                        "
+msgstr ""
+"Золотая колыбель образования и науки, священный Южно-Казахстанский "
+"педагогический университет имени Карачанрака - Узбекали Жанибекова "
+"расположен в центре Шымкента, на улице А. Байтурсынова. Университет работает "
+"с 1937 года. За почти столетие он добился многих успехов и подготовил тысячи "
+"студентов. Выпускники в настоящее время работают в Казахстане и за рубежом. "
+"Выпускники университета очень благодарны учебному заведению!"
+
+#: templates/src/index.html:292
+#: templates/src/university/department/index.html:20
+#: templates/src/university/department/index.html:75
+#: templates/src/university/department/index.html:144
+#: templates/src/university/department/index.html:234
+#: templates/src/university/department/index.html:269
+#: templates/src/university/faculty/index.html:42
+#: templates/src/university/faculty/index.html:97
+#: templates/src/university/faculty/index.html:166
+msgid "Read more"
+msgstr "Подробнее"
+
+#: templates/src/index.html:309
+msgid "Students"
+msgstr "Студент"
+
+#: templates/src/index.html:313
+msgid "Grant"
+msgstr "Грант"
+
+#: templates/src/index.html:317
+msgid "Bachelor"
+msgstr "Бакалавр"
+
+#: templates/src/index.html:321
+msgid "Master stundent"
+msgstr "Магистр"
+
+#: templates/src/index.html:325
+msgid "Doctoral student"
+msgstr "Докторант"
+
+#: templates/src/index.html:338
+msgid "Academic learning"
+msgstr "Академическое обучение"
+
+#: templates/src/index.html:342
+msgid ""
+"\n"
+"                        Faculties, Institute of postgraduate education, \n"
+"                        college and structural divisions of departments\n"
+"                    "
+msgstr ""
+"Факультеты, Институт последипломного образования, колледж и структурные "
+"подразделения кафедр"
+
+#: templates/src/index.html:387
+msgid "Our partners"
+msgstr "Наши партнеры"
+
+#: templates/src/index.html:391
+msgid ""
+"\n"
+"                        Our university cooperates with leading educational "
+"and scientific \n"
+"                        organizations to ensure the high quality of "
+"education and professional \n"
+"                        growth of students\n"
+"                    "
+msgstr ""
+"Наш университет сотрудничает с ведущими образовательными и научными "
+"организациями для обеспечения высокого качества образования и "
+"профессионального роста студентов"
+
+#: templates/src/index.html:419
+msgid "Contact us"
+msgstr "Связаться с нами"
+
+#: templates/src/index.html:423
+msgid ""
+"\n"
+"                        All the resources you can contact us\n"
+"                    "
+msgstr "По всем вопросам, касающимся ресурсов, вы можете связаться с нами"
+
+#: templates/src/index.html:445
+msgid "Address"
+msgstr "Адрес"
+
+#: templates/src/index.html:457
+msgid "Selection committee"
+msgstr "Отборочная комиссия"
+
+#: templates/src/index.html:472
+msgid "University office"
+msgstr "Университетский офис"
+
+#: templates/src/index.html:484
+msgid "Call center"
+msgstr "Call центр"
+
+#: templates/src/index.html:499
+msgid "Helplines"
+msgstr "Линии помощи"
+
+#: templates/src/programs.html:14
+msgid "Cipher codes and names of specialties for a given program"
+msgstr "Шифровальные коды и названия специальностей для данной программы"
+
+#: templates/src/programs.html:27
+#: templates/src/university/department/programs.html:26
+#: templates/src/university/faculty/programs.html:27
+msgid "Detailed information:"
+msgstr "Подробная информация:"
+
+#: templates/src/programs.html:46
+#: templates/src/university/department/programs.html:61
+#: templates/src/university/faculty/programs.html:77
+msgid "Program cipher code"
+msgstr "Шифровальный код"
+
+#: templates/src/programs.html:49
+#: templates/src/university/department/programs.html:64
+#: templates/src/university/faculty/programs.html:80
+msgid "Program name"
+msgstr "Программа"
+
+#: templates/src/publics/index.html:6
+#: templates/src/university/department/layouts.html:84
+#: templates/src/university/faculty/layouts.html:82
+msgid "Publications"
+msgstr "Публикации"
+
+#: templates/src/publics/public_detail.html:66
+msgid "Similar"
+msgstr "Похожие"
+
+#: templates/src/university/department/index.html:17
+#: templates/src/university/department/layouts.html:57
+#: templates/src/university/faculty/index.html:39
+#: templates/src/university/faculty/layouts.html:55
+msgid "Science projects"
+msgstr "Научные проекты"
+
+#: templates/src/university/department/index.html:141
+#: templates/src/university/department/layouts.html:75
+msgid "Department members"
+msgstr "Сотрудники кафедры"
+
+#: templates/src/university/department/layouts.html:93
+msgid "Department about"
+msgstr "О кафедре"
+
+#: templates/src/university/department/programs.html:14
+msgid "Specialty ciphers and names of the Department"
+msgstr "Шифры специальностей и названия кафедр"
+
+#: templates/src/university/faculty/index.html:163
+#: templates/src/university/faculty/layouts.html:73
+msgid "Faculty members"
+msgstr "Сотрудники факультета"
+
+#: templates/src/university/faculty/layouts.html:91
+msgid "Faculty about"
+msgstr "О факультете"
+
+#: templates/src/university/faculty/programs.html:14
+msgid "Specialty ciphers and names of the departments assigned by the faculty"
+msgstr "Шифры специальностей и названия кафедр, присвоенные факультетом"

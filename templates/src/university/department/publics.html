@@ -1,5 +1,6 @@
 {% extends 'src/university/department/layouts.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     Публикациялар - Zhanibekov University
@@ -11,17 +12,17 @@
     <ul class="flex flex-wrap font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
         <li class="me-2">
             <button id="news-tab" data-tabs-target="#news" type="button" role="tab" aria-controls="news" aria-selected="true" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
-                Жаңалықтар
+                {% translate 'News' %}
             </button>
         </li>
         <li class="me-2">
             <button id="announcements-tab" data-tabs-target="#announcements" type="button" role="tab" aria-controls="announcements" aria-selected="false" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
-                Хабарландырулар
+                {% translate 'Announcements' %}
             </button>
         </li>
         <li class="me-2">
             <button id="events-tab" data-tabs-target="#events" type="button" role="tab" aria-controls="events" aria-selected="false" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
-                Іс-шаралар
+                {% translate 'Events' %}
             </button>
         </li>
     </ul>
