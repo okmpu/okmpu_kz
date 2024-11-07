@@ -32,7 +32,7 @@ urlpatterns = [
 
     path('university/departments/<slug>/', university_views.department_detail_view, name='department_detail'),
     path('university/departments/<slug>/programs/', university_views.department_programs_view, name='department_programs'),
-    path('university/departments/<slug>/projects/', university_views.department_materials_view, name='department_materials'),
+    path('university/departments/<slug>/materials/', university_views.department_materials_view, name='department_materials'),
     path('university/departments/<slug>/projects/', university_views.department_projects_view, name='department_projects'),
     path('university/departments/<slug>/achievements/', university_views.department_achievements_view, name='department_achievements'),
     path('university/departments/<slug>/personals/', university_views.department_personals_view, name='department_personals'),
