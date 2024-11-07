@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
-from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty, Success
+from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty, Success, MaterialDocs, \
+    Material
 
 
 # Faculty
@@ -62,9 +63,21 @@ class PersonalAdmin(TranslationAdmin):
     list_filter = ('faculty', 'department', )
 
 
+class MaterialDocsTab(TranslationTabularInline):
+    model = MaterialDocs
+    extra = 0
+
+class MaterialAdmin(TranslationAdmin):
+    list_display = ('title', 'author', 'date_created', )
+    search_fields = ('title', 'author', 'faculty', 'department', )
+    list_filter = ('faculty', 'department', )
+
+    inlines = [MaterialDocsTab, ]
+
 admin.site.register(Faculty, FacultyAdmin)
 admin.site.register(Department, DepartmentAdmin)
 admin.site.register(FacultyProgram, FacultyProgramAdmin)
 admin.site.register(Project, ProjectAdmin)
+admin.site.register(Material, MaterialAdmin)
 admin.site.register(Success, SuccessAdmin)
 admin.site.register(Personal, PersonalAdmin)

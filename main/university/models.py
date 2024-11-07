@@ -120,6 +120,47 @@ class Project(models.Model):
         verbose_name_plural = _('Projects')
 
 
+# Edu Materials
+class Material(models.Model):
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='faculty_materials', verbose_name=_('Faculty'), null=True, blank=True
+    )
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='department_materials', verbose_name=_('Department'), null=True, blank=True
+    )
+    title = models.CharField(_('Title'), max_length=128)
+    author = models.CharField(_('Author'), max_length=128)
+    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Edu material')
+        verbose_name_plural = _('Edu materials')
+
+
+class MaterialDocs(models.Model):
+    material = models.ForeignKey(
+        Material, on_delete=models.CASCADE, verbose_name=_('Edu material'),
+        related_name='material_files'
+    )
+    caption = models.CharField(_('Name'), max_length=128)
+    file = models.FileField(
+        _('File'), upload_to='university/faculties/materials/',
+        null=True, blank=True, validators=[validate_file_size]
+    )
+
+    def __str__(self):
+        return self.caption
+
+    class Meta:
+        verbose_name = _('Edu material')
+        verbose_name_plural = _('Edu materials')
+
+
 # Achievements
 class Success(models.Model):
     faculty = models.ForeignKey(

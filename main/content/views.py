@@ -3,7 +3,6 @@ from rest_framework import views, permissions, status
 from rest_framework.response import Response
 
 from .models import Category, Content
-from .serializers import CategoryListSerializer, ContentURLSerializer, ContentSerializer, GenericCategorySerializer
 
 
 # content detail page

@@ -2,7 +2,8 @@ from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 
 from main.public.models import News, Event, Announcement
-from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty
+from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty, \
+    Material
 
 
 # Faculties page
@@ -44,6 +45,17 @@ def faculty_programs_view(request, slug):
         'faculty': faculty,
     }
     return render(request, 'src/university/faculty/programs.html', context)
+
+
+def faculty_materials_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    departments = Department.objects.filter(faculty=faculty)
+    materials = Material.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+    context = {
+        'faculty': faculty,
+        'materials': materials
+    }
+    return render(request, 'src/university/faculty/materials.html', context)
 
 
 def faculty_projects_view(request, slug):
@@ -161,6 +173,17 @@ def department_programs_view(request, slug):
         'programs': programs,
     }
     return render(request, 'src/university/department/programs.html', context)
+
+
+def department_materials_view(request, slug):
+    department = get_object_or_404(Department, slug=slug)
+    materials = Material.objects.filter(department=department)
+
+    context = {
+        'department': department,
+        'materials': materials,
+    }
+    return render(request, 'src/university/department/materials.html', context)
 
 
 def department_projects_view(request, slug):
