@@ -132,7 +132,7 @@ class Material(models.Model):
     )
     title = models.CharField(_('Title'), max_length=128)
     author = models.CharField(_('Author'), max_length=128)
-    date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
+    date_created = models.DateTimeField(_('Date created'), null=True, blank=True)
 
     def __str__(self):
         return self.title
