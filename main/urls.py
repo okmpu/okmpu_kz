@@ -28,6 +28,7 @@ urlpatterns = [
     path('university/faculties/<slug>/achievements/', university_views.faculty_achievements_view, name='faculty_achievements'),
     path('university/faculties/<slug>/personals/', university_views.faculty_personals_view, name='faculty_personals'),
     path('university/faculties/<slug>/publics/', university_views.faculty_publics_view, name='faculty_publics'),
+    path('university/faculties/<slug>/documents/', university_views.faculty_documents_view, name='faculty_documents'),
     path('university/faculties/<slug>/about/', university_views.faculty_about_view, name='faculty_about'),
 
     path('university/departments/<slug>/', university_views.department_detail_view, name='department_detail'),

@@ -3,7 +3,7 @@ from django.db.models import Q
 
 from main.public.models import News, Event, Announcement
 from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty, \
-    Material
+    Material, Document
 
 
 # Faculties page
@@ -132,6 +132,17 @@ def faculty_publics_view(request, slug):
         'announcements': announcements,
     }
     return render(request, 'src/university/faculty/publics.html', context)
+
+
+def faculty_documents_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    documents = Document.objects.filter(faculty=faculty)
+
+    context = {
+        'faculty': faculty,
+        'documents': documents,
+    }
+    return render(request, 'src/university/faculty/documents.html', context)
 
 
 def faculty_about_view(request, slug):

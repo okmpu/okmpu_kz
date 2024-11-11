@@ -6,6 +6,7 @@ from main.validators import validate_file_size, validate_logo, validate_poster
 
 
 # Faculty
+# ----------------------------------------------------------------------------------------------------------------------
 class Faculty(models.Model):
     FACULTY_TYPE = (
         ('DEFAULT', _('Default')),
@@ -34,6 +35,7 @@ class Faculty(models.Model):
 
 
 # Department
+# ----------------------------------------------------------------------------------------------------------------------
 class Department(models.Model):
     faculty = models.ForeignKey(
         Faculty, on_delete=models.CASCADE,
@@ -60,6 +62,7 @@ class Department(models.Model):
 
 
 # Programs
+# ----------------------------------------------------------------------------------------------------------------------
 class FacultyProgram(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
@@ -95,6 +98,7 @@ class FacultySpecialty(models.Model):
 
 
 # Projects
+# ----------------------------------------------------------------------------------------------------------------------
 class Project(models.Model):
     faculty = models.ForeignKey(
         Faculty, on_delete=models.CASCADE,
@@ -121,6 +125,7 @@ class Project(models.Model):
 
 
 # Edu Materials
+# ----------------------------------------------------------------------------------------------------------------------
 class Material(models.Model):
     faculty = models.ForeignKey(
         Faculty, on_delete=models.CASCADE,
@@ -162,6 +167,7 @@ class MaterialDocs(models.Model):
 
 
 # Achievements
+# ----------------------------------------------------------------------------------------------------------------------
 class Success(models.Model):
     faculty = models.ForeignKey(
         Faculty, on_delete=models.CASCADE,
@@ -188,6 +194,7 @@ class Success(models.Model):
 
 
 # Personals
+# ----------------------------------------------------------------------------------------------------------------------
 class Personal(models.Model):
     PERSONAL_TYPE = (
         ('STUDENT', _('Student')),
@@ -209,7 +216,10 @@ class Personal(models.Model):
         blank=True, null=True, validators=[validate_logo]
     )
     profession = models.CharField(_('Profession'), max_length=128)
-    p_type = models.CharField(_('Personal type'), max_length=128, choices=PERSONAL_TYPE, default='MANAGEMENT')
+    p_type = models.CharField(
+        _('Personal type'), max_length=128,
+        choices=PERSONAL_TYPE, default='MANAGEMENT'
+    )
     phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
@@ -221,3 +231,56 @@ class Personal(models.Model):
         verbose_name = _('Personal')
         verbose_name_plural = _('Personals')
         ordering = ('order', )
+
+
+# Documents
+# ----------------------------------------------------------------------------------------------------------------------
+class Document(models.Model):
+    DOCS_GRID = (
+        ('GRID', _('Grid')),
+        ('COL', _('Column')),
+    )
+
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='faculty_documents', verbose_name=_('Faculty'), null=True, blank=True
+    )
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='department_documents', verbose_name=_('Department'), null=True, blank=True
+    )
+    name = models.CharField(_('Name'), max_length=128)
+    slug = models.CharField(_('Slug'), max_length=128)
+    docs_grid = models.CharField(
+        _('Document grid'), max_length=128,
+        choices=DOCS_GRID, default='GRID'
+    )
+    description = models.TextField(_('Description'), blank=True, null=True)
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Document')
+        verbose_name_plural = _('Documents')
+        ordering = ('order', )
+
+
+class DocumentFile(models.Model):
+    document = models.ForeignKey(
+        Document, on_delete=models.CASCADE, verbose_name=_('Document'),
+        related_name='document_files'
+    )
+    title = models.CharField(_('Title'), max_length=128)
+    file = models.FileField(
+        _('File'), upload_to='university/faculties/documents/',
+        null=True, blank=True, validators=[validate_file_size]
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _('Document file')
+        verbose_name_plural = _('Document files')
