@@ -24,7 +24,7 @@ class Faculty(models.Model):
         null=True, blank=True, validators=[validate_poster]
     )
     faculty_type = models.CharField(_('Faculty type'), choices=FACULTY_TYPE, default='DEFAULT', max_length=16)
-    about = models.TextField(_('About'), blank=True, null=True)
+    about = models.TextField(_('About the faculty'), blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -51,7 +51,7 @@ class Department(models.Model):
     )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
-    about = models.TextField(_('About'), blank=True, null=True)
+    about = models.TextField(_('About the department'), blank=True, null=True)
 
     def __str__(self):
         return '{} - {}'.format(self.faculty.name, self.name)
@@ -297,7 +297,7 @@ class Division(models.Model):
     name = models.CharField(_('Name'), max_length=128)
     slug = models.SlugField(_('Slug'), max_length=128)
     div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='DEFAULT')
-    about = models.TextField(_('About'), blank=True, null=True)
+    about = models.TextField(_('About the division'), blank=True, null=True)
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, related_name='children',
         null=True, blank=True, verbose_name=_('Parent division')

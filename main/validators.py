@@ -9,14 +9,14 @@ def validate_file_size(value):
     max_size_mb = 5
 
     if file_size > max_size_mb * 1024 * 1024:
-        raise ValidationError(f"Максимальный размер файла {max_size_mb}MB")
+        raise ValidationError(_(f"Maximum file size: {max_size_mb}MB"))
 
 
 # university > faculty | department logo
 def validate_logo(image):
     max_size = 1 * 1024 * 1024
     if image.size > max_size:
-        raise ValidationError(_('Размер изображения не должен превышать 1MB.'))
+        raise ValidationError(_('The image size should not exceed 1MB.'))
 
     try:
         img = Image.open(image)
@@ -24,20 +24,20 @@ def validate_logo(image):
         max_resolution = 1024
 
         if width != height:
-            raise ValidationError(_('Изображение должно быть квадратным.'))
+            raise ValidationError(_('The image should be square'))
 
         if width > max_resolution or height > max_resolution:
-            raise ValidationError(_('Максимальное разрешение изображения: 1024x1024 пикселей.'))
+            raise ValidationError(_('The maximum image resolution is 1024x1024px'))
 
     except Exception as e:
         raise ValidationError(
-            _('Не удалось обработать изображение. Убедитесь, что файл является корректным изображением.'))
+            _('The image could not be processed. Make sure that the file is a valid image'))
 
 
 def validate_poster(image):
     max_size = 2 * 1024 * 1024  # 2MB
     if image.size > max_size:
-        raise ValidationError(_('Размер изображения не должен превышать 2MB.'))
+        raise ValidationError(_('The image size should not exceed 2MB'))
 
     try:
         img = Image.open(image)
@@ -45,11 +45,11 @@ def validate_poster(image):
         min_width, min_height = 1280, 720
 
         if width < min_width or height < min_height:
-            raise ValidationError(_('Минимальное разрешение изображения: 1280x720 пикселей.'))
+            raise ValidationError(_('Minimum image resolution: 1280x720px'))
 
         if width <= height:
-            raise ValidationError(_('Изображение должно быть в альбомной ориентации (ширина больше высоты).'))
+            raise ValidationError(_('The image should be in landscape orientation (width is greater than height)'))
 
     except Exception:
         raise ValidationError(
-            _('Не удалось обработать изображение. Убедитесь, что файл является корректным изображением.'))
+            _('The image could not be processed. Make sure that the file is a valid image'))
