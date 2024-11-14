@@ -17,13 +17,13 @@ class TextContentTabular(SummernoteModelAdminMixin, TranslationTabularInline):
     extra = 0
 
 
-class FileContentTabular(TranslationTabularInline):
-    model = FileContent
+class ImageContentTabular(TranslationTabularInline):
+    model = ImageContent
     extra = 0
 
 
-class ImageContentTabular(admin.TabularInline):
-    model = ImageContent
+class FileContentTabular(TranslationTabularInline):
+    model = FileContent
     extra = 0
 
 

@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Category, Content, TextContent, FileContent, StaffContent
+from .models import Category, Content, TextContent, FileContent, StaffContent, ImageContent
 
 
 class CategoryTranslationOptions(TranslationOptions):
@@ -10,8 +10,13 @@ class ContentTranslationOptions(TranslationOptions):
     fields = ('title', 'description', )
 
 
+# Contents
 class TextContentTranslationOptions(TranslationOptions):
     fields = ('body', )
+
+
+class ImageContentTranslationOptions(TranslationOptions):
+    fields = ('image', )
 
 
 class FileContentTranslationOptions(TranslationOptions):
@@ -26,4 +31,5 @@ translator.register(Category, CategoryTranslationOptions)
 translator.register(Content, ContentTranslationOptions)
 translator.register(TextContent, TextContentTranslationOptions)
 translator.register(FileContent, FileContentTranslationOptions)
+translator.register(ImageContent, ImageContentTranslationOptions)
 translator.register(StaffContent, StaffContentTranslationOptions)
