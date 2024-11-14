@@ -107,14 +107,19 @@
                         </li>
                         {% for category in categories %}
                             <li>
-                                <button id="dropdownNavbarLink-{{ category.id }}" data-dropdown-toggle="dropdownNavbar-{{ category.id }}"
-                                    class="flex items-center justify-between whitespace-nowrap w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">
+                                <button 
+                                    id="dropdownNavbarLink-{{ category.id }}" data-dropdown-toggle="dropdownNavbar-{{ category.id }}"
+                                    class="flex items-center justify-between whitespace-nowrap w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
+                                >
                                     {{ category.name }}
-                                    <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg>
+                                    
+                                    {% if category.children.all|length > 0 %}
+                                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    {% endif %}
                                 </button>
 
                                 <div id="dropdownNavbar-{{ category.id }}"
@@ -130,12 +135,15 @@
                                                     class="flex items-center justify-between w-full px-4 py-2 hover:bg-gray-100"
                                                 >
                                                     {{ sub_category.name }}
-                                                    <svg
-                                                        class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
-                                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                                        <path stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                                    </svg>
+
+                                                    {% if sub_category.children.all|length > 0 %}
+                                                        <svg
+                                                            class="w-2.5 h-2.5 ms-2.5" aria-hidden="true"
+                                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                                            <path stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                                        </svg>
+                                                    {% endif %}
                                                 </button>
                                                 <div id="doubleDropdown-{{ sub_category.id }}"
                                                     class="w-full sm:w-[360px] z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow">
@@ -161,6 +169,36 @@
                                 </div>
                             </li>
                         {% endfor %}
+                        <li>
+                            <button id="dropdownNavbarLink-div" data-dropdown-toggle="dropdownNavbar-div"
+                                class="flex items-center justify-between whitespace-nowrap w-full py-2 px-3 text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">
+                                {% translate 'Құрылымдық бөлімдер' %}
+                                <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+
+                            <div id="dropdownNavbar-div"
+                                class="z-10 max-w-md hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow">
+                                <ul 
+                                    class="py-2 text-gray-700"
+                                    aria-labelledby="dropdownLargeButton"
+                                >
+                                    {% for management in divisions %}
+                                        <li>
+                                            <a 
+                                                href="{% url 'division_detail' management.slug %}"
+                                                class="block px-4 py-2 hover:bg-gray-100"
+                                            >
+                                                {{ management.name }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>

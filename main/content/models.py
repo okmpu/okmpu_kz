@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from main.validators import validate_logo, validate_poster
+from main.validators import validate_logo
 
 
+# Category
+# ----------------------------------------------------------------------------------------------------------------------
 class Category(models.Model):
     APP_NAME = (
         ('none', _('None')),

@@ -284,3 +284,30 @@ class DocumentFile(models.Model):
     class Meta:
         verbose_name = _('Document file')
         verbose_name_plural = _('Document files')
+
+
+# Structural division
+# ----------------------------------------------------------------------------------------------------------------------
+class Division(models.Model):
+    DIV_TYPE = (
+        ('DEFAULT', _('Division')),
+        ('DEPARTMENT', _('Department division')),
+        ('MANAGEMENT', _('Management division')),
+    )
+    name = models.CharField(_('Name'), max_length=128)
+    slug = models.SlugField(_('Slug'), max_length=128)
+    div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='DEFAULT')
+    about = models.TextField(_('About'), blank=True, null=True)
+    parent = models.ForeignKey(
+        'self', on_delete=models.CASCADE, related_name='children',
+        null=True, blank=True, verbose_name=_('Parent division')
+    )
+    order = models.PositiveIntegerField(_('Order'), default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Division')
+        verbose_name_plural = _('Divisions')
+        ordering = ('order', )

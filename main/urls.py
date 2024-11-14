@@ -1,5 +1,5 @@
 from django.urls import path
-from main.content.views import ContentDetail, content_detail
+from main.content.views import content_detail, division_detail
 from main import views
 from main.public import views as main_views
 from main.university import views as university_views
@@ -18,6 +18,7 @@ urlpatterns = [
 
     # content urls
     path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content_detail, name='content_detail'),
+    path('university/division/<slug>/', division_detail, name='division_detail'),
 
     # university apps urls...
     path('university/faculties/', university_views.faculties_view, name='faculties'),
@@ -39,5 +40,4 @@ urlpatterns = [
     path('university/departments/<slug>/personals/', university_views.department_personals_view, name='department_personals'),
     path('university/departments/<slug>/publics/', university_views.department_publics_view, name='department_publics'),
     path('university/departments/<slug>/about/', university_views.department_about_view, name='department_about'),
-
 ]

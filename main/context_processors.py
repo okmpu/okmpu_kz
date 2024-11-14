@@ -1,5 +1,5 @@
 from main.content.models import Category
-from main.university.models import Faculty
+from main.university.models import Faculty, Division
 
 
 def categories(request):
@@ -14,3 +14,11 @@ def faculties(request):
     return {
         'faculties': qs,
     }
+
+
+def divisions(request):
+    qs = Division.objects.filter(div_type='MANAGEMENT')
+    return {
+        'divisions': qs
+    }
+

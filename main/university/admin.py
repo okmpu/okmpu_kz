@@ -2,7 +2,7 @@ from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty, Success, MaterialDocs, \
-    Material, DocumentFile, Document
+    Material, DocumentFile, Document, Division
 
 
 # Faculty
@@ -98,6 +98,14 @@ class DocumentAdmin(TranslationAdmin):
     inlines = [DocumentFileTab, ]
 
 
+# Division
+class DivisionAdmin(TranslationAdmin, SummernoteModelAdmin):
+    list_display = ('name', 'parent', 'div_type', 'order', )
+    search_fields = ('name', 'slug', )
+    list_filter = ('parent', 'div_type', )
+    prepopulated_fields = {'slug': ('name_en',)}
+
+
 admin.site.register(Faculty, FacultyAdmin)
 admin.site.register(Department, DepartmentAdmin)
 admin.site.register(FacultyProgram, FacultyProgramAdmin)
@@ -106,3 +114,4 @@ admin.site.register(Material, MaterialAdmin)
 admin.site.register(Success, SuccessAdmin)
 admin.site.register(Personal, PersonalAdmin)
 admin.site.register(Document, DocumentAdmin)
+admin.site.register(Division, DivisionAdmin)

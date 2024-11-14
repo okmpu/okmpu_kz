@@ -1,6 +1,6 @@
 from modeltranslation.translator import translator, TranslationOptions
 from main.university.models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty, Success, \
-    Material, MaterialDocs, DocumentFile, Document
+    Material, MaterialDocs, DocumentFile, Document, Division
 
 
 # Faculty
@@ -61,6 +61,10 @@ class DocumentTranslationOptions(TranslationOptions):
     fields = ('name', )
 
 
+# Division
+class DivisionTranslationOptions(TranslationOptions):
+    fields = ('name', 'about', )
+
 translator.register(Faculty, FacultyTranslationOptions)
 translator.register(Department, DepartmentTranslationOptions)
 translator.register(FacultyProgram, ProgramTranslationOptions)
@@ -72,3 +76,4 @@ translator.register(MaterialDocs, MaterialDocsTranslationOptions)
 translator.register(Success, SuccessTranslationOptions)
 translator.register(DocumentFile, DocumentFileTranslationOptions)
 translator.register(Document, DocumentTranslationOptions)
+translator.register(Division, DivisionTranslationOptions)

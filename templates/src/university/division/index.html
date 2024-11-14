@@ -1,0 +1,60 @@
+{% extends 'src/base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block title %}
+    {{ item.name }} - Zhanibekov University
+{% endblock %}
+
+
+{% block content %}
+    <div class="container mx-auto px-4">
+        <!-- Header -->
+        <div class="relative">
+            <div class="flex justify-center py-5 border-b">
+                <div class="grid gap-4 text-center">
+                    <img
+                        src="{% static '/images/icon.png' %}"
+                        alt="Image"
+                        class="w-36 block rounded-full border mx-auto"
+                    />
+                    <div class="">
+                        <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-6xl">
+                            {{ item.name }}
+                        </h1>
+                        <span class="text-gray-500">
+                            {{ item.get_div_type_display }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="py-8 grid gap-8">
+            <!-- About -->
+            <div class="max-w-screen-xl mx-auto text-center">
+                <div class="text-gray-500">
+                    {{ item.about|safe }}
+                </div>
+            </div>
+
+            <!-- Сomposition -->
+            <div class="">
+
+            </div>
+
+            <!-- Childrens -->
+            <div class="grid gap-4 grid-cols-4">
+                {% for sub_item in item.children.all %}
+                    <div class="border p-6 rounded-lg text-center">
+                        <h1 class="text-2xl font-bold">{{ sub_item.name }}</h1>
+                        <span class="text-gray-500">
+                            {{ sub_item.get_div_type_display }}
+                        </span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
