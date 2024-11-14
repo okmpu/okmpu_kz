@@ -30,6 +30,15 @@ class DepartmentAdmin(TranslationAdmin, SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('name_en', )}
 
 
+# Division
+# ----------------------------------------------------------------------------------------------------------------------
+class DivisionAdmin(TranslationAdmin, SummernoteModelAdmin):
+    list_display = ('name', 'parent', 'div_type', 'order', )
+    search_fields = ('name', 'slug', )
+    list_filter = ('parent', 'div_type', )
+    prepopulated_fields = {'slug': ('name_en',)}
+
+
 # FacultyPrograms
 # ----------------------------------------------------------------------------------------------------------------------
 class FacultySpecialtyTab(TranslationTabularInline):
@@ -58,7 +67,7 @@ class ProjectAdmin(TranslationAdmin):
 class SuccessAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'faculty', 'department', 'date_created', )
     search_fields = ('name', 'faculty', 'department', )
-    list_filter = ('faculty', 'department', )
+    list_filter = ('faculty', 'department', 'division', )
 
 
 # Personals
@@ -66,7 +75,7 @@ class SuccessAdmin(TranslationAdmin, SummernoteModelAdmin):
 class PersonalAdmin(TranslationAdmin):
     list_display = ('full_name', 'profession', 'department', 'order', )
     search_fields = ('full_name', 'profession', 'faculty', 'department', )
-    list_filter = ('faculty', 'department', )
+    list_filter = ('faculty', 'department', 'division', )
 
 
 # Materials
@@ -92,18 +101,10 @@ class DocumentFileTab(TranslationTabularInline):
 class DocumentAdmin(TranslationAdmin):
     list_display = ('name', 'slug', 'faculty', 'department', 'docs_grid', )
     search_fields = ('name', 'docs_grid', 'faculty', 'department', )
-    list_filter = ('faculty', 'department', 'docs_grid', )
+    list_filter = ('faculty', 'department', 'division', )
     prepopulated_fields = {'slug': ('name_en',)}
 
     inlines = [DocumentFileTab, ]
-
-
-# Division
-class DivisionAdmin(TranslationAdmin, SummernoteModelAdmin):
-    list_display = ('name', 'parent', 'div_type', 'order', )
-    search_fields = ('name', 'slug', )
-    list_filter = ('parent', 'div_type', )
-    prepopulated_fields = {'slug': ('name_en',)}
 
 
 admin.site.register(Faculty, FacultyAdmin)

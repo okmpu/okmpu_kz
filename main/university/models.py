@@ -61,6 +61,33 @@ class Department(models.Model):
         verbose_name_plural = _('Departments')
 
 
+# Division
+# ----------------------------------------------------------------------------------------------------------------------
+class Division(models.Model):
+    DIV_TYPE = (
+        ('DEFAULT', _('Division')),
+        ('DEPARTMENT', _('Department division')),
+        ('MANAGEMENT', _('Management division')),
+    )
+    name = models.CharField(_('Name'), max_length=128)
+    slug = models.SlugField(_('Slug'), max_length=128)
+    div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='DEFAULT')
+    about = models.TextField(_('About the division'), blank=True, null=True)
+    parent = models.ForeignKey(
+        'self', on_delete=models.CASCADE, related_name='children',
+        null=True, blank=True, verbose_name=_('Parent division')
+    )
+    order = models.PositiveIntegerField(_('Order'), default=0)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('Division')
+        verbose_name_plural = _('Divisions')
+        ordering = ('order', )
+
+
 # Programs
 # ----------------------------------------------------------------------------------------------------------------------
 class FacultyProgram(models.Model):
@@ -177,6 +204,11 @@ class Success(models.Model):
         Department, on_delete=models.CASCADE,
         related_name='department_achievements', verbose_name=_('Department'), null=True, blank=True
     )
+    division = models.ForeignKey(
+        Division, on_delete=models.CASCADE,
+        related_name='division_achievements', verbose_name=_('Division'), null=True, blank=True,
+        help_text=_('Warning! This field is not relevant for faculties and departments')
+    )
     title = models.CharField(_('Title'), max_length=128)
     file = models.FileField(
         _('File'), upload_to='university/faculties/achievements/',
@@ -209,6 +241,11 @@ class Personal(models.Model):
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
         related_name='department_personals', verbose_name=_('Department'), null=True, blank=True
+    )
+    division = models.ForeignKey(
+        Division, on_delete=models.CASCADE,
+        related_name='division_personals', verbose_name=_('Division'), null=True, blank=True,
+        help_text=_('Warning! This field is not relevant for faculties and departments')
     )
     full_name = models.CharField(_('Full name'), max_length=128, blank=True, null=True)
     image = models.ImageField(
@@ -249,6 +286,11 @@ class Document(models.Model):
         Department, on_delete=models.CASCADE,
         related_name='department_documents', verbose_name=_('Department'), null=True, blank=True
     )
+    division = models.ForeignKey(
+        Division, on_delete=models.CASCADE,
+        related_name='division_documents', verbose_name=_('Division'), null=True, blank=True,
+        help_text=_('Warning! This field is not relevant for faculties and departments')
+    )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
     docs_grid = models.CharField(
@@ -284,30 +326,3 @@ class DocumentFile(models.Model):
     class Meta:
         verbose_name = _('Document file')
         verbose_name_plural = _('Document files')
-
-
-# Structural division
-# ----------------------------------------------------------------------------------------------------------------------
-class Division(models.Model):
-    DIV_TYPE = (
-        ('DEFAULT', _('Division')),
-        ('DEPARTMENT', _('Department division')),
-        ('MANAGEMENT', _('Management division')),
-    )
-    name = models.CharField(_('Name'), max_length=128)
-    slug = models.SlugField(_('Slug'), max_length=128)
-    div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='DEFAULT')
-    about = models.TextField(_('About the division'), blank=True, null=True)
-    parent = models.ForeignKey(
-        'self', on_delete=models.CASCADE, related_name='children',
-        null=True, blank=True, verbose_name=_('Parent division')
-    )
-    order = models.PositiveIntegerField(_('Order'), default=0)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = _('Division')
-        verbose_name_plural = _('Divisions')
-        ordering = ('order', )
