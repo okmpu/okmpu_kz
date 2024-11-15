@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from modeltranslation.admin import TranslationTabularInline
+from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 from django_summernote.admin import SummernoteModelAdminMixin
 from .models import Category, Content, TextContent, FileContent, ImageContent, StaffContent
 
@@ -29,13 +29,13 @@ class ImageContentTabular(TranslationTabularInline):
 
 
 # FileContent
-class FileContentTabular(TranslationTabularInline):
+class FileContentTabular(TranslationStackedInline):
     model = FileContent
     extra = 0
 
 
 # StaffContent
-class StaffContentTabular(TranslationTabularInline):
+class StaffContentTabular(SummernoteModelAdminMixin, TranslationStackedInline):
     model = StaffContent
     extra = 0
 
