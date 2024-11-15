@@ -2,10 +2,14 @@ from modeltranslation.translator import translator, TranslationOptions
 from .models import Category, Content, TextContent, FileContent, StaffContent, ImageContent
 
 
+# Category
+# ----------------------------------------------------------------------------------------------------------------------
 class CategoryTranslationOptions(TranslationOptions):
     fields = ('name', )
 
 
+# Content
+# ----------------------------------------------------------------------------------------------------------------------
 class ContentTranslationOptions(TranslationOptions):
     fields = ('title', 'description', )
 

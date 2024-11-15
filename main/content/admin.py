@@ -5,6 +5,8 @@ from django_summernote.admin import SummernoteModelAdminMixin
 from .models import Category, Content, TextContent, FileContent, ImageContent, StaffContent
 
 
+# Category
+# ----------------------------------------------------------------------------------------------------------------------
 class CategoryAdmin(TranslationAdmin):
     list_display = ('name', 'slug', 'app_name', 'parent', 'multiple', 'order', )
     list_filter = ('parent', 'app_name', 'multiple',)
@@ -12,21 +14,27 @@ class CategoryAdmin(TranslationAdmin):
     prepopulated_fields = {'slug': ('name_en', )}
 
 
+# Content
+# ----------------------------------------------------------------------------------------------------------------------
+# TextContent
 class TextContentTabular(SummernoteModelAdminMixin, TranslationTabularInline):
     model = TextContent
     extra = 0
 
 
+# ImageContent
 class ImageContentTabular(TranslationTabularInline):
     model = ImageContent
     extra = 0
 
 
+# FileContent
 class FileContentTabular(TranslationTabularInline):
     model = FileContent
     extra = 0
 
 
+# StaffContent
 class StaffContentTabular(TranslationTabularInline):
     model = StaffContent
     extra = 0
