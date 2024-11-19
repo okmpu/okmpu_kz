@@ -72,7 +72,7 @@ class SuccessAdmin(TranslationAdmin, SummernoteModelAdmin):
 
 # Personals
 # ----------------------------------------------------------------------------------------------------------------------
-class PersonalAdmin(TranslationAdmin):
+class PersonalAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('full_name', 'profession', 'department', 'order', )
     search_fields = ('full_name', 'profession', 'faculty', 'department', )
     list_filter = ('faculty', 'department', 'division', )

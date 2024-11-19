@@ -118,14 +118,41 @@
                 </div>
             {% endif %}
 
-            <!-- Childrens -->
-            {% if item.children.all|length > 0 %}
+            <!-- Departments -->
+            {% if departments|length > 0 %}
+                <div class="grid gap-4">
+                    <div class="">
+                        <h1 class="text-2xl font-bold">Басқарма құрамындағы департаменттер</h1>
+                    </div>
+                    <div class="grid gap-4 grid-cols-4">
+                        {% for sub_item in departments %}
+                            <a 
+                                href="{% url 'division_detail' sub_item.slug %}"
+                                class="border p-6 rounded-lg text-center transition-all hover:bg-gray-100"
+                            >
+                                <img
+                                    src="{% static '/images/icon.png' %}"
+                                    alt="Image"
+                                    class="w-28 block rounded-full border mx-auto mb-2"
+                                />
+                                <h1 class="text-2xl font-bold">{{ sub_item.name }}</h1>
+                                <span class="text-gray-500">
+                                    {{ sub_item.get_div_type_display }}
+                                </span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Divisions -->
+            {% if divisions|length > 0 %}
                 <div class="grid gap-4">
                     <div class="">
                         <h1 class="text-2xl font-bold">Басқарма құрамындағы бөлімдер</h1>
                     </div>
                     <div class="grid gap-4 grid-cols-4">
-                        {% for sub_item in item.children.all %}
+                        {% for sub_item in divisions %}
                             <a 
                                 href="{% url 'division_detail' sub_item.slug %}"
                                 class="border p-6 rounded-lg text-center transition-all hover:bg-gray-100"

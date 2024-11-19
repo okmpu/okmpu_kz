@@ -229,9 +229,20 @@ class Success(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Personal(models.Model):
     PERSONAL_TYPE = (
-        ('STUDENT', _('Student')),
-        ('TEACHER', _('Teacher')),
-        ('MANAGEMENT', _('Management')),
+        (
+            _('Faculty'),
+            (
+                ('STUDENT', _('Student')),
+                ('TEACHER', _('Teacher')),
+                ('MANAGEMENT', _('Management')),
+            ),
+        ),
+        (
+            _('Division'),
+            (
+                ('EMPLOYEE', _('Employee')),
+            )
+        )
     )
 
     faculty = models.ForeignKey(
@@ -255,7 +266,7 @@ class Personal(models.Model):
     profession = models.CharField(_('Profession'), max_length=128)
     p_type = models.CharField(
         _('Personal type'), max_length=128,
-        choices=PERSONAL_TYPE, default='MANAGEMENT'
+        choices=PERSONAL_TYPE, default='FACULTY'
     )
     phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
