@@ -63,7 +63,9 @@
                                                     class="flex items-center w-full p-2 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 {% if request.path == content_url %}bg-gray-100 text-blue-500{% endif %}"
                                                     target="{% if section.target %}_blank{% else %}_self{% endif %}"
                                                 >
-                                                    {{ item.title }}
+                                                    <span class="flex-1">
+                                                        {{ item.title }}
+                                                    </span>
                                                 </a>
                                             </li>
                                             {% endif %}
@@ -78,7 +80,12 @@
                                         class="flex items-center p-2 rounded-lg hover:bg-gray-100 group {% if request.path == content_url %}bg-gray-100 text-blue-500{% endif %}"
                                         target="{% if section.target %}_blank{% else %}_self{% endif %}"
                                     >
-                                        <span class="ms-3">{{ section.name }}</span>
+                                        {% if section.app_name == 'none' %}
+                                            <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.213 9.787a3.391 3.391 0 0 0-4.795 0l-3.425 3.426a3.39 3.39 0 0 0 4.795 4.794l.321-.304m-.321-4.49a3.39 3.39 0 0 0 4.795 0l3.424-3.426a3.39 3.39 0 0 0-4.794-4.795l-1.028.961"/>
+                                            </svg>
+                                        {% endif %}
+                                        <span class="flex-1 ms-3">{{ section.name }}</span>
                                     </a>
                                 </li>
                             {% endif %}
