@@ -189,7 +189,7 @@
                             </div>
                         {% endif %}
 
-
+                        <!-- Staff contents -->
                         {% if content.staff_contents.all|length > 0 %}
                             <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
                                 {% for item in content.staff_contents.all %}
@@ -253,8 +253,8 @@
                                                                         {% endif %}
                                                                     </div>
                                                                 </div>
-                                                                <div class="text-gray-500">
-                                                                    {{ item.bio }}
+                                                                <div class="text-gray-500 text-justify">
+                                                                    {{ item.bio|safe }}
                                                                 </div>
                                                             </div>
                                                         </div>

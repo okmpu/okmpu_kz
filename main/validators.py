@@ -21,7 +21,7 @@ def validate_logo(image):
     try:
         img = Image.open(image)
         width, height = img.size
-        max_resolution = 1024
+        max_resolution = 1080
 
         if width != height:
             raise ValidationError(_('The image should be square'))
@@ -42,7 +42,7 @@ def validate_poster(image):
     try:
         img = Image.open(image)
         width, height = img.size
-        min_width, min_height = 1280, 720
+        min_width, min_height = 1920, 1080
 
         if width < min_width or height < min_height:
             raise ValidationError(_('Minimum image resolution: 1280x720px'))
