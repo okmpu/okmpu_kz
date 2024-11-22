@@ -14,7 +14,7 @@
             <div class="flex h-full w-full py-5 border-b">
                 <div class="flex items-center justify-center gap-4">
                     <img
-                        src="{% if department.image %}{{ department.image.url }}{% else %}{{ department.faculty.image.url }}{% endif %}"
+                        src="{% if department.image %}{{ department.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}"
                         alt="Image"
                         class="w-28 rounded-full border"
                     />

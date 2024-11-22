@@ -342,7 +342,7 @@
                 <swiper-slide>
                     <a href="{% url 'faculty_detail' item.slug %}" class="p-6 grid gap-4 rounded-lg border transition-all hover:bg-gray-100">
                         <div class="w-36 h-36 rounded-full border overflow-hidden mx-auto">
-                            <img src="{{ item.image.url }}" class="w-full h-full" alt="">
+                            <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}" class="w-full h-full" alt="">
                         </div>
                         <div class="grid gap-4 text-center">
                             <h1 class="text-center font-semibold text-2xl line-clamp-1">
