@@ -17,7 +17,7 @@ def faculties(request):
 
 
 def divisions(request):
-    qs = Division.objects.filter(div_type='MANAGEMENT')
+    qs = Division.objects.filter(parent=None)
     return {
         'divisions': qs
     }

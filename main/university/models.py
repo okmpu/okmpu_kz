@@ -116,6 +116,7 @@ class FacultySpecialty(models.Model):
     code = models.CharField(_('Code'), max_length=128)
     name = models.CharField(_('Name'), max_length=128)
 
+
     def __str__(self):
         return '{} - {}'.format(self.code, self.name)
 
