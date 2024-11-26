@@ -42,10 +42,10 @@ def validate_poster(image):
     try:
         img = Image.open(image)
         width, height = img.size
-        min_width, min_height = 1920, 1080
+        min_width, min_height = 640, 320
 
         if width < min_width or height < min_height:
-            raise ValidationError(_('Minimum image resolution: 1280x720px'))
+            raise ValidationError(_('Minimum image resolution: 640x320px'))
 
         if width <= height:
             raise ValidationError(_('The image should be in landscape orientation (width is greater than height)'))
