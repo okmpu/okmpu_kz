@@ -7,8 +7,6 @@ from django.views.static import serve
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
-    re_path(r'^auth/', include('djoser.urls')),
-    re_path(r'^auth/', include('djoser.urls.jwt')),
 
     # apps...
     path('', include('main.urls')),

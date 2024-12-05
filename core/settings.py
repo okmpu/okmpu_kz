@@ -24,10 +24,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',
-    'rest_framework',
-    'djoser',
-    'corsheaders',
-    'csp',
     'django_summernote',
 
     # Main app
@@ -38,32 +34,7 @@ INSTALLED_APPS = [
 ]
 
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'https://zhanibekov.vercel.app',
-    'https://okmpu.kz'
-    # ...
-]
-
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_FRAME_ANCESTORS = (
-    "'self'",
-    'http://localhost:3000',
-    'https://zhanibekov.vercel.app',
-    'https://okmpu.kz'
-    # ...
-)
 SILENCED_SYSTEM_CHECKS = ['security.W019']
-
-
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
-}
 
 
 MIDDLEWARE = [
@@ -71,7 +42,6 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'core.middleware.CustomLocaleMiddleware',
     # 'django.middleware.locale.LocaleMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'core.middleware.AllowIframeMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -174,35 +144,3 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-EMAIL_USE_TLS = True
-
-# Domain
-DOMAIN = config('DOMAIN')
-SITE_NAME = config('SITE_NAME')
-
-# Simple JWT settings
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'BLACKLIST_AFTER_ROTATION': False,
-}
-
-# Djoser settings
-DJOSER = {
-    'LOGIN_FIELD': 'username',
-    'USER_CREATE_PASSWORD_RETYPE': True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION': True,
-    'SEND_CONFIRMATION_EMAIL': True,
-    'SET_PASSWORD_RETYPE': True,
-    'PASSWORD_RESET_CONFIRM_URL': 'accounts/confirm/{uid}/{token}',
-    'USERNAME_RESET_CONFIRM_URL': 'email/reset/confirm/{uid}/{token}',
-}
