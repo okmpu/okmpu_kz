@@ -45,6 +45,24 @@
                     </a>
                 </li>
                 <li>
+                    {% url 'faculty_about' faculty.slug as faculty_about_url %}
+                    <a
+                        href="{{ faculty_about_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'Faculty about' %}
+                    </a>
+                </li>
+                <li>
+                    {% url 'faculty_personals' faculty.slug as faculty_personals_url %}
+                    <a
+                        href="{{ faculty_personals_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_personals_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'Faculty members' %}
+                    </a>
+                </li>
+                <li>
                     {% url 'faculty_programs' faculty.slug as faculty_programs_url %}
                     <a
                         href="{{ faculty_programs_url }}"
@@ -81,30 +99,12 @@
                     </a>
                 </li>
                 <li>
-                    {% url 'faculty_personals' faculty.slug as faculty_personals_url %}
-                    <a
-                        href="{{ faculty_personals_url }}"
-                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_personals_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
-                    >
-                        {% translate 'Faculty members' %}
-                    </a>
-                </li>
-                <li>
                     {% url 'faculty_publics' faculty.slug as faculty_publics_url %}
                     <a
                         href="{{ faculty_publics_url }}"
                         class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_publics_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                     >
                         {% translate 'Publications' %}
-                    </a>
-                </li>
-                <li>
-                    {% url 'faculty_about' faculty.slug as faculty_about_url %}
-                    <a
-                        href="{{ faculty_about_url }}"
-                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
-                    >
-                        {% translate 'Faculty about' %}
                     </a>
                 </li>
             </ul>

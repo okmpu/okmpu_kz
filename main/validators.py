@@ -5,9 +5,7 @@ from PIL import Image
 
 def validate_file_size(value):
     file_size = value.size
-
     max_size_mb = 5
-
     if file_size > max_size_mb * 1024 * 1024:
         raise ValidationError(_(f"Maximum file size: {max_size_mb}MB"))
 
