@@ -1,49 +1,28 @@
-{% extends 'src/base.html' %}
+{% extends 'src/university/division/layouts.html' %}
 {% load static %}
 {% load i18n %}
 
 
 {% block title %}
-    {{ item.name }} - Zhanibekov University
+    {{ division.name }} - Zhanibekov University
 {% endblock %}
 
 
-{% block content %}
-    <div class="container mx-auto px-4">
-        <!-- Header -->
-        <div class="relative">
-            <div class="flex justify-center py-5 border-b">
-                <div class="grid gap-4 text-center">
-                    <img
-                        src="{% static '/images/icon.png' %}"
-                        alt="Image"
-                        class="w-36 block rounded-full border mx-auto"
-                    />
-                    <div class="">
-                        <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-6xl">
-                            {{ item.name }}
-                        </h1>
-                        <span class="text-gray-500">
-                            {{ item.get_div_type_display }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="py-8 grid gap-8">
-            <!-- About -->
-            <div class="max-w-screen-xl mx-auto text-justify">
-                <div class="text-gray-500">
-                    {{ item.about|safe }}
-                </div>
-            </div>
-
+{% block division_content %}
+    <div class="my-10 flex flex-col lg:flex-row items-start gap-10">
+        <div class="flex-1 flex flex-col gap-8">
             <!-- Personals -->
             {% if item.division_personals.all|length > 0 %}
                 <div class="flex flex-col gap-2">
                     <div class="">
-                        <h1 class="text-2xl font-bold">Басқарма құрамы</h1>
+                        <h1 class="text-2xl font-semibold">Басқарма құрамы</h1>
+                        
+                        <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            {% translate 'Read more' %}
+                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
                     </div>
                     <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {% for item in item.division_personals.all %}
@@ -121,10 +100,17 @@
             <!-- Departments -->
             {% if departments|length > 0 %}
                 <div class="grid gap-4">
-                    <div class="">
-                        <h1 class="text-2xl font-bold">Басқарма құрамындағы департаменттер</h1>
+                    <div class="flex items-center justify-between">
+                        <h1 class="text-2xl font-semibold">Басқарма құрамындағы департаменттер</h1>
+                        
+                        <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            {% translate 'Read more' %}
+                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
                     </div>
-                    <div class="grid gap-4 grid-cols-4">
+                    <div class="grid gap-4 grid-cols-3">
                         {% for sub_item in departments %}
                             <a 
                                 href="{% url 'division_detail' sub_item.slug %}"
@@ -135,7 +121,7 @@
                                     alt="Image"
                                     class="w-28 block rounded-full border mx-auto mb-2"
                                 />
-                                <h1 class="text-2xl font-bold">{{ sub_item.name }}</h1>
+                                <h1 class="text-2xl font-semibold">{{ sub_item.name }}</h1>
                                 <span class="text-gray-500">
                                     {{ sub_item.get_div_type_display }}
                                 </span>
@@ -148,10 +134,17 @@
             <!-- Divisions -->
             {% if divisions|length > 0 %}
                 <div class="grid gap-4">
-                    <div class="">
-                        <h1 class="text-2xl font-bold">Басқарма құрамындағы бөлімдер</h1>
+                    <div class="flex items-center justify-between">
+                        <h1 class="text-2xl font-semibold">Басқарма құрамындағы бөлімдер</h1>
+
+                        <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            {% translate 'Read more' %}
+                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
                     </div>
-                    <div class="grid gap-4 grid-cols-4">
+                    <div class="grid gap-4 grid-cols-3">
                         {% for sub_item in divisions %}
                             <a 
                                 href="{% url 'division_detail' sub_item.slug %}"
@@ -162,7 +155,7 @@
                                     alt="Image"
                                     class="w-28 block rounded-full border mx-auto mb-2"
                                 />
-                                <h1 class="text-2xl font-bold">{{ sub_item.name }}</h1>
+                                <h1 class="text-2xl font-semibold">{{ sub_item.name }}</h1>
                                 <span class="text-gray-500">
                                     {{ sub_item.get_div_type_display }}
                                 </span>
@@ -171,6 +164,189 @@
                     </div>
                 </div>
             {% endif %}
+
+            <!-- Documents -->
+            <div class="w-full bg-white">
+                <ul class="flex flex-wrap font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+                    {% for document in division.division_documents.all %}
+                        <li class="me-2">
+                            <button 
+                                id="{{ document.slug }}-tab" 
+                                data-tabs-target="#{{ document.slug }}" 
+                                type="button" role="tab" 
+                                aria-controls="{{ document.slug }}" 
+                                aria-selected="{% if document.order == '1' %}true{% else %}false{% endif %}" 
+                                class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500"
+                            >
+                                {{ document.name }}
+                            </button>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div id="defaultTabContent">
+                    {% for document in division.division_documents.all %}
+                        <div 
+                            class="hidden" 
+                            id="{{ document.slug }}" 
+                            role="tabpanel" 
+                            aria-labelledby="{{ document.slug }}-tab"
+                        >
+                            <span class="text-gray-500 text-justify block my-4">
+                                {{ document.description|safe }}
+                            </span>
+
+                            <div class="grid gap-2">
+                                {% for doc_file in document.document_files.all %}
+                                    <div class="flex justify-between items-center border rounded-lg py-2 px-4">
+                                        <div class="flex gap-2 items-center">
+                                            <svg class="w-8 h-8 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-1 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Zm2-5a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 4a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0v-3Z" clip-rule="evenodd"/>
+                                            </svg>
+                                            
+                                            <div class="flex-1 max-w-screen-md">
+                                                <h1 class="text-foreground text-xl font-semibold line-clamp-1">
+                                                    {{ doc_file.title }}
+                                                </h1>
+                                                <span class="text-gray-500">{{ doc_file.document.name }}</span>
+                                            </div>
+                                        </div>
+    
+                                        <div class="grid gap-2 grid-cols-2">
+                                            <!-- Modal toggle -->
+                                            <button data-modal-target="default-modal-{{ doc_file.id }}" data-modal-toggle="default-modal-{{ doc_file.id }}"
+                                                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
+                                                type="button">
+                                                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path fill-rule="evenodd" d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
+                                                </svg>
+                                            </button>
+    
+                                            <!-- Main modal -->
+                                            <div id="default-modal-{{ doc_file.id }}" tabindex="-1" aria-hidden="true"
+                                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                                <div class="relative p-4 w-full max-w-screen-2xl h-full">
+                                                    <!-- Modal content -->
+                                                    <div class="relative bg-white rounded-lg overflow-hidden shadow h-full">
+                                                        <!-- Close modal button -->
+                                                        <button type="button"
+                                                            class="fixed top-2 right-6 text-gray-400 bg-gray-100 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                            data-modal-hide="default-modal-{{ doc_file.id }}">
+                                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                            </svg>
+                                                            <span class="sr-only">Close modal</span>
+                                                        </button>
+    
+                                                        <div class="h-full">
+                                                            <div class="p-4">
+                                                                <h1 class="font-bold text-xl">
+                                                                    {{ doc_file.caption }}
+                                                                </h1>
+                                                                <span class="text-gray-500">{{ content.title }}</span>
+                                                            </div>
+                                                            
+                                                            <div class="flex-1 h-full">
+                                                                <iframe src="{{ doc_file.file.url }}" class="w-full h-full"></iframe>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                            <a href="{{ doc_file.file.url }}"
+                                                target="_blank"
+                                                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
+                                                type="button">
+                                                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="w-full grid gap-8 lg:max-w-md">
+            <!-- News -->
+            {% if news|length > 0 %}
+                <div class="grid gap-4">
+                    <div class="flex justify-between items-center">
+                        <h1 class="font-bold text-2xl">{% translate 'News' %}</h1>
+                        <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            {% translate 'Read more' %}
+                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="grid gap-2">
+                        {% for item in news %}
+                            <a 
+                                href="{% url 'news_detail' item.id %}" 
+                                class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                                
+                            >
+                                <div class="overflow-hidden w-36">
+                                    <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                </div>
+                                <div class="p-2 flex-1">
+                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                    <span class="text-gray-500">{{ item.date_created }}</span>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Announcements -->
+            {% if announcements|length > 0 %}
+                <div class="grid gap-4">
+                    <div class="flex justify-between items-center">
+                        <h1 class="font-bold text-2xl">{% translate 'Announcements' %}</h1>
+                        <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            {% translate 'Read more' %}
+                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div class="grid gap-2">
+                        {% for item in announcements %}
+                            <a 
+                                href="{% url 'news_detail' item.id %}" 
+                                class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                                
+                            >
+                                <div class="overflow-hidden bg-amber-500 flex items-center p-6 h-full">
+                                    <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd"
+                                        d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                </div>
+                                <div class="p-2 flex-1">
+                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                    <span class="text-gray-500">{{ item.date_created }}</span>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </div>
-{% endblock content %}
+{% endblock division_content %}

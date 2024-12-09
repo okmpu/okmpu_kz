@@ -33,6 +33,7 @@ class NewsFileTab(admin.TabularInline):
 class NewsAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
     list_filter = ('user', 'faculty', 'department', )
+    search_fields = ('title', )
     inlines = [NewsFileTab, ]
 
 
@@ -44,6 +45,7 @@ class AnnouncementFileTab(admin.TabularInline):
 class AnnouncementAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
     list_filter = ('user', 'faculty', 'department', )
+    search_fields = ('title', )
     inlines = [AnnouncementFileTab, ]
 
 
@@ -55,6 +57,7 @@ class EventFileTab(admin.TabularInline):
 class EventAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'user', 'faculty', 'department', 'date_created', )
     list_filter = ('user', 'faculty', 'department', )
+    search_fields = ('title', )
     inlines = [EventFileTab, ]
 
 

@@ -49,6 +49,7 @@ class Specialty(models.Model):
     )
     code = models.CharField(_('Code'), max_length=128)
     name = models.CharField(_('Name'), max_length=128)
+    url = models.URLField(_('URL'), max_length=128, null=True, blank=True)
 
     def __str__(self):
         return '{} - {}'.format(self.code, self.name)

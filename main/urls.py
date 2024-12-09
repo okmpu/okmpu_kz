@@ -1,5 +1,5 @@
 from django.urls import path
-from main.content.views import content_detail, division_detail
+from main.content import views as content_view
 from main import views
 from main.public import views as main_views
 from main.university import views as university_views
@@ -17,8 +17,9 @@ urlpatterns = [
     path('publics/events/<pk>/', main_views.event_view, name='event_detail'),
 
     # content urls
-    path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content_detail, name='content_detail'),
-    path('university/division/<slug>/', division_detail, name='division_detail'),
+    path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content_view.content_detail, name='content_detail'),
+    path('university/division/<slug>/', content_view.division_detail, name='division_detail'),
+    path('university/division/<slug>/about', content_view.division_about, name='division_about'),
 
     # university apps urls...
     path('university/faculties/', university_views.faculties_view, name='faculties'),

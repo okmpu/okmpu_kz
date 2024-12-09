@@ -31,11 +31,20 @@ def content_detail(request, category_slug, sub_category_slug, section_slug, cont
 # ----------------------------------------------------------------------------------------------------------------------
 def division_detail(request, slug):
     item = get_object_or_404(Division, slug=slug)
-    departments = item.children.filter(div_type='DEPARTMENT')
-    divisions = item.children.filter(div_type='DEFAULT')
+    departments = item.children.filter(div_type='DEPARTMENT')[:3]
+    divisions = item.children.filter(div_type='DEFAULT')[:3]
     context = {
-        'item': item,
+        'division': item,
         'departments': departments,
         'divisions': divisions,
     }
     return render(request, 'src/university/division/index.html', context)
+
+
+# Division about
+def division_about(request, slug):
+    item = get_object_or_404(Division, slug=slug)
+    context = {
+        'division': item,
+    }
+    return render(request, 'src/university/division/about.html', context)

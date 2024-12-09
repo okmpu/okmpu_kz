@@ -1,0 +1,17 @@
+{% extends 'src/university/division/layouts.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block title %}
+    {% translate 'About division' %} - Zhanibekov University
+{% endblock %}
+
+
+{% block division_content %}
+    <div class="my-10">
+        <div class="text-justify text-gray-500">
+            {{ division.about|safe }}
+        </div>
+    </div>
+{% endblock division_content %}

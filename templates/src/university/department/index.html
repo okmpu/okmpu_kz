@@ -225,82 +225,78 @@
     <!-- Publics -->
     <div class="w-full grid gap-8 lg:max-w-md">        
         <!-- News -->
-        <div>
-            {% if news|length > 0 %}
-                <div class="grid gap-4">
-                    <div class="flex justify-between items-center">
-                        <h1 class="font-bold text-2xl">{% translate 'News' %}</h1>
-                        <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            {% translate 'Read more' %}
-                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="grid gap-2">
-                        {% for item in news %}
-                            <a 
-                                href="{% url 'news_detail' item.id %}" 
-                                class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
-                                
-                            >
-                                <div class="overflow-hidden w-36">
-                                    <img src="{{ item.poster.url }}" class="w-full" alt="">
-                                </div>
-                                <div class="p-2 flex-1">
-                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
-                                    <span class="text-gray-500">{{ item.date_created }}</span>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
+        {% if news|length > 0 %}
+            <div class="grid gap-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="font-bold text-2xl">{% translate 'News' %}</h1>
+                    <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        {% translate 'Read more' %}
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
                 </div>
-            {% endif %}
-        </div>
+
+                <div class="grid gap-2">
+                    {% for item in news %}
+                        <a 
+                            href="{% url 'news_detail' item.id %}" 
+                            class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                            
+                        >
+                            <div class="overflow-hidden w-36">
+                                <img src="{{ item.poster.url }}" class="w-full" alt="">
+                            </div>
+                            <div class="p-2 flex-1">
+                                <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
 
         <!-- Announcements -->
-        <div>
-            {% if announcements|length > 0 %}
-                <div class="grid gap-4">
-                    <div class="flex justify-between items-center">
-                        <h1 class="font-bold text-2xl">{% translate 'Announcements' %}</h1>
-                        <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            {% translate 'Read more' %}
-                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="grid gap-2">
-                        {% for item in announcements %}
-                            <a 
-                                href="{% url 'news_detail' item.id %}" 
-                                class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
-                                
-                            >
-                                <div class="overflow-hidden bg-amber-500 flex items-center p-6 h-full">
-                                    <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd"
-                                        d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                </div>
-                                <div class="p-2 flex-1">
-                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
-                                    <span class="text-gray-500">{{ item.date_created }}</span>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
+        {% if announcements|length > 0 %}
+            <div class="grid gap-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="font-bold text-2xl">{% translate 'Announcements' %}</h1>
+                    <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        {% translate 'Read more' %}
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
                 </div>
-            {% endif %}
-        </div>
+
+                <div class="grid gap-2">
+                    {% for item in announcements %}
+                        <a 
+                            href="{% url 'news_detail' item.id %}" 
+                            class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                            
+                        >
+                            <div class="overflow-hidden bg-amber-500 flex items-center p-6 h-full">
+                                <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            </div>
+                            <div class="p-2 flex-1">
+                                <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
 
     </div>
 </div>

@@ -26,7 +26,7 @@ class FacultyAdmin(TranslationAdmin, SummernoteModelAdmin):
 class DepartmentAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('name', 'faculty', 'slug', )
     list_filter = ('faculty', )
-    search_fields = ('name', 'slug', 'faculty', )
+    search_fields = ('name', 'slug', )
     prepopulated_fields = {'slug': ('name_en', )}
 
 
@@ -58,7 +58,7 @@ class FacultyProgramAdmin(TranslationAdmin):
 # ----------------------------------------------------------------------------------------------------------------------
 class ProjectAdmin(TranslationAdmin):
     list_display = ('name', 'author', 'faculty', 'department', 'date_created', )
-    search_fields = ('name', 'author', 'faculty', 'department', )
+    search_fields = ('name', )
     list_filter = ('faculty', 'department', )
 
 
@@ -66,7 +66,7 @@ class ProjectAdmin(TranslationAdmin):
 # ----------------------------------------------------------------------------------------------------------------------
 class SuccessAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('title', 'faculty', 'department', 'date_created', )
-    search_fields = ('name', 'faculty', 'department', )
+    search_fields = ('title', )
     list_filter = ('faculty', 'department', 'division', )
 
 
@@ -74,7 +74,7 @@ class SuccessAdmin(TranslationAdmin, SummernoteModelAdmin):
 # ----------------------------------------------------------------------------------------------------------------------
 class PersonalAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('full_name', 'profession', 'p_type', 'faculty', 'department', )
-    search_fields = ('full_name', 'profession', 'faculty', 'department', )
+    search_fields = ('full_name', 'profession', )
     list_filter = ('faculty', 'department', 'p_type', 'division', )
 
 
@@ -86,7 +86,7 @@ class MaterialDocsTab(TranslationTabularInline):
 
 class MaterialAdmin(TranslationAdmin):
     list_display = ('title', 'author', 'date_created', )
-    search_fields = ('title', 'author', 'faculty', 'department', )
+    search_fields = ('title', 'author', )
     list_filter = ('faculty', 'department', )
 
     inlines = [MaterialDocsTab, ]
@@ -100,7 +100,7 @@ class DocumentFileTab(TranslationTabularInline):
 
 class DocumentAdmin(TranslationAdmin):
     list_display = ('name', 'slug', 'faculty', 'department', 'docs_grid', )
-    search_fields = ('name', 'docs_grid', 'faculty', 'department', )
+    search_fields = ('name', 'docs_grid', )
     list_filter = ('faculty', 'department', 'division', )
     prepopulated_fields = {'slug': ('name_en',)}
 
