@@ -17,7 +17,7 @@
                 class="border p-4 rounded-lg flex flex-col gap-2 justify-center items-center transition-all hover:bg-gray-100"
             >
                 <img
-                    src="{% if item.image %}{{ item.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}"  
+                    src="{% if item.image %}{{ item.image.url }}{% else %}{{ item.faculty.image.url }}{% endif %}"  
                     alt="Image"
                     class="rounded-full w-36 h-36 border"
                 />
