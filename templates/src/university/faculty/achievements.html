@@ -47,10 +47,10 @@
                                 <span class="sr-only">Close modal</span>
                             </button>
 
-                            <div class="h-full">
-                                <h1 class="text-gray-500 px-4 pt-4">
-                                    {{ item.description }}
-                                </h1>
+                            <div class="h-full overflow-y-auto">
+                                <div id="text-content" class="text-gray-500 px-4 pt-4">
+                                    {{ item.description|safe }}
+                                </div>
                                 {% if item.file %}
                                     <div class="flex-1 h-full">
                                         <iframe src="{{ item.file.url }}" class="w-full h-full"></iframe>

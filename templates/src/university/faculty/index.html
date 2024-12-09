@@ -22,7 +22,7 @@
                     class="rounded-full w-36 h-36 border"
                 />
                 <div class="text-center">
-                    <h1 class="font-semibold">
+                    <h1 class="font-semibold line-clamp-2">
                         {{ item.name }}
                     </h1>
                     <span class="text-gray-500">{% translate 'Department' %}</span>
@@ -106,8 +106,8 @@
                                                     {% endif %}
                                                 </div>
                                             </div>
-                                            <div class="text-gray-500">
-                                                {{ item.about }}
+                                            <div id="text-content" class="text-gray-500">
+                                                {{ item.about|safe }}
                                             </div>
                                         </div>
                                     </div>
