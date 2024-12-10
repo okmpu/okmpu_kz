@@ -22,7 +22,7 @@ def faculty_detail_view(request, slug):
     departments = Department.objects.filter(faculty=faculty)
 
     # personals
-    deans_office = Personal.objects.filter(p_type='deans_office')
+    deans_office = Personal.objects.filter(faculty=faculty, p_type='deans_office')
     personals = Personal.objects.filter(
         faculty=faculty
     ).exclude(p_type='deans_office').order_by('order')[:3]
