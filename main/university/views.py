@@ -83,9 +83,9 @@ def faculty_personals_view(request, slug):
             },
             {
                 'id': 3,
-                'name_kk': 'Студенттер',
-                'name_ru': 'Студенты',
-                'name_en': 'Students',
+                'name_kk': 'Белсенді студенттер',
+                'name_ru': 'Активные студенты',
+                'name_en': 'Active students',
                 'type': 'students',
                 'results': students
             },

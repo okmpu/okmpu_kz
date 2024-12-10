@@ -24,7 +24,13 @@
                     aria-selected="{% if personal.type == 'deans_office' %}true{% else %}false{% endif %}" 
                     class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500"
                 >
-                    {% if LANGUAGE_CODE == 'en' %}{{ personal.name_en }}{% elif LANGUAGE_CODE == 'ru' %}{{ personal.name_ru }}{% else %}{{ personal.name_kk }}{% endif %}
+                    {% if LANGUAGE_CODE == 'en' %}
+                        {{ personal.name_en }}
+                    {% elif LANGUAGE_CODE == 'ru' %}
+                        {{ personal.name_ru }}
+                    {% else %}
+                        {{ personal.name_kk }}
+                    {% endif %}
                 </button>
             </li>
         {% endfor %}
