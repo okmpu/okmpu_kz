@@ -20,25 +20,31 @@ def faculties_view(request):
 def faculty_detail_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     departments = Department.objects.filter(faculty=faculty)
-    projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-    achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+
     # personals
     deans_office = Personal.objects.filter(p_type='deans_office')
     personals = Personal.objects.filter(
         faculty=faculty
     ).exclude(p_type='deans_office').order_by('order')[:3]
+
+    # documents and more...
+    projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    materials = Material.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+
     # publications
     news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
     events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:1]
+    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
 
     context = {
         'faculty': faculty,
         'departments': departments,
-        'projects': projects,
-        'achievements': achievements,
         'deans_office': deans_office,
         'personals': personals,
+        'projects': projects,
+        'materials': materials,
+        'achievements': achievements,
         'news': news,
         'events': events,
         'announcements': announcements,

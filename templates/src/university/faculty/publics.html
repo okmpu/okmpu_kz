@@ -39,10 +39,10 @@
                             data-aos="fade-up"
                         >
                             <div class="overflow-hidden">
-                                <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" class="w-full" alt="">
                             </div>
                             <div class="p-4">
-                                <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
                                 <span class="text-gray-500">{{ item.date_created }}</span>
                             </div>
                         </a>
@@ -107,12 +107,12 @@
         <div class="hidden bg-white rounded-lg dark:bg-gray-800" id="events" role="tabpanel"
             aria-labelledby="events-tab"
         >
-            {% if announcements|length > 0 %}      
+            {% if events|length > 0 %}      
                 <div class="p-4 flex-1 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {% for item in events %}
                         <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
                             <div class="overflow-hidden">
-                                <img src="{{ item.poster.url }}" class="w-full" alt="">
+                                <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" class="w-full" alt="">
                             </div>
                             <div class="p-4">
                                 <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>

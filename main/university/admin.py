@@ -56,7 +56,7 @@ class FacultyProgramAdmin(TranslationAdmin):
 
 # Projects
 # ----------------------------------------------------------------------------------------------------------------------
-class ProjectAdmin(TranslationAdmin):
+class ProjectAdmin(TranslationAdmin, SummernoteModelAdmin):
     list_display = ('name', 'author', 'faculty', 'department', 'date_created', )
     search_fields = ('name', )
     list_filter = ('faculty', 'department', )

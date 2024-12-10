@@ -142,6 +142,7 @@ class Project(models.Model):
         _('File'), upload_to='university/faculties/projects/',
         null=True, blank=True, validators=[validate_file_size]
     )
+    description = models.TextField(_('Description'), blank=True, null=True)
     date_created = models.DateTimeField(_('Date created'), auto_now_add=True)
 
     def __str__(self):
