@@ -27,7 +27,7 @@ def faculty_detail_view(request, slug):
     personals = Personal.objects.filter(
         faculty=faculty
     ).exclude(
-        Q(p_type='deans_office') | Q(p_type='department')
+        Q(p_type='deans_office') | Q(p_type='department_manage')
     ).order_by('order')[:3]
     # publications
     news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
