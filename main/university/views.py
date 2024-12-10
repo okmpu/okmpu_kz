@@ -65,7 +65,7 @@ def department_about_view(request, slug):
 # Faculty personals
 def faculty_personals_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
-    deans_office = Personal.objects.filter(p_type='deans_office')
+    deans_office = Personal.objects.filter(faculty=faculty, p_type='deans_office')
     teachers = Personal.objects.filter(faculty=faculty).filter(Q(p_type='department_manage') | Q(p_type='teacher'))
     students = Personal.objects.filter(faculty=faculty, p_type='student')
     context = {
