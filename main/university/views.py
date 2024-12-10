@@ -24,7 +24,11 @@ def faculty_detail_view(request, slug):
     achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
     # personals
     deans_office = Personal.objects.filter(p_type='deans_office')
-    personals = Personal.objects.exclude(Q(p_type='deans_office') | Q(p_type='department'))[:3]
+    personals = Personal.objects.filter(
+        faculty=faculty
+    ).exclude(
+        Q(p_type='deans_office') | Q(p_type='department')
+    ).order_by('order')[:3]
     # publications
     news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
     events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
