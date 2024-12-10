@@ -30,7 +30,7 @@ def faculty_detail_view(request, slug):
     # publications
     news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
     events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:1]
 
     context = {
         'faculty': faculty,
