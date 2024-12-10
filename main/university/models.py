@@ -233,15 +233,16 @@ class Personal(models.Model):
         (
             _('Faculty'),
             (
-                ('STUDENT', _('Student')),
-                ('TEACHER', _('Teacher')),
-                ('MANAGEMENT', _('Management')),
+                ('deans_office', _("Dean's office")),
+                ('department_manage', _('Department management')),
+                ('teacher', _('Teacher/Professors')),
+                ('student', _('Active students')),
             ),
         ),
         (
             _('Division'),
             (
-                ('EMPLOYEE', _('Employee')),
+                ('employee', _('Employee')),
             )
         )
     )
@@ -267,7 +268,7 @@ class Personal(models.Model):
     profession = models.CharField(_('Profession'), max_length=128)
     p_type = models.CharField(
         _('Personal type'), max_length=128,
-        choices=PERSONAL_TYPE, default='STUDENT'
+        choices=PERSONAL_TYPE, default='student'
     )
     phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)

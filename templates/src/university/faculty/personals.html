@@ -16,7 +16,14 @@
     <ul class="flex flex-wrap font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
         {% for personal in personals %}
             <li class="me-2">
-                <button id="{{ personal.type }}-tab" data-tabs-target="#{{ personal.type }}" type="button" role="tab" aria-controls="{{ personal.type }}" aria-selected="{% if personal.type == 'management' %}true{% else %}false{% endif %}" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
+                <button 
+                    id="{{ personal.type }}-tab" 
+                    data-tabs-target="#{{ personal.type }}" 
+                    type="button" role="tab" 
+                    aria-controls="{{ personal.type }}" 
+                    aria-selected="{% if personal.type == 'deans_office' %}true{% else %}false{% endif %}" 
+                    class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500"
+                >
                     {% if LANGUAGE_CODE == 'en' %}{{ personal.name_en }}{% elif LANGUAGE_CODE == 'ru' %}{{ personal.name_ru }}{% else %}{{ personal.name_kk }}{% endif %}
                 </button>
             </li>
@@ -44,10 +51,10 @@
                                 </h1>
                                 <span class="text-gray-500">{{ item.profession }}</span>
                             </div>
+                            
                             <!-- Main modal -->
                             <div id="default-modal-{{ item.id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                 <div class="relative p-4 w-full max-w-screen-2xl max-h-full">
-                                    <!-- Modal content -->
                                     <div class="relative bg-white h-full rounded-lg overflow-hidden shadow dark:bg-gray-700">
                                         <button type="button" class="fixed top-2 right-6 text-gray-400 bg-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal-{{ item.id }}">
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

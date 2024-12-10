@@ -9,12 +9,12 @@
         <div>
             <div
                 style="background-image: url('{% if department.poster %}{{ department.poster.url }}{% else %}/static/images/poster.png{% endif %}');"
-                class="h-80 bg-cover bg-center"
+                class="h-80 2xl:h-96 bg-cover bg-center"
             ></div>
             <div class="flex h-full w-full py-5 border-b">
                 <div class="flex items-center justify-center gap-4">
                     <img
-                        src="{% if department.image %}{{ department.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}"
+                        src="{% if department.image %}{{ department.image.url }}{% else %}{{ department.faculty.image.url }}{% endif %}"
                         alt="Image"
                         class="w-28 rounded-full border"
                     />
@@ -23,27 +23,45 @@
                             {{ department.name }}
                         </h1>
                         <span class="text-gray-500">{% translate 'Department' %}</span>
-                        <a href="{% url 'faculty_detail' department.faculty.slug %}" class="font-medium text-blue-600 hover:underline">{{ department.faculty.name }}</a>
+                        <a href="{% url 'faculty_detail' department.faculty.slug %}" class="font-medium text-blue-700 hover:underline">{{ department.faculty.name }}</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Navbar -->
-        <ul class="flex">
+        <ul class="flex gap-2 overflow-x-auto">
             <li>
                 {% url 'department_detail' department.slug as department_detail_url %}
                 <a
                     href="{{ department_detail_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_detail_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_detail_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
                     {% translate 'Home page' %}
+                </a>
+            </li>
+            <li>
+                {% url 'department_about' department.slug as department_about_url %}
+                <a
+                    href="{{ department_about_url }}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                >
+                    {% translate 'Department about' %}
+                </a>
+            </li>
+            <li>
+                {% url 'department_personals' department.slug as department_personals_url %}
+                <a
+                    href="{{ department_personals_url }}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_personals_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                >
+                    {% translate 'Department members' %}
                 </a>
             </li>
             <li>
                 {% url 'department_programs' department.slug as department_programs_url %}
                 <a
                     href="{{ department_programs_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_programs_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_programs_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
                     {% translate 'Programs' %}
                 </a>
@@ -52,7 +70,7 @@
                 {% url 'department_materials' department.slug as department_materials_url %}
                 <a
                     href="{{ department_materials_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_materials_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_materials_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
                     {% translate 'Оқу материалдары' %}
                 </a>
@@ -61,7 +79,7 @@
                 {% url 'department_projects' department.slug as department_projects_url %}
                 <a
                     href="{{ department_projects_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_projects_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_projects_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
                     {% translate 'Science projects' %}
                 </a>
@@ -70,36 +88,18 @@
                 {% url 'department_achievements' department.slug as department_achievements_url %}
                 <a
                     href="{{ department_achievements_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_achievements_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_achievements_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
                     {% translate 'Achievements' %}
-                </a>
-            </li>
-            <li>
-                {% url 'department_personals' department.slug as department_personals_url %}
-                <a
-                    href="{{ department_personals_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_personals_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
-                >
-                    {% translate 'Department members' %}
                 </a>
             </li>
             <li>
                 {% url 'department_publics' department.slug as department_publics_url %}
                 <a
                     href="{{ department_publics_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_publics_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_publics_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
                     {% translate 'Publications' %}
-                </a>
-            </li>
-            <li>
-                {% url 'department_about' department.slug as department_about_url %}
-                <a
-                    href="{{ department_about_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == department_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
-                >
-                    {% translate 'Department about' %}
                 </a>
             </li>
         </ul>
