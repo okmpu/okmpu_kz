@@ -28,7 +28,7 @@ def faculty_detail_view(request, slug):
         faculty=faculty
     ).exclude(
         Q(p_type='deans_office') | Q(p_type='department')
-    ).order_by('-order')[:3]
+    ).order_by('order')[:3]
     # publications
     news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
     events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
