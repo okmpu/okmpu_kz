@@ -188,10 +188,10 @@ def faculty_about_view(request, slug):
 # ----------------------------------------------------------------------------------------------------------------------
 def department_detail_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    department_manage = Personal.objects.filter(department=department, p_type='department_manage')
+    department_manage = Personal.objects.filter(faculty=department.faculty, department=department, p_type='department_manage')
     personals = Personal.objects.filter(
-        department=department
-    ).exclude(p_type='department_manage').order_by('order')[:3]
+        faculty=department.faculty, department=department
+    ).exclude(Q(p_type='deans_office') | Q(p_type='department_manage')).order_by('order')[:3]
 
     # documents and more...
     projects = Project.objects.filter(faculty=department.faculty, department=department)[:3]
