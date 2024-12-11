@@ -547,8 +547,11 @@
                                 class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
                                 
                             >
-                                <div class="overflow-hidden w-36">
-                                    <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" class="w-full" alt="">
+                                <div class="overflow-hidden w-36 h-full">
+                                    <img 
+                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
+                                        class="w-full h-full object-cover" alt=""
+                                    >
                                 </div>
                                 <div class="p-2 flex-1">
                                     <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
@@ -582,8 +585,11 @@
                                 class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
                                 
                             >
-                                <div class="overflow-hidden w-36">
-                                    <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" class="w-full" alt="">
+                                <div class="overflow-hidden w-36 h-full">
+                                    <img 
+                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
+                                        class="w-full h-full object-cover" alt=""
+                                    >
                                 </div>
                                 <div class="p-2 flex-1">
                                     <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>

@@ -100,6 +100,7 @@ def faculty_personals_view(request, slug):
     return render(request, 'src/university/faculty/personals.html', context)
 
 
+# Faculty programs
 def faculty_programs_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     context = {
@@ -108,6 +109,7 @@ def faculty_programs_view(request, slug):
     return render(request, 'src/university/faculty/programs.html', context)
 
 
+# Faculty edu materials
 def faculty_materials_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     departments = Department.objects.filter(faculty=faculty)
@@ -119,6 +121,7 @@ def faculty_materials_view(request, slug):
     return render(request, 'src/university/faculty/materials.html', context)
 
 
+# Faculty projects
 def faculty_projects_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     departments = Department.objects.filter(faculty=faculty)
@@ -130,6 +133,7 @@ def faculty_projects_view(request, slug):
     return render(request, 'src/university/faculty/projects.html', context)
 
 
+# Faculty achievements
 def faculty_achievements_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     departments = Department.objects.filter(faculty=faculty)
@@ -141,6 +145,7 @@ def faculty_achievements_view(request, slug):
     return render(request, 'src/university/faculty/achievements.html', context)
 
 
+# Faculty publics
 def faculty_publics_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     departments = Department.objects.filter(faculty=faculty)
@@ -157,6 +162,7 @@ def faculty_publics_view(request, slug):
     return render(request, 'src/university/faculty/publics.html', context)
 
 
+# Faculty documents
 def faculty_documents_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     documents = Document.objects.filter(faculty=faculty)
@@ -168,6 +174,7 @@ def faculty_documents_view(request, slug):
     return render(request, 'src/university/faculty/documents.html', context)
 
 
+# Faculty about
 def faculty_about_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
 
@@ -181,16 +188,28 @@ def faculty_about_view(request, slug):
 # ----------------------------------------------------------------------------------------------------------------------
 def department_detail_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    projects = Project.objects.filter(department=department)[:3]
-    personals = Personal.objects.filter(department=department)[:3]
+    department_manage = Personal.objects.filter(department=department, p_type='department_manage')
+    personals = Personal.objects.filter(
+        department=department
+    ).exclude(p_type='department_manage').order_by('order')[:3]
+
+    # documents and more...
+    projects = Project.objects.filter(faculty=department.faculty, department=department)[:3]
+    materials = Material.objects.filter(faculty=department.faculty, department=department)[:3]
+    achievements = Success.objects.filter(faculty=department.faculty, department=department)[:3]
+
+    # publications
     news = News.objects.filter(department=department)[:3]
     events = Event.objects.filter(department=department)[:3]
     announcements = Announcement.objects.filter(department=department)[:3]
 
     context = {
         'department': department,
-        'projects': projects,
+        'department_manage': department_manage,
         'personals': personals,
+        'projects': projects,
+        'materials': materials,
+        'achievements': achievements,
         'news': news,
         'events': events,
         'announcements': announcements,
@@ -198,6 +217,7 @@ def department_detail_view(request, slug):
     return render(request, 'src/university/department/index.html', context)
 
 
+# Department programs
 def department_programs_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
     programs = FacultyProgram.objects.filter(department=department)
@@ -207,6 +227,44 @@ def department_programs_view(request, slug):
         'programs': programs,
     }
     return render(request, 'src/university/department/programs.html', context)
+
+
+# Department personals
+def department_personals_view(request, slug):
+    department = get_object_or_404(Department, slug=slug)
+    managements = Personal.objects.filter(faculty=department.faculty, department=department, p_type='department_manage')
+    teachers = Personal.objects.filter(faculty=department.faculty, department=department, p_type='teacher')
+    students = Personal.objects.filter(faculty=department.faculty, department=department, p_type='student')
+    context = {
+        'department': department,
+        'personals': [
+            {
+                'id': 1,
+                'name_kk': 'Кафедра басшылығы',
+                'name_ru': 'Руководство кафедры',
+                'name_en': 'Department management',
+                'type': 'management',
+                'results': managements
+            },
+            {
+                'id': 2,
+                'name_kk': 'Оқытушылар',
+                'name_ru': 'Преподаватели',
+                'name_en': 'Teachers',
+                'type': 'teachers',
+                'results': teachers
+            },
+            {
+                'id': 3,
+                'name_kk': 'Белсенді студенттер',
+                'name_ru': 'Активные студенты',
+                'name_en': 'Active students',
+                'type': 'students',
+                'results': students
+            },
+        ]
+    }
+    return render(request, 'src/university/department/personals.html', context)
 
 
 def department_materials_view(request, slug):
@@ -240,43 +298,6 @@ def department_achievements_view(request, slug):
         'achievements': achievements,
     }
     return render(request, 'src/university/department/achievements.html', context)
-
-
-def department_personals_view(request, slug):
-    department = get_object_or_404(Department, slug=slug)
-    managements = Personal.objects.filter(department=department, p_type='MANAGEMENT')
-    teachers = Personal.objects.filter(department=department, p_type='TEACHER')
-    students = Personal.objects.filter(department=department, p_type='STUDENT')
-    context = {
-        'department': department,
-        'personals': [
-            {
-                'id': 1,
-                'name_kk': 'Кафедра басшылығы',
-                'name_ru': 'Руководство кафедры',
-                'name_en': 'Department management',
-                'type': 'management',
-                'results': managements
-            },
-            {
-                'id': 2,
-                'name_kk': 'Оқытушылар',
-                'name_ru': 'Преподаватели',
-                'name_en': 'Teachers',
-                'type': 'teachers',
-                'results': teachers
-            },
-            {
-                'id': 3,
-                'name_kk': 'Студенттер',
-                'name_ru': 'Студенты',
-                'name_en': 'Students',
-                'type': 'students',
-                'results': students
-            },
-        ]
-    }
-    return render(request, 'src/university/department/personals.html', context)
 
 
 def department_publics_view(request, slug):
