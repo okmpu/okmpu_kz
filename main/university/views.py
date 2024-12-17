@@ -264,7 +264,7 @@ def department_personals_view(request, slug):
             },
         ]
     }
-    return render(request, 'src/university/department/personals.html', context)
+    return render(request, 'src/university/department/personals/index.html', context)
 
 
 def department_materials_view(request, slug):
@@ -314,3 +314,18 @@ def department_publics_view(request, slug):
     }
     return render(request, 'src/university/department/publics.html', context)
 
+
+# Personal detail
+def personal_detail_view(request, personal_pk):
+    personal = get_object_or_404(Personal, pk=personal_pk)
+    faculty = personal.faculty
+    department = personal.department
+    materials = personal.author_materials.all()
+
+    context = {
+        'faculty': faculty,
+        'department': department,
+        'personal': personal,
+        'materials': materials
+    }
+    return render(request, 'src/university/department/personals/detail.html', context)

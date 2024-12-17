@@ -1,0 +1,50 @@
+{% extends 'src/university/department/layouts.html' %}
+{% load static %}
+
+{% block title %}
+    Факультет мүшелері - Zhanibekov University
+{% endblock %}
+
+
+{% block department_content %}
+<div class="py-8">
+    <ul class="flex flex-wrap font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
+        {% for personal in personals %}
+            <li class="me-2">
+                <button id="{{ personal.type }}-tab" data-tabs-target="#{{ personal.type }}" type="button" role="tab" aria-controls="{{ personal.type }}" aria-selected="{% if personal.type == 'management' %}true{% else %}false{% endif %}" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-blue-500">
+                    {% if LANGUAGE_CODE == 'en' %}{{ personal.name_en }}{% elif LANGUAGE_CODE == 'ru' %}{{ personal.name_ru }}{% else %}{{ personal.name_kk }}{% endif %}
+                </button>
+            </li>
+        {% endfor %}
+    </ul>
+    {% for personal in personals %}
+        <div id="defaultTabContent">
+            <div class="hidden bg-white rounded-lg dark:bg-gray-800" id="{{ personal.type }}" role="tabpanel"
+                aria-labelledby="{{ personal.type }}-tab"
+            >
+                <div class="py-4 grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                    {% for item in personal.results %}
+                        <a
+                            href="{% url 'personal_detail' item.pk %}"
+                            class="grid gap-2 text-center p-4 cursor-pointer border overflow-hidden rounded-lg transition-all hover:bg-gray-100"
+                        >
+                            <img 
+                                src="{% if item.image %}{{ item.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}" 
+                                class="rounded-full w-32 h-32 mx-auto border-2"
+                                alt="{{ item.full_name }}"
+                            >
+                            <div>
+                                <h1 class="font-semibold">
+                                    {{ item.full_name }}
+                                </h1>
+                                <span class="text-gray-500">{{ item.profession }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+{% endblock department_content %}

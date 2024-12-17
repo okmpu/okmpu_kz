@@ -88,6 +88,63 @@ class Division(models.Model):
         ordering = ('order', )
 
 
+# Personals
+# ----------------------------------------------------------------------------------------------------------------------
+class Personal(models.Model):
+    PERSONAL_TYPE = (
+        (
+            _('Faculty'),
+            (
+                ('deans_office', _("Dean's office")),
+                ('department_manage', _('Department management')),
+                ('teacher', _('Teacher/Professors')),
+                ('student', _('Active students')),
+            ),
+        ),
+        (
+            _('Division'),
+            (
+                ('employee', _('Employee')),
+            )
+        )
+    )
+
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='faculty_personals', verbose_name=_('Faculty'), null=True, blank=True
+    )
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='department_personals', verbose_name=_('Department'), null=True, blank=True
+    )
+    division = models.ForeignKey(
+        Division, on_delete=models.CASCADE,
+        related_name='division_personals', verbose_name=_('Division'), null=True, blank=True,
+        help_text=_('Warning! This field is not relevant for faculties and departments')
+    )
+    full_name = models.CharField(_('Full name'), max_length=128, blank=True, null=True)
+    image = models.ImageField(
+        _('Image'), upload_to='university/personals/',
+        blank=True, null=True, validators=[validate_logo]
+    )
+    profession = models.CharField(_('Profession'), max_length=128)
+    p_type = models.CharField(
+        _('Personal type'), max_length=128,
+        choices=PERSONAL_TYPE, default='student'
+    )
+    phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
+    about = models.TextField(_('About'), blank=True, null=True)
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
+
+    def __str__(self):
+        return '{} - {}'.format(self.full_name, self.profession)
+
+    class Meta:
+        verbose_name = _('Personal')
+        verbose_name_plural = _('Personals')
+        ordering = ('order', )
+
+
 # Programs
 # ----------------------------------------------------------------------------------------------------------------------
 class FacultyProgram(models.Model):
@@ -165,7 +222,10 @@ class Material(models.Model):
         related_name='department_materials', verbose_name=_('Department'), null=True, blank=True
     )
     title = models.CharField(_('Title'), max_length=128)
-    author = models.CharField(_('Author'), max_length=128)
+    author = models.ForeignKey(
+        Personal, on_delete=models.CASCADE, related_name='author_materials',
+        verbose_name=_('Author'), blank=True, null=True
+    )
     date_created = models.DateTimeField(_('Date created'), null=True, blank=True)
 
     def __str__(self):
@@ -225,63 +285,6 @@ class Success(models.Model):
     class Meta:
         verbose_name = _('Success')
         verbose_name_plural = _('Achievements')
-
-
-# Personals
-# ----------------------------------------------------------------------------------------------------------------------
-class Personal(models.Model):
-    PERSONAL_TYPE = (
-        (
-            _('Faculty'),
-            (
-                ('deans_office', _("Dean's office")),
-                ('department_manage', _('Department management')),
-                ('teacher', _('Teacher/Professors')),
-                ('student', _('Active students')),
-            ),
-        ),
-        (
-            _('Division'),
-            (
-                ('employee', _('Employee')),
-            )
-        )
-    )
-
-    faculty = models.ForeignKey(
-        Faculty, on_delete=models.CASCADE,
-        related_name='faculty_personals', verbose_name=_('Faculty'), null=True, blank=True
-    )
-    department = models.ForeignKey(
-        Department, on_delete=models.CASCADE,
-        related_name='department_personals', verbose_name=_('Department'), null=True, blank=True
-    )
-    division = models.ForeignKey(
-        Division, on_delete=models.CASCADE,
-        related_name='division_personals', verbose_name=_('Division'), null=True, blank=True,
-        help_text=_('Warning! This field is not relevant for faculties and departments')
-    )
-    full_name = models.CharField(_('Full name'), max_length=128, blank=True, null=True)
-    image = models.ImageField(
-        _('Image'), upload_to='university/personals/',
-        blank=True, null=True, validators=[validate_logo]
-    )
-    profession = models.CharField(_('Profession'), max_length=128)
-    p_type = models.CharField(
-        _('Personal type'), max_length=128,
-        choices=PERSONAL_TYPE, default='student'
-    )
-    phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
-    about = models.TextField(_('About'), blank=True, null=True)
-    order = models.PositiveSmallIntegerField(_('Order'), default=0)
-
-    def __str__(self):
-        return '{} - {}'.format(self.full_name, self.profession)
-
-    class Meta:
-        verbose_name = _('Personal')
-        verbose_name_plural = _('Personals')
-        ordering = ('order', )
 
 
 # Documents

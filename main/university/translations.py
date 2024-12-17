@@ -37,7 +37,7 @@ class MaterialDocsTranslationOptions(TranslationOptions):
     fields = ('caption', )
 
 class MaterialTranslationOptions(TranslationOptions):
-    fields = ('title', 'author', )
+    fields = ('title', )
 
 
 # Achievements

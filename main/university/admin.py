@@ -86,7 +86,7 @@ class MaterialDocsTab(TranslationTabularInline):
 
 class MaterialAdmin(TranslationAdmin):
     list_display = ('title', 'author', 'date_created', )
-    search_fields = ('title', 'author', )
+    search_fields = ('title', )
     list_filter = ('faculty', 'department', )
 
     inlines = [MaterialDocsTab, ]

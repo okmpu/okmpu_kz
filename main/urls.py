@@ -1,4 +1,6 @@
 from django.urls import path
+from setuptools.extern import names
+
 from main.content import views as content_view
 from main import views
 from main.public import views as main_views
@@ -41,4 +43,6 @@ urlpatterns = [
     path('university/departments/<slug>/personals/', university_views.department_personals_view, name='department_personals'),
     path('university/departments/<slug>/publics/', university_views.department_publics_view, name='department_publics'),
     path('university/departments/<slug>/about/', university_views.department_about_view, name='department_about'),
+
+    path('university/personals/<personal_pk>/', university_views.personal_detail_view, name='personal_detail')
 ]
