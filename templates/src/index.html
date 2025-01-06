@@ -187,8 +187,11 @@
                             class="border rounded-lg overflow-hidden transition-all hover:bg-gray-100"
                             data-aos="fade-up"
                         >
-                            <div class="overflow-hidden">
-                                <img src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}" class="w-full" alt="">
+                            <div class="overflow-hidden max-h-52">
+                                <img 
+                                    src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}" 
+                                    class="w-full" alt="{{ item.title }}"
+                                >
                             </div>
                             <div class="p-4">
                                 <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
@@ -204,49 +207,53 @@
 
     <!-- Events -->
     <!-- ============================================================================================================================= -->
-    <div class="border-b" data-aos="fade-up">
-        <div class="container mx-auto px-4 py-16">
-            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
-                <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
-                    {% translate 'Events' %}
-                </h1>
-                <div class="h-2 bg-amber-500 w-48"></div>
-                <span class="text-gray-500 block text-center">
-                    {% translate 'Events taking place at the University' %}
-                </span>
-            </div>
+    {% if events %}
+        <div class="border-b" data-aos="fade-up">
+            <div class="container mx-auto px-4 py-16">
+                <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                    <h1 class="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
+                        {% translate 'Events' %}
+                    </h1>
+                    <div class="h-2 bg-amber-500 w-48"></div>
+                    <span class="text-gray-500 block text-center">
+                        {% translate 'Events taking place at the University' %}
+                    </span>
+                </div>
 
-            <swiper-container class="mySwiper mt-8" pagination="true" pagination-clickable="true" space-between="20"
-                navigation="true" slides-per-view="4">
-                {% for item in events %}
-                    <swiper-slide>
-                        <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
-                            <div class="overflow-hidden">
-                                <img src="{{ item.poster.url }}" class="w-full" alt="">
-                            </div>
-                            <div class="p-4">
-                                <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
-                                <span class="text-gray-500">{{ item.date_created }}</span>
-                            </div>
-                        </a>
-                    </swiper-slide>
-                {% endfor %}
-            </swiper-container>
+                <swiper-container class="mySwiper mt-8" pagination="true" pagination-clickable="true" space-between="20"
+                    navigation="true" slides-per-view="4">
+                    {% for item in events %}
+                        <swiper-slide>
+                            <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-gray-100">
+                                <div class="overflow-hidden">
+                                    <img 
+                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
+                                        class="w-full" alt="{{ item.title }}"
+                                    >
+                                </div>
+                                <div class="p-4">
+                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                    <span class="text-gray-500">{{ item.date_created }}</span>
+                                </div>
+                            </a>
+                        </swiper-slide>
+                    {% endfor %}
+                </swiper-container>
 
-            <div class="flex justify-center">
-                <a href="{% url 'events' %}"
-                    class="inline-flex items-center font-medium text-blue-600 dark:text-blue-700 hover:underline">
-                    {% translate 'View all' %}
-                    <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </a>
+                <div class="flex justify-center">
+                    <a href="{% url 'events' %}"
+                        class="inline-flex items-center font-medium text-blue-600 dark:text-blue-700 hover:underline">
+                        {% translate 'View all' %}
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
-
+    {% endif %}
 
     <!-- About -->
     <!-- ============================================================================================================================= -->

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 from django_summernote.admin import SummernoteModelAdminMixin
@@ -50,3 +51,4 @@ class ContentAdmin(TranslationAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Content, ContentAdmin)
+admin.site.unregister(Group)
