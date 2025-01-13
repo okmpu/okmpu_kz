@@ -31,8 +31,8 @@ def content_detail(request, category_slug, sub_category_slug, section_slug, cont
 # ----------------------------------------------------------------------------------------------------------------------
 def division_detail(request, slug):
     item = get_object_or_404(Division, slug=slug)
-    departments = item.children.filter(div_type='DEPARTMENT')[:3]
-    divisions = item.children.filter(div_type='DEFAULT')[:3]
+    departments = item.children.filter(div_type='DEPARTMENT')
+    divisions = item.children.filter(div_type='DEFAULT')
     context = {
         'division': item,
         'departments': departments,
