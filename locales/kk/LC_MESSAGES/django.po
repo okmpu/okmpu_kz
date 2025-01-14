@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-23 09:15+0500\n"
+"POT-Creation-Date: 2025-01-14 17:41+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -330,7 +330,7 @@ msgid "Event"
 msgstr "Іс-шара"
 
 #: main/public/models.py:173 templates/src/base.html:264
-#: templates/src/index.html:211 templates/src/publics/index.html:44
+#: templates/src/index.html:215 templates/src/publics/index.html:44
 #: templates/src/publics/public_detail.html:45
 #: templates/src/university/department/publics.html:25
 #: templates/src/university/faculty/publics.html:25
@@ -410,11 +410,9 @@ msgstr "Кафедра жайлы"
 msgid "Departments"
 msgstr "Кафедралар"
 
-#: main/university/models.py:68 main/university/models.py:86
-#: main/university/models.py:105 main/university/models.py:122
-#: main/university/models.py:271 main/university/models.py:308
-msgid "Division"
-msgstr "Бөлім"
+#: main/university/models.py:68
+msgid "Division/Center"
+msgstr "Бөлім/Орталық"
 
 #: main/university/models.py:69
 msgid "Department division"
@@ -426,7 +424,7 @@ msgstr "Басшылық бөлімі"
 
 #: main/university/models.py:74
 msgid "Division type"
-msgstr "Бөлім түрі"
+msgstr "Бөлім/Орталық түрі"
 
 #: main/university/models.py:75
 msgid "About the division"
@@ -435,6 +433,12 @@ msgstr "Бөлім жайлы"
 #: main/university/models.py:78
 msgid "Parent division"
 msgstr "Иелік бөлім"
+
+#: main/university/models.py:86 main/university/models.py:105
+#: main/university/models.py:122 main/university/models.py:271
+#: main/university/models.py:308
+msgid "Division"
+msgstr "Бөлім"
 
 #: main/university/models.py:87
 msgid "Divisions"
@@ -608,7 +612,7 @@ msgid "All copyrights are protected."
 msgstr "Барлық авторлық құқықтар қорғалған."
 
 #: templates/src/content/index.html:282
-#: templates/src/university/department/achievements.html:71
+#: templates/src/university/department/achievements.html:85
 #: templates/src/university/department/materials.html:107
 #: templates/src/university/department/projects.html:94
 #: templates/src/university/department/publics.html:56
@@ -628,7 +632,7 @@ msgid "Warning about content creation"
 msgstr "Контент жасау туралы ескерту"
 
 #: templates/src/content/index.html:284
-#: templates/src/university/department/achievements.html:73
+#: templates/src/university/department/achievements.html:87
 #: templates/src/university/department/materials.html:109
 #: templates/src/university/department/projects.html:96
 #: templates/src/university/department/publics.html:58
@@ -664,27 +668,27 @@ msgstr ""
 "бағдарламаларын ұсынамыз"
 
 #: templates/src/index.html:158 templates/src/index.html:174
-#: templates/src/index.html:239 templates/src/index.html:359
+#: templates/src/index.html:246 templates/src/index.html:366
 msgid "View all"
 msgstr "Барлығын қарап шығу"
 
-#: templates/src/index.html:215
+#: templates/src/index.html:219
 msgid "Events taking place at the University"
 msgstr "Университетте өтетін іс-шаралар"
 
-#: templates/src/index.html:257
+#: templates/src/index.html:264
 msgid "About of University"
 msgstr "Университет туралы"
 
-#: templates/src/index.html:261
+#: templates/src/index.html:268
 msgid "Learn more about our university, which is almost a century old"
 msgstr "Бір ғасырға жуық тарихы бар университетіміз туралы көбірек біліңіз"
 
-#: templates/src/index.html:268
+#: templates/src/index.html:275
 msgid "Our University"
 msgstr "Біздің Университет"
 
-#: templates/src/index.html:271
+#: templates/src/index.html:278
 msgid ""
 "\n"
 "                            The Golden Cradle of education and science, the "
@@ -712,7 +716,7 @@ msgstr ""
 "және шетелде жұмыс істейді. Университет түлектері оқу орнына алғыстарын "
 "білдіреді!"
 
-#: templates/src/index.html:285
+#: templates/src/index.html:292
 #: templates/src/university/department/index.html:22
 #: templates/src/university/department/index.html:112
 #: templates/src/university/department/index.html:200
@@ -731,31 +735,31 @@ msgstr ""
 msgid "Read more"
 msgstr "Толығырақ"
 
-#: templates/src/index.html:302
+#: templates/src/index.html:309
 msgid "Students"
 msgstr "Студент"
 
-#: templates/src/index.html:306
+#: templates/src/index.html:313
 msgid "Grant"
 msgstr "Грант"
 
-#: templates/src/index.html:310
+#: templates/src/index.html:317
 msgid "Bachelor"
 msgstr "Бакалавр"
 
-#: templates/src/index.html:314
+#: templates/src/index.html:321
 msgid "Master stundent"
 msgstr "Магистр"
 
-#: templates/src/index.html:318
+#: templates/src/index.html:325
 msgid "Doctoral student"
 msgstr "Докторант"
 
-#: templates/src/index.html:331
+#: templates/src/index.html:338
 msgid "Academic learning"
 msgstr "Академиялық оқыту"
 
-#: templates/src/index.html:335
+#: templates/src/index.html:342
 msgid ""
 "Faculties, Institute of postgraduate education, college and structural "
 "divisions of departments"
@@ -763,11 +767,11 @@ msgstr ""
 "Факультеттер, жоғары оқу орнынан кейінгі білім беру институты, колледж және "
 "кафедралардың құрылымдық бөлімшелері"
 
-#: templates/src/index.html:377
+#: templates/src/index.html:384
 msgid "Our partners"
 msgstr "Біздің серіктестер"
 
-#: templates/src/index.html:381
+#: templates/src/index.html:388
 msgid ""
 "Our university cooperates with leading educational and scientific "
 "organizations to ensure the high quality of education and professional "
@@ -776,35 +780,35 @@ msgstr ""
 "Біздің университет студенттердің жоғары сапалы білімі мен кәсіби өсуін "
 "қамтамасыз ету үшін жетекші білім беру және ғылыми ұйымдармен ынтымақтасады"
 
-#: templates/src/index.html:405
+#: templates/src/index.html:412
 msgid "Contact us"
 msgstr "Бізбен хабарласыңыз"
 
-#: templates/src/index.html:409
+#: templates/src/index.html:416
 msgid "All the resources you can contact us"
 msgstr "Бізбен байланыса алатын барлық ресурстар"
 
-#: templates/src/index.html:429
+#: templates/src/index.html:436
 msgid "Address"
 msgstr "Мекен-жайы"
 
-#: templates/src/index.html:430
+#: templates/src/index.html:437
 msgid "Shymkent, A. Baitursynov N13"
 msgstr "Шымкент, А. Байтұрсынов N 13"
 
-#: templates/src/index.html:441
+#: templates/src/index.html:448
 msgid "Selection committee"
 msgstr "Қабылдау комиссиясы"
 
-#: templates/src/index.html:456
+#: templates/src/index.html:463
 msgid "University office"
 msgstr "Университет кеңсесі"
 
-#: templates/src/index.html:468
+#: templates/src/index.html:475
 msgid "Call center"
 msgstr "Call орталық"
 
-#: templates/src/index.html:483
+#: templates/src/index.html:490
 msgid "Helplines"
 msgstr "Сенім телефондары"
 
@@ -880,12 +884,9 @@ msgid "Specialty ciphers and names of the Department"
 msgstr "Мамандық шифры және кафедра атауы"
 
 #: templates/src/university/division/about.html:7
+#: templates/src/university/division/layouts.html:48
 msgid "About division"
 msgstr "Бөлім туралы"
-
-#: templates/src/university/division/layouts.html:48
-msgid "Division about"
-msgstr "Бөлім түрі"
 
 #: templates/src/university/faculty/about.html:6
 #: templates/src/university/faculty/layouts.html:53

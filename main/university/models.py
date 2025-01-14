@@ -65,7 +65,7 @@ class Department(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Division(models.Model):
     DIV_TYPE = (
-        ('DEFAULT', _('Division')),
+        ('DEFAULT', _('Division/Center')),
         ('DEPARTMENT', _('Department division')),
         ('MANAGEMENT', _('Management division')),
     )

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-23 09:15+0500\n"
+"POT-Creation-Date: 2025-01-14 17:41+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -332,7 +332,7 @@ msgid "Event"
 msgstr "Мероприятие"
 
 #: main/public/models.py:173 templates/src/base.html:264
-#: templates/src/index.html:211 templates/src/publics/index.html:44
+#: templates/src/index.html:215 templates/src/publics/index.html:44
 #: templates/src/publics/public_detail.html:45
 #: templates/src/university/department/publics.html:25
 #: templates/src/university/faculty/publics.html:25
@@ -412,11 +412,11 @@ msgstr "О кафедре"
 msgid "Departments"
 msgstr "Кафедры"
 
-#: main/university/models.py:68 main/university/models.py:86
-#: main/university/models.py:105 main/university/models.py:122
-#: main/university/models.py:271 main/university/models.py:308
-msgid "Division"
-msgstr "Отдел"
+#: main/university/models.py:68
+#, fuzzy
+#| msgid "Division type"
+msgid "Division/Center"
+msgstr "Тип отдела"
 
 #: main/university/models.py:69
 msgid "Department division"
@@ -437,6 +437,12 @@ msgstr "Об отделе"
 #: main/university/models.py:78
 msgid "Parent division"
 msgstr "Родительский отдел"
+
+#: main/university/models.py:86 main/university/models.py:105
+#: main/university/models.py:122 main/university/models.py:271
+#: main/university/models.py:308
+msgid "Division"
+msgstr "Отдел"
 
 #: main/university/models.py:87
 msgid "Divisions"
@@ -615,7 +621,7 @@ msgid "All copyrights are protected."
 msgstr "Все авторские права защищены."
 
 #: templates/src/content/index.html:282
-#: templates/src/university/department/achievements.html:71
+#: templates/src/university/department/achievements.html:85
 #: templates/src/university/department/materials.html:107
 #: templates/src/university/department/projects.html:94
 #: templates/src/university/department/publics.html:56
@@ -635,7 +641,7 @@ msgid "Warning about content creation"
 msgstr "Предупреждение о создании контента"
 
 #: templates/src/content/index.html:284
-#: templates/src/university/department/achievements.html:73
+#: templates/src/university/department/achievements.html:87
 #: templates/src/university/department/materials.html:109
 #: templates/src/university/department/projects.html:96
 #: templates/src/university/department/publics.html:58
@@ -671,27 +677,27 @@ msgstr ""
 "образовательные программы"
 
 #: templates/src/index.html:158 templates/src/index.html:174
-#: templates/src/index.html:239 templates/src/index.html:359
+#: templates/src/index.html:246 templates/src/index.html:366
 msgid "View all"
 msgstr "Посмотреть все"
 
-#: templates/src/index.html:215
+#: templates/src/index.html:219
 msgid "Events taking place at the University"
 msgstr "События, происходящие в университете"
 
-#: templates/src/index.html:257
+#: templates/src/index.html:264
 msgid "About of University"
 msgstr "Об университете"
 
-#: templates/src/index.html:261
+#: templates/src/index.html:268
 msgid "Learn more about our university, which is almost a century old"
 msgstr "Узнайте больше о нашем университете, которому почти сто лет"
 
-#: templates/src/index.html:268
+#: templates/src/index.html:275
 msgid "Our University"
 msgstr "Наш университет"
 
-#: templates/src/index.html:271
+#: templates/src/index.html:278
 msgid ""
 "\n"
 "                            The Golden Cradle of education and science, the "
@@ -718,7 +724,7 @@ msgstr ""
 "студентов. Выпускники в настоящее время работают в Казахстане и за рубежом. "
 "Выпускники университета очень благодарны учебному заведению!"
 
-#: templates/src/index.html:285
+#: templates/src/index.html:292
 #: templates/src/university/department/index.html:22
 #: templates/src/university/department/index.html:112
 #: templates/src/university/department/index.html:200
@@ -737,31 +743,31 @@ msgstr ""
 msgid "Read more"
 msgstr "Подробнее"
 
-#: templates/src/index.html:302
+#: templates/src/index.html:309
 msgid "Students"
 msgstr "Студент"
 
-#: templates/src/index.html:306
+#: templates/src/index.html:313
 msgid "Grant"
 msgstr "Грант"
 
-#: templates/src/index.html:310
+#: templates/src/index.html:317
 msgid "Bachelor"
 msgstr "Бакалавр"
 
-#: templates/src/index.html:314
+#: templates/src/index.html:321
 msgid "Master stundent"
 msgstr "Магистр"
 
-#: templates/src/index.html:318
+#: templates/src/index.html:325
 msgid "Doctoral student"
 msgstr "Докторант"
 
-#: templates/src/index.html:331
+#: templates/src/index.html:338
 msgid "Academic learning"
 msgstr "Академическое обучение"
 
-#: templates/src/index.html:335
+#: templates/src/index.html:342
 msgid ""
 "Faculties, Institute of postgraduate education, college and structural "
 "divisions of departments"
@@ -769,11 +775,11 @@ msgstr ""
 "Факультеты, Институт последипломного образования, колледж и структурные "
 "подразделения кафедр"
 
-#: templates/src/index.html:377
+#: templates/src/index.html:384
 msgid "Our partners"
 msgstr "Наши партнеры"
 
-#: templates/src/index.html:381
+#: templates/src/index.html:388
 msgid ""
 "Our university cooperates with leading educational and scientific "
 "organizations to ensure the high quality of education and professional "
@@ -783,35 +789,35 @@ msgstr ""
 "организациями для обеспечения высокого качества образования и "
 "профессионального роста студентов"
 
-#: templates/src/index.html:405
+#: templates/src/index.html:412
 msgid "Contact us"
 msgstr "Связаться с нами"
 
-#: templates/src/index.html:409
+#: templates/src/index.html:416
 msgid "All the resources you can contact us"
 msgstr "По всем вопросам, касающимся ресурсов, вы можете связаться с нами"
 
-#: templates/src/index.html:429
+#: templates/src/index.html:436
 msgid "Address"
 msgstr "Адрес"
 
-#: templates/src/index.html:430
+#: templates/src/index.html:437
 msgid "Shymkent, A. Baitursynov N13"
 msgstr "Шымкент, А. Байтурсынов N 13"
 
-#: templates/src/index.html:441
+#: templates/src/index.html:448
 msgid "Selection committee"
 msgstr "Отборочная комиссия"
 
-#: templates/src/index.html:456
+#: templates/src/index.html:463
 msgid "University office"
 msgstr "Университетский офис"
 
-#: templates/src/index.html:468
+#: templates/src/index.html:475
 msgid "Call center"
 msgstr "Call центр"
 
-#: templates/src/index.html:483
+#: templates/src/index.html:490
 msgid "Helplines"
 msgstr "Линии помощи"
 
@@ -887,12 +893,9 @@ msgid "Specialty ciphers and names of the Department"
 msgstr "Шифры специальностей и названия кафедр"
 
 #: templates/src/university/division/about.html:7
+#: templates/src/university/division/layouts.html:48
 msgid "About division"
 msgstr "Об отделе"
-
-#: templates/src/university/division/layouts.html:48
-msgid "Division about"
-msgstr "Тип отдела"
 
 #: templates/src/university/faculty/about.html:6
 #: templates/src/university/faculty/layouts.html:53
@@ -916,3 +919,6 @@ msgstr "Об институте"
 #: templates/src/university/faculty/programs.html:16
 msgid "Specialty ciphers and names of the departments assigned by the faculty"
 msgstr "Шифры специальностей и названия кафедр, присвоенные факультетом"
+
+#~ msgid "Division about"
+#~ msgstr "Тип отдела"
