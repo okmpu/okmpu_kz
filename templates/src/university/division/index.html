@@ -15,7 +15,7 @@
             {% if division.division_personals.all|length > 0 %}
                 <div class="flex flex-col gap-2">
                     <div class="flex justify-between items-center">
-                        <h1 class="text-2xl font-semibold">Басқарма құрамы</h1>
+                        <h1 class="text-2xl font-semibold">{{ division.get_div_type_display }} құрамы</h1>
                         
                         <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                             {% translate 'Read more' %}
