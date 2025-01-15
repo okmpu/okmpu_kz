@@ -79,11 +79,11 @@
                                     </th>
                                     <th scope="row" class="px-6 py-4">
                                         <a 
-                                            href="{{ item.url }}" 
+                                            href="{% if s_item.url %}{{ s_item.url }}{% else %}#{% endif %}" 
                                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                             target="_blank"
                                         >
-                                            {{ item.url }}
+                                            {% if s_item.url %}{{ s_item.url }}{% endif %}
                                         </a>
                                     </th>
                                 </tr>
