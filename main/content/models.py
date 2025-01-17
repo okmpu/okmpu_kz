@@ -94,7 +94,7 @@ class FileContent(models.Model):
         related_name='file_contents', verbose_name=_('Content')
     )
     caption = models.CharField(verbose_name=_('Caption'), max_length=255)
-    file = models.FileField(verbose_name=_('File'), upload_to='content/category/files/')
+    # file = models.FileField(verbose_name=_('File'), upload_to='content/category/files/')
     source_file = models.FileField(_('Source file'), upload_to='content/category/files/', blank=True, null=True)
     order = models.PositiveIntegerField(_('Order'), default=0)
 
