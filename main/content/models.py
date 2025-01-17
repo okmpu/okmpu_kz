@@ -60,6 +60,7 @@ class TextContent(models.Model):
         related_name='text_contents', verbose_name=_('Content')
     )
     body = models.TextField(verbose_name=_('Body'), blank=True, null=True)
+    order = models.PositiveIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return 'ID: {} '.format(self.pk) + _('Text content')
@@ -67,7 +68,7 @@ class TextContent(models.Model):
     class Meta:
         verbose_name = _('Text content')
         verbose_name_plural = _('Text contents')
-
+        ordering = ('order',)
 
 # File content
 class ImageContent(models.Model):
@@ -76,6 +77,7 @@ class ImageContent(models.Model):
         related_name='image_contents', verbose_name=_('Content')
     )
     image = models.ImageField(verbose_name=_('Image'), upload_to='content/category/images/')
+    order = models.PositiveIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return 'ID: {} '.format(self.pk) + _('Image content')
@@ -83,7 +85,7 @@ class ImageContent(models.Model):
     class Meta:
         verbose_name = _('Image content')
         verbose_name_plural = _('Image contents')
-
+        ordering = ('order', )
 
 # File content
 class FileContent(models.Model):
@@ -93,6 +95,8 @@ class FileContent(models.Model):
     )
     caption = models.CharField(verbose_name=_('Caption'), max_length=255)
     file = models.FileField(verbose_name=_('File'), upload_to='content/category/files/')
+    source_file = models.FileField(_('Source file'), upload_to='content/category/files/', blank=True, null=True)
+    order = models.PositiveIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return 'ID: {} '.format(self.pk) + _('File content')
@@ -100,7 +104,7 @@ class FileContent(models.Model):
     class Meta:
         verbose_name = _('File content')
         verbose_name_plural = _('File contents')
-
+        ordering = ('order', )
 
 # Staff content
 class StaffContent(models.Model):

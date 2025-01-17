@@ -24,7 +24,7 @@ class ImageContentTranslationOptions(TranslationOptions):
 
 
 class FileContentTranslationOptions(TranslationOptions):
-    fields = ('caption', )
+    fields = ('caption', 'source_file', )
 
 
 class StaffContentTranslationOptions(TranslationOptions):
