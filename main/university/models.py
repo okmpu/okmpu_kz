@@ -9,9 +9,9 @@ from main.validators import validate_file_size, validate_logo, validate_poster
 # ----------------------------------------------------------------------------------------------------------------------
 class Faculty(models.Model):
     FACULTY_TYPE = (
-        ('DEFAULT', _('Default')),
-        ('INSTITUTE', _('Institute')),
-        ('COLLEGE', _('College')),
+        ('faculty', _('Faculty')),
+        ('institute', _('Institute')),
+        ('college', _('College')),
     )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
@@ -23,7 +23,7 @@ class Faculty(models.Model):
         _('Poster'), upload_to='university/faculties/posters',
         null=True, blank=True, validators=[validate_poster]
     )
-    faculty_type = models.CharField(_('Faculty type'), choices=FACULTY_TYPE, default='DEFAULT', max_length=16)
+    faculty_type = models.CharField(_('Faculty type'), choices=FACULTY_TYPE, default='faculty', max_length=16)
     about = models.TextField(_('About the faculty'), blank=True, null=True)
 
     def __str__(self):
@@ -65,13 +65,21 @@ class Department(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Division(models.Model):
     DIV_TYPE = (
-        ('DEFAULT', _('Division/Center')),
-        ('DEPARTMENT', _('Department division')),
-        ('MANAGEMENT', _('Management division')),
+        ('div', _('Division/Center')),
+        ('department', _('Department')),
+        ('management', _('Management')),
     )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.SlugField(_('Slug'), max_length=128)
-    div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='DEFAULT')
+    image = models.ImageField(
+        _('Image'), upload_to='university/faculties/avatars',
+        null=True, blank=True, validators=[validate_logo]
+    )
+    poster = models.ImageField(
+        _('Poster'), upload_to='university/faculties/posters',
+        null=True, blank=True, validators=[validate_poster]
+    )
+    div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='div')
     about = models.TextField(_('About the division'), blank=True, null=True)
     parent = models.ForeignKey(
         'self', on_delete=models.CASCADE, related_name='children',
@@ -104,6 +112,7 @@ class Personal(models.Model):
         (
             _('Division'),
             (
+                ('head', _('Head of Department')),
                 ('employee', _('Employee')),
             )
         )
@@ -127,7 +136,7 @@ class Personal(models.Model):
         _('Image'), upload_to='university/personals/',
         blank=True, null=True, validators=[validate_logo]
     )
-    profession = models.CharField(_('Profession'), max_length=128)
+    profession = models.CharField(_('Profession/Activity'), max_length=128)
     p_type = models.CharField(
         _('Personal type'), max_length=128,
         choices=PERSONAL_TYPE, default='student'
@@ -150,9 +159,13 @@ class Personal(models.Model):
 class FacultyProgram(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='programs', verbose_name=_('Faculty'), null=True, blank=True
+    )
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
-        related_name='programs', verbose_name=_('Department')
+        related_name='programs', verbose_name=_('Department'), null=True, blank=True
     )
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
@@ -210,7 +223,7 @@ class Project(models.Model):
         verbose_name_plural = _('Projects')
 
 
-# Edu Materials
+# Materials
 # ----------------------------------------------------------------------------------------------------------------------
 class Material(models.Model):
     faculty = models.ForeignKey(
