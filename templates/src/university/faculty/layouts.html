@@ -33,7 +33,7 @@
             </div>
         </div>
         <!-- Navbar -->
-        {% if faculty.faculty_type == 'DEFAULT' %}
+        {% if faculty.faculty_type == 'faculty' %}
             <ul class="flex gap-2 overflow-x-auto">
                 <li>
                     {% url 'faculty_detail' faculty.slug as faculty_detail_url %}
@@ -108,7 +108,8 @@
                     </a>
                 </li>
             </ul>
-        {% elif faculty.faculty_type == 'INSTITUTE' %}
+
+        {% elif faculty.faculty_type == 'institute' %}
             <ul class="flex gap-2 overflow-x-auto">
                 <li>
                     {% url 'faculty_detail' faculty.slug as faculty_detail_url %}
@@ -162,6 +163,63 @@
                         class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                     >
                         {% translate 'Institute about' %}
+                    </a>
+                </li>
+            </ul>
+        {% elif faculty.faculty_type == 'college' %}
+            <ul class="flex gap-2 overflow-x-auto">
+                <li>
+                    {% url 'faculty_detail' faculty.slug as faculty_detail_url %}
+                    <a
+                        href="{{ faculty_detail_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_detail_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'Home page' %}
+                    </a>
+                </li>
+                <li>
+                    {% url 'faculty_programs' faculty.slug as faculty_programs_url %}
+                    <a
+                        href="{{ faculty_programs_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_programs_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'Programs' %}
+                    </a>
+                </li>
+                <li>
+                    {% url 'faculty_achievements' faculty.slug as faculty_achievements_url %}
+                    <a
+                        href="{{ faculty_achievements_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_achievements_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'Achievements' %}
+                    </a>
+                </li>
+                <li>
+                    {% url 'faculty_personals' faculty.slug as faculty_personals_url %}
+                    <a
+                        href="{{ faculty_personals_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_personals_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'College members' %}
+                    </a>
+                </li>
+                <li>
+                    {% url 'faculty_documents' faculty.slug as faculty_documents_url %}
+                    <a
+                        href="{{ faculty_documents_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_documents_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'College documents' %}
+                    </a>
+                </li>
+                <li>
+                    {% url 'faculty_about' faculty.slug as faculty_about_url %}
+                    <a
+                        href="{{ faculty_about_url }}"
+                        class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == faculty_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                    >
+                        {% translate 'College about' %}
                     </a>
                 </li>
             </ul>
