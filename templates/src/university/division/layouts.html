@@ -23,7 +23,9 @@
                             {{ division.name }}
                         </h1>
                         <span class="text-gray-500">{{ division.get_div_type_display }}</span>
-                        <a href="{% url 'division_detail' division.slug %}" class="font-medium text-blue-600 hover:underline">{{ department.faculty.name }}</a>
+                        {% if division.parent %}
+                            <a href="{% url 'division_detail' division.parent.slug %}" class="font-medium text-blue-600 hover:underline">{{ division.parent.name }}</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -45,7 +47,9 @@
                     href="{{ division_about_url }}"
                     class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == division_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
                 >
-                    {{ division.get_div_type_display }} туралы
+                    {% if LANGUAGE_CODE == 'ru' %}О{% elif LANGUAGE_CODE == 'en' %}About{% endif %}
+                    {{ division.get_div_type_display }}
+                    {% if LANGUAGE_CODE == 'kk' %}жайлы{% endif %}
                 </a>
             </li>
         </ul>

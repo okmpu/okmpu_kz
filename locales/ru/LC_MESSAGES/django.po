@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-22 11:18+0500\n"
+"POT-Creation-Date: 2025-01-22 15:35+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr "Вкладка"
 
 #: main/content/models.py:24 main/content/models.py:45
 #: main/content/models.py:63 main/content/models.py:80
-#: main/content/models.py:99 main/content/models.py:124
+#: main/content/models.py:98 main/content/models.py:123
 #: main/public/models.py:18 main/public/models.py:34 main/public/models.py:239
 #: main/university/models.py:88 main/university/models.py:146
 #: main/university/models.py:170 main/university/models.py:331
@@ -123,7 +123,7 @@ msgstr "Последнее обновление"
 
 #: main/content/models.py:51 main/content/models.py:60
 #: main/content/models.py:77 main/content/models.py:94
-#: main/content/models.py:113
+#: main/content/models.py:112
 msgid "Content"
 msgstr "Контент"
 
@@ -143,7 +143,7 @@ msgstr "Текстовый контент"
 msgid "Text contents"
 msgstr "Текстовые контенты"
 
-#: main/content/models.py:79 main/content/models.py:117
+#: main/content/models.py:79 main/content/models.py:116
 #: main/university/models.py:19 main/university/models.py:45
 #: main/university/models.py:75 main/university/models.py:136
 msgid "Image"
@@ -161,43 +161,43 @@ msgstr "Контент изображения"
 msgid "Caption"
 msgstr "Заголовка"
 
-#: main/content/models.py:98
+#: main/content/models.py:97
 msgid "Source file"
 msgstr "Исходный файл"
 
-#: main/content/models.py:102 main/content/models.py:105
+#: main/content/models.py:101 main/content/models.py:104
 msgid "File content"
 msgstr "Файловый контент"
 
-#: main/content/models.py:106
+#: main/content/models.py:105
 msgid "File contents"
 msgstr "Файловые контенты"
 
-#: main/content/models.py:115 main/university/models.py:134
+#: main/content/models.py:114 main/university/models.py:134
 msgid "Full name"
 msgstr "Полная имя"
 
-#: main/content/models.py:120
+#: main/content/models.py:119
 msgid "Profession"
 msgstr "Профессия"
 
-#: main/content/models.py:121
+#: main/content/models.py:120
 msgid "Bio"
 msgstr "Биография"
 
-#: main/content/models.py:122 main/university/models.py:144
+#: main/content/models.py:121 main/university/models.py:144
 msgid "Phone"
 msgstr "Телефон"
 
-#: main/content/models.py:123
+#: main/content/models.py:122
 msgid "Email"
 msgstr "Электронная почта"
 
-#: main/content/models.py:127 main/content/models.py:130
+#: main/content/models.py:126 main/content/models.py:129
 msgid "Staff content"
 msgstr "Контент персонала"
 
-#: main/content/models.py:131
+#: main/content/models.py:130
 msgid "Staff contents"
 msgstr "Контенты контенты"
 
@@ -294,7 +294,6 @@ msgstr "Дата создание"
 #: templates/src/publics/index.html:32
 #: templates/src/publics/public_detail.html:33
 #: templates/src/university/department/publics.html:15
-#: templates/src/university/division/index.html:280
 #: templates/src/university/faculty/publics.html:15
 msgid "News"
 msgstr "Новости"
@@ -322,7 +321,6 @@ msgstr "Объявление"
 #: templates/src/index.html:130 templates/src/publics/index.html:38
 #: templates/src/publics/public_detail.html:39
 #: templates/src/university/department/publics.html:20
-#: templates/src/university/division/index.html:313
 #: templates/src/university/faculty/publics.html:20
 msgid "Announcements"
 msgstr "Объявления"
@@ -607,7 +605,7 @@ msgstr "Библиотека"
 #: templates/src/base.html:124 templates/src/base.html:225
 #: templates/src/index.html:7
 #: templates/src/university/department/layouts.html:39
-#: templates/src/university/division/layouts.html:39
+#: templates/src/university/division/layouts.html:41
 #: templates/src/university/faculty/layouts.html:44
 #: templates/src/university/faculty/layouts.html:120
 #: templates/src/university/faculty/layouts.html:177
@@ -736,11 +734,9 @@ msgstr ""
 #: templates/src/university/department/index.html:200
 #: templates/src/university/department/index.html:293
 #: templates/src/university/department/index.html:400
-#: templates/src/university/division/index.html:21
-#: templates/src/university/division/index.html:107
-#: templates/src/university/division/index.html:141
-#: templates/src/university/division/index.html:282
-#: templates/src/university/division/index.html:315
+#: templates/src/university/division/index.html:34
+#: templates/src/university/division/index.html:125
+#: templates/src/university/division/index.html:156
 #: templates/src/university/faculty/index.html:45
 #: templates/src/university/faculty/index.html:141
 #: templates/src/university/faculty/index.html:235
@@ -900,6 +896,18 @@ msgstr "Шифры специальностей и названия кафедр
 msgid "About division"
 msgstr "Об отделе"
 
+#: templates/src/university/division/index.html:31
+msgid "composition"
+msgstr "состав"
+
+#: templates/src/university/division/index.html:122
+msgid "Departments within the management board"
+msgstr "Департаменты правления"
+
+#: templates/src/university/division/index.html:153
+msgid "Divisions within the management board"
+msgstr "Центр/Отделы правления"
+
 #: templates/src/university/faculty/about.html:6
 #: templates/src/university/faculty/layouts.html:53
 msgid "Faculty about"
@@ -934,4 +942,3 @@ msgstr "О колледже"
 #: templates/src/university/faculty/programs.html:16
 msgid "Specialty ciphers and names of the departments assigned by the faculty"
 msgstr "Шифры специальностей и названия кафедр, присвоенные факультетом"
-
