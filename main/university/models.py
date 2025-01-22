@@ -65,9 +65,9 @@ class Department(models.Model):
 # ----------------------------------------------------------------------------------------------------------------------
 class Division(models.Model):
     DIV_TYPE = (
-        ('div', _('Division/Center')),
-        ('department', _('Department')),
-        ('management', _('Management')),
+        ('div', _('Division/Center division')),
+        ('department', _('Department division')),
+        ('management', _('Management division')),
     )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.SlugField(_('Slug'), max_length=128)
