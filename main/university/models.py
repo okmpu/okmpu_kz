@@ -141,7 +141,8 @@ class Personal(models.Model):
         _('Personal type'), max_length=128,
         choices=PERSONAL_TYPE, default='student'
     )
-    phone = models.CharField(_('Phone'), max_length=64, blank=True, null=True)
+    phone = models.CharField(_('Phone'), max_length=128, blank=True, null=True)
+    email = models.EmailField(_('Email'), max_length=128, blank=True, null=True)
     about = models.TextField(_('About'), blank=True, null=True)
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
 

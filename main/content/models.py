@@ -87,6 +87,7 @@ class ImageContent(models.Model):
         verbose_name_plural = _('Image contents')
         ordering = ('order', )
 
+
 # File content
 class FileContent(models.Model):
     content = models.ForeignKey(
@@ -104,6 +105,7 @@ class FileContent(models.Model):
         verbose_name = _('File content')
         verbose_name_plural = _('File contents')
         ordering = ('order', )
+
 
 # Staff content
 class StaffContent(models.Model):
