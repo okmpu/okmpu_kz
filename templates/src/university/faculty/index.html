@@ -13,29 +13,31 @@
     <div class="flex-1 flex flex-col gap-8">
         
         <!-- Departments -->
-        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
-            {% for item in departments %}
-            <a
-                href="{% url 'department_detail' item.slug %}"
-                class="flex flex-col gap-2 justify-center items-center border p-4 rounded-lg transition-all hover:bg-gray-100"
-            >
-                <img
-                    src="{% if item.image %}{{ item.image.url }}{% else %}{{ item.faculty.image.url }}{% endif %}"  
-                    alt="Image"
-                    class="rounded-full w-36 h-36 border"
-                />
-                <div class="text-center">
-                    <h1 class="font-semibold line-clamp-2">
-                        {{ item.name }}
-                    </h1>
-                    <span class="text-gray-500">{% translate 'Department' %}</span>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
+        {% if departments %}
+            <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
+                {% for item in departments %}
+                <a
+                    href="{% url 'department_detail' item.slug %}"
+                    class="flex flex-col gap-2 justify-center items-center border p-4 rounded-lg transition-all hover:bg-gray-100"
+                >
+                    <img
+                        src="{% if item.image %}{{ item.image.url }}{% else %}{{ item.faculty.image.url }}{% endif %}"  
+                        alt="Image"
+                        class="rounded-full w-36 h-36 border"
+                    />
+                    <div class="text-center">
+                        <h1 class="font-semibold line-clamp-2">
+                            {{ item.name }}
+                        </h1>
+                        <span class="text-gray-500">{% translate 'Department' %}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        {% endif %}
 
         <!-- Dean's office -->
-        {% if deans_office|length > 0 %}
+        {% if deans_office %}
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <h1 class="font-semibold text-2xl">
@@ -131,11 +133,17 @@
         {% endif %}
 
         <!-- Personals -->
-        {% if personals|length > 0 %}
+        {% if personals %}
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <h1 class="font-semibold text-2xl">
-                        {% translate 'Faculty members' %}
+                        {% if faculty.faculty_type == 'faculty' %}
+                            {% translate 'Faculty members' %}
+                        {% elif faculty.faculty_type == 'institute' %}
+                            {% translate 'Institute members' %}
+                        {% else %}
+                            {% translate 'College members' %}
+                        {% endif %}
                     </h1>
                     <a href="{% url 'faculty_personals' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                         {% translate 'Read more' %}
@@ -225,7 +233,7 @@
         {% endif %}
 
         <!-- Projects -->
-        {% if projects|length > 0 %}
+        {% if projects %}
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <h1 class="font-semibold text-2xl">
@@ -324,119 +332,119 @@
         {% endif %}
 
         <!-- Edu materials -->
-        {% if materials|length > 0 %}
-        <div class="flex flex-col gap-2">
-            <div class="flex items-center justify-between">
-                <h1 class="font-semibold text-2xl">
-                    {% translate 'Edu materials' %}
-                </h1>
-                <a href="{% url 'faculty_materials' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                    {% translate 'Read more' %}
-                    <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                </a>
-            </div>
+        {% if materials %}
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h1 class="font-semibold text-2xl">
+                        {% translate 'Edu materials' %}
+                    </h1>
+                    <a href="{% url 'faculty_materials' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        {% translate 'Read more' %}
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
 
-            <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
-                {% for item in materials %}
-                    <div 
-                        data-modal-target="materials-modal-{{ item.id }}" data-modal-toggle="materials-modal-{{ item.id }}"
-                        class="grid gap-2 cursor-pointer border overflow-hidden rounded-lg transition-all hover:bg-gray-100"
-                    >
-                        <div class="py-6 bg-amber-500 flex justify-center">
-                            <svg class="w-16 h-16 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M6 5a2 2 0 0 1 2-2h4.157a2 2 0 0 1 1.656.879L15.249 6H19a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2v-5a3 3 0 0 0-3-3h-3.22l-1.14-1.682A3 3 0 0 0 9.157 6H6V5Z" clip-rule="evenodd"/>
-                                <path fill-rule="evenodd" d="M3 9a2 2 0 0 1 2-2h4.157a2 2 0 0 1 1.656.879L12.249 10H3V9Zm0 3v7a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-7H3Z" clip-rule="evenodd"/>
-                            </svg>
-                        </div>
-
-                        <div class="grid px-4 py-2">
-                            <h1 class="font-semibold line-clamp-2">
-                                {{ item.title }}
-                            </h1>
-                            <div class="font-semibold text-base text-blue-700">
-                                {{ item.department.name }}
-                            </div>
-                            <div class="flex items-center gap-2 text-gray-500">
-                                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
+                    {% for item in materials %}
+                        <div 
+                            data-modal-target="materials-modal-{{ item.id }}" data-modal-toggle="materials-modal-{{ item.id }}"
+                            class="grid gap-2 cursor-pointer border overflow-hidden rounded-lg transition-all hover:bg-gray-100"
+                        >
+                            <div class="py-6 bg-amber-500 flex justify-center">
+                                <svg class="w-16 h-16 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M6 5a2 2 0 0 1 2-2h4.157a2 2 0 0 1 1.656.879L15.249 6H19a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2v-5a3 3 0 0 0-3-3h-3.22l-1.14-1.682A3 3 0 0 0 9.157 6H6V5Z" clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M3 9a2 2 0 0 1 2-2h4.157a2 2 0 0 1 1.656.879L12.249 10H3V9Zm0 3v7a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-7H3Z" clip-rule="evenodd"/>
                                 </svg>
-                                <span>{{ item.date_created }}</span>
+                            </div>
+
+                            <div class="grid px-4 py-2">
+                                <h1 class="font-semibold line-clamp-2">
+                                    {{ item.title }}
+                                </h1>
+                                <div class="font-semibold text-base text-blue-700">
+                                    {{ item.department.name }}
+                                </div>
+                                <div class="flex items-center gap-2 text-gray-500">
+                                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                    </svg>
+                                    <span>{{ item.date_created }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Main modal -->
-                    <div id="materials-modal-{{ item.id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                        <div class="relative p-4 w-full max-w-screen-2xl max-h-full">
-                            <!-- Modal content -->
-                            <div class="relative bg-white h-full rounded-lg overflow-hidden shadow dark:bg-gray-700">
-                                <button type="button" class="fixed top-2 right-6 text-gray-400 bg-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="materials-modal-{{ item.id }}">
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                    </svg>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
+                        <!-- Main modal -->
+                        <div id="materials-modal-{{ item.id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                            <div class="relative p-4 w-full max-w-screen-2xl max-h-full">
+                                <!-- Modal content -->
+                                <div class="relative bg-white h-full rounded-lg overflow-hidden shadow dark:bg-gray-700">
+                                    <button type="button" class="fixed top-2 right-6 text-gray-400 bg-white hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="materials-modal-{{ item.id }}">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
 
-                                <div class="h-full overflow-y-auto p-4">
-                                    <div class="grid gap-2 mb-2">
-                                        <div>
-                                            <h1 class="font-semibold text-xl">
-                                                {{ item.title }}
-                                            </h1>
-                                            <div class="font-semibold text-base text-blue-700">
-                                                {{ item.department.name }}
-                                            </div>
-                                            <div class="grid text-gray-500">
-                                                <div class="flex items-center gap-2">
-                                                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
-                                                    </svg>
-                                                    <span>
-                                                        {{ item.author }}
-                                                    </span>
+                                    <div class="h-full overflow-y-auto p-4">
+                                        <div class="grid gap-2 mb-2">
+                                            <div>
+                                                <h1 class="font-semibold text-xl">
+                                                    {{ item.title }}
+                                                </h1>
+                                                <div class="font-semibold text-base text-blue-700">
+                                                    {{ item.department.name }}
+                                                </div>
+                                                <div class="grid text-gray-500">
+                                                    <div class="flex items-center gap-2">
+                                                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+                                                        </svg>
+                                                        <span>
+                                                            {{ item.author }}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="grid gap-2">
-                                        {% for file in item.material_files.all %}
-                                            <div class="flex justify-between items-center border rounded-md py-2 px-4">
-                                                <div class="flex gap-2 items-center">
-                                                    <svg class="w-8 h-8 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-1 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Zm2-5a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 4a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0v-3Z" clip-rule="evenodd"/>
-                                                    </svg>
-                                                    
-                                                    <div class="flex-1 max-w-screen-md">
-                                                        <h1 class="text-foreground font-semibold line-clamp-1">
-                                                            {{ file.caption }}
-                                                        </h1>
-                                                        <span class="text-gray-500">{{ file.material.title }}</span>
+                                        <div class="grid gap-2">
+                                            {% for file in item.material_files.all %}
+                                                <div class="flex justify-between items-center border rounded-md py-2 px-4">
+                                                    <div class="flex gap-2 items-center">
+                                                        <svg class="w-8 h-8 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-1 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Zm2-5a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 4a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0v-3Z" clip-rule="evenodd"/>
+                                                        </svg>
+                                                        
+                                                        <div class="flex-1 max-w-screen-md">
+                                                            <h1 class="text-foreground font-semibold line-clamp-1">
+                                                                {{ file.caption }}
+                                                            </h1>
+                                                            <span class="text-gray-500">{{ file.material.title }}</span>
+                                                        </div>
                                                     </div>
+            
+                                                    <a href="{{ file.file.url }}"
+                                                        target="_blank"
+                                                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
+                                                        type="button">
+                                                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+                                                        </svg>
+                                                    </a>
                                                 </div>
-        
-                                                <a href="{{ file.file.url }}"
-                                                    target="_blank"
-                                                    class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
-                                                    type="button">
-                                                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        {% endfor %}
+                                            {% endfor %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
 
         <!-- Achievements -->
-        {% if achievements|length > 0 %}
+        {% if achievements %}
             <div class="flex flex-col gap-2">
                 <div class="flex items-center justify-between">
                     <h1 class="font-semibold text-2xl">
@@ -527,123 +535,119 @@
     <!-- Publics -->
     <div class="w-full grid gap-8 lg:max-w-md">
         <!-- News -->
-        <div>
-            {% if news|length > 0 %}
-                <div class="grid gap-4">
-                    <div class="flex justify-between items-center">
-                        <h1 class="font-semibold text-2xl">Жаңалықтар</h1>
-                        <a href="{% url 'faculty_publics' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Толығырақ
-                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="grid gap-2">
-                        {% for item in news %}
-                            <a 
-                                href="{% url 'news_detail' item.id %}" 
-                                class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
-                                
-                            >
-                                <div class="overflow-hidden w-36 h-full">
-                                    <img 
-                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
-                                        class="w-full h-full object-cover" alt=""
-                                    >
-                                </div>
-                                <div class="p-2 flex-1">
-                                    <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
-                                    <span class="text-gray-500">{{ item.date_created }}</span>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
+        {% if news %}
+            <div class="grid gap-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="font-semibold text-2xl">Жаңалықтар</h1>
+                    <a href="{% url 'faculty_publics' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Толығырақ
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
                 </div>
-            {% endif %}
-        </div>
+
+                <div class="grid gap-2">
+                    {% for item in news %}
+                        <a 
+                            href="{% url 'news_detail' item.id %}" 
+                            class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                            
+                        >
+                            <div class="overflow-hidden w-36 h-full">
+                                <img 
+                                    src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
+                                    class="w-full h-full object-cover" alt=""
+                                >
+                            </div>
+                            <div class="p-2 flex-1">
+                                <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
 
         <!-- Events -->
-        <div>
-            {% if events|length > 0 %}
-                <div class="grid gap-4">
-                    <div class="flex justify-between items-center">
-                        <h1 class="font-semibold text-2xl">Іс-шаралар</h1>
-                        <a href="{% url 'faculty_publics' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Толығырақ
-                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="grid gap-2">
-                        {% for item in events %}
-                            <a 
-                                href="{% url 'event_detail' item.id %}" 
-                                class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
-                                
-                            >
-                                <div class="overflow-hidden w-36 h-full">
-                                    <img 
-                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
-                                        class="w-full h-full object-cover" alt=""
-                                    >
-                                </div>
-                                <div class="p-2 flex-1">
-                                    <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
-                                    <span class="text-gray-500">{{ item.date_created }}</span>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
+        {% if events|length > 0 %}
+            <div class="grid gap-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="font-semibold text-2xl">Іс-шаралар</h1>
+                    <a href="{% url 'faculty_publics' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Толығырақ
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
                 </div>
-            {% endif %}
-        </div>
+
+                <div class="grid gap-2">
+                    {% for item in events %}
+                        <a 
+                            href="{% url 'event_detail' item.id %}" 
+                            class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                            
+                        >
+                            <div class="overflow-hidden w-36 h-full">
+                                <img 
+                                    src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
+                                    class="w-full h-full object-cover" alt=""
+                                >
+                            </div>
+                            <div class="p-2 flex-1">
+                                <h1 class="font-semibold line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
 
         <!-- Announcements -->
-        <div>
-            {% if announcements|length > 0 %}
-                <div class="grid gap-4">
-                    <div class="flex justify-between items-center">
-                        <h1 class="font-semibold text-2xl">Хабарландырулар</h1>
-                        <a href="{% url 'faculty_publics' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                            Толығырақ
-                            <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <div class="grid gap-2">
-                        {% for item in announcements %}
-                            <a 
-                                href="{% url 'announcement' item.id %}" 
-                                class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
-                                
-                            >
-                                <div class="overflow-hidden bg-amber-500 flex items-center p-6 h-full">
-                                    <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd"
-                                        d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
-                                        clip-rule="evenodd" />
-                                    <path fill-rule="evenodd"
-                                        d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                </div>
-                                <div class="p-2 flex-1">
-                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
-                                    <span class="text-gray-500">{{ item.date_created }}</span>
-                                </div>
-                            </a>
-                        {% endfor %}
-                    </div>
+        {% if announcements %}
+            <div class="grid gap-4">
+                <div class="flex justify-between items-center">
+                    <h1 class="font-semibold text-2xl">Хабарландырулар</h1>
+                    <a href="{% url 'faculty_publics' faculty.slug %}" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                        Толығырақ
+                        <svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
                 </div>
-            {% endif %}
-        </div>
+
+                <div class="grid gap-2">
+                    {% for item in announcements %}
+                        <a 
+                            href="{% url 'announcement' item.id %}" 
+                            class="border flex gap-2 items-center rounded-lg overflow-hidden transition-all hover:bg-gray-100"
+                            
+                        >
+                            <div class="overflow-hidden bg-amber-500 flex items-center p-6 h-full">
+                                <svg class="w-10 h-10 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+                                    clip-rule="evenodd" />
+                                <path fill-rule="evenodd"
+                                    d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            </div>
+                            <div class="p-2 flex-1">
+                                <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                <span class="text-gray-500">{{ item.date_created }}</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
 {% endblock faculty_content %}

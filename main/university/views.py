@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 
-from main.public.models import News, Event, Announcement
+from main.public.models import News, Event, Announcement, Program
 from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty, \
     Material, Document
 
@@ -19,84 +19,97 @@ def faculties_view(request):
 # Faculty detail
 def faculty_detail_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
-    departments = Department.objects.filter(faculty=faculty)
-
-    # personals
-    deans_office = Personal.objects.filter(faculty=faculty, p_type='deans_office')
-    personals = Personal.objects.filter(
-        faculty=faculty
-    ).exclude(p_type='deans_office').order_by('order')[:3]
-
-    # documents and more...
-    projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-    materials = Material.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-    achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-
-    # publications
-    news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-    events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+    personals = Personal.objects.filter(faculty=faculty).exclude(p_type='deans_office').order_by('order')[:3]
 
     context = {
         'faculty': faculty,
-        'departments': departments,
-        'deans_office': deans_office,
-        'personals': personals,
-        'projects': projects,
-        'materials': materials,
-        'achievements': achievements,
-        'news': news,
-        'events': events,
-        'announcements': announcements,
+        'personals': personals
     }
+    if faculty.faculty_type == 'faculty':
+        departments = Department.objects.filter(faculty=faculty)
+        deans_office = Personal.objects.filter(faculty=faculty, p_type='deans_office')
+
+        # documents and more...
+        projects = Project.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        materials = Material.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+
+        # publications
+        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+
+        context['departments'] = departments
+        context['deans_office'] = deans_office
+        context['projects'] = projects
+        context['materials'] = materials
+        context['achievements'] = achievements
+        context['news'] = news
+        context['events'] = events
+        context['announcements'] = announcements
+
+    elif faculty.faculty_type == 'institute':
+        # documents and more...
+        projects = Project.objects.filter(faculty=faculty)[:3]
+        documents = Document.objects.filter(faculty=faculty)[:3]
+        achievements = Success.objects.filter(faculty=faculty)[:3]
+
+        # publications
+        news = News.objects.filter(faculty=faculty)[:3]
+        events = Event.objects.filter(faculty=faculty)[:3]
+        announcements = Announcement.objects.filter(faculty=faculty)[:3]
+
+        context['projects'] = projects
+        context['documents'] = documents
+        context['achievements'] = achievements
+        context['news'] = news
+        context['events'] = events
+        context['announcements'] = announcements
+
     return render(request, 'src/university/faculty/index.html', context)
-
-
-# Faculty about
-def department_about_view(request, slug):
-    department = get_object_or_404(Department, slug=slug)
-
-    context = {
-        'department': department,
-    }
-    return render(request, 'src/university/department/about.html', context)
 
 
 # Faculty personals
 def faculty_personals_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
-    deans_office = Personal.objects.filter(faculty=faculty, p_type='deans_office')
-    teachers = Personal.objects.filter(faculty=faculty).filter(Q(p_type='department_manage') | Q(p_type='teacher'))
-    students = Personal.objects.filter(faculty=faculty, p_type='student')
+
     context = {
         'faculty': faculty,
-        'personals': [
-            {
-                'id': 1,
-                'name_kk': 'Деканат',
-                'name_ru': 'Деканат',
-                'name_en': 'Deans office',
-                'type': 'deans_office',
-                'results': deans_office
-            },
-            {
-                'id': 2,
-                'name_kk': 'Оқытушы/Профессорлар',
-                'name_ru': 'Преподаватель/Профессора',
-                'name_en': 'Teacher/Professors',
-                'type': 'teachers',
-                'results': teachers
-            },
-            {
-                'id': 3,
-                'name_kk': 'Белсенді студенттер',
-                'name_ru': 'Активные студенты',
-                'name_en': 'Active students',
-                'type': 'students',
-                'results': students
-            },
-        ]
     }
+    if faculty.faculty_type == 'faculty':
+        deans_office = Personal.objects.filter(faculty=faculty, p_type='deans_office')
+        teachers = Personal.objects.filter(faculty=faculty).filter(Q(p_type='department_manage') | Q(p_type='teacher'))
+        students = Personal.objects.filter(faculty=faculty, p_type='student')
+        context['personals'] = [
+                {
+                    'id': 1,
+                    'name_kk': 'Деканат',
+                    'name_ru': 'Деканат',
+                    'name_en': 'Deans office',
+                    'type': 'deans_office',
+                    'results': deans_office
+                },
+                {
+                    'id': 2,
+                    'name_kk': 'Оқытушы/Профессорлар',
+                    'name_ru': 'Преподаватель/Профессора',
+                    'name_en': 'Teacher/Professors',
+                    'type': 'teachers',
+                    'results': teachers
+                },
+                {
+                    'id': 3,
+                    'name_kk': 'Белсенді студенттер',
+                    'name_ru': 'Активные студенты',
+                    'name_en': 'Active students',
+                    'type': 'students',
+                    'results': students
+                },
+            ]
+    elif faculty.faculty_type == 'institute':
+        personals = Personal.objects.filter(faculty=faculty).exclude(p_type='deans_office').order_by('order')[:3]
+        context['personals'] = personals
+
     return render(request, 'src/university/faculty/personals.html', context)
 
 
@@ -106,6 +119,10 @@ def faculty_programs_view(request, slug):
     context = {
         'faculty': faculty,
     }
+    if faculty.faculty_type == 'institute':
+        programs = Program.objects.filter(Q(slug='magistracy') | Q(slug='doctoral'))
+        context['programs'] = programs
+
     return render(request, 'src/university/faculty/programs.html', context)
 
 
@@ -133,6 +150,18 @@ def faculty_projects_view(request, slug):
     return render(request, 'src/university/faculty/projects.html', context)
 
 
+# Faculty documents
+def faculty_documents_view(request, slug):
+    faculty = get_object_or_404(Faculty, slug=slug)
+    documents = Document.objects.filter(faculty=faculty)
+
+    context = {
+        'faculty': faculty,
+        'documents': documents,
+    }
+    return render(request, 'src/university/faculty/documents.html', context)
+
+
 # Faculty achievements
 def faculty_achievements_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
@@ -148,11 +177,21 @@ def faculty_achievements_view(request, slug):
 # Faculty publics
 def faculty_publics_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
-    departments = Department.objects.filter(faculty=faculty)
-    news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-    events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-    announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+    context = {
+        'faculty': faculty,
+    }
+    if faculty.faculty_type == 'faculty':
+        departments = Department.objects.filter(faculty=faculty)
+        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+        context['departments'] = departments
+        context['news'] = news
+        context['events'] = events
+        context['announcements'] = announcements
 
+    elif faculty.faculty_type == 'institute':
+        pass
     context = {
         'faculty': faculty,
         'news': news,
@@ -160,18 +199,6 @@ def faculty_publics_view(request, slug):
         'announcements': announcements,
     }
     return render(request, 'src/university/faculty/publics.html', context)
-
-
-# Faculty documents
-def faculty_documents_view(request, slug):
-    faculty = get_object_or_404(Faculty, slug=slug)
-    documents = Document.objects.filter(faculty=faculty)
-
-    context = {
-        'faculty': faculty,
-        'documents': documents,
-    }
-    return render(request, 'src/university/faculty/documents.html', context)
 
 
 # Faculty about
@@ -313,6 +340,16 @@ def department_publics_view(request, slug):
         'announcements': announcements,
     }
     return render(request, 'src/university/department/publics.html', context)
+
+
+# Department about
+def department_about_view(request, slug):
+    department = get_object_or_404(Department, slug=slug)
+
+    context = {
+        'department': department,
+    }
+    return render(request, 'src/university/department/about.html', context)
 
 
 # Personal detail
