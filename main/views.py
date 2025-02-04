@@ -1,13 +1,13 @@
 from django.shortcuts import get_object_or_404, render
 from main.public.models import Headliner, News, Announcement, Event, Program, Journal, Partner
-from main.university.models import Faculty
+from main.university.models import Faculty, FacultyProgram
 
 
 # Home page
 # ----------------------------------------------------------------------------------------------------------------------
 def home(request):
     headliners = Headliner.objects.filter()[:5]
-    programs = Program.objects.all()
+    programs = FacultyProgram.objects.all()
     news = News.objects.filter(faculty=None, department=None)[:6]
     announcements = Announcement.objects.filter(faculty=None, department=None)[:6]
     events = Event.objects.filter(faculty=None, department=None)[:4]
@@ -31,7 +31,7 @@ def home(request):
 # Program page
 # ----------------------------------------------------------------------------------------------------------------------
 def program_detail(request, slug):
-    program = get_object_or_404(Program, slug=slug)
+    program = get_object_or_404(FacultyProgram, slug=slug)
 
     context = {
         'program': program

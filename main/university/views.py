@@ -116,16 +116,16 @@ def faculty_personals_view(request, slug):
 # Faculty programs
 def faculty_programs_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
-    programs = FacultyProgram.objects.all()
     context = {
         'faculty': faculty,
-        'programs': programs,
     }
     if faculty.faculty_type == 'faculty':
+        programs = FacultyProgram.objects.all()
         specialities = FacultySpecialty.objects.filter(faculty=faculty)
+        context['programs'] = programs
         context['specialities'] = specialities
     elif faculty.faculty_type == 'institute':
-        pass
+        context['programs'] = FacultyProgram.objects.exclude(slug='bachelor')
 
     return render(request, 'src/university/faculty/programs.html', context)
 

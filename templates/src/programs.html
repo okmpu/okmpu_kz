@@ -64,13 +64,15 @@
                             {{ item.name }}
                         </th>
                         <th scope="row" class="px-6 py-4">
-                            <a 
-                                href="{{ item.url }}" 
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                target="_blank"
-                            >
-                                {{ item.url }}
-                            </a>
+                            {% if item.url %}
+                                <a 
+                                    href="{{ item.url }}" 
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                    target="_blank"
+                                >
+                                    {{ item.url }}
+                                </a>
+                            {% endif %}
                         </th>
                     </tr>
                 {% endfor %}

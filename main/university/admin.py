@@ -1,6 +1,6 @@
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin, SummernoteModelAdminMixin
-from modeltranslation.admin import TranslationAdmin, TranslationStackedInline, TranslationTabularInline
+from django_summernote.admin import SummernoteModelAdmin
+from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from .models import Faculty, Department, Personal, Project, FacultyProgram, FacultySpecialty, Success, MaterialDocs, \
     Material, DocumentFile, Document, Division
 
