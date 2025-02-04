@@ -26,39 +26,6 @@ class Headliner(models.Model):
         ordering = ('order', )
 
 
-# Programs
-# ----------------------------------------------------------------------------------------------------------------------
-class Program(models.Model):
-    name = models.CharField(_('Name'), max_length=64)
-    slug = models.SlugField(_('Slug'), max_length=64)
-    order = models.PositiveSmallIntegerField(_('Order'), default=0)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = _('Program')
-        verbose_name_plural = _('Programs')
-        ordering = ('order', )
-
-
-class Specialty(models.Model):
-    program = models.ForeignKey(
-        Program, on_delete=models.CASCADE,
-        related_name='program_items', verbose_name=_('Program')
-    )
-    code = models.CharField(_('Code'), max_length=128)
-    name = models.CharField(_('Name'), max_length=128)
-    url = models.URLField(_('URL'), max_length=128, null=True, blank=True)
-
-    def __str__(self):
-        return '{} - {}'.format(self.code, self.name)
-
-    class Meta:
-        verbose_name = _('Specialty')
-        verbose_name_plural = _('Specialties')
-
-
 # News
 # ----------------------------------------------------------------------------------------------------------------------
 class News(models.Model):

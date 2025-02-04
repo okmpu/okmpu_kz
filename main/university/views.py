@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 
-from main.public.models import News, Event, Announcement, Program
+from main.public.models import News, Event, Announcement
 from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty, \
     Material, Document
 

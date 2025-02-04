@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from main.public.models import Headliner, News, Announcement, Event, Program, Journal, Partner
+from main.public.models import Headliner, News, Announcement, Event, Journal, Partner
 from main.university.models import Faculty, FacultyProgram
 
 
