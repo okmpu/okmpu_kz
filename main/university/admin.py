@@ -7,18 +7,11 @@ from .models import Faculty, Department, Personal, Project, FacultyProgram, Facu
 
 # Faculty
 # ----------------------------------------------------------------------------------------------------------------------
-class DepartmentTab(SummernoteModelAdminMixin, TranslationStackedInline):
-    model = Department
-    extra = 0
-    prepopulated_fields = {'slug': ('name_en',)}
-
-
 class FacultyAdmin(TranslationAdmin, SummernoteModelAdmin):
-    list_display = ('name', 'faculty_type', 'slug', )
+    list_display = ('name', 'faculty_type', 'slug', 'order', )
     list_filter = ('faculty_type', )
     search_fields = ('name', 'slug',)
     prepopulated_fields = {'slug': ('name_en', )}
-    inlines = [DepartmentTab, ]
 
 
 # Department
@@ -47,11 +40,17 @@ class FacultySpecialtyTab(TranslationTabularInline):
 
 
 class FacultyProgramAdmin(TranslationAdmin):
-    list_display = ('name', 'slug', 'department', )
-    list_filter = ('department', )
+    list_display = ('name', 'slug', )
     search_fields = ('name', 'slug', )
     inlines = [FacultySpecialtyTab, ]
     prepopulated_fields = {'slug': ('name_en', )}
+
+
+
+class FacultySpecialtyAdmin(TranslationAdmin):
+    list_display = ('code', 'name', 'program', 'faculty', 'department', )
+    list_filter = ('program', 'faculty', 'department', )
+    search_fields = ('code', 'name', )
 
 
 # Projects
@@ -110,6 +109,7 @@ class DocumentAdmin(TranslationAdmin):
 admin.site.register(Faculty, FacultyAdmin)
 admin.site.register(Department, DepartmentAdmin)
 admin.site.register(FacultyProgram, FacultyProgramAdmin)
+admin.site.register(FacultySpecialty, FacultySpecialtyAdmin)
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Material, MaterialAdmin)
 admin.site.register(Success, SuccessAdmin)

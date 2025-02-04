@@ -25,6 +25,7 @@ class Faculty(models.Model):
     )
     faculty_type = models.CharField(_('Faculty type'), choices=FACULTY_TYPE, default='faculty', max_length=16)
     about = models.TextField(_('About the faculty'), blank=True, null=True)
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return self.name
@@ -32,6 +33,7 @@ class Faculty(models.Model):
     class Meta:
         verbose_name = _('Faculty')
         verbose_name_plural = _('Faculties')
+        ordering = ('order', )
 
 
 # Department
@@ -52,6 +54,7 @@ class Department(models.Model):
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
     about = models.TextField(_('About the department'), blank=True, null=True)
+    # order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return '{} - {}'.format(self.faculty.name, self.name)
@@ -160,14 +163,6 @@ class Personal(models.Model):
 class FacultyProgram(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
-    faculty = models.ForeignKey(
-        Faculty, on_delete=models.CASCADE,
-        related_name='programs', verbose_name=_('Faculty'), null=True, blank=True
-    )
-    department = models.ForeignKey(
-        Department, on_delete=models.CASCADE,
-        related_name='programs', verbose_name=_('Department'), null=True, blank=True
-    )
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
     def __str__(self):
@@ -181,8 +176,16 @@ class FacultyProgram(models.Model):
 
 class FacultySpecialty(models.Model):
     program = models.ForeignKey(
-        FacultyProgram, on_delete=models.CASCADE,
-        related_name='program_items', verbose_name=_('Program')
+        FacultyProgram, on_delete=models.SET_NULL,
+        related_name='program_items', verbose_name=_('Program'), null=True, blank=True
+    )
+    faculty = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE,
+        related_name='program_items', verbose_name=_('Faculty'), null=True, blank=True
+    )
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE,
+        related_name='program_items', verbose_name=_('Department'), null=True, blank=True
     )
     code = models.CharField(_('Code'), max_length=128)
     name = models.CharField(_('Name'), max_length=128)

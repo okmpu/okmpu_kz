@@ -116,13 +116,25 @@ def faculty_personals_view(request, slug):
 # Faculty programs
 def faculty_programs_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
+    programs = FacultyProgram.objects.all()
+    departments = []
+    for department in faculty.departments.all():
+        item = {
+            'department': department,
+        }
+        for program in programs:
+            item['programs'] = []
+            ls.append({
+                'name': item.name,
+                'slug': item.slug,
+                'program_items': FacultySpecialty.objects.filter(program=item)
+            })
     context = {
         'faculty': faculty,
+        'programs': ls
     }
-    if faculty.faculty_type == 'institute':
-        programs = Program.objects.filter(Q(slug='magistracy') | Q(slug='doctoral'))
-        context['programs'] = programs
 
+    print(ls)
     return render(request, 'src/university/faculty/programs.html', context)
 
 
@@ -247,7 +259,8 @@ def department_detail_view(request, slug):
 # Department programs
 def department_programs_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    programs = FacultyProgram.objects.filter(department=department)
+
+    programs = FacultySpecialty.objects.filter(department=department)
 
     context = {
         'department': department,
