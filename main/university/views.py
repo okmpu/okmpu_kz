@@ -9,9 +9,9 @@ from main.university.models import Faculty, Project, Department, Personal, Facul
 # Faculties page
 # ----------------------------------------------------------------------------------------------------------------------
 def faculties_view(request):
-    items = Faculty.objects.all()
+    faculties = Faculty.objects.all()
     context = {
-        'faculties': items
+        'faculties': faculties
     }
     return render(request, 'src/university/faculties.html', context)
 
@@ -117,24 +117,16 @@ def faculty_personals_view(request, slug):
 def faculty_programs_view(request, slug):
     faculty = get_object_or_404(Faculty, slug=slug)
     programs = FacultyProgram.objects.all()
-    departments = []
-    for department in faculty.departments.all():
-        item = {
-            'department': department,
-        }
-        for program in programs:
-            item['programs'] = []
-            ls.append({
-                'name': item.name,
-                'slug': item.slug,
-                'program_items': FacultySpecialty.objects.filter(program=item)
-            })
     context = {
         'faculty': faculty,
-        'programs': ls
+        'programs': programs,
     }
+    if faculty.faculty_type == 'faculty':
+        specialities = FacultySpecialty.objects.filter(faculty=faculty)
+        context['specialities'] = specialities
+    elif faculty.faculty_type == 'institute':
+        pass
 
-    print(ls)
     return render(request, 'src/university/faculty/programs.html', context)
 
 
@@ -259,12 +251,13 @@ def department_detail_view(request, slug):
 # Department programs
 def department_programs_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
-
-    programs = FacultySpecialty.objects.filter(department=department)
+    programs = FacultyProgram.objects.all()
+    specialities = FacultySpecialty.objects.filter(department=department)
 
     context = {
         'department': department,
         'programs': programs,
+        'specialities': specialities,
     }
     return render(request, 'src/university/department/programs.html', context)
 

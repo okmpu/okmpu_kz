@@ -3,7 +3,14 @@
 {% load i18n %}
 
 {% block title %}
-    {% translate 'Faculty about' %} - Zhanibekov University
+    {% if faculty.faculty_type == 'faculty' %}
+        {% translate 'Faculty about' %}
+    {% elif faculty.faculty_type == 'institute' %}
+        {% translate 'Institute about' %}
+    {% else %}
+        {% translate 'College about' %}
+    {% endif %}
+        - Zhanibekov University
 {% endblock %}
 
 {% block faculty_content %}

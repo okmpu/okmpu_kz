@@ -1,6 +1,7 @@
 {% extends 'src/university/department/layouts.html' %}
 {% load static %}
 {% load i18n %}
+{% load program_filters %} 
 
 
 {% block title %}
@@ -40,7 +41,7 @@
 
 <div class="w-full py-8 grid gap-4">
     <ul class="flex flex-wrap font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
-        {% for item in department.programs.all %}
+        {% for item in programs %}
             <li class="me-2">
                 <button id="{{ department.slug }}{{ item.slug }}-tab" data-tabs-target="#{{ department.slug }}{{ item.slug }}" type="button" role="tab" aria-controls="{{ department.slug }}{{ item.slug }}" aria-selected="{% if item.slug == 'bachelor' %}true{% else %}false{% endif %}" class="inline-block p-4 text-blue-600 rounded-ss-lg hover:bg-gray-100">
                     {{ item.name }}
@@ -49,7 +50,7 @@
         {% endfor %}
     </ul>
     <div id="defaultTabContent">
-        {% for item in department.programs.all %}
+        {% for item in programs %}
             <div class="hidden bg-white rounded-lg dark:bg-gray-800" id="{{ department.slug }}{{ item.slug }}" role="tabpanel"
                 aria-labelledby="{{ department.slug }}{{ item.slug }}-tab"
             >
@@ -69,7 +70,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for s_item in item.program_items.all %}
+                            {% filter_specialities item department as specialities %}
+                            {% for s_item in specialities %}
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4">
                                         {{ s_item.code }}

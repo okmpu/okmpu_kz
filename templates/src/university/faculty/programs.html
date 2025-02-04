@@ -1,6 +1,7 @@
 {% extends 'src/university/faculty/layouts.html' %}
 {% load static %}
 {% load i18n %}
+{% load program_filters %} 
 
 
 {% block title %}
@@ -88,7 +89,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {% for s_item in item.program_items %}
+                                                {% filter_specialities item department as specialities %} 
+                                                {% for s_item in specialities %}
                                                 <tr class="bg-white border-b">
                                                     <td class="px-6 py-4">
                                                         {{ s_item.code }}
