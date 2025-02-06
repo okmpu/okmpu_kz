@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Category, Content
+from ..public.models import Event, Announcement, News
 from ..university.models import Division
 
 
@@ -34,10 +35,17 @@ def division_detail(request, slug):
     item = get_object_or_404(Division, slug=slug)
     departments = item.children.filter(div_type='department')
     divisions = item.children.filter(div_type='div')
+    news = News.objects.filter(division=item)
+    events = Event.objects.filter(division=item)
+    announcements = Announcement.objects.filter(division=item)
+
     context = {
         'division': item,
         'departments': departments,
         'divisions': divisions,
+        'news': news,
+        'events': events,
+        'announcements': announcements
     }
     return render(request, 'src/university/division/index.html', context)
 

@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from main.university.models import Department, Faculty
+from main.university.models import Department, Faculty, Division
 from main.validators import validate_file_size, validate_poster
 
 
@@ -36,6 +36,11 @@ class News(models.Model):
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
         related_name='department_news', verbose_name=_('Department'), blank=True, null=True
+    )
+    division = models.ForeignKey(
+        Division, on_delete=models.CASCADE,
+        related_name='division_news', verbose_name=_('Division'), null=True, blank=True,
+        help_text=_('Warning! This field is not relevant for faculties and departments')
     )
     title = models.CharField(_('Title'), max_length=255)
     poster = models.ImageField(
@@ -82,6 +87,11 @@ class Announcement(models.Model):
         Department, on_delete=models.CASCADE,
         related_name='department_announcements', verbose_name=_('Department'), blank=True, null=True
     )
+    division = models.ForeignKey(
+        Division, on_delete=models.CASCADE,
+        related_name='division_announcements', verbose_name=_('Division'), null=True, blank=True,
+        help_text=_('Warning! This field is not relevant for faculties and departments')
+    )
     title = models.CharField(_('Title'), max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_('Author'))
     description = models.TextField(_('Description'), blank=True, null=True)
@@ -122,6 +132,11 @@ class Event(models.Model):
     department = models.ForeignKey(
         Department, on_delete=models.CASCADE,
         related_name='department_events', verbose_name=_('Department'), blank=True, null=True
+    )
+    division = models.ForeignKey(
+        Division, on_delete=models.CASCADE,
+        related_name='division_events', verbose_name=_('Division'), null=True, blank=True,
+        help_text=_('Warning! This field is not relevant for faculties and departments')
     )
     title = models.CharField(_('Title'), max_length=255)
     poster = models.ImageField(
