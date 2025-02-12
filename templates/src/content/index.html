@@ -116,7 +116,7 @@
                         <!-- Text contents -->
                         {% if content.text_contents.all|length > 0 %}
                             {% for item in content.text_contents.all %}
-                                <div class="text-gray-500 text-justify">
+                                <div class="text-gray-500 text-justify" id="text-content">
                                     {{ item.body|safe }}
                                 </div>
                             {% endfor %}
