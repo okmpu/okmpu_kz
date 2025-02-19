@@ -300,6 +300,17 @@ def department_personals_view(request, slug):
     return render(request, 'src/university/department/personals/index.html', context)
 
 
+def department_documents_view(request, slug):
+    department = get_object_or_404(Department, slug=slug)
+    documents = Document.objects.filter(department=department)
+
+    context = {
+        'department': department,
+        'documents': documents,
+    }
+    return render(request, 'src/university/department/documents.html', context)
+
+
 def department_materials_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
     materials = Material.objects.filter(department=department)

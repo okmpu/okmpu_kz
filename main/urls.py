@@ -42,6 +42,7 @@ urlpatterns = [
     path('university/departments/<slug>/achievements/', university_views.department_achievements_view, name='department_achievements'),
     path('university/departments/<slug>/personals/', university_views.department_personals_view, name='department_personals'),
     path('university/departments/<slug>/publics/', university_views.department_publics_view, name='department_publics'),
+    path('university/departments/<slug>/documents/', university_views.department_documents_view, name='department_documents'),
     path('university/departments/<slug>/about/', university_views.department_about_view, name='department_about'),
 
     path('university/personals/<personal_pk>/', university_views.personal_detail_view, name='personal_detail')

@@ -85,6 +85,15 @@
                 </a>
             </li>
             <li>
+                {% url 'department_documents' department.slug as department_documents_url %}
+                <a
+                    href="{{ department_documents_url }}"
+                    class="border-b-4 block whitespace-nowrap font-medium p-2 transition-all hover:border-blue-700 {% if request.path == department_documents_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
+                >
+                    {% translate 'Department documents' %}
+                </a>
+            </li>
+            <li>
                 {% url 'department_achievements' department.slug as department_achievements_url %}
                 <a
                     href="{{ department_achievements_url }}"
