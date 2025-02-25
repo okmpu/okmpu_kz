@@ -39,3 +39,11 @@ def program_detail(request, slug):
         'program': program
     }
     return render(request, 'src/programs.html', context)
+
+
+# Blog
+# ----------------------------------------------------------------------------------------------------------------------
+def blog_rector(request):
+
+    context = {}
+    return render(request, 'src/blog_rector.html', context)

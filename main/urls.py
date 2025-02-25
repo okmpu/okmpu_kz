@@ -9,6 +9,7 @@ from main.university import views as university_views
 urlpatterns = [
     path('', views.home, name='home'),
     path('programs/<slug>/', views.program_detail, name='program_detail'),
+    path('blog-rector/', views.blog_rector, name='blog_rector'),
 
     # public app urls...
     path('publics/news/', main_views.news_view, name='news'),

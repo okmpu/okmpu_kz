@@ -1,0 +1,149 @@
+{% extends 'src/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+Ректор блогы - Zhanibekov University
+{% endblock %}
+
+
+{% block content %}
+<div class="container mx-auto grid gap-8 py-16 px-4">
+
+    <div class="max-w-screen-md w-full mx-auto">
+        <div>
+            <h1 class="text-2xl font-semibold">Ректор блогы</h1>
+            <span class="block text-gray-500">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Totam pariatur quaerat doloremque quis alias fugit ullam maiores officiis eos cupiditate!
+            </span>
+        </div>
+
+        <form class="mt-6">
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
+                <div>
+                    <label for="first_name" class="block mb-2 font-medium text-gray-900 dark:text-white">
+                        Аты
+                    </label>
+                    <input type="text" id="first_name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Есіміңіз" required />
+                </div>
+                <div>
+                    <label for="last_name" class="block mb-2 font-medium text-gray-900 dark:text-white">
+                        Тегі
+                    </label>
+                    <input type="text" id="last_name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Тегіңіз" required />
+                </div>
+
+            </div>
+            <div class="mb-6">
+                <label for="email" class="block mb-2 font-medium text-gray-900 dark:text-white">
+                    Электронды пошта
+                </label>
+                <input type="email" id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="john.doe@company.com" required />
+            </div>
+
+            <div class="mb-6">
+                <label for="message" class="block mb-2 font-medium text-gray-900 dark:text-white">
+                    Сұрақ блогы
+                </label>
+                <textarea id="message" rows="4"
+                    class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Сұрағыңызды қойыңыз..."></textarea>
+            </div>
+
+            <button type="submit"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Жіберу
+            </button>
+        </form>
+
+        <div class="mt-6">
+            <h1 class="text-2xl font-semibold">Жауап берілген сұрақтар тізімі</h1>
+        </div>
+        <div class="mt-6 grid gap-4">
+            
+            <div class="flex items-start gap-2.5">
+                <div class="w-10 h-10 rounded-full border bg-gray-100"></div>
+                <div
+                    class="flex-1 flex flex-col w-full leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <span class="font-semibold text-gray-900 dark:text-white">Жангелді Тултебаев</span>
+                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">11:46</span>
+                    </div>
+                    <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
+                        Саламатсызба Сүгірбаева Гулжан ханым! Сізден білгім келгені менім қызым
+                        Өскемен қаласындағ С.Аманжолов атындағы университетке жалпы конкурс бойынша оқуға
+                        түскен еді.Мамандығ « Азық түлік өнімдерінің өңдірісі» Енді сіздерге биология-химия
+                        мамандығына ауысуға болама ? ақылы бөліміне 1 —курсты аяқтады.
+                    </p>
+                    <a href="#"
+                        class="flex gap-2 items-center px-4 py-2 rounded-lg transition bg-white hover:bg-gray-50">
+                        <div class="w-10 h-10 rounded-full border bg-gray-100">
+                            <img src="" alt="" class="w-full">
+                        </div>
+                        <span class="font-normal text-gray-500 dark:text-gray-400">Жауап берілді</span>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="flex items-start gap-2.5">
+                <div class="w-10 h-10 rounded-full border bg-gray-100"></div>
+                <div
+                    class="flex-1 flex flex-col w-full leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <span class="font-semibold text-gray-900 dark:text-white">Жангелді Тултебаев</span>
+                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">11:46</span>
+                    </div>
+                    <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
+                        Саламатсызба Сүгірбаева Гулжан ханым! Сізден білгім келгені менім қызым
+                        Өскемен қаласындағ С.Аманжолов атындағы университетке жалпы конкурс бойынша оқуға
+                        түскен еді.Мамандығ « Азық түлік өнімдерінің өңдірісі» Енді сіздерге биология-химия
+                        мамандығына ауысуға болама ? ақылы бөліміне 1 —курсты аяқтады.
+                    </p>
+                    <a href="#"
+                        class="flex gap-2 items-center px-4 py-2 rounded-lg transition bg-white hover:bg-gray-50">
+                        <div class="w-10 h-10 rounded-full border bg-gray-100">
+                            <img src="" alt="" class="w-full">
+                        </div>
+                        <span class="font-normal text-gray-500 dark:text-gray-400">Жауап берілді</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+                <div class="w-10 h-10 rounded-full border bg-gray-100"></div>
+                <div
+                    class="flex-1 flex flex-col w-full leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                    <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                        <span class="font-semibold text-gray-900 dark:text-white">Жангелді Тултебаев</span>
+                        <span class="text-sm font-normal text-gray-500 dark:text-gray-400">11:46</span>
+                    </div>
+                    <p class="text-sm font-normal py-2.5 text-gray-900 dark:text-white">
+                        Саламатсызба Сүгірбаева Гулжан ханым! Сізден білгім келгені менім қызым
+                        Өскемен қаласындағ С.Аманжолов атындағы университетке жалпы конкурс бойынша оқуға
+                        түскен еді.Мамандығ « Азық түлік өнімдерінің өңдірісі» Енді сіздерге биология-химия
+                        мамандығына ауысуға болама ? ақылы бөліміне 1 —курсты аяқтады.
+                    </p>
+                    <a href="#"
+                        class="flex gap-2 items-center px-4 py-2 rounded-lg transition bg-white hover:bg-gray-50">
+                        <div class="w-10 h-10 rounded-full border bg-gray-100">
+                            <img src="" alt="" class="w-full">
+                        </div>
+                        <span class="font-normal text-gray-500 dark:text-gray-400">Жауап берілді</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+{% endblock content %}
