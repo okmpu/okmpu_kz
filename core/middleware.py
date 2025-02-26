@@ -1,8 +1,11 @@
+from django.urls import resolve
 from django.utils import translation
-from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin
 
+from main.public.models import PageView
 
+
+# Iframe
 class AllowIframeMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -14,6 +17,7 @@ class AllowIframeMiddleware:
         return response
 
 
+# Locale
 class CustomLocaleMiddleware(MiddlewareMixin):
     def process_request(self, request):
         language = request.session.get('django_language') or request.COOKIES.get('django_language')

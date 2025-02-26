@@ -227,3 +227,16 @@ class Partner(models.Model):
         verbose_name = _('Partner')
         verbose_name_plural = _('Partners')
         ordering = ('order', )
+
+
+
+# PageView model
+# ----------------------------------------------------------------------------------------------------------------------
+class PageView(models.Model):
+    pathname = models.CharField(_('Pathname'), max_length=255)
+    auth_users_count = models.PositiveBigIntegerField(_('Auth users count'), default=0)
+    users_count = models.PositiveBigIntegerField(_('Users count'), default=0)
+    timestamp = models.DateTimeField(_('Timestamp'), auto_now_add=True)
+
+    def __str__(self):
+        return f'Users: {self.users_count} - Auth users: {self.auth_users_count}'

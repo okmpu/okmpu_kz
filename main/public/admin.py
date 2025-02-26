@@ -2,7 +2,7 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from django_summernote.admin import SummernoteModelAdmin
 from main.public.models import Headliner, News, Announcement, Event, Journal, Partner, \
-    NewsFile, AnnouncementFile, EventFile
+    NewsFile, AnnouncementFile, EventFile, PageView
 
 
 class HeadlinerAdmin(TranslationAdmin):
@@ -60,9 +60,14 @@ class PartnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'url', 'order', )
 
 
+class PageViewAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Headliner, HeadlinerAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(Event, EventAdmin)
 admin.site.register(Journal, JournalAdmin)
 admin.site.register(Partner, PartnerAdmin)
+admin.site.register(PageView, PageViewAdmin)
