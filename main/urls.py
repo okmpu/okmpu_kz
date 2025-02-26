@@ -1,6 +1,4 @@
 from django.urls import path
-from setuptools.extern import names
-
 from main.content import views as content_view
 from main import views
 from main.public import views as main_views

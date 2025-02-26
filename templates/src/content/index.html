@@ -9,6 +9,31 @@
 
 
 {% block content %}
+<style>
+    #text-content {
+        text-align: justify;
+    }
+
+    #text-content ul {
+        list-style: disc;
+    }
+    
+    #text-content ul li, #text-content ol li {
+        margin-left: 20px;
+    }
+
+    #text-content ol {
+        list-style: decimal;
+    }
+    #text-content table {
+        border: 1px solid silver;
+        border-collapse: collapse;
+    }
+    #text-content table th, td {
+        border: 1px solid silver;
+    }
+</style>
+
 <div class="container mx-auto px-4">
     <button 
         data-drawer-target="sidebar-multi-level-sidebar" 
