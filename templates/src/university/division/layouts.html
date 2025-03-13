@@ -8,13 +8,13 @@
         <!-- Header -->
         <div>
             <div
-                style="background-image: url('/static/images/poster.png');"
+                style="background-image: url('{% if division.poster %}{{ division.poster.url }}{% else %}/static/images/poster.png{% endif %}');"
                 class="h-80 bg-cover bg-center"
             ></div>
             <div class="flex h-full w-full py-5 border-b">
                 <div class="flex items-center justify-center gap-4">
                     <img
-                        src="{% static '/images/icon.png' %}"
+                        src="{% if division.image %}{{ division.image.url }}{% else %}{% static '/images/icon.png' %}{% endif %}"
                         alt="Image"
                         class="w-28 rounded-full border"
                     />
