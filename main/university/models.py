@@ -361,4 +361,4 @@ class DocumentFile(models.Model):
     class Meta:
         verbose_name = _('Document file')
         verbose_name_plural = _('Document files')
-        ordering = ('order', )
+        ordering = ('-order', )
