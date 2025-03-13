@@ -6,6 +6,7 @@ from main.university import views as university_views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('search/', views.search, name='search'),
     path('programs/<slug>/', views.program_detail, name='program_detail'),
     path('blog-rector/', views.blog_rector, name='blog_rector'),
 

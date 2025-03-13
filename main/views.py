@@ -1,5 +1,7 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
+from main.content.models import Content
 from main.context_processors import divisions
 from main.public.models import Headliner, News, Announcement, Event, Journal, Partner
 from main.university.models import Faculty, FacultyProgram
@@ -30,6 +32,21 @@ def home(request):
         'partners': partners
     }
     return render(request, 'src/index.html', context)
+
+
+def search(request):
+    query = request.GET.get('query', '')
+    results = None
+
+    if query:
+        results = Content.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+    context = {
+        'query': query,
+        'results': results
+    }
+    return render(request, 'src/search.html', context)
 
 
 # Program page
