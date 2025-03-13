@@ -353,6 +353,7 @@ class DocumentFile(models.Model):
         _('File'), upload_to='university/faculties/documents/',
         null=True, blank=True, validators=[validate_file_size]
     )
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
 
     def __str__(self):
         return self.title
@@ -360,3 +361,4 @@ class DocumentFile(models.Model):
     class Meta:
         verbose_name = _('Document file')
         verbose_name_plural = _('Document files')
+        ordering = ('order', )
