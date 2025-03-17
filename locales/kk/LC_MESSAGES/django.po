@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-27 12:12+0500\n"
+"POT-Creation-Date: 2025-03-17 09:12+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,7 +88,7 @@ msgstr "Жаңа бет"
 #: main/public/models.py:18 main/public/models.py:221
 #: main/university/models.py:28 main/university/models.py:91
 #: main/university/models.py:150 main/university/models.py:166
-#: main/university/models.py:335
+#: main/university/models.py:335 main/university/models.py:356
 msgid "Order"
 msgstr ""
 
@@ -275,7 +275,7 @@ msgid "Date created"
 msgstr "Шыққан уақыты"
 
 #: main/public/models.py:58 main/public/models.py:59 main/public/models.py:64
-#: templates/src/base.html:213 templates/src/index.html:170
+#: templates/src/base.html:248 templates/src/index.html:170
 #: templates/src/publics/index.html:32
 #: templates/src/publics/public_detail.html:33
 #: templates/src/university/department/publics.html:15
@@ -304,7 +304,7 @@ msgstr "Жаңалық құжаттары"
 msgid "Announcement"
 msgstr "Хабарландыру"
 
-#: main/public/models.py:105 templates/src/base.html:216
+#: main/public/models.py:105 templates/src/base.html:251
 #: templates/src/index.html:130 templates/src/publics/index.html:38
 #: templates/src/publics/public_detail.html:39
 #: templates/src/university/department/publics.html:20
@@ -326,7 +326,7 @@ msgstr "Хабарландыру құжаттары"
 msgid "Event"
 msgstr "Іс-шара"
 
-#: main/public/models.py:155 templates/src/base.html:219
+#: main/public/models.py:155 templates/src/base.html:254
 #: templates/src/index.html:215 templates/src/publics/index.html:44
 #: templates/src/publics/public_detail.html:45
 #: templates/src/university/department/publics.html:25
@@ -373,22 +373,20 @@ msgid "Partners"
 msgstr "Серіктестер"
 
 #: main/public/models.py:236
-#, fuzzy
-#| msgid "Partner name"
 msgid "Pathname"
-msgstr "Серіктес атауы"
+msgstr "Маршрут атауы"
 
 #: main/public/models.py:237
 msgid "Auth users count"
-msgstr ""
+msgstr "Аутентификацияланған пайдаланушылары саны"
 
 #: main/public/models.py:238
 msgid "Users count"
-msgstr ""
+msgstr "Қолданушылар саны"
 
 #: main/public/models.py:239
 msgid "Timestamp"
-msgstr ""
+msgstr "Уақыт белгісі"
 
 #: main/university/apps.py:7
 msgid "Main | University"
@@ -410,7 +408,7 @@ msgstr "Факультет типі"
 msgid "About the faculty"
 msgstr "Факультет жайлы"
 
-#: main/university/models.py:35 templates/src/base.html:225
+#: main/university/models.py:35 templates/src/base.html:260
 #: templates/src/university/faculties.html:6
 msgid "Faculties"
 msgstr "Факультеттер"
@@ -575,11 +573,11 @@ msgstr "Құжат"
 msgid "Documents"
 msgstr "Құжаттар"
 
-#: main/university/models.py:361
+#: main/university/models.py:362
 msgid "Document file"
 msgstr "Құжат файлы"
 
-#: main/university/models.py:362
+#: main/university/models.py:363
 msgid "Document files"
 msgstr "Құжат файлдары"
 
@@ -619,11 +617,11 @@ msgid ""
 "The image should be in landscape orientation (width is greater than height)"
 msgstr "Кескін ландшафт бағытында болуы керек (ені биіктіктен үлкен)"
 
-#: templates/src/base.html:49 templates/src/base.html:257
+#: templates/src/base.html:49 templates/src/base.html:292
 msgid "Library"
 msgstr "Кітапхана"
 
-#: templates/src/base.html:109 templates/src/base.html:210
+#: templates/src/base.html:144 templates/src/base.html:245
 #: templates/src/index.html:7
 #: templates/src/university/department/layouts.html:39
 #: templates/src/university/division/layouts.html:41
@@ -633,15 +631,15 @@ msgstr "Кітапхана"
 msgid "Home page"
 msgstr "Басты бет"
 
-#: templates/src/base.html:206
+#: templates/src/base.html:241
 msgid "Navigation"
 msgstr "Навигация"
 
-#: templates/src/base.html:237
+#: templates/src/base.html:272
 msgid "Resources"
 msgstr "Ресурстар"
 
-#: templates/src/base.html:280
+#: templates/src/base.html:315
 msgid "All copyrights are protected."
 msgstr "Барлық авторлық құқықтар қорғалған."
 
@@ -948,8 +946,8 @@ msgid "Departments within the management board"
 msgstr "Басышылық құрамындағы департаменттер"
 
 #: templates/src/university/division/index.html:153
-msgid "Divisions within the management board"
-msgstr "Басышылық құрамындағы Орталық/Бөлімдер"
+msgid "Divisions within the departments board"
+msgstr "Департамент құрамындағы орталық/бөлімдер"
 
 #: templates/src/university/faculty/about.html:7
 #: templates/src/university/faculty/layouts.html:56

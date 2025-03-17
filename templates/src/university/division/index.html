@@ -134,7 +134,7 @@
                 {% for sub_item in departments %}
                 <a href="{% url 'division_detail' sub_item.slug %}"
                     class="border p-6 rounded-lg text-center transition-all hover:bg-gray-100">
-                    <img src="{% static '/images/icon.png' %}" alt="Image"
+                    <img src="{% if sub_item.image %}{{ sub_item.image.url }}{% else %}{% static '/images/icon.png' %}{% endif %}" alt="Image"
                         class="w-36 block rounded-full border mx-auto mb-2" />
                     <h1 class="text-xl font-semibold line-clamp-2">{{ sub_item.name }}</h1>
                     <span class="text-gray-500">
@@ -150,7 +150,7 @@
     {% if divisions|length > 0 %}
         <div class="grid gap-4 py-8 border-t">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-semibold">{% translate 'Divisions within the management board' %}</h1>
+                <h1 class="text-2xl font-semibold">{% translate 'Divisions within the departments board' %}</h1>
 
                 <a href="#" class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline">
                     {% translate 'Read more' %}
@@ -165,7 +165,7 @@
                 {% for sub_item in divisions %}
                 <a href="{% url 'division_detail' sub_item.slug %}"
                     class="border p-6 rounded-lg text-center transition-all hover:bg-gray-100">
-                    <img src="{% static '/images/icon.png' %}" alt="Image"
+                    <img src="{% if sub_item.image %}{{ sub_item.image.url }}{% else %}{% static '/images/icon.png' %}{% endif %}" alt="Image"
                         class="w-36 block rounded-full border mx-auto mb-2" />
                     <h1 class="text-xl font-semibold line-clamp-2">{{ sub_item.name }}</h1>
                     <span class="text-gray-500">
