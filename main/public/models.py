@@ -16,6 +16,7 @@ class Headliner(models.Model):
     about = models.TextField(_('About'), blank=True, null=True)
     src = models.CharField(_('Source URL'), max_length=128, default='/')
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
+    is_archive = models.BooleanField(_('Is archive'), default=False)
 
     def __str__(self):
         return self.title

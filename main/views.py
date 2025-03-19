@@ -2,7 +2,6 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 
 from main.content.models import Content
-from main.context_processors import divisions
 from main.public.models import Headliner, News, Announcement, Event, Journal, Partner
 from main.university.models import Faculty, FacultyProgram
 from main.utils import track_page_view
@@ -12,7 +11,7 @@ from main.utils import track_page_view
 # ----------------------------------------------------------------------------------------------------------------------
 def home(request):
     track_page_view(request, request.path)
-    headliners = Headliner.objects.filter()[:5]
+    headliners = Headliner.objects.filter(is_archive=False)[:5]
     programs = FacultyProgram.objects.all()
     news = News.objects.filter(faculty=None, department=None, division=None)[:6]
     announcements = Announcement.objects.filter(faculty=None, department=None, division=None)[:6]
