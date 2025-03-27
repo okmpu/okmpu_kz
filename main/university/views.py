@@ -106,7 +106,7 @@ def faculty_personals_view(request, slug):
                     'results': students
                 },
             ]
-    elif faculty.faculty_type == 'institute':
+    elif faculty.faculty_type == 'institute' or faculty.faculty_type == 'college':
         personals = Personal.objects.filter(faculty=faculty).exclude(p_type='deans_office').order_by('order')
         context['personals'] = personals
 

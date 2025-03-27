@@ -132,7 +132,7 @@
                 </div>
             </div>
         {% endfor %}
-    {% elif faculty.faculty_type == 'institute' %}
+    {% elif faculty.faculty_type == 'institute' or faculty.faculty_type == 'college' %}
         <div class="py-4 grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             {% for item in personals %}
                 <div 
