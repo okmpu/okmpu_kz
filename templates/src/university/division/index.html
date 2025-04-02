@@ -4,7 +4,7 @@
 
 
 {% block title %}
-{{ division.name }} - Zhanibekov University
+    {{ division.name }} - Zhanibekov University
 {% endblock %}
 
 
@@ -102,8 +102,8 @@
                                             {% endif %}
                                         </div>
                                     </div>
-                                    <div class="text-gray-500">
-                                        {{ item.about }}
+                                    <div class="text-gray-500 text-justify">
+                                        {{ item.about|safe }}
                                     </div>
                                 </div>
                             </div>
