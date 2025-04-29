@@ -13,10 +13,17 @@
     <!-- ============================================================================================================================= -->
     <div id="default-carousel" class="relative w-full" data-carousel="slide" data-aos="fade-up">
         <!-- Carousel wrapper -->
-        <div class="relative h-56 md:h-96 xl:h-[80vh] overflow-hidden">
+        <div class="relative aspect-video overflow-hidden">
             {% for item in headliners %}
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <a href="{% if item.src %}{{ item.src }}{% else %}#{% endif %}">
+                <div 
+                    class="hidden duration-700 ease-in-out bg-no-repeat bg-cover"
+                    style="background-image: url('{{ item.poster.url }}');"
+                    data-carousel-item
+                >
+                    <a 
+                        href="{% if item.src %}{{ item.src }}{% else %}#{% endif %}"
+                        class="block w-full h-full bg-white/80 backdrop-blur-xl"    
+                    >
                         <img 
                             src="{{ item.poster.url }}"
                             class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."
