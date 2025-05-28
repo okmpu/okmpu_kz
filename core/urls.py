@@ -10,7 +10,9 @@ urlpatterns = [
 
     # apps...
     path('', include('main.urls')),
+    path('chat/', include('main.chat.urls')),
 ]
+
 
 urlpatterns += [re_path(r'^i18n/', include('django.conf.urls.i18n'))]
 urlpatterns += [re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})]

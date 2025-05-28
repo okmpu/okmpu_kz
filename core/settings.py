@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django_summernote',
 
     # Main app
+    'register.apps.RegisterConfig',
+
     'main.apps.MainConfig',
     'main.content.apps.ContentConfig',
     'main.university.apps.UniversityConfig',
@@ -117,6 +119,9 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'kk'
 MODELTRANSLATION_LANGUAGES = ('kk', 'ru', 'en', )
 
 MODELTRANSLATION_TRANSLATION_FILES = (
+    'register.translations.publics',
+    'register.translations.university',
+
     'main.content.translations',
     'main.public.translations',
     'main.university.translations',

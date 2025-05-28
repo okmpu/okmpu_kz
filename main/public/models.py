@@ -210,7 +210,7 @@ class Journal(models.Model):
         ordering = ('-date_created',)
 
 
-# Journal
+# Partner
 # ----------------------------------------------------------------------------------------------------------------------
 class Partner(models.Model):
     name = models.CharField(_('Partner name'), max_length=255)

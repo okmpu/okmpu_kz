@@ -15,11 +15,11 @@ class Faculty(models.Model):
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
     image = models.ImageField(
-        _('Image'), upload_to='university/faculties/avatars',
+        _('Image'), upload_to='register/university/faculty/avatars',
         null=True, blank=True, validators=[validate_logo]
     )
     poster = models.ImageField(
-        _('Poster'), upload_to='university/faculties/posters',
+        _('Poster'), upload_to='register/university/faculty/posters',
         null=True, blank=True, validators=[validate_poster]
     )
     faculty_type = models.CharField(_('Faculty type'), choices=FACULTY_TYPE, default='faculty', max_length=16)
@@ -43,11 +43,11 @@ class Department(models.Model):
         related_name='departments', verbose_name=_('Faculty')
     )
     image = models.ImageField(
-        _('Image'), upload_to='university/faculties/avatars',
+        _('Image'), upload_to='register/university/department/avatars',
         null=True, blank=True, validators=[validate_logo]
     )
     poster = models.ImageField(
-        _('Poster'), upload_to='university/faculties/posters',
+        _('Poster'), upload_to='register/university/department/posters',
         null=True, blank=True, validators=[validate_poster]
     )
     name = models.CharField(_('Name'), max_length=128)
@@ -74,11 +74,11 @@ class Division(models.Model):
     name = models.CharField(_('Name'), max_length=128)
     slug = models.SlugField(_('Slug'), max_length=128)
     image = models.ImageField(
-        _('Image'), upload_to='university/faculties/avatars',
+        _('Image'), upload_to='register/division/avatars',
         null=True, blank=True, validators=[validate_logo]
     )
     poster = models.ImageField(
-        _('Poster'), upload_to='university/faculties/posters',
+        _('Poster'), upload_to='register/division/posters',
         null=True, blank=True, validators=[validate_poster]
     )
     div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='div')
@@ -135,7 +135,7 @@ class Personal(models.Model):
     )
     full_name = models.CharField(_('Full name'), max_length=128, blank=True, null=True)
     image = models.ImageField(
-        _('Image'), upload_to='university/personals/',
+        _('Image'), upload_to='register/university/personals/',
         blank=True, null=True, validators=[validate_logo]
     )
     profession = models.CharField(_('Profession/Activity'), max_length=128)
@@ -159,7 +159,7 @@ class Personal(models.Model):
 
 # Programs
 # ----------------------------------------------------------------------------------------------------------------------
-class FacultyProgram(models.Model):
+class Program(models.Model):
     name = models.CharField(_('Name'), max_length=64)
     slug = models.SlugField(_('Slug'), max_length=64)
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
@@ -173,9 +173,9 @@ class FacultyProgram(models.Model):
         ordering = ('order', )
 
 
-class FacultySpecialty(models.Model):
+class Specialty(models.Model):
     program = models.ForeignKey(
-        FacultyProgram, on_delete=models.SET_NULL,
+        Program, on_delete=models.SET_NULL,
         related_name='program_items', verbose_name=_('Program'), null=True, blank=True
     )
     faculty = models.ForeignKey(
@@ -212,7 +212,7 @@ class Project(models.Model):
     name = models.CharField(_('Name'), max_length=128)
     author = models.CharField(_('Author'), max_length=128)
     file = models.FileField(
-        _('File'), upload_to='university/faculties/projects/',
+        _('File'), upload_to='register/university/projects/',
         null=True, blank=True, validators=[validate_file_size]
     )
     description = models.TextField(_('Description'), blank=True, null=True)
@@ -259,7 +259,7 @@ class MaterialDocs(models.Model):
     )
     caption = models.CharField(_('Name'), max_length=128)
     file = models.FileField(
-        _('File'), upload_to='university/faculties/materials/',
+        _('File'), upload_to='register/university/materials/',
         null=True, blank=True, validators=[validate_file_size]
     )
 
@@ -289,7 +289,7 @@ class Success(models.Model):
     )
     title = models.CharField(_('Title'), max_length=128)
     file = models.FileField(
-        _('File'), upload_to='university/faculties/achievements/',
+        _('File'), upload_to='register/university/achievements/',
         null=True, blank=True, validators=[validate_file_size]
     )
     description = models.TextField(_('Description'), blank=True, null=True)
@@ -349,7 +349,7 @@ class DocumentFile(models.Model):
     )
     title = models.CharField(_('Title'), max_length=128)
     file = models.FileField(
-        _('File'), upload_to='university/faculties/documents/',
+        _('File'), upload_to='register/university/documents/',
         null=True, blank=True, validators=[validate_file_size]
     )
     order = models.PositiveSmallIntegerField(_('Order'), default=0)

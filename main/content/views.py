@@ -15,7 +15,6 @@ def content_detail(request, category_slug, sub_category_slug, section_slug, cont
     sub_categories = Category.objects.filter(parent=category)
     contents = Content.objects.filter(category__parent__parent=category)
 
-
     context = {
         'content': content,
         'category': category,
