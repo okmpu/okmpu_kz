@@ -9,7 +9,8 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
 
     # apps...
-    path('', include('main.urls')),
+    path('', include('apps.home.urls')),
+    path('university/', include('apps.education.urls')),
     path('chat/', include('main.chat.urls')),
 ]
 

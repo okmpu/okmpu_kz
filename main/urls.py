@@ -1,28 +1,8 @@
 from django.urls import path
-from main.content import views as content_view
-from main import views
-from main.public import views as main_views
 from main.university import views as university_views
 
+
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('search/', views.search, name='search'),
-    path('programs/<slug>/', views.program_detail, name='program_detail'),
-    path('blog-rector/', views.blog_rector, name='blog_rector'),
-
-    # public app urls...
-    path('publics/news/', main_views.news_view, name='news'),
-    path('publics/news/<pk>/', main_views.news_view, name='news_detail'),
-    path('publics/announcements/', main_views.announcement_view, name='announcements'),
-    path('publics/announcements/<pk>/', main_views.announcement_view, name='announcement'),
-    path('publics/events/', main_views.event_view, name='events'),
-    path('publics/events/<pk>/', main_views.event_view, name='event_detail'),
-
-    # content urls
-    path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content_view.content_detail, name='content_detail'),
-    path('university/division/<slug>/', content_view.division_detail, name='division_detail'),
-    path('university/division/<slug>/about', content_view.division_about, name='division_about'),
-
     # university apps urls...
     path('university/faculties/', university_views.faculties_view, name='faculties'),
     path('university/faculties/<slug>/', university_views.faculty_detail_view, name='faculty_detail'),
