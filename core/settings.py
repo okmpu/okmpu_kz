@@ -29,6 +29,10 @@ INSTALLED_APPS = [
     # Main app
     'register.apps.RegisterConfig',
 
+    'apps.home.apps.HomeConfig',
+    'apps.education.apps.EducationConfig',
+
+    # old...
     'main.apps.MainConfig',
     'main.content.apps.ContentConfig',
     'main.university.apps.UniversityConfig',
