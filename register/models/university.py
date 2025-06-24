@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from main.validators import validate_file_size, validate_logo, validate_poster
+from register.validators import validate_file_size, validate_logo, validate_poster
 
 
 # Faculty

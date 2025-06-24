@@ -2,8 +2,6 @@ from django.urls import resolve
 from django.utils import translation
 from django.utils.deprecation import MiddlewareMixin
 
-from main.public.models import PageView
-
 
 # Iframe
 class AllowIframeMiddleware:

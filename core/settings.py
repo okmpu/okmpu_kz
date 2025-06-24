@@ -6,8 +6,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = config('SECRET_KEY')
 
+SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG') == 'True'
 ALLOWED_HOSTS = ['*']
 
@@ -32,13 +32,7 @@ INSTALLED_APPS = [
     'apps.home.apps.HomeConfig',
     'apps.education.apps.EducationConfig',
 
-    # old...
-    'main.apps.MainConfig',
-    'main.content.apps.ContentConfig',
-    'main.university.apps.UniversityConfig',
-    'main.public.apps.PublicConfig',
 ]
-
 
 SILENCED_SYSTEM_CHECKS = ['security.W019']
 
@@ -71,9 +65,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'main.context_processors.categories',
-                'main.context_processors.faculties',
-                'main.context_processors.divisions'
+                'core.context_processors.categories',
+                'core.context_processors.faculties',
+                'core.context_processors.divisions'
             ],
         },
     },
@@ -126,10 +120,6 @@ MODELTRANSLATION_TRANSLATION_FILES = (
     'register.translations.publics',
     'register.translations.university',
     'register.translations.content',
-
-    'main.content.translations',
-    'main.public.translations',
-    'main.university.translations',
 )
 
 

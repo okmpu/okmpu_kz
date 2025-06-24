@@ -1,6 +1,5 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
-from main.utils import track_page_view
 from register.models.content import Content
 from register.models.university import Program, Faculty
 from register.models.publics import Headliner, Partner, Public
@@ -9,7 +8,6 @@ from register.models.publics import Headliner, Partner, Public
 # Home page
 # ----------------------------------------------------------------------------------------------------------------------
 def home(request):
-    track_page_view(request, request.path)
     headliners = Headliner.objects.filter(is_archive=False)[:5]
     programs = Program.objects.all()
     news = Public.objects.filter(public_type='news', faculty=None, department=None, division=None)[:6]

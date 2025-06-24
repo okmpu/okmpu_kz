@@ -1,5 +1,5 @@
-from main.content.models import Category
-from main.university.models import Faculty, Division
+from register.models.content import Category
+from register.models.university import Faculty, Division
 
 
 def categories(request):
