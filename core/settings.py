@@ -6,8 +6,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = config('SECRET_KEY')
+
 DEBUG = config('DEBUG') == 'True'
 ALLOWED_HOSTS = ['*']
 
@@ -31,8 +31,8 @@ INSTALLED_APPS = [
 
     'apps.home.apps.HomeConfig',
     'apps.education.apps.EducationConfig',
-
 ]
+
 
 SILENCED_SYSTEM_CHECKS = ['security.W019']
 
