@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from register.models import (
+from register.models.university import (
     Faculty, Department, Personal, Project, Program, Specialty, Success, Material, MaterialDocs, DocumentFile,
     Document, Division
 )

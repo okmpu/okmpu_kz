@@ -125,6 +125,7 @@ MODELTRANSLATION_LANGUAGES = ('kk', 'ru', 'en', )
 MODELTRANSLATION_TRANSLATION_FILES = (
     'register.translations.publics',
     'register.translations.university',
+    'register.translations.content',
 
     'main.content.translations',
     'main.public.translations',

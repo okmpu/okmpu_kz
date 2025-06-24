@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
-from register.models import Faculty, Department, Personal, Project, Program, Specialty, Success, MaterialDocs, \
+from register.models.university import Faculty, Department, Personal, Project, Program, Specialty, Success, MaterialDocs, \
     Material, DocumentFile, Document, Division
 
 
@@ -98,8 +98,8 @@ class DocumentFileTab(TranslationTabularInline):
     extra = 0
 
 class DocumentAdmin(TranslationAdmin):
-    list_display = ('name', 'slug', 'faculty', 'department', 'docs_grid', )
-    search_fields = ('name', 'docs_grid', )
+    list_display = ('name', 'slug', 'faculty', 'department', )
+    search_fields = ('name', )
     list_filter = ('faculty', 'department', 'division', )
     prepopulated_fields = {'slug': ('name_en',)}
 

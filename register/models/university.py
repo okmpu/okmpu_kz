@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
 from main.validators import validate_file_size, validate_logo, validate_poster
 
 
@@ -74,11 +73,11 @@ class Division(models.Model):
     name = models.CharField(_('Name'), max_length=128)
     slug = models.SlugField(_('Slug'), max_length=128)
     image = models.ImageField(
-        _('Image'), upload_to='register/division/avatars',
+        _('Image'), upload_to='register/university/division/avatars',
         null=True, blank=True, validators=[validate_logo]
     )
     poster = models.ImageField(
-        _('Poster'), upload_to='register/division/posters',
+        _('Poster'), upload_to='register/university/division/posters',
         null=True, blank=True, validators=[validate_poster]
     )
     div_type = models.CharField(_('Division type'), choices=DIV_TYPE, default='div')
@@ -306,11 +305,6 @@ class Success(models.Model):
 # Documents
 # ----------------------------------------------------------------------------------------------------------------------
 class Document(models.Model):
-    DOCS_GRID = (
-        ('GRID', _('Grid')),
-        ('COL', _('Column')),
-    )
-
     faculty = models.ForeignKey(
         Faculty, on_delete=models.CASCADE,
         related_name='faculty_documents', verbose_name=_('Faculty'), null=True, blank=True
@@ -326,10 +320,6 @@ class Document(models.Model):
     )
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
-    docs_grid = models.CharField(
-        _('Document grid'), max_length=128,
-        choices=DOCS_GRID, default='GRID'
-    )
     description = models.TextField(_('Description'), blank=True, null=True)
     order = models.PositiveSmallIntegerField(_('Order'), default=0)
 

@@ -1,10 +1,10 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
-
 from main.content.models import Content
-from main.public.models import Headliner, News, Announcement, Event, Journal, Partner
+from main.public.models import Headliner, News, Announcement, Event, Journal
 from main.university.models import FacultyProgram, Faculty
 from main.utils import track_page_view
+from register.models.publics import Partner
 
 
 # Home page
