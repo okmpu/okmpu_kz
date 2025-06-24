@@ -1,8 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
-
-from main.public.models import News, Event, Announcement
-from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty, \
+from register.models.publics import Public
+from register.models.university import Faculty, Project, Department, Personal, Program, Success, Specialty, \
     Material, Document
 
 
@@ -21,9 +20,9 @@ def department_detail_view(request, slug):
     achievements = Success.objects.filter(faculty=department.faculty, department=department)[:3]
 
     # publications
-    news = News.objects.filter(department=department)[:3]
-    events = Event.objects.filter(department=department)[:3]
-    announcements = Announcement.objects.filter(department=department)[:3]
+    news = Public.objects.filter(public_type='news', department=department)[:3]
+    events = Public.objects.filter(public_type='events', department=department)[:3]
+    announcements = Public.objects.filter(public_type='ann', department=department)[:3]
 
     context = {
         'department': department,
@@ -42,8 +41,8 @@ def department_detail_view(request, slug):
 # Department programs
 def department_programs_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    programs = FacultyProgram.objects.all()
-    specialities = FacultySpecialty.objects.filter(department=department)
+    programs = Program.objects.all()
+    specialities = Specialty.objects.filter(department=department)
 
     context = {
         'department': department,
@@ -137,9 +136,9 @@ def department_achievements_view(request, slug):
 
 def department_publics_view(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    news = News.objects.filter(department=department)
-    events = Event.objects.filter(department=department)
-    announcements = Announcement.objects.filter(department=department)
+    news = Public.objects.filter(public_type='news', department=department)
+    events = Public.objects.filter(public_type='events', department=department)
+    announcements = Public.objects.filter(public_type='ann', department=department)
 
     context = {
         'department': department,

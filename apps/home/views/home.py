@@ -1,10 +1,9 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
-from main.content.models import Content
-from main.public.models import Headliner, News, Announcement, Event, Journal
-from main.university.models import FacultyProgram, Faculty
 from main.utils import track_page_view
-from register.models.publics import Partner
+from register.models.content import Content
+from register.models.university import Program, Faculty
+from register.models.publics import Headliner, Partner, Public
 
 
 # Home page
@@ -12,11 +11,9 @@ from register.models.publics import Partner
 def home(request):
     track_page_view(request, request.path)
     headliners = Headliner.objects.filter(is_archive=False)[:5]
-    programs = FacultyProgram.objects.all()
-    news = News.objects.filter(faculty=None, department=None, division=None)[:6]
-    announcements = Announcement.objects.filter(faculty=None, department=None, division=None)[:6]
-    events = Event.objects.filter(faculty=None, department=None, division=None)[:4]
-    journals = Journal.objects.filter()[:6]
+    programs = Program.objects.all()
+    news = Public.objects.filter(public_type='news', faculty=None, department=None, division=None)[:6]
+    announcements = Public.objects.filter(public_type='ann', faculty=None, department=None, division=None)[:6]
     academics = Faculty.objects.all()[:6]
     partners = Partner.objects.all()
 
@@ -25,8 +22,6 @@ def home(request):
         'programs': programs,
         'news': news,
         'announcements': announcements,
-        'events': events,
-        'journals': journals,
         'academics': academics,
         'partners': partners
     }
@@ -51,7 +46,7 @@ def search(request):
 # Program page
 # ----------------------------------------------------------------------------------------------------------------------
 def program_detail(request, slug):
-    program = get_object_or_404(FacultyProgram, slug=slug)
+    program = get_object_or_404(Program, slug=slug)
 
     context = {
         'program': program

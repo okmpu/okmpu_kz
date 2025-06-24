@@ -11,7 +11,6 @@ urlpatterns = [
     # apps...
     path('', include('apps.home.urls')),
     path('university/', include('apps.education.urls')),
-    path('chat/', include('main.chat.urls')),
 ]
 
 

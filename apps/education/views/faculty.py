@@ -1,8 +1,8 @@
 from django.shortcuts import get_object_or_404, render
 from django.db.models import Q
 
-from main.public.models import News, Event, Announcement
-from main.university.models import Faculty, Project, Department, Personal, FacultyProgram, Success, FacultySpecialty, \
+from register.models.publics import Public
+from register.models.university import Faculty, Project, Department, Personal, Program, Success, Specialty, \
     Material, Document
 
 
@@ -35,9 +35,9 @@ def faculty_detail_view(request, slug):
         achievements = Success.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
 
         # publications
-        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
-        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        news = Public.objects.filter(public_type='news').filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        events = Public.objects.filter(public_type='events').filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
+        announcements = Public.objects.filter(public_type='ann').filter(Q(faculty=faculty) | Q(department__in=departments))[:3]
 
         context['departments'] = departments
         context['deans_office'] = deans_office
@@ -55,9 +55,9 @@ def faculty_detail_view(request, slug):
         achievements = Success.objects.filter(faculty=faculty)[:3]
 
         # publications
-        news = News.objects.filter(faculty=faculty)[:3]
-        events = Event.objects.filter(faculty=faculty)[:3]
-        announcements = Announcement.objects.filter(faculty=faculty)[:3]
+        news = Public.objects.filter(faculty=faculty, public_type='news')[:3]
+        events = Public.objects.filter(faculty=faculty, public_type='events')[:3]
+        announcements = Public.objects.filter(faculty=faculty, public_type='ann')[:3]
 
         context['projects'] = projects
         context['documents'] = documents
@@ -120,12 +120,12 @@ def faculty_programs_view(request, slug):
         'faculty': faculty,
     }
     if faculty.faculty_type == 'faculty':
-        programs = FacultyProgram.objects.all()
-        specialities = FacultySpecialty.objects.filter(faculty=faculty)
+        programs = Program.objects.all()
+        specialities = Specialty.objects.filter(faculty=faculty)
         context['programs'] = programs
         context['specialities'] = specialities
     elif faculty.faculty_type == 'institute':
-        context['programs'] = FacultyProgram.objects.exclude(slug='bachelor')
+        context['programs'] = Program.objects.exclude(slug='bachelor')
 
     return render(request, 'src/university/faculty/programs.html', context)
 
@@ -186,9 +186,9 @@ def faculty_publics_view(request, slug):
     }
     if faculty.faculty_type == 'faculty':
         departments = Department.objects.filter(faculty=faculty)
-        news = News.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-        events = Event.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
-        announcements = Announcement.objects.filter(Q(faculty=faculty) | Q(department__in=departments))
+        news = Public.objects.filter(public_type='news').filter(Q(faculty=faculty) | Q(department__in=departments))
+        events = Public.objects.filter(public_type='events').filter(Q(faculty=faculty) | Q(department__in=departments))
+        announcements = Public.objects.filter(public_type='ann').filter(Q(faculty=faculty) | Q(department__in=departments))
         context['departments'] = departments
         context['news'] = news
         context['events'] = events

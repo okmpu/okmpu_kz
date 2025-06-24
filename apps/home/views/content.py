@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
-from main.content.models import Category, Content
-from main.public.models import News, Event, Announcement
-from main.university.models import Division
+from register.models.content import Category, Content
+from register.models.publics import Public
+from register.models.university import Division
 
 
 # Content detail
@@ -34,9 +34,9 @@ def division_detail(request, slug):
     item = get_object_or_404(Division, slug=slug)
     departments = item.children.filter(div_type='department')
     divisions = item.children.filter(div_type='div')
-    news = News.objects.filter(division=item)
-    events = Event.objects.filter(division=item)
-    announcements = Announcement.objects.filter(division=item)
+    news = Public.objects.filter(public_type='news', division=item)
+    events = Public.objects.filter(public_type='news', division=item)
+    announcements = Public.objects.filter(public_type='ann', division=item)
 
     context = {
         'division': item,

@@ -13,8 +13,6 @@ urlpatterns = [
     path('publics/news/<pk>/', public.news_view, name='news_detail'),
     path('publics/announcements/', public.announcement_view, name='announcements'),
     path('publics/announcements/<pk>/', public.announcement_view, name='announcement'),
-    path('publics/events/', public.event_view, name='events'),
-    path('publics/events/<pk>/', public.event_view, name='event_detail'),
 
     # content urls
     path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content.content_detail,
