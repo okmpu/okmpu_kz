@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-17 09:12+0500\n"
+"POT-Creation-Date: 2025-06-25 15:43+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,252 +32,213 @@ msgstr "Русский"
 msgid "English"
 msgstr "English"
 
-#: main/content/apps.py:7
-msgid "Main | Contents"
-msgstr "Главная | Контенты"
+#: register/apps.py:8
+msgid "Models | registers"
+msgstr "Модели | Регистраторы"
 
-#: main/content/models.py:10
+#: register/models/content.py:10
 msgid "None"
 msgstr ""
 
-#: main/content/models.py:11
+#: register/models/content.py:11
 msgid "Content app"
 msgstr "Контент"
 
-#: main/content/models.py:12
+#: register/models/content.py:12
 msgid "University app"
 msgstr "Университет"
 
-#: main/content/models.py:14 main/university/models.py:16
-#: main/university/models.py:54 main/university/models.py:75
-#: main/university/models.py:164 main/university/models.py:191
-#: main/university/models.py:213 main/university/models.py:261
-#: main/university/models.py:328
+#: register/models/content.py:14 register/models/university.py:14
+#: register/models/university.py:52 register/models/university.py:73
+#: register/models/university.py:162 register/models/university.py:189
+#: register/models/university.py:211 register/models/university.py:259
+#: register/models/university.py:321
 msgid "Name"
 msgstr "Название"
 
-#: main/content/models.py:15 main/content/models.py:42
-#: main/university/models.py:17 main/university/models.py:55
-#: main/university/models.py:76 main/university/models.py:165
-#: main/university/models.py:329
+#: register/models/content.py:15 register/models/content.py:42
+#: register/models/university.py:15 register/models/university.py:53
+#: register/models/university.py:74 register/models/university.py:163
+#: register/models/university.py:322
 msgid "Slug"
 msgstr "Ключ"
 
-#: main/content/models.py:16
+#: register/models/content.py:16
 msgid "App name"
 msgstr "Имя приложение"
 
-#: main/content/models.py:19
+#: register/models/content.py:19
 msgid "Parent"
 msgstr "Родительская категория"
 
-#: main/content/models.py:21
+#: register/models/content.py:21
 msgid "Multiple"
 msgstr "Многозначение"
 
-#: main/content/models.py:22 main/public/models.py:220
-#: main/university/models.py:192
+#: register/models/content.py:22 register/models/publics.py:38
+#: register/models/university.py:190
 msgid "URL"
 msgstr "URL"
 
-#: main/content/models.py:23
+#: register/models/content.py:23
 msgid "Target"
 msgstr "Вкладка"
 
-#: main/content/models.py:24 main/content/models.py:45
-#: main/content/models.py:63 main/content/models.py:80
-#: main/content/models.py:99 main/content/models.py:125
-#: main/public/models.py:18 main/public/models.py:221
-#: main/university/models.py:28 main/university/models.py:91
-#: main/university/models.py:150 main/university/models.py:166
-#: main/university/models.py:335 main/university/models.py:356
+#: register/models/content.py:24 register/models/content.py:45
+#: register/models/content.py:63 register/models/content.py:80
+#: register/models/content.py:99 register/models/content.py:125
+#: register/models/publics.py:18 register/models/publics.py:39
+#: register/models/university.py:26 register/models/university.py:89
+#: register/models/university.py:148 register/models/university.py:164
+#: register/models/university.py:324 register/models/university.py:345
 msgid "Order"
 msgstr ""
 
-#: main/content/models.py:30 main/content/models.py:39
+#: register/models/content.py:30 register/models/content.py:39
 msgid "Category"
 msgstr "Категория"
 
-#: main/content/models.py:31
+#: register/models/content.py:31
 msgid "Categories"
 msgstr "Категории"
 
-#: main/content/models.py:41 main/public/models.py:11 main/public/models.py:45
-#: main/public/models.py:65 main/public/models.py:95 main/public/models.py:111
-#: main/public/models.py:141 main/public/models.py:161
-#: main/public/models.py:178 main/public/models.py:195
-#: main/university/models.py:241 main/university/models.py:291
-#: main/university/models.py:351
+#: register/models/content.py:41 register/models/publics.py:11
+#: register/models/publics.py:70 register/models/publics.py:91
+#: register/models/university.py:239 register/models/university.py:289
+#: register/models/university.py:340
 msgid "Title"
 msgstr "Заголовка"
 
-#: main/content/models.py:43 main/public/models.py:51 main/public/models.py:97
-#: main/public/models.py:147 main/public/models.py:180
-#: main/university/models.py:219 main/university/models.py:296
-#: main/university/models.py:334
+#: register/models/content.py:43 register/models/publics.py:77
+#: register/models/university.py:217 register/models/university.py:294
+#: register/models/university.py:323
 msgid "Description"
 msgstr "Описание"
 
-#: main/content/models.py:44
+#: register/models/content.py:44
 msgid "Last update"
 msgstr "Последнее обновление"
 
-#: main/content/models.py:51 main/content/models.py:60
-#: main/content/models.py:77 main/content/models.py:95
-#: main/content/models.py:114
+#: register/models/content.py:51 register/models/content.py:60
+#: register/models/content.py:77 register/models/content.py:95
+#: register/models/content.py:114
 msgid "Content"
 msgstr "Контент"
 
-#: main/content/models.py:52
+#: register/models/content.py:52
 msgid "Contents"
 msgstr "Контенты"
 
-#: main/content/models.py:62
+#: register/models/content.py:62
 msgid "Body"
 msgstr "Тело"
 
-#: main/content/models.py:66 main/content/models.py:69
+#: register/models/content.py:66 register/models/content.py:69
 msgid "Text content"
 msgstr "Текстовый контент"
 
-#: main/content/models.py:70
+#: register/models/content.py:70
 msgid "Text contents"
 msgstr "Текстовые контенты"
 
-#: main/content/models.py:79 main/content/models.py:118
-#: main/university/models.py:19 main/university/models.py:47
-#: main/university/models.py:78 main/university/models.py:139
+#: register/models/content.py:79 register/models/content.py:118
+#: register/models/university.py:17 register/models/university.py:45
+#: register/models/university.py:76 register/models/university.py:137
 msgid "Image"
 msgstr "Изображение"
 
-#: main/content/models.py:83 main/content/models.py:86
+#: register/models/content.py:83 register/models/content.py:86
 msgid "Image content"
 msgstr "Контент изображение"
 
-#: main/content/models.py:87
+#: register/models/content.py:87
 msgid "Image contents"
 msgstr "Контент изображения"
 
-#: main/content/models.py:97
+#: register/models/content.py:97
 msgid "Caption"
 msgstr "Заголовка"
 
-#: main/content/models.py:98
+#: register/models/content.py:98
 msgid "Source file"
 msgstr "Исходный файл"
 
-#: main/content/models.py:102 main/content/models.py:105
+#: register/models/content.py:102 register/models/content.py:105
 msgid "File content"
 msgstr "Файловый контент"
 
-#: main/content/models.py:106
+#: register/models/content.py:106
 msgid "File contents"
 msgstr "Файловые контенты"
 
-#: main/content/models.py:116 main/university/models.py:137
+#: register/models/content.py:116 register/models/university.py:135
 msgid "Full name"
 msgstr "Полная имя"
 
-#: main/content/models.py:121
+#: register/models/content.py:121
 msgid "Profession"
 msgstr "Профессия"
 
-#: main/content/models.py:122
+#: register/models/content.py:122
 msgid "Bio"
 msgstr "Биография"
 
-#: main/content/models.py:123 main/university/models.py:147
+#: register/models/content.py:123 register/models/university.py:145
 msgid "Phone"
 msgstr "Телефон"
 
-#: main/content/models.py:124 main/university/models.py:148
+#: register/models/content.py:124 register/models/university.py:146
 msgid "Email"
 msgstr "Электронная почта"
 
-#: main/content/models.py:128 main/content/models.py:131
+#: register/models/content.py:128 register/models/content.py:131
 msgid "Staff content"
 msgstr "Контент персонала"
 
-#: main/content/models.py:132
+#: register/models/content.py:132
 msgid "Staff contents"
 msgstr "Контенты контенты"
 
-#: main/public/apps.py:7
-msgid "Main | Public"
-msgstr "Главная | Публикация"
-
-#: main/public/models.py:13 main/public/models.py:47 main/public/models.py:143
-#: main/public/models.py:197 main/public/models.py:217
-#: main/university/models.py:23 main/university/models.py:51
-#: main/university/models.py:82
+#: register/models/publics.py:13 register/models/publics.py:35
+#: register/models/publics.py:73 register/models/university.py:21
+#: register/models/university.py:49 register/models/university.py:80
 msgid "Poster"
 msgstr "Постер"
 
-#: main/public/models.py:16 main/university/models.py:149
+#: register/models/publics.py:16 register/models/university.py:147
 msgid "About"
 msgstr "О себе"
 
-#: main/public/models.py:17
+#: register/models/publics.py:17
 msgid "Source URL"
 msgstr "Текущий URL"
 
-#: main/public/models.py:24
+#: register/models/publics.py:19
+msgid "Is archive"
+msgstr ""
+
+#: register/models/publics.py:25
 msgid "Headliner"
 msgstr "Хэдлайнер"
 
-#: main/public/models.py:25
+#: register/models/publics.py:26
 msgid "Headliners"
 msgstr "Хэдлайнеры"
 
-#: main/public/models.py:34 main/public/models.py:84 main/public/models.py:130
-#: main/university/models.py:12 main/university/models.py:34
-#: main/university/models.py:44 main/university/models.py:107
-#: main/university/models.py:126 main/university/models.py:184
-#: main/university/models.py:207 main/university/models.py:235
-#: main/university/models.py:280 main/university/models.py:317
-#: templates/src/university/faculty/layouts.html:27
-msgid "Faculty"
-msgstr "Факультет"
+#: register/models/publics.py:33
+msgid "Partner name"
+msgstr "Название партнера"
 
-#: main/public/models.py:38 main/public/models.py:88 main/public/models.py:134
-#: main/university/models.py:63 main/university/models.py:130
-#: main/university/models.py:188 main/university/models.py:211
-#: main/university/models.py:239 main/university/models.py:284
-#: main/university/models.py:321
-#: templates/src/university/department/layouts.html:25
-#: templates/src/university/faculty/index.html:32
-#: templates/src/university/faculty/programs.html:55
-msgid "Department"
-msgstr "Кафедра"
+#: register/models/publics.py:45
+msgid "Partner"
+msgstr "Партнер"
 
-#: main/public/models.py:42 main/public/models.py:92 main/public/models.py:138
-#: main/university/models.py:97 main/university/models.py:116
-#: main/university/models.py:134 main/university/models.py:288
-#: main/university/models.py:325
-msgid "Division"
-msgstr "Отдел"
+#: register/models/publics.py:46
+msgid "Partners"
+msgstr "Партнеры"
 
-#: main/public/models.py:43 main/public/models.py:93 main/public/models.py:139
-#: main/university/models.py:135 main/university/models.py:289
-#: main/university/models.py:326
-msgid "Warning! This field is not relevant for faculties and departments"
-msgstr "Предупреждение! Это поле не имеет отношения к факультетам и кафедрам"
-
-#: main/public/models.py:50 main/public/models.py:96 main/public/models.py:146
-#: main/public/models.py:179 main/university/models.py:214
-#: main/university/models.py:244
-msgid "Author"
-msgstr "Автор"
-
-#: main/public/models.py:52 main/public/models.py:98 main/public/models.py:148
-#: main/public/models.py:181 main/public/models.py:201
-#: main/university/models.py:220 main/university/models.py:246
-#: main/university/models.py:297
-msgid "Date created"
-msgstr "Дата создание"
-
-#: main/public/models.py:58 main/public/models.py:59 main/public/models.py:64
-#: templates/src/base.html:248 templates/src/index.html:170
+#: register/models/publics.py:54 register/models/publics.py:90
+#: templates/src/base.html:248 templates/src/index.html:181
 #: templates/src/publics/index.html:32
 #: templates/src/publics/public_detail.html:33
 #: templates/src/university/department/publics.html:15
@@ -287,216 +248,181 @@ msgstr "Дата создание"
 msgid "News"
 msgstr "Новости"
 
-#: main/public/models.py:67 main/public/models.py:113 main/public/models.py:163
-#: main/public/models.py:200 main/university/models.py:216
-#: main/university/models.py:263 main/university/models.py:293
-#: main/university/models.py:353
-msgid "File"
-msgstr "Файл"
-
-#: main/public/models.py:75
-msgid "News file"
-msgstr "Файл новости"
-
-#: main/public/models.py:76
-msgid "News files"
-msgstr "Файлы новости"
-
-#: main/public/models.py:104 main/public/models.py:110
+#: register/models/publics.py:55
 msgid "Announcement"
 msgstr "Объявление"
 
-#: main/public/models.py:105 templates/src/base.html:251
-#: templates/src/index.html:130 templates/src/publics/index.html:38
-#: templates/src/publics/public_detail.html:39
-#: templates/src/university/department/publics.html:20
-#: templates/src/university/division/index.html:302
-#: templates/src/university/faculty/index.html:615
-#: templates/src/university/faculty/publics.html:20
-msgid "Announcements"
-msgstr "Объявления"
+#: register/models/publics.py:59 register/models/university.py:10
+#: register/models/university.py:32 register/models/university.py:42
+#: register/models/university.py:105 register/models/university.py:124
+#: register/models/university.py:182 register/models/university.py:205
+#: register/models/university.py:233 register/models/university.py:278
+#: register/models/university.py:310
+#: templates/src/university/faculty/layouts.html:27
+msgid "Faculty"
+msgstr "Факультет"
 
-#: main/public/models.py:121
-msgid "Announcement file"
-msgstr "Файл объявление"
+#: register/models/publics.py:63 register/models/university.py:61
+#: register/models/university.py:128 register/models/university.py:186
+#: register/models/university.py:209 register/models/university.py:237
+#: register/models/university.py:282 register/models/university.py:314
+#: templates/src/university/department/layouts.html:25
+#: templates/src/university/faculty/index.html:32
+#: templates/src/university/faculty/programs.html:55
+msgid "Department"
+msgstr "Кафедра"
 
-#: main/public/models.py:122
-msgid "Announcement files"
-msgstr "Файлы объявления"
+#: register/models/publics.py:67 register/models/university.py:95
+#: register/models/university.py:114 register/models/university.py:132
+#: register/models/university.py:286 register/models/university.py:318
+msgid "Division"
+msgstr "Отдел"
 
-#: main/public/models.py:154 main/public/models.py:160
-msgid "Event"
-msgstr "Мероприятие"
+#: register/models/publics.py:68 register/models/university.py:133
+#: register/models/university.py:287 register/models/university.py:319
+msgid "Warning! This field is not relevant for faculties and departments"
+msgstr "Предупреждение! Это поле не имеет отношения к факультетам и кафедрам"
 
-#: main/public/models.py:155 templates/src/base.html:254
-#: templates/src/index.html:215 templates/src/publics/index.html:44
-#: templates/src/publics/public_detail.html:45
-#: templates/src/university/department/publics.html:25
-#: templates/src/university/division/index.html:307
-#: templates/src/university/faculty/index.html:578
-#: templates/src/university/faculty/publics.html:25
-msgid "Events"
-msgstr "Мероприятия"
+#: register/models/publics.py:71
+msgid "Public type"
+msgstr "Тип публикации"
 
-#: main/public/models.py:171
-msgid "Event file"
-msgstr "Файл мероприятие"
+#: register/models/publics.py:76 register/models/university.py:212
+#: register/models/university.py:242
+msgid "Author"
+msgstr "Автор"
 
-#: main/public/models.py:172
-msgid "Event files"
-msgstr "Файлы мероприятия"
+#: register/models/publics.py:78 register/models/university.py:218
+#: register/models/university.py:244 register/models/university.py:295
+msgid "Date created"
+msgstr "Дата создание"
 
-#: main/public/models.py:187
-msgid "Vacancy"
-msgstr "Вакансия"
+#: register/models/publics.py:84
+msgid "Public"
+msgstr "Публикация"
 
-#: main/public/models.py:188
-msgid "Vacancies"
-msgstr "Вакансии"
+#: register/models/publics.py:85
+msgid "Publics"
+msgstr "Публикации"
 
-#: main/public/models.py:207
-msgid "Journal"
-msgstr "Журнал"
+#: register/models/publics.py:93 register/models/university.py:214
+#: register/models/university.py:261 register/models/university.py:291
+#: register/models/university.py:342
+msgid "File"
+msgstr "Файл"
 
-#: main/public/models.py:208
-msgid "Journals"
-msgstr "Журналы"
+#: register/models/publics.py:101
+msgid "Public file"
+msgstr "Исходный файл"
 
-#: main/public/models.py:215
-msgid "Partner name"
-msgstr "Название партнера"
+#: register/models/publics.py:102
+msgid "Public files"
+msgstr "Исходные файлы"
 
-#: main/public/models.py:227
-msgid "Partner"
-msgstr "Партнер"
-
-#: main/public/models.py:228
-msgid "Partners"
-msgstr "Партнеры"
-
-#: main/public/models.py:236
-msgid "Pathname"
-msgstr "Название пути"
-
-#: main/public/models.py:237
-msgid "Auth users count"
-msgstr "Количество аутентифицируемых пользователей"
-
-#: main/public/models.py:238
-msgid "Users count"
-msgstr "Количество пользователей"
-
-#: main/public/models.py:239
-msgid "Timestamp"
-msgstr "Отметка времени"
-
-#: main/university/apps.py:7
-msgid "Main | University"
-msgstr "Главная | Университет"
-
-#: main/university/models.py:13
+#: register/models/university.py:11
 msgid "Institute"
 msgstr "Институт"
 
-#: main/university/models.py:14
+#: register/models/university.py:12
 msgid "College"
 msgstr "Колледж"
 
-#: main/university/models.py:26
+#: register/models/university.py:24
 msgid "Faculty type"
 msgstr "Тип факультета"
 
-#: main/university/models.py:27
+#: register/models/university.py:25
 msgid "About the faculty"
 msgstr "О факультете"
 
-#: main/university/models.py:35 templates/src/base.html:260
+#: register/models/university.py:33 templates/src/base.html:260
 #: templates/src/university/faculties.html:6
 msgid "Faculties"
 msgstr "Факультеты"
 
-#: main/university/models.py:56
+#: register/models/university.py:54
 msgid "About the department"
 msgstr "О кафедре"
 
-#: main/university/models.py:64
+#: register/models/university.py:62
 msgid "Departments"
 msgstr "Кафедры"
 
-#: main/university/models.py:71
+#: register/models/university.py:69
 msgid "Division/Center division"
 msgstr "Отдел/Центр"
 
-#: main/university/models.py:72
+#: register/models/university.py:70
 msgid "Department division"
 msgstr "Департамент"
 
-#: main/university/models.py:73
+#: register/models/university.py:71
 msgid "Management division"
 msgstr "Управление"
 
-#: main/university/models.py:85
+#: register/models/university.py:83
 msgid "Division type"
 msgstr "Тип отдела"
 
-#: main/university/models.py:86
+#: register/models/university.py:84
 msgid "About the division"
 msgstr "Об отделе"
 
-#: main/university/models.py:89
+#: register/models/university.py:87
 msgid "Parent division"
 msgstr "Родительский отдел"
 
-#: main/university/models.py:98
+#: register/models/university.py:96
 msgid "Divisions"
 msgstr "Отделы"
 
-#: main/university/models.py:109 templates/src/university/faculty/index.html:44
+#: register/models/university.py:107
+#: templates/src/university/faculty/index.html:44
 msgid "Dean's office"
 msgstr "Деканат"
 
-#: main/university/models.py:110
+#: register/models/university.py:108
 #: templates/src/university/department/index.html:19
 msgid "Department management"
 msgstr "Управление кафедра"
 
-#: main/university/models.py:111
+#: register/models/university.py:109
 msgid "Teacher/Professors"
 msgstr "Преподаватель/Профессора"
 
-#: main/university/models.py:112
+#: register/models/university.py:110
 msgid "Active students"
 msgstr "Активные студенты"
 
-#: main/university/models.py:118
+#: register/models/university.py:116
 msgid "Head of Department"
 msgstr "Глава отдела"
 
-#: main/university/models.py:119
+#: register/models/university.py:117
 msgid "Employee"
 msgstr "Сотрудник"
 
-#: main/university/models.py:142
+#: register/models/university.py:140
 msgid "Profession/Activity"
 msgstr "Профессия/Деятельность"
 
-#: main/university/models.py:144
+#: register/models/university.py:142
 msgid "Personal type"
 msgstr "Тип персонал"
 
-#: main/university/models.py:156
+#: register/models/university.py:154
 msgid "Personal"
 msgstr "Персонал"
 
-#: main/university/models.py:157
+#: register/models/university.py:155
 msgid "Personals"
 msgstr "Персоналы"
 
-#: main/university/models.py:172 main/university/models.py:180
+#: register/models/university.py:170 register/models/university.py:178
 msgid "Program"
 msgstr "Программа"
 
-#: main/university/models.py:173
+#: register/models/university.py:171
 #: templates/src/university/department/layouts.html:66
 #: templates/src/university/department/programs.html:8
 #: templates/src/university/faculty/layouts.html:74
@@ -506,32 +432,32 @@ msgstr "Программа"
 msgid "Programs"
 msgstr "Программы"
 
-#: main/university/models.py:190
+#: register/models/university.py:188
 msgid "Code"
 msgstr "Код"
 
-#: main/university/models.py:198
+#: register/models/university.py:196
 msgid "Specialty"
 msgstr "Специальность"
 
-#: main/university/models.py:199
+#: register/models/university.py:197
 msgid "Specialties"
 msgstr "Специальности"
 
-#: main/university/models.py:226
+#: register/models/university.py:224
 msgid "Project"
 msgstr "Проект"
 
-#: main/university/models.py:227
+#: register/models/university.py:225
 msgid "Projects"
 msgstr "Проекты"
 
-#: main/university/models.py:252 main/university/models.py:258
-#: main/university/models.py:271
+#: register/models/university.py:250 register/models/university.py:256
+#: register/models/university.py:269
 msgid "Edu material"
 msgstr "Учебный материал"
 
-#: main/university/models.py:253 main/university/models.py:272
+#: register/models/university.py:251 register/models/university.py:270
 #: templates/src/university/department/index.html:290
 #: templates/src/university/department/personals/detail.html:50
 #: templates/src/university/faculty/index.html:339
@@ -540,11 +466,11 @@ msgstr "Учебный материал"
 msgid "Edu materials"
 msgstr "Учебные материалы"
 
-#: main/university/models.py:303
+#: register/models/university.py:301
 msgid "Success"
 msgstr "Успех"
 
-#: main/university/models.py:304
+#: register/models/university.py:302
 #: templates/src/university/department/index.html:397
 #: templates/src/university/department/layouts.html:102
 #: templates/src/university/faculty/achievements.html:7
@@ -555,67 +481,55 @@ msgstr "Успех"
 msgid "Achievements"
 msgstr "Достижения"
 
-#: main/university/models.py:311
-msgid "Grid"
-msgstr "Тип сетки"
-
-#: main/university/models.py:312
-msgid "Column"
-msgstr "Тип столбца"
-
-#: main/university/models.py:331
-msgid "Document grid"
-msgstr "Сетка документов"
-
-#: main/university/models.py:341 main/university/models.py:348
+#: register/models/university.py:330 register/models/university.py:337
 msgid "Document"
 msgstr "Документ"
 
-#: main/university/models.py:342
+#: register/models/university.py:331
 msgid "Documents"
 msgstr "Документы"
 
-#: main/university/models.py:362
+#: register/models/university.py:351
 msgid "Document file"
 msgstr "Файл с документом"
 
-#: main/university/models.py:363
+#: register/models/university.py:352
 msgid "Document files"
 msgstr "Файлы документов"
 
-#: main/validators.py:10
+#: register/validators.py:10
 #, python-brace-format
 msgid "Maximum file size: {max_size_mb}MB"
 msgstr "Максимальный размер файла: {max_size_mb}МБ"
 
-#: main/validators.py:17
+#: register/validators.py:17
 msgid "The image size should not exceed 1MB."
 msgstr "Размер изображения не должен превышать 1МБ"
 
-#: main/validators.py:25
+#: register/validators.py:25
 msgid "The image should be square"
 msgstr "Изображение должно быть квадратным"
 
-#: main/validators.py:28
+#: register/validators.py:28
 msgid "The maximum image resolution is 1024x1024px"
 msgstr "Максимальное разрешение изображения составляет 1024x1024px"
 
-#: main/validators.py:32 main/validators.py:53
+#: register/validators.py:32 register/validators.py:53
 msgid ""
 "The image could not be processed. Make sure that the file is a valid image"
 msgstr ""
 "Изображение не удалось обработать. Убедитесь, что файл является допустимым "
 "изображением"
 
-#: main/validators.py:38
+#: register/validators.py:38
 msgid "The image size should not exceed 2MB"
 msgstr "Размер изображения не должен превышать 2МБ"
 
-#: main/validators.py:46
+#: register/validators.py:46
 msgid "Minimum image resolution: 640x320px"
 msgstr "Минимальное разрешение изображения: 640x320px"
 
-#: main/validators.py:49
+#: register/validators.py:49
 msgid ""
 "The image should be in landscape orientation (width is greater than height)"
 msgstr ""
@@ -640,6 +554,24 @@ msgstr "Главная"
 msgid "Navigation"
 msgstr "Навигация"
 
+#: templates/src/base.html:251 templates/src/index.html:141
+#: templates/src/publics/index.html:38
+#: templates/src/publics/public_detail.html:39
+#: templates/src/university/department/publics.html:20
+#: templates/src/university/division/index.html:302
+#: templates/src/university/faculty/index.html:615
+#: templates/src/university/faculty/publics.html:20
+msgid "Announcements"
+msgstr "Объявления"
+
+#: templates/src/base.html:254 templates/src/index.html:226
+#: templates/src/university/department/publics.html:25
+#: templates/src/university/division/index.html:307
+#: templates/src/university/faculty/index.html:578
+#: templates/src/university/faculty/publics.html:25
+msgid "Events"
+msgstr "Мероприятия"
+
 #: templates/src/base.html:272
 msgid "Resources"
 msgstr "Ресурсы"
@@ -648,7 +580,7 @@ msgstr "Ресурсы"
 msgid "All copyrights are protected."
 msgstr "Все авторские права защищены."
 
-#: templates/src/content/index.html:316
+#: templates/src/content/index.html:314
 #: templates/src/university/department/achievements.html:85
 #: templates/src/university/department/materials.html:107
 #: templates/src/university/department/projects.html:94
@@ -672,7 +604,7 @@ msgstr "Все авторские права защищены."
 msgid "Warning about content creation"
 msgstr "Предупреждение о создании контента"
 
-#: templates/src/content/index.html:318
+#: templates/src/content/index.html:316
 #: templates/src/university/department/achievements.html:87
 #: templates/src/university/department/materials.html:109
 #: templates/src/university/department/projects.html:96
@@ -700,11 +632,11 @@ msgstr ""
 "Если вы ищете информацию, относящуюся к этой странице, то, к сожалению, она "
 "еще не загружена. Напомните администрации сайта о необходимости ввода данных!"
 
-#: templates/src/index.html:67
+#: templates/src/index.html:78
 msgid "Our programs"
 msgstr "Наши программы"
 
-#: templates/src/index.html:70
+#: templates/src/index.html:81
 msgid ""
 "We are a bachelor's, master's degree in pedagogy and offer additional "
 "educational programs"
@@ -712,28 +644,28 @@ msgstr ""
 "Мы имеем степень бакалавра, магистра педагогики и предлагаем дополнительные "
 "образовательные программы"
 
-#: templates/src/index.html:158 templates/src/index.html:174
-#: templates/src/index.html:246 templates/src/index.html:366
+#: templates/src/index.html:169 templates/src/index.html:185
+#: templates/src/index.html:257 templates/src/index.html:377
 msgid "View all"
 msgstr "Посмотреть все"
 
-#: templates/src/index.html:219
+#: templates/src/index.html:230
 msgid "Events taking place at the University"
 msgstr "События, происходящие в университете"
 
-#: templates/src/index.html:264
+#: templates/src/index.html:275
 msgid "About of University"
 msgstr "Об университете"
 
-#: templates/src/index.html:268
+#: templates/src/index.html:279
 msgid "Learn more about our university, which is almost a century old"
 msgstr "Узнайте больше о нашем университете, которому почти сто лет"
 
-#: templates/src/index.html:275
+#: templates/src/index.html:286
 msgid "Our University"
 msgstr "Наш университет"
 
-#: templates/src/index.html:278
+#: templates/src/index.html:289
 msgid ""
 "\n"
 "                            The Golden Cradle of education and science, the "
@@ -760,7 +692,7 @@ msgstr ""
 "студентов. Выпускники в настоящее время работают в Казахстане и за рубежом. "
 "Выпускники университета очень благодарны учебному заведению!"
 
-#: templates/src/index.html:292
+#: templates/src/index.html:303
 #: templates/src/university/department/index.html:22
 #: templates/src/university/department/index.html:112
 #: templates/src/university/department/index.html:200
@@ -780,31 +712,31 @@ msgstr ""
 msgid "Read more"
 msgstr "Подробнее"
 
-#: templates/src/index.html:309
+#: templates/src/index.html:320
 msgid "Students"
 msgstr "Студент"
 
-#: templates/src/index.html:313
+#: templates/src/index.html:324
 msgid "Grant"
 msgstr "Грант"
 
-#: templates/src/index.html:317
+#: templates/src/index.html:328
 msgid "Bachelor"
 msgstr "Бакалавр"
 
-#: templates/src/index.html:321
+#: templates/src/index.html:332
 msgid "Master stundent"
 msgstr "Магистр"
 
-#: templates/src/index.html:325
+#: templates/src/index.html:336
 msgid "Doctoral student"
 msgstr "Докторант"
 
-#: templates/src/index.html:338
+#: templates/src/index.html:349
 msgid "Academic learning"
 msgstr "Академическое обучение"
 
-#: templates/src/index.html:342
+#: templates/src/index.html:353
 msgid ""
 "Faculties, Institute of postgraduate education, college and structural "
 "divisions of departments"
@@ -812,11 +744,11 @@ msgstr ""
 "Факультеты, Институт последипломного образования, колледж и структурные "
 "подразделения кафедр"
 
-#: templates/src/index.html:384
+#: templates/src/index.html:395
 msgid "Our partners"
 msgstr "Наши партнеры"
 
-#: templates/src/index.html:388
+#: templates/src/index.html:399
 msgid ""
 "Our university cooperates with leading educational and scientific "
 "organizations to ensure the high quality of education and professional "
@@ -826,35 +758,35 @@ msgstr ""
 "организациями для обеспечения высокого качества образования и "
 "профессионального роста студентов"
 
-#: templates/src/index.html:412
+#: templates/src/index.html:423
 msgid "Contact us"
 msgstr "Связаться с нами"
 
-#: templates/src/index.html:416
+#: templates/src/index.html:427
 msgid "All the resources you can contact us"
 msgstr "По всем вопросам, касающимся ресурсов, вы можете связаться с нами"
 
-#: templates/src/index.html:436
+#: templates/src/index.html:447
 msgid "Address"
 msgstr "Адрес"
 
-#: templates/src/index.html:437
+#: templates/src/index.html:448
 msgid "Shymkent, A. Baitursynov N13"
 msgstr "Шымкент, А. Байтурсынов N 13"
 
-#: templates/src/index.html:448
+#: templates/src/index.html:459
 msgid "Selection committee"
 msgstr "Отборочная комиссия"
 
-#: templates/src/index.html:463
+#: templates/src/index.html:474
 msgid "University office"
 msgstr "Университетский офис"
 
-#: templates/src/index.html:475
+#: templates/src/index.html:486
 msgid "Call center"
 msgstr "Call центр"
 
-#: templates/src/index.html:490
+#: templates/src/index.html:501
 msgid "Helplines"
 msgstr "Линии помощи"
 
@@ -898,7 +830,7 @@ msgstr "Ссылка URL"
 msgid "Publications"
 msgstr "Публикации"
 
-#: templates/src/publics/public_detail.html:95
+#: templates/src/publics/public_detail.html:90
 msgid "Similar"
 msgstr "Похожие"
 
@@ -992,3 +924,66 @@ msgstr "Документы колледжа"
 #: templates/src/university/faculty/programs.html:16
 msgid "Specialty ciphers and names of the departments assigned by the faculty"
 msgstr "Шифры специальностей и названия кафедр, присвоенные факультетом"
+
+#~ msgid "Main | Contents"
+#~ msgstr "Главная | Контенты"
+
+#~ msgid "Main | Public"
+#~ msgstr "Главная | Публикация"
+
+#~ msgid "News file"
+#~ msgstr "Файл новости"
+
+#~ msgid "News files"
+#~ msgstr "Файлы новости"
+
+#~ msgid "Announcement file"
+#~ msgstr "Файл объявление"
+
+#~ msgid "Announcement files"
+#~ msgstr "Файлы объявления"
+
+#~ msgid "Event"
+#~ msgstr "Мероприятие"
+
+#~ msgid "Event file"
+#~ msgstr "Файл мероприятие"
+
+#~ msgid "Event files"
+#~ msgstr "Файлы мероприятия"
+
+#~ msgid "Vacancy"
+#~ msgstr "Вакансия"
+
+#~ msgid "Vacancies"
+#~ msgstr "Вакансии"
+
+#~ msgid "Journal"
+#~ msgstr "Журнал"
+
+#~ msgid "Journals"
+#~ msgstr "Журналы"
+
+#~ msgid "Pathname"
+#~ msgstr "Название пути"
+
+#~ msgid "Auth users count"
+#~ msgstr "Количество аутентифицируемых пользователей"
+
+#~ msgid "Users count"
+#~ msgstr "Количество пользователей"
+
+#~ msgid "Timestamp"
+#~ msgstr "Отметка времени"
+
+#~ msgid "Main | University"
+#~ msgstr "Главная | Университет"
+
+#~ msgid "Grid"
+#~ msgstr "Тип сетки"
+
+#~ msgid "Column"
+#~ msgstr "Тип столбца"
+
+#~ msgid "Document grid"
+#~ msgstr "Сетка документов"
