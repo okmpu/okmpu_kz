@@ -5,4 +5,4 @@
 (Zhanibekov university) мәліметтер қорларын жергілікті және қашықтықтан 
 басқару жүйесі
 
-Ресми сілтеме: [manage.okmpu.kz](https://okmpu.edu.kz/).
+Ресми сілтеме: [zhanibekov.edu.kz](https://zhanibekov.edu.kz/).
