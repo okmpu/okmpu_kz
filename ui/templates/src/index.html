@@ -1,0 +1,707 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+    {% translate 'Home page' %}
+{% endblock %}
+
+{% block content %}
+    <!------------ Headliners ------------>
+    <div id="default-carousel" class="relative w-full" data-carousel="slide" data-aos="fade-up">
+        <!-- Carousel wrapper -->
+        <div class="relative aspect-video overflow-hidden">
+            {% for item in headliners %}
+                <div 
+                    class="hidden duration-700 ease-in-out bg-no-repeat bg-cover"
+                    style="background-image: url('{{ item.poster.url }}');"
+                    data-carousel-item
+                >
+                    <a 
+                        href="{% if item.src %}{{ item.src }}{% else %}#{% endif %}"
+                        class="block w-full h-full bg-white/80 backdrop-blur-xl"    
+                    >
+                        <img 
+                            src="{{ item.poster.url }}"
+                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."
+                        >
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- Slider indicators -->
+        <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+            {% for item in headliners %}
+                <button 
+                    type="button" 
+                    class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                    data-carousel-slide-to="{{ item.id }}">
+                </button>
+            {% endfor %}
+        </div>
+        <!-- Slider controls -->
+        <button 
+            type="button"
+            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-prev
+        >
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 1 1 5l4 4" />
+                </svg>
+                <span class="sr-only">Previous</span>
+            </span>
+        </button>
+        <button 
+            type="button"
+            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-next
+        >
+            <span
+                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 9 4-4-4-4" />
+                </svg>
+                <span class="sr-only">Next</span>
+            </span>
+        </button>
+    </div>
+
+    <!-------------- Programs -------------->
+    <div class="border-b border-border-200" data-aos="fade-up">
+        <div class="w-full max-w-screen-2xl mx-auto px-4 py-8 md:py-16">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-semibold text-2xl lg:text-3xl xl:text-4xl">{% translate 'Our programs' %}</h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-muted block text-center">
+                    {% translate "We are a bachelor's, master's degree in pedagogy and offer additional educational programs" %}
+                </span>
+            </div>
+
+            <div class="grid gap-4 grid-cols-2 lg:grid-cols-4 mt-4">
+                {% for item in programs %}
+                    <a 
+                        href="{% url 'program_detail' item.slug %}"
+                        class="flex flex-col gap-4 items-center p-6 bg-primary-600 text-white rounded-lg transition-all hover:bg-secondary-100 hover:text-foreground"
+                    >
+                        {% if item.slug == 'bachelor' %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-icon lucide-user">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
+                        {% elif item.slug == 'magistracy' %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-atom-icon lucide-atom">
+                                <circle cx="12" cy="12" r="1" />
+                                <path
+                                    d="M20.2 20.2c2.04-2.03.02-7.36-4.5-11.9-4.54-4.52-9.87-6.54-11.9-4.5-2.04 2.03-.02 7.36 4.5 11.9 4.54 4.52 9.87 6.54 11.9 4.5Z" />
+                                <path
+                                    d="M15.7 15.7c4.52-4.54 6.54-9.87 4.5-11.9-2.03-2.04-7.36-.02-11.9 4.5-4.52 4.54-6.54 9.87-4.5 11.9 2.03 2.04 7.36.02 11.9-4.5Z" />
+                            </svg>
+                        {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-microscope-icon lucide-microscope">
+                                <path d="M6 18h8" />
+                                <path d="M3 22h18" />
+                                <path d="M14 22a7 7 0 1 0 0-14h-1" />
+                                <path d="M9 14h2" />
+                                <path d="M9 12a2 2 0 0 1-2-2V6h6v4a2 2 0 0 1-2 2Z" />
+                                <path d="M12 6V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3" />
+                            </svg>
+                        {% endif %}
+                        <h5 class="text-xl font-medium tracking-tight">{{ item.name }}</h5>
+                    </a>
+                {% endfor %}
+                <a 
+                    href="https://talapker.okmpu.edu.kz" target="_blank"
+                    class="flex flex-col gap-4 items-center p-6 bg-primary-600 text-white rounded-lg transition-all hover:bg-secondary-100 hover:text-foreground"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-icon lucide-link">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                    </svg>
+                    <h5 class="text-xl font-medium tracking-tight">Talapker</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-------------- Publics -------------->
+    <div class="border-b border-border-200">
+        <div class="w-full max-w-screen-2xl flex flex-col lg:flex-row items-start gap-6 mx-auto px-4 py-8 md:py-16">
+            <!-- Announcements -->
+            <div class="grid gap-4 w-full lg:max-w-md" data-aos="fade-up" data-aos-duration="500">
+                <h1 class="font-medium text-xl">{% translate 'Announcements' %}</h1>
+
+                <div class="grid gap-2">
+                    {% for item in announcements %}
+                        <a 
+                            href="{% url 'announcement' item.pk %}" 
+                            class="flex gap-2 rounded-lg border border-border-200 overflow-hidden shadow transition-all hover:bg-secondary-100"
+                        >
+                            <div class="p-6 flex justify-center items-center text-white bg-amber-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-megaphone-icon lucide-megaphone">
+                                    <path
+                                        d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
+                                    <path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14" />
+                                    <path d="M8 6v8" />
+                                </svg>
+                            </div>
+
+                            <div class="flex-1 flex flex-col gap-1 p-2">
+                                <h1 class="font-medium line-clamp-2">{{ item.title }}</h1>
+                                <div class="flex gap-1 items-center text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock3-icon lucide-clock-3">
+                                        <path d="M12 6v6h4" />
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    <span class="text-sm">{{ item.date_created|date:"j F Y, H:i" }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+
+                <a 
+                    href="{% url 'announcements' %}"
+                    class="inline-flex items-center gap-1 text-primary-600 hover:underline"
+                >
+                    <span>{% translate 'View all' %}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-arrow-right-icon lucide-arrow-right">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- News -->
+            <div class="flex-1 grid gap-4">
+                <div class="flex items-center justify-between" data-aos="fade-up">
+                    <h1 class="font-medium text-xl">{% translate 'News' %}</h1>
+
+                    <a 
+                        href="{% url 'news' %}"
+                        class="inline-flex items-center gap-1 text-primary-600 hover:underline"
+                    >
+                        <span>{% translate 'View all' %}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-arrow-right-icon lucide-arrow-right">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+                    {% for item in news %}
+                        <a 
+                            href="{% url 'news_detail' item.id %}" 
+                            class="border border-border-200 rounded-xl shadow overflow-hidden transition-all hover:bg-secondary-100"
+                            data-aos="fade-up"
+                        >
+                            <div class="aspect-video overflow-hidden bg-primary-600">
+                                <img 
+                                    src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}" 
+                                    class="w-full" alt="{{ item.title }}"
+                                >
+                            </div>
+                            <div class="grid gap-2 p-4">
+                                <h1 class="font-medium line-clamp-2">{{ item.title }}</h1>
+                                <div class="flex gap-1 items-center text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock3-icon lucide-clock-3">
+                                        <path d="M12 6v6h4" />
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    <span class="text-sm">{{ item.date_created|date:"j F Y, H:i" }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------- Events -------------->
+    {% if events %}
+        <div class="border-b border-border-200" data-aos="fade-up">
+            <div class="max-w-screen-2xl w-full mx-auto px-4 py-8 md:py-16">
+                <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                    <h1 class="font-semibold text-2xl lg:text-3xl xl:text-4xl">
+                        {% translate 'Events' %}
+                    </h1>
+                    <div class="h-2 bg-amber-500 w-48"></div>
+                    <span class="text-muted block text-center">
+                        {% translate 'Events taking place at the University' %}
+                    </span>
+                </div>
+
+                <swiper-container 
+                    class="mySwiper mt-8" 
+                    pagination="true" 
+                    pagination-clickable="true" 
+                    space-between="20"
+                    navigation="true" slides-per-view="4"
+                >
+                    {% for item in events %}
+                        <swiper-slide>
+                            <a href="{% url 'event_detail' item.id %}" class="block border rounded-lg overflow-hidden transition-all hover:bg-secondary-100">
+                                <div class="overflow-hidden">
+                                    <img 
+                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static 'images/poster.png' %}{% endif %}" 
+                                        class="w-full" alt="{{ item.title }}"
+                                    >
+                                </div>
+                                <div class="p-4">
+                                    <h1 class="font-semibold text-xl line-clamp-2">{{ item.title }}</h1>
+                                    <span class="text-muted">{{ item.date_created }}</span>
+                                </div>
+                            </a>
+                        </swiper-slide>
+                    {% endfor %}
+                </swiper-container>
+
+                <div class="flex justify-center">
+                    <a 
+                        href="{% url 'events' %}"
+                        class="inline-flex gap-1 items-center text-medium-600 hover:underline"
+                    >
+                        <span>{% translate 'View all' %}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-arrow-right-icon lucide-arrow-right">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+    <!-------------- About -------------->
+    <div class="border-b border-border-200" data-aos="fade-up">
+        <div class="max-w-screen-2xl w-full mx-auto px-4 py-8 md:py-16 grid gap-8">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-semibold text-2xl lg:text-3xl xl:text-4xl">
+                    {% translate 'About of University' %}
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-muted block text-center">
+                    {% translate 'Learn more about our university, which is almost a century old' %}
+                </span>
+            </div>
+
+            <div class="grid gap-8 grid-cols-1 lg:grid-cols-2">
+                <div class="flex flex-col gap-2">
+                    <h1 class="font-semibold text-xl text-amber-500">
+                        {% translate 'Our University' %}
+                    </h1>
+                    <span class="block text-justify text-muted">
+                        {% blocktrans %}
+                            The Golden Cradle of education and science, the sacred 
+                            Qarachanrak - Uzbekali Zhanibekov South Kazakhstan Pedagogical 
+                            University is located in the center of Shymkent, on A. Baitursynov 
+                            street. The university has been operating since 1937. For almost a 
+                            century, he has achieved many successes and trained thousands of 
+                            students. Graduates are currently working in Kazakhstan and abroad. 
+                            Graduates of the University are very grateful to the educational 
+                            institution!
+                        {% endblocktrans %}
+                    </span>
+
+                    <a 
+                        href="#"
+                        class="inline-flex items-center gap-1 text-primary-600 hover:underline"
+                    >
+                        <span>{% translate 'Read more' %}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-arrow-right-icon lucide-arrow-right">
+                            <path d="M5 12h14" />
+                            <path d="m12 5 7 7-7 7" />
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="aspect-video rounded-lg overflow-hidden">
+                    <img src="{% static '/images/about.jpg' %}" class="w-full" alt="">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+                <div class="p-6 bg-primary-600 rounded-lg text-white text-center">
+                    <h1 class="text-4xl font-medium">8 442</h1>
+                    <span>{% translate 'Students' %}</span>
+                </div>
+                <div class="p-6 bg-primary-600 rounded-lg text-white text-center">
+                    <h1 class="text-4xl font-medium">4001</h1>
+                    <span>{% translate 'Grant' %}</span>
+                </div>
+                <div class="p-6 bg-primary-600 rounded-lg text-white text-center">
+                    <h1 class="text-4xl font-medium">7 717</h1>
+                    <span>{% translate 'Bachelor' %}</span>
+                </div>
+                <div class="p-6 bg-primary-600 rounded-lg text-white text-center">
+                    <h1 class="text-4xl font-medium">624</h1>
+                    <span>{% translate 'Master stundent' %}</span>
+                </div>
+                <div class="p-6 bg-primary-600 rounded-lg text-white text-center">
+                    <h1 class="text-4xl font-medium">101</h1>
+                    <span>{% translate 'Doctoral student' %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-------------- Faculties -------------->
+    <div class="border-b border-border-200">
+        <div class="w-full max-w-screen-2xl mx-auto px-4 py-8 md:py-16 grid gap-8">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-semibold text-2xl lg:text-3xl xl:text-4xl">
+                    {% translate 'Academic learning' %}
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-muted block text-center">
+                    {% translate 'Faculties, Institute of postgraduate education, college and structural divisions of departments' %}
+                </span>
+            </div>
+
+            <div class="w-full swiper facultiesSwiper">
+                <div class="swiper-wrapper">
+                    {% for item in academics %}
+                        <a 
+                            href="{% url 'faculty_detail' item.slug %}" 
+                            class="swiper-slide p-6 rounded-xl border border-border-200 transition-all hover:bg-secondary-100"
+                        >
+                            <div class="w-36 h-36 rounded-full border overflow-hidden mx-auto">
+                                <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}" class="w-full h-full" alt="">
+                            </div>
+                            <div class="grid gap-4 text-center mt-2">
+                                <h1 class="text-center font-medium text-xl line-clamp-1">{{ item.name }}</h1>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+
+                <button 
+                    id="fPrevBtn" 
+                    class="absolute left-4 top-1/2 -translate-y-1/2 z-10 border border-neutral-200 bg-white p-2 rounded-full shadow cursor-pointer hover:bg-neutral-100 hidden"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-left-icon lucide-chevron-left">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <button 
+                    id="fNextBtn" 
+                    class="absolute right-4 top-1/2 -translate-y-1/2 z-10 border border-neutral-200 bg-white p-2 rounded-full shadow cursor-pointer hover:bg-neutral-100"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="flex justify-center">
+                <a 
+                    href="{% url 'faculties' %}"
+                    class="inline-flex gap-1 items-center text-primary-600 hover:underline"
+                >
+                    <span>{% translate 'View all' %}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-arrow-right-icon lucide-arrow-right">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-------------- Partners -------------->
+    <div class="border-b border-border-200" data-aos="fade-up">
+        <div class="max-w-screen-2xl w-full mx-auto px-4 py-8 md:py-16 grid gap-8">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-semibold text-2xl lg:text-3xl xl:text-4xl">
+                    {% translate 'Our partners' %}
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-muted block text-center">
+                    {% translate 'Our university cooperates with leading educational and scientific organizations to ensure the high quality of education and professional growth of students' %}
+                </span>
+            </div>
+
+            <div class="w-full swiper partnersSwiper">
+                <div class="swiper-wrapper">
+                    {% for item in partners %}
+                        <a 
+                            href="#" 
+                            target="_blank" 
+                            class="swiper-slide aspect-video border border-border-200 rounded-lg overflow-hidden"
+                        >
+                            <img src="{{ item.poster.url }}" alt="Image" class="w-full" />
+                        </a>
+                    {% endfor %}
+                </div>
+                
+                <button 
+                    id="pPrevBtn" 
+                    class="absolute left-4 top-1/2 -translate-y-1/2 z-10 border border-neutral-200 bg-white p-2 rounded-full shadow cursor-pointer hover:bg-neutral-100 hidden"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-left-icon lucide-chevron-left">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <button 
+                    id="pNextBtn" 
+                    class="absolute right-4 top-1/2 -translate-y-1/2 z-10 border border-neutral-200 bg-white p-2 rounded-full shadow cursor-pointer hover:bg-neutral-100"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-chevron-right-icon lucide-chevron-right">
+                        <path d="m9 18 6-6-6-6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-------------- Contacts -------------->
+    <div class="" >
+        <div class="max-w-screen-2xl w-full mx-auto px-4 py-8 md:py-16 grid gap-8">
+            <div class="max-w-screen-sm w-full mx-auto flex flex-col items-center gap-4">
+                <h1 class="font-semibold text-2xl lg:text-3xl xl:text-4xl">
+                    {% translate 'Contact us' %}
+                </h1>
+                <div class="h-2 bg-amber-500 w-48"></div>
+                <span class="text-muted block text-center">
+                    {% translate 'All the resources you can contact us' %}
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 lg:flex">
+                <div class="flex-1">
+                    <div class="relative overflow-hidden aspect-video rounded-xl shadow">
+                        <iframe src="https://yandex.ru/map-widget/v1/?indoorLevel=1&ll=69.593311%2C42.320968&mode=search&oid=125570740268&ol=biz&z=17.09" width="100%" height="100%" frame-border="1" allow-full-screen=true style="position: 'relative';"></iframe>
+                    </div>
+                </div>
+
+                <div class="w-full grid gap-8 lg:max-w-lg">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-xl font-medium">{% translate 'Address' %}</h1>
+                            <span class="text-muted">{% translate 'Shymkent, A. Baitursynov N13' %}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-xl font-medium">{% translate 'Selection committee' %}</h1>
+                            <div class="flex flex-col">
+                                <span class="block text-muted">8 7252 21-41-01</span>
+                                <span class="block text-muted">8 708 438 65 62</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-xl font-medium">{% translate 'University office' %}</h1>
+                            <span class="text-muted">8 7252 30-14-59</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-xl font-medium">{% translate 'Call center' %}</h1>
+                            <div class="grid">
+                                <span class="text-muted">8 7252 40-07-05</span>
+                                <span class="text-muted">8 708 438 65 61</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="bg-amber-500 rounded-full text-white p-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h1 class="text-xl font-medium">{% translate 'Helplines' %}</h1>
+                            <div class="grid">
+                                <span class="text-gray-500">+7 (7252) 21-40-05</span>
+                                <span class="text-gray-500">+7 (7252) 21-03-70</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block js %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fPrevBtn = document.getElementById("fPrevBtn");
+            const fNextBtn = document.getElementById("fNextBtn");
+            const pPrevBtn = document.getElementById("pPrevBtn");
+            const pNextBtn = document.getElementById("pNextBtn");
+            
+            // faculties
+            const facultiesSwiper = new Swiper(".facultiesSwiper", {
+                slidesPerView: 1,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                    }
+                },
+                spaceBetween: 16,
+                mousewheel: true,
+                keyboard: true,
+                navigation: {
+                    nextEl: "#fPrevBtn",
+                    prevEl: "#fNextBtn",
+                },
+                on: {
+                    slideChange: function () {
+                        const isBeginning = facultiesSwiper.isBeginning;
+                        const isEnd = facultiesSwiper.isEnd;
+
+                        if (isBeginning) {
+                            fPrevBtn.classList.add("hidden");
+                        } else {
+                            fPrevBtn.classList.remove("hidden");
+                        }
+
+                        if (isEnd) {
+                            fNextBtn.classList.add("hidden");
+                        } else {
+                            fNextBtn.classList.remove("hidden");
+                        }
+                    },
+                },
+            });
+
+            if (facultiesSwiper.isBeginning) {
+                fPrevBtn.classList.add("hidden");
+            }
+
+
+            // partners
+            const partnersSwiper = new Swiper(".partnersSwiper", {
+                slidesPerView: 1,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2,
+                    },
+                    768: {
+                        slidesPerView: 3,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                    },
+                    1280: {
+                        slidesPerView: 5,
+                    }
+                },
+                spaceBetween: 16,
+                mousewheel: true,
+                keyboard: true,
+                navigation: {
+                    nextEl: "#pPrevBtn",
+                    prevEl: "#pNextBtn",
+                },
+                on: {
+                    slideChange: function () {
+                        const isBeginning = partnersSwiper.isBeginning;
+                        const isEnd = partnersSwiper.isEnd;
+
+                        if (isBeginning) {
+                            pPrevBtn.classList.add("hidden");
+                        } else {
+                            pPrevBtn.classList.remove("hidden");
+                        }
+
+                        if (isEnd) {
+                            pNextBtn.classList.add("hidden");
+                        } else {
+                            pNextBtn.classList.remove("hidden");
+                        }
+                    },
+                },
+            });
+            
+            if (partnersSwiper.isBeginning) {
+                pPrevBtn.classList.add("hidden");
+            }
+        })
+    </script>
+{% endblock js %}

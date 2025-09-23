@@ -1,18 +1,20 @@
 import os
 from pathlib import Path
 from decouple import config
-from datetime import timedelta
 from django.utils.translation import gettext_lazy as _
+from django.contrib import messages
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = config('SECRET_KEY')
 
+
+SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG') == 'True'
 ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+# ----------------------------------------------------------------------------------------------------------------------
 INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
@@ -25,6 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',
     'django_summernote',
+    'tailwind',
+    'django_browser_reload',
+    'ui',
 
     # Main app
     'register.apps.RegisterConfig',
@@ -34,9 +39,7 @@ INSTALLED_APPS = [
 ]
 
 
-SILENCED_SYSTEM_CHECKS = ['security.W019']
-
-
+# Middlewares
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -48,16 +51,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 USE_ACCEPT_LANGUAGE_HEADER = False
-
 ROOT_URLCONF = 'core.urls'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'ui/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,9 +76,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'core.wsgi.application'
-
 
 # Database
 DATABASES = {
@@ -107,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
+# ----------------------------------------------------------------------------------------------------------------------
 LANGUAGES = (
     ('kk', _('Kazakh')),
     ('ru', _('Russian')),
@@ -115,13 +117,11 @@ LANGUAGES = (
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'kk'
 MODELTRANSLATION_LANGUAGES = ('kk', 'ru', 'en', )
-
 MODELTRANSLATION_TRANSLATION_FILES = (
     'register.translations.publics',
     'register.translations.university',
     'register.translations.content',
 )
-
 
 LOCALE_PATHS = [
     BASE_DIR / 'locales'
@@ -133,14 +133,37 @@ USE_I18N = True
 USE_TZ = True
 
 
+# Templates settings
+# ----------------------------------------------------------------------------------------------------------------------
+TAILWIND_APP_NAME = 'ui'
+
+# Messages
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+MESSAGE_TAGS = {
+    messages.SUCCESS: 'text-green-600',
+    messages.WARNING: 'text-amber-600',
+    messages.INFO: 'text-blue-600',
+    messages.ERROR: 'text-red-600',
+}
+
+
 # Static files (CSS, JavaScript, Images)
+# ----------------------------------------------------------------------------------------------------------------------
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static/')]
-
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'ui/static/')]
+
 
 # Default primary key field type
+# ----------------------------------------------------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# CORS, API settings
+# ----------------------------------------------------------------------------------------------------------------------
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+SILENCED_SYSTEM_CHECKS = ['security.W019']
