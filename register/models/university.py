@@ -11,6 +11,7 @@ class Faculty(models.Model):
         ('institute', _('Institute')),
         ('college', _('College')),
     )
+
     name = models.CharField(_('Name'), max_length=128)
     slug = models.CharField(_('Slug'), max_length=128)
     image = models.ImageField(
@@ -70,6 +71,7 @@ class Division(models.Model):
         ('department', _('Department division')),
         ('management', _('Management division')),
     )
+
     name = models.CharField(_('Name'), max_length=128)
     slug = models.SlugField(_('Slug'), max_length=128)
     image = models.ImageField(
