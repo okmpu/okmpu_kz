@@ -60,33 +60,48 @@
         >
             <div class="h-screen overflow-y-auto lg:h-full px-3 py-4 border-r border-border-200">
                 <div class="pt-4 pb-2">
-                    <h1 class="font-bold text-xl">{{ sub_category.name }}</h1>
+                    <h1 class="font-medium md:text-xl">{{ sub_category.name }}</h1>
                 </div>
 
-                <ul class="space-y-2 font-medium">
+                <ul 
+                    class="space-y-1" 
+                    id="accordion-collapse" 
+                    data-accordion="collapse" 
+                    data-inactive-classes="text-foreground"
+                    data-active-classes="bg-secondary-100"    
+                >
                     {% for section in sub_category.children.all %}
                         {% if section.multiple %}
-                            <li>
-                                <button type="button"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100"
-                                    aria-controls="dropdown-example-{{ section.id }}"
-                                    data-collapse-toggle="dropdown-example-{{ section.id }}"
+                            <li id="accordion-collapse-heading-{{ section.id }}">
+                                <button 
+                                    type="button"
+                                    class="flex items-center gap-2 w-full p-2 text-foreground transition duration-75 rounded-xl hover:bg-secondary-100"
+                                    data-accordion-target="#accordion-collapse-body-{{ section.id }}" 
+                                    aria-expanded="{% if section.id in open_section_ids %}true{% else %}false{% endif %}" 
+                                    aria-controls="accordion-collapse-body-{{ section.id }}"
                                 >
-                                    <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 .087.586l2.977-7.937A1 1 0 0 1 6 10h12V9a2 2 0 0 0-2-2h-4.532l-1.9-2.28A2 2 0 0 0 8.032 4H4Zm2.693 8H6.5l-3 8H18l3-8H6.693Z" clip-rule="evenodd"/>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-folder-open-icon lucide-folder-open">
+                                        <path
+                                            d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2" />
                                     </svg>
-                                    <span class="flex-1 ms-3 text-left">
+                                    <h1 class="flex-1 text-left">
                                         {{ section.name }}
-                                    </span>
-                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </h1>
+                                    <svg 
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                        data-accordion-icon
+                                        class="lucide lucide-chevron-down-icon lucide-chevron-down rotate-180 shrink-0">
+                                        <path d="m6 9 6 6 6-6" />
                                     </svg>
                                 </button>
+
                                 <ul 
-                                    id="dropdown-example-{{ section.id }}" 
-                                    class="hidden my-2 ml-4 pl-2 border-l"
+                                    id="accordion-collapse-body-{{ section.id }}" 
+                                    class="{% if section.id not in open_section_ids %}hidden{% endif %} my-2 ml-4 pl-2 border-l border-border-200 space-y-1"
+                                    aria-labelledby="accordion-collapse-heading-{{ section.id }}"
                                 >
                                     {% for item in contents %}
                                         {% if item.category.id == section.id %}
@@ -94,7 +109,7 @@
                                             {% url 'content_detail' category.slug sub_category.slug section.slug item.slug as content_url %}
                                             <a 
                                                 href="{% if section.app_name == 'content' %}{% url 'content_detail' category.slug sub_category.slug section.slug item.slug %}{% elif section.app_name == 'university' %}/university/{{ section.slug }}{% else %}{{ section.url }}{% endif %}"
-                                                class="flex w-full py-2 px-6 transition duration-75 rounded-lg group hover:bg-gray-100 {% if request.path == content_url %}bg-gray-100 text-blue-500{% endif %}"
+                                                class="flex w-full py-2 px-6 transition duration-75 rounded-xl {% if request.path == content_url %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}"
                                                 target="{% if section.target %}_blank{% else %}_self{% endif %}"
                                             >
                                                 <span class="flex-1 line-clamp-2">
@@ -111,15 +126,17 @@
                                 {% url 'content_detail' category.slug sub_category.slug section.slug section.slug as content_url %}
                                 <a 
                                     href="{% if section.app_name == 'content' %}{% url 'content_detail' category.slug sub_category.slug section.slug section.slug %}{% elif section.app_name == 'university' %}/university/{{ section.slug }}{% else %}{{ section.url }}{% endif %}"
-                                    class="flex items-center p-2 rounded-lg hover:bg-gray-100 group {% if request.path == content_url %}bg-gray-100 text-blue-500{% endif %}"
+                                    class="flex gap-2 items-center py-2 px-8 rounded-xl {% if request.path == content_url %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}"
                                     target="{% if section.target %}_blank{% else %}_self{% endif %}"
                                 >
                                     {% if section.app_name == 'none' %}
-                                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.213 9.787a3.391 3.391 0 0 0-4.795 0l-3.425 3.426a3.39 3.39 0 0 0 4.795 4.794l.321-.304m-.321-4.49a3.39 3.39 0 0 0 4.795 0l3.424-3.426a3.39 3.39 0 0 0-4.794-4.795l-1.028.961"/>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-icon lucide-link">
+                                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
                                         </svg>
                                     {% endif %}
-                                    <span class="flex-1 ms-3 line-clamp-2">{{ section.name }}</span>
+                                    <h1 class="flex-1 line-clamp-2">{{ section.name }}</h1>
                                 </a>
                             </li>
                         {% endif %}
@@ -130,81 +147,112 @@
 
         <!-- Content side -->
         <div class="gird gap-8 p-4 flex-1">
-            <div class="grid gap-2 border-b pb-8">
-                <h1 class="text-4xl font-bold">{{ content.title }}</h1>
-                <span class="text-gray-500">{{ content.description }}</span>
+            <div class="grid gap-2 border-b border-border-200 pb-8">
+                <h1 class="text-2xl lg:text-3xl xl:text-4xl font-semibold">{{ content.title }}</h1>
+                <span class="text-muted">{{ content.description }}</span>
             </div>
 
             <div class="grid gap-4 py-8">
                 {% if content.text_contents.all|length > 0 or content.image_contents.all|length > 0 or content.file_contents.all|length > 0 or content.staff_contents.all|length > 0 %}
-                    <div class="relative">
+                    <div class="relative grid gap-4">
                         <!-- Text contents -->
-                        {% if content.text_contents.all|length > 0 %}
-                            {% for item in content.text_contents.all %}
-                                <div class="text-gray-500 text-justify" id="text-content">
-                                    {{ item.body|safe }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
+                        <div class="grid">
+                            {% if content.text_contents.all|length > 0 %}
+                                {% for item in content.text_contents.all %}
+                                    <div class="text-muted text-justify" id="text-content">
+                                        {{ item.body|safe }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
                         
                         <!-- Image contents -->
-                        {% if content.image_contents.all|length > 0 %}
-                            {% for item in content.image_contents.all %}
-                                <img src="{{ item.image.url }}" class="w-full" alt="{{ content.title }}">
-                            {% endfor %}
-                        {% endif %}
-                        
+                        <div class="grid">
+                            {% if content.image_contents.all|length > 0 %}
+                                {% for item in content.image_contents.all %}
+                                    <img src="{{ item.image.url }}" class="w-full" alt="{{ content.title }}">
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
                         <!-- File contents -->
                         {% if content.file_contents.all|length > 0 %}
                             <div class="grid gap-2">
                                 {% for item in content.file_contents.all %}
-                                    <div class="flex justify-between items-center border rounded-lg py-2 px-4">
+                                    <div class="flex justify-between items-center border border-border-200 rounded-xl shadow py-2 px-4">
                                         <div class="flex gap-2 items-center">
-                                            <svg class="w-8 h-8 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                                <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-1 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Zm2-5a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 4a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0v-3Z" clip-rule="evenodd"/>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-file-text-icon lucide-file-text">
+                                                <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                                                <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                                                <path d="M10 9H8" />
+                                                <path d="M16 13H8" />
+                                                <path d="M16 17H8" />
                                             </svg>
-                                            
                                             <div class="flex-1 max-w-screen-md">
-                                                <h1 class="text-foreground text-xl font-semibold line-clamp-1">
+                                                <h1 class="font-medium line-clamp-1">
                                                     {{ item.caption }}
                                                 </h1>
-                                                <span class="text-gray-500">{{ content.title }}</span>
+                                                <span class="text-muted">{{ content.title }}</span>
                                             </div>
                                         </div>
 
                                         <div class="grid gap-2 grid-cols-2">
                                             <!-- Modal toggle -->
-                                            <button data-modal-target="default-modal-{{ item.id }}" data-modal-toggle="default-modal-{{ item.id }}"
-                                                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
-                                                type="button">
-                                                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path fill-rule="evenodd" d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
+                                            <button 
+                                                data-modal-target="default-modal-{{ item.id }}" 
+                                                data-modal-toggle="default-modal-{{ item.id }}"
+                                                class="flex justify-center items-center bg-secondary-100 hover:bg-secondary-200 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg p-3"
+                                                type="button"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye">
+                                                    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                                                    <circle cx="12" cy="12" r="3" />
                                                 </svg>
                                             </button>
 
                                             <!-- Main modal -->
-                                            <div id="default-modal-{{ item.id }}" tabindex="-1" aria-hidden="true"
-                                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                            <a href="{{ item.source_file.url }}"
+                                                target="_blank"
+                                                class="flex justify-center items-center bg-secondary-100 hover:bg-secondary-200 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg p-3"
+                                                type="button"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download">
+                                                    <path d="M12 15V3" />
+                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                    <path d="m7 10 5 5 5-5" />
+                                                </svg>
+                                            </a>
+
+                                            <div 
+                                                id="default-modal-{{ item.id }}" 
+                                                tabindex="-1" 
+                                                aria-hidden="true"
+                                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+                                            >
                                                 <div class="relative p-4 w-full max-w-screen-2xl h-full">
                                                     <!-- Modal content -->
                                                     <div class="relative bg-white rounded-lg overflow-hidden shadow h-full">
                                                         <!-- Close modal button -->
-                                                        <button type="button"
-                                                            class="fixed top-2 right-6 text-gray-400 bg-gray-100 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                            data-modal-hide="default-modal-{{ item.id }}">
-                                                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                        <button 
+                                                            type="button"
+                                                            class="fixed top-2 right-6 bg-secondary-100 hover:bg-secondary-200 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                            data-modal-hide="default-modal-{{ item.id }}"
+                                                        >
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                                                                <path d="M18 6 6 18" />
+                                                                <path d="m6 6 12 12" />
                                                             </svg>
-                                                            <span class="sr-only">Close modal</span>
                                                         </button>
 
                                                         <div class="h-full">
                                                             <div class="p-4">
-                                                                <h1 class="font-bold text-xl">
-                                                                    {{ item.caption }}
-                                                                </h1>
-                                                                <span class="text-gray-500">{{ content.title }}</span>
+                                                                <h1 class="font-medium text-xl">{{ item.caption }}</h1>
+                                                                <span class="text-muted">{{ content.title }}</span>
                                                             </div>
                                                             
                                                             <div class="flex-1 h-full">
@@ -214,15 +262,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            <a href="{{ item.source_file.url }}"
-                                                target="_blank"
-                                                class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
-                                                type="button">
-                                                <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
-                                                </svg>
-                                            </a>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -231,21 +270,23 @@
 
                         <!-- Staff contents -->
                         {% if content.staff_contents.all|length > 0 %}
-                            <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
+                            <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
                                 {% for item in content.staff_contents.all %}
                                     <div
-                                        data-modal-target="default-modal-{{ item.id }}" data-modal-toggle="default-modal-{{ item.id }}" 
-                                        class="grid gap-2 text-center border p-4 rounded-lg cursor-pointer transition-all hover:bg-gray-100"
+                                        data-modal-target="default-modal-{{ item.id }}" 
+                                        data-modal-toggle="default-modal-{{ item.id }}" 
+                                        class="grid gap-4 text-center border border-border-200 p-4 rounded-lg cursor-pointer shadow transition-all hover:bg-secondary-100"
                                     >
                                         <img 
                                             src="{% if item.image %}{{ item.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}" 
-                                            class="rounded-full w-32 h-32 mx-auto border-2"
+                                            class="rounded-full w-32 h-32 mx-auto border-2 border-border-200"
                                             alt="{{ item.full_name }}"
                                         >
-                                        <h1 class="text-xl font-bold">
-                                            {{ item.full_name }}
-                                        </h1>
-                                        <span class="text-gray-500">{{ item.profession }}</span>
+                                        <div class="flex flex-col">
+                                            <h1 class="font-medium">{{ item.full_name }}</h1>
+                                            <span class="text-muted">{{ item.profession }}</span>
+                                        </div>
+                                        
                                     </div>
                                     
                                     <!-- Main modal -->
@@ -255,28 +296,29 @@
                                         aria-hidden="true" 
                                         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
                                     >
-                                        <div class="relative p-4 w-full max-w-screen-2xl max-h-full">
-                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                <button type="button" class="fixed top-2 right-6 bg-gray-100 hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal-{{ item.id }}">
-                                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                        <div class="relative p-4 w-full max-w-screen-xl max-h-full">
+                                            <div class="relative bg-white rounded-lg shadow">
+                                                <button 
+                                                    type="button" 
+                                                    class="fixed top-2 right-6 bg-secondary-100 hover:bg-secondary-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" 
+                                                    data-modal-hide="default-modal-{{ item.id }}"
+                                                >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                                                        <path d="M18 6 6 18" />
+                                                        <path d="m6 6 12 12" />
                                                     </svg>
-                                                    <span class="sr-only">Close modal</span>
                                                 </button>
                                                 
                                                 <div class="flex flex-col p-6">
                                                     <div class="text-center grid gap-4">
                                                         <img
                                                             src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/card.png' %}{% endif %}" alt="Image"
-                                                            class="w-40 h-40 rounded-full border-2 mx-auto"
+                                                            class="w-40 h-40 rounded-full border-2 border-border-200 mx-auto"
                                                         />
-                                                        <div class="grid gap-2 border-b pb-4">
-                                                            <h1 class="text-xl font-bold">
-                                                                {{ item.full_name }}
-                                                            </h1>
-                                                            <span class="text-gray-500">
-                                                                {{ item.profession }}
-                                                            </span>
+                                                        <div class="grid gap-2 border-b border-border-200 pb-4">
+                                                            <h1 class="text-xl font-medium">{{ item.full_name }}</h1>
+                                                            <span class="text-muted">{{ item.profession }}</span>
                                                             <div>
                                                                 {% if item.phone %}
                                                                     <div class="flex justify-center items-center text-blue-700 gap-2">
@@ -296,7 +338,7 @@
                                                                 {% endif %}
                                                             </div>
                                                         </div>
-                                                        <div class="text-gray-500 text-justify">
+                                                        <div class="text-muted text-justify">
                                                             {{ item.bio|safe }}
                                                         </div>
                                                     </div>
@@ -319,31 +361,8 @@
                         </span>
                     </div>
                 {% endif %}
-
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let currentPath = window.location.pathname;
-            let links = document.querySelectorAll("ul.space-y-2 a");
-    
-            links.forEach(function (link) {
-                if (link.href.includes(currentPath)) {
-                    let dropdownMenu = link.closest("ul");
-                    if (dropdownMenu) {
-                        
-                        dropdownMenu.classList.remove("hidden"); // Dropdown-ды ашу
-                    }
-    
-                    let dropdownButton = dropdownMenu?.previousElementSibling;
-                    if (dropdownButton) {
-                        dropdownButton.setAttribute("aria-expanded", "true");
-                    }
-                }
-            });
-        });
-    </script>
 </div>
 {% endblock content %}

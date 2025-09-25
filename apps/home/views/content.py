@@ -15,6 +15,9 @@ def content_detail(request, category_slug, sub_category_slug, section_slug, cont
     sub_categories = Category.objects.filter(parent=category)
     contents = Content.objects.filter(category__parent__parent=category)
 
+    # accordion-да ашық тұру керек бөлімнің id-сін береміз
+    open_section_ids = {section.id}
+
     context = {
         'content': content,
         'category': category,
@@ -23,6 +26,7 @@ def content_detail(request, category_slug, sub_category_slug, section_slug, cont
 
         'sub_categories': sub_categories,
         'contents': contents,
+        'open_section_ids': open_section_ids,
     }
 
     return render(request, 'src/content/index.html', context)
