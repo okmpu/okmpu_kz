@@ -3,9 +3,7 @@
 {% load i18n %}
 
 
-{% block title %}
-    {{ content.title }}
-{% endblock %}
+{% block title %}{{ content.title }}{% endblock %}
 
 
 {% block content %}
@@ -180,7 +178,7 @@
                             <div class="grid gap-2">
                                 {% for item in content.file_contents.all %}
                                     <div class="flex justify-between items-center border border-border-200 rounded-xl shadow py-2 px-4">
-                                        <div class="flex gap-2 items-center">
+                                        <div class="flex gap-2 items-center flex-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
                                                 class="lucide lucide-file-text-icon lucide-file-text">
@@ -190,7 +188,7 @@
                                                 <path d="M16 13H8" />
                                                 <path d="M16 17H8" />
                                             </svg>
-                                            <div class="flex-1 max-w-screen-md">
+                                            <div class="flex-1">
                                                 <h1 class="font-medium line-clamp-1">
                                                     {{ item.caption }}
                                                 </h1>
@@ -214,19 +212,6 @@
                                             </button>
 
                                             <!-- Main modal -->
-                                            <a href="{{ item.source_file.url }}"
-                                                target="_blank"
-                                                class="flex justify-center items-center bg-secondary-100 hover:bg-secondary-200 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg p-3"
-                                                type="button"
-                                            >
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download">
-                                                    <path d="M12 15V3" />
-                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                                                    <path d="m7 10 5 5 5-5" />
-                                                </svg>
-                                            </a>
-
                                             <div 
                                                 id="default-modal-{{ item.id }}" 
                                                 tabindex="-1" 
@@ -262,6 +247,19 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <a href="{{ item.source_file.url }}"
+                                                target="_blank"
+                                                class="flex justify-center items-center bg-secondary-100 hover:bg-secondary-200 focus:ring-4 focus:outline-none focus:ring-secondary-300 font-medium rounded-lg p-3"
+                                                type="button"
+                                            >
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download">
+                                                    <path d="M12 15V3" />
+                                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                                    <path d="m7 10 5 5 5-5" />
+                                                </svg>
+                                            </a>
                                         </div>
                                     </div>
                                 {% endfor %}

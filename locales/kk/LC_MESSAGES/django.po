@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-25 15:43+0500\n"
+"POT-Creation-Date: 2025-09-26 11:49+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: core/settings.py:111
+#: core/settings.py:113
 msgid "Kazakh"
 msgstr "Қазақша"
 
-#: core/settings.py:112
+#: core/settings.py:114
 msgid "Russian"
 msgstr "Русский"
 
-#: core/settings.py:113
+#: core/settings.py:115
 msgid "English"
 msgstr "English"
 
@@ -46,18 +46,18 @@ msgstr "Контент"
 msgid "University app"
 msgstr "Университет"
 
-#: register/models/content.py:14 register/models/university.py:14
-#: register/models/university.py:52 register/models/university.py:73
-#: register/models/university.py:162 register/models/university.py:189
-#: register/models/university.py:211 register/models/university.py:259
-#: register/models/university.py:321
+#: register/models/content.py:14 register/models/university.py:15
+#: register/models/university.py:53 register/models/university.py:75
+#: register/models/university.py:164 register/models/university.py:191
+#: register/models/university.py:213 register/models/university.py:261
+#: register/models/university.py:323
 msgid "Name"
 msgstr "Атауы"
 
 #: register/models/content.py:15 register/models/content.py:42
-#: register/models/university.py:15 register/models/university.py:53
-#: register/models/university.py:74 register/models/university.py:163
-#: register/models/university.py:322
+#: register/models/university.py:16 register/models/university.py:54
+#: register/models/university.py:76 register/models/university.py:165
+#: register/models/university.py:324
 msgid "Slug"
 msgstr "Кілттік сөз"
 
@@ -74,7 +74,7 @@ msgid "Multiple"
 msgstr "Көпмәнділік"
 
 #: register/models/content.py:22 register/models/publics.py:38
-#: register/models/university.py:190
+#: register/models/university.py:192
 msgid "URL"
 msgstr "URL"
 
@@ -86,9 +86,9 @@ msgstr "Жаңа бет"
 #: register/models/content.py:63 register/models/content.py:80
 #: register/models/content.py:99 register/models/content.py:125
 #: register/models/publics.py:18 register/models/publics.py:39
-#: register/models/university.py:26 register/models/university.py:89
-#: register/models/university.py:148 register/models/university.py:164
-#: register/models/university.py:324 register/models/university.py:345
+#: register/models/university.py:27 register/models/university.py:91
+#: register/models/university.py:150 register/models/university.py:166
+#: register/models/university.py:326 register/models/university.py:347
 msgid "Order"
 msgstr ""
 
@@ -102,14 +102,14 @@ msgstr "Категориялар"
 
 #: register/models/content.py:41 register/models/publics.py:11
 #: register/models/publics.py:70 register/models/publics.py:91
-#: register/models/university.py:239 register/models/university.py:289
-#: register/models/university.py:340
+#: register/models/university.py:241 register/models/university.py:291
+#: register/models/university.py:342
 msgid "Title"
 msgstr "Тақырып"
 
 #: register/models/content.py:43 register/models/publics.py:77
-#: register/models/university.py:217 register/models/university.py:294
-#: register/models/university.py:323
+#: register/models/university.py:219 register/models/university.py:296
+#: register/models/university.py:325
 msgid "Description"
 msgstr "Сипаттама"
 
@@ -140,8 +140,8 @@ msgid "Text contents"
 msgstr "Мәтіндік контенттер"
 
 #: register/models/content.py:79 register/models/content.py:118
-#: register/models/university.py:17 register/models/university.py:45
-#: register/models/university.py:76 register/models/university.py:137
+#: register/models/university.py:18 register/models/university.py:46
+#: register/models/university.py:78 register/models/university.py:139
 msgid "Image"
 msgstr "Сурет"
 
@@ -169,7 +169,7 @@ msgstr "Файлдық контент"
 msgid "File contents"
 msgstr "Файлдық контенттер"
 
-#: register/models/content.py:116 register/models/university.py:135
+#: register/models/content.py:116 register/models/university.py:137
 msgid "Full name"
 msgstr "Толық аты жөні"
 
@@ -181,11 +181,11 @@ msgstr "Мамандығы"
 msgid "Bio"
 msgstr "Биография"
 
-#: register/models/content.py:123 register/models/university.py:145
+#: register/models/content.py:123 register/models/university.py:147
 msgid "Phone"
 msgstr "Телефон"
 
-#: register/models/content.py:124 register/models/university.py:146
+#: register/models/content.py:124 register/models/university.py:148
 msgid "Email"
 msgstr "Электронды пошта"
 
@@ -198,12 +198,12 @@ msgid "Staff contents"
 msgstr "Қызметкерлер контенттер"
 
 #: register/models/publics.py:13 register/models/publics.py:35
-#: register/models/publics.py:73 register/models/university.py:21
-#: register/models/university.py:49 register/models/university.py:80
+#: register/models/publics.py:73 register/models/university.py:22
+#: register/models/university.py:50 register/models/university.py:82
 msgid "Poster"
 msgstr "Постер"
 
-#: register/models/publics.py:16 register/models/university.py:147
+#: register/models/publics.py:16 register/models/university.py:149
 msgid "About"
 msgstr "Өзі туралы"
 
@@ -236,13 +236,13 @@ msgid "Partners"
 msgstr "Серіктестер"
 
 #: register/models/publics.py:54 register/models/publics.py:90
-#: templates/src/base.html:248 templates/src/index.html:181
-#: templates/src/publics/index.html:32
-#: templates/src/publics/public_detail.html:33
-#: templates/src/university/department/publics.html:15
-#: templates/src/university/division/index.html:297
-#: templates/src/university/faculty/index.html:541
-#: templates/src/university/faculty/publics.html:15
+#: ui/templates/base.html:276 ui/templates/src/index.html:195
+#: ui/templates/src/publics/index.html:33
+#: ui/templates/src/publics/public_detail.html:33
+#: ui/templates/src/university/department/publics.html:15
+#: ui/templates/src/university/division/index.html:320
+#: ui/templates/src/university/faculty/index.html:541
+#: ui/templates/src/university/faculty/publics.html:15
 msgid "News"
 msgstr "Жаңалықтар"
 
@@ -251,33 +251,33 @@ msgid "Announcement"
 msgstr "Хабарландыру"
 
 #: register/models/publics.py:59 register/models/university.py:10
-#: register/models/university.py:32 register/models/university.py:42
-#: register/models/university.py:105 register/models/university.py:124
-#: register/models/university.py:182 register/models/university.py:205
-#: register/models/university.py:233 register/models/university.py:278
-#: register/models/university.py:310
-#: templates/src/university/faculty/layouts.html:27
+#: register/models/university.py:33 register/models/university.py:43
+#: register/models/university.py:107 register/models/university.py:126
+#: register/models/university.py:184 register/models/university.py:207
+#: register/models/university.py:235 register/models/university.py:280
+#: register/models/university.py:312
+#: ui/templates/src/university/faculty/layouts.html:27
 msgid "Faculty"
 msgstr "Факультет"
 
-#: register/models/publics.py:63 register/models/university.py:61
-#: register/models/university.py:128 register/models/university.py:186
-#: register/models/university.py:209 register/models/university.py:237
-#: register/models/university.py:282 register/models/university.py:314
-#: templates/src/university/department/layouts.html:25
-#: templates/src/university/faculty/index.html:32
-#: templates/src/university/faculty/programs.html:55
+#: register/models/publics.py:63 register/models/university.py:62
+#: register/models/university.py:130 register/models/university.py:188
+#: register/models/university.py:211 register/models/university.py:239
+#: register/models/university.py:284 register/models/university.py:316
+#: ui/templates/src/university/department/layouts.html:25
+#: ui/templates/src/university/faculty/index.html:32
+#: ui/templates/src/university/faculty/programs.html:55
 msgid "Department"
 msgstr "Кафедра"
 
-#: register/models/publics.py:67 register/models/university.py:95
-#: register/models/university.py:114 register/models/university.py:132
-#: register/models/university.py:286 register/models/university.py:318
+#: register/models/publics.py:67 register/models/university.py:97
+#: register/models/university.py:116 register/models/university.py:134
+#: register/models/university.py:288 register/models/university.py:320
 msgid "Division"
 msgstr "Бөлім"
 
-#: register/models/publics.py:68 register/models/university.py:133
-#: register/models/university.py:287 register/models/university.py:319
+#: register/models/publics.py:68 register/models/university.py:135
+#: register/models/university.py:289 register/models/university.py:321
 msgid "Warning! This field is not relevant for faculties and departments"
 msgstr "Ескерту! Бұл өріс факультеттер мен кафедралар үшін емес"
 
@@ -285,13 +285,13 @@ msgstr "Ескерту! Бұл өріс факультеттер мен кафе
 msgid "Public type"
 msgstr "Публикация типі"
 
-#: register/models/publics.py:76 register/models/university.py:212
-#: register/models/university.py:242
+#: register/models/publics.py:76 register/models/university.py:214
+#: register/models/university.py:244
 msgid "Author"
 msgstr "Автор"
 
-#: register/models/publics.py:78 register/models/university.py:218
-#: register/models/university.py:244 register/models/university.py:295
+#: register/models/publics.py:78 register/models/university.py:220
+#: register/models/university.py:246 register/models/university.py:297
 msgid "Date created"
 msgstr "Шыққан уақыты"
 
@@ -303,9 +303,9 @@ msgstr "Публикация"
 msgid "Publics"
 msgstr "Публикациялар"
 
-#: register/models/publics.py:93 register/models/university.py:214
-#: register/models/university.py:261 register/models/university.py:291
-#: register/models/university.py:342
+#: register/models/publics.py:93 register/models/university.py:216
+#: register/models/university.py:263 register/models/university.py:293
+#: register/models/university.py:344
 msgid "File"
 msgstr "Файл"
 
@@ -325,173 +325,173 @@ msgstr "Институт"
 msgid "College"
 msgstr "Колледж"
 
-#: register/models/university.py:24
+#: register/models/university.py:25
 msgid "Faculty type"
 msgstr "Факультет типі"
 
-#: register/models/university.py:25
+#: register/models/university.py:26
 msgid "About the faculty"
 msgstr "Факультет жайлы"
 
-#: register/models/university.py:33 templates/src/base.html:260
-#: templates/src/university/faculties.html:6
+#: register/models/university.py:34 ui/templates/base.html:289
+#: ui/templates/src/university/faculties.html:6
 msgid "Faculties"
 msgstr "Факультеттер"
 
-#: register/models/university.py:54
+#: register/models/university.py:55
 msgid "About the department"
 msgstr "Кафедра жайлы"
 
-#: register/models/university.py:62
+#: register/models/university.py:63
 msgid "Departments"
 msgstr "Кафедралар"
 
-#: register/models/university.py:69
+#: register/models/university.py:70
 msgid "Division/Center division"
 msgstr "Бөлім/Орталық"
 
-#: register/models/university.py:70
+#: register/models/university.py:71
 msgid "Department division"
 msgstr "Департамент"
 
-#: register/models/university.py:71
+#: register/models/university.py:72
 msgid "Management division"
 msgstr "Басшылық"
 
-#: register/models/university.py:83
+#: register/models/university.py:85
 msgid "Division type"
 msgstr "Бөлім түрі"
 
-#: register/models/university.py:84
+#: register/models/university.py:86
 msgid "About the division"
 msgstr "Бөлім жайлы"
 
-#: register/models/university.py:87
+#: register/models/university.py:89
 msgid "Parent division"
 msgstr "Иелік бөлім"
 
-#: register/models/university.py:96
+#: register/models/university.py:98
 msgid "Divisions"
 msgstr "Бөлімдер"
 
-#: register/models/university.py:107
-#: templates/src/university/faculty/index.html:44
+#: register/models/university.py:109
+#: ui/templates/src/university/faculty/index.html:44
 msgid "Dean's office"
 msgstr "Деканат"
 
-#: register/models/university.py:108
-#: templates/src/university/department/index.html:19
+#: register/models/university.py:110
+#: ui/templates/src/university/department/index.html:19
 msgid "Department management"
 msgstr "Кафедра басшылығы"
 
-#: register/models/university.py:109
+#: register/models/university.py:111
 msgid "Teacher/Professors"
 msgstr "Оқытушы/Профессорлар"
 
-#: register/models/university.py:110
+#: register/models/university.py:112
 msgid "Active students"
 msgstr "Белсенді студенттер"
 
-#: register/models/university.py:116
+#: register/models/university.py:118
 msgid "Head of Department"
 msgstr "Бөлім басшысы"
 
-#: register/models/university.py:117
+#: register/models/university.py:119
 msgid "Employee"
 msgstr "Қызметкер"
 
-#: register/models/university.py:140
+#: register/models/university.py:142
 msgid "Profession/Activity"
 msgstr "Мамандығы/Қызметі"
 
-#: register/models/university.py:142
+#: register/models/university.py:144
 msgid "Personal type"
 msgstr "Персонал түрі"
 
-#: register/models/university.py:154
+#: register/models/university.py:156
 msgid "Personal"
 msgstr "Персонал"
 
-#: register/models/university.py:155
+#: register/models/university.py:157
 msgid "Personals"
 msgstr "Персоналдар"
 
-#: register/models/university.py:170 register/models/university.py:178
+#: register/models/university.py:172 register/models/university.py:180
 msgid "Program"
 msgstr "Бағдарлама"
 
-#: register/models/university.py:171
-#: templates/src/university/department/layouts.html:66
-#: templates/src/university/department/programs.html:8
-#: templates/src/university/faculty/layouts.html:74
-#: templates/src/university/faculty/layouts.html:152
-#: templates/src/university/faculty/layouts.html:194
-#: templates/src/university/faculty/programs.html:8
+#: register/models/university.py:173
+#: ui/templates/src/university/department/layouts.html:66
+#: ui/templates/src/university/department/programs.html:8
+#: ui/templates/src/university/faculty/layouts.html:74
+#: ui/templates/src/university/faculty/layouts.html:152
+#: ui/templates/src/university/faculty/layouts.html:194
+#: ui/templates/src/university/faculty/programs.html:8
 msgid "Programs"
 msgstr "Бағдарламалар"
 
-#: register/models/university.py:188
+#: register/models/university.py:190
 msgid "Code"
 msgstr "Коды"
 
-#: register/models/university.py:196
+#: register/models/university.py:198
 msgid "Specialty"
 msgstr "Мамандық"
 
-#: register/models/university.py:197
+#: register/models/university.py:199
 msgid "Specialties"
 msgstr "Мамандықтар"
 
-#: register/models/university.py:224
+#: register/models/university.py:226
 msgid "Project"
 msgstr "Ғылыми жоба"
 
-#: register/models/university.py:225
+#: register/models/university.py:227
 msgid "Projects"
 msgstr "Ғылыми жобалар"
 
-#: register/models/university.py:250 register/models/university.py:256
-#: register/models/university.py:269
+#: register/models/university.py:252 register/models/university.py:258
+#: register/models/university.py:271
 msgid "Edu material"
 msgstr "Оқу материалы"
 
-#: register/models/university.py:251 register/models/university.py:270
-#: templates/src/university/department/index.html:290
-#: templates/src/university/department/personals/detail.html:50
-#: templates/src/university/faculty/index.html:339
-#: templates/src/university/faculty/layouts.html:92
-#: templates/src/university/faculty/materials.html:6
+#: register/models/university.py:253 register/models/university.py:272
+#: ui/templates/src/university/department/index.html:290
+#: ui/templates/src/university/department/personals/detail.html:50
+#: ui/templates/src/university/faculty/index.html:339
+#: ui/templates/src/university/faculty/layouts.html:92
+#: ui/templates/src/university/faculty/materials.html:6
 msgid "Edu materials"
 msgstr "Оқу материалдары"
 
-#: register/models/university.py:301
+#: register/models/university.py:303
 msgid "Success"
 msgstr "Жетістік"
 
-#: register/models/university.py:302
-#: templates/src/university/department/index.html:397
-#: templates/src/university/department/layouts.html:102
-#: templates/src/university/faculty/achievements.html:7
-#: templates/src/university/faculty/index.html:451
-#: templates/src/university/faculty/layouts.html:101
-#: templates/src/university/faculty/layouts.html:170
-#: templates/src/university/faculty/layouts.html:203
+#: register/models/university.py:304
+#: ui/templates/src/university/department/index.html:397
+#: ui/templates/src/university/department/layouts.html:102
+#: ui/templates/src/university/faculty/achievements.html:7
+#: ui/templates/src/university/faculty/index.html:451
+#: ui/templates/src/university/faculty/layouts.html:101
+#: ui/templates/src/university/faculty/layouts.html:170
+#: ui/templates/src/university/faculty/layouts.html:203
 msgid "Achievements"
 msgstr "Жетістіктер"
 
-#: register/models/university.py:330 register/models/university.py:337
+#: register/models/university.py:332 register/models/university.py:339
 msgid "Document"
 msgstr "Құжат"
 
-#: register/models/university.py:331
+#: register/models/university.py:333
 msgid "Documents"
 msgstr "Құжаттар"
 
-#: register/models/university.py:351
+#: register/models/university.py:353
 msgid "Document file"
 msgstr "Құжат файлы"
 
-#: register/models/university.py:352
+#: register/models/university.py:354
 msgid "Document files"
 msgstr "Құжат файлдары"
 
@@ -531,95 +531,96 @@ msgid ""
 "The image should be in landscape orientation (width is greater than height)"
 msgstr "Кескін ландшафт бағытында болуы керек (ені биіктіктен үлкен)"
 
-#: templates/src/base.html:49 templates/src/base.html:292
+#: ui/templates/base.html:42 ui/templates/base.html:322
 msgid "Library"
 msgstr "Кітапхана"
 
-#: templates/src/base.html:144 templates/src/base.html:245
-#: templates/src/index.html:7
-#: templates/src/university/department/layouts.html:39
-#: templates/src/university/division/layouts.html:41
-#: templates/src/university/faculty/layouts.html:47
-#: templates/src/university/faculty/layouts.html:125
-#: templates/src/university/faculty/layouts.html:185
+#: ui/templates/base.html:168 ui/templates/base.html:273
+#: ui/templates/src/index.html:7
+#: ui/templates/src/university/department/layouts.html:39
+#: ui/templates/src/university/division/layouts.html:41
+#: ui/templates/src/university/division/layouts.html:68
+#: ui/templates/src/university/faculty/layouts.html:47
+#: ui/templates/src/university/faculty/layouts.html:125
+#: ui/templates/src/university/faculty/layouts.html:185
 msgid "Home page"
 msgstr "Басты бет"
 
-#: templates/src/base.html:241
+#: ui/templates/base.html:269
 msgid "Navigation"
 msgstr "Навигация"
 
-#: templates/src/base.html:251 templates/src/index.html:141
-#: templates/src/publics/index.html:38
-#: templates/src/publics/public_detail.html:39
-#: templates/src/university/department/publics.html:20
-#: templates/src/university/division/index.html:302
-#: templates/src/university/faculty/index.html:615
-#: templates/src/university/faculty/publics.html:20
+#: ui/templates/base.html:279 ui/templates/src/index.html:144
+#: ui/templates/src/publics/index.html:39
+#: ui/templates/src/publics/public_detail.html:39
+#: ui/templates/src/university/department/publics.html:20
+#: ui/templates/src/university/division/index.html:325
+#: ui/templates/src/university/faculty/index.html:615
+#: ui/templates/src/university/faculty/publics.html:20
 msgid "Announcements"
 msgstr "Хабарландырулар"
 
-#: templates/src/base.html:254 templates/src/index.html:226
-#: templates/src/university/department/publics.html:25
-#: templates/src/university/division/index.html:307
-#: templates/src/university/faculty/index.html:578
-#: templates/src/university/faculty/publics.html:25
+#: ui/templates/base.html:282 ui/templates/src/index.html:248
+#: ui/templates/src/university/department/publics.html:25
+#: ui/templates/src/university/division/index.html:330
+#: ui/templates/src/university/faculty/index.html:578
+#: ui/templates/src/university/faculty/publics.html:25
 msgid "Events"
 msgstr "Іс-шаралар"
 
-#: templates/src/base.html:272
+#: ui/templates/base.html:302
 msgid "Resources"
 msgstr "Ресурстар"
 
-#: templates/src/base.html:315
+#: ui/templates/base.html:351
 msgid "All copyrights are protected."
 msgstr "Барлық авторлық құқықтар қорғалған."
 
-#: templates/src/content/index.html:314
-#: templates/src/university/department/achievements.html:85
-#: templates/src/university/department/materials.html:107
-#: templates/src/university/department/projects.html:94
-#: templates/src/university/department/publics.html:56
-#: templates/src/university/department/publics.html:97
-#: templates/src/university/department/publics.html:129
-#: templates/src/university/division/index.html:338
-#: templates/src/university/division/index.html:379
-#: templates/src/university/division/index.html:411
-#: templates/src/university/faculty/achievements.html:89
-#: templates/src/university/faculty/materials.html:112
-#: templates/src/university/faculty/personals.html:126
-#: templates/src/university/faculty/programs.html:121
-#: templates/src/university/faculty/programs.html:138
-#: templates/src/university/faculty/programs.html:207
-#: templates/src/university/faculty/programs.html:260
-#: templates/src/university/faculty/projects.html:99
-#: templates/src/university/faculty/publics.html:56
-#: templates/src/university/faculty/publics.html:97
-#: templates/src/university/faculty/publics.html:129
+#: ui/templates/src/content/index.html:356
+#: ui/templates/src/university/department/achievements.html:85
+#: ui/templates/src/university/department/materials.html:107
+#: ui/templates/src/university/department/projects.html:94
+#: ui/templates/src/university/department/publics.html:56
+#: ui/templates/src/university/department/publics.html:97
+#: ui/templates/src/university/department/publics.html:129
+#: ui/templates/src/university/division/index.html:361
+#: ui/templates/src/university/division/index.html:402
+#: ui/templates/src/university/division/index.html:434
+#: ui/templates/src/university/faculty/achievements.html:89
+#: ui/templates/src/university/faculty/materials.html:112
+#: ui/templates/src/university/faculty/personals.html:126
+#: ui/templates/src/university/faculty/programs.html:121
+#: ui/templates/src/university/faculty/programs.html:138
+#: ui/templates/src/university/faculty/programs.html:207
+#: ui/templates/src/university/faculty/programs.html:260
+#: ui/templates/src/university/faculty/projects.html:99
+#: ui/templates/src/university/faculty/publics.html:56
+#: ui/templates/src/university/faculty/publics.html:97
+#: ui/templates/src/university/faculty/publics.html:129
 msgid "Warning about content creation"
 msgstr "Контент жасау туралы ескерту"
 
-#: templates/src/content/index.html:316
-#: templates/src/university/department/achievements.html:87
-#: templates/src/university/department/materials.html:109
-#: templates/src/university/department/projects.html:96
-#: templates/src/university/department/publics.html:58
-#: templates/src/university/department/publics.html:99
-#: templates/src/university/department/publics.html:131
-#: templates/src/university/division/index.html:340
-#: templates/src/university/division/index.html:381
-#: templates/src/university/division/index.html:413
-#: templates/src/university/faculty/achievements.html:91
-#: templates/src/university/faculty/materials.html:114
-#: templates/src/university/faculty/personals.html:128
-#: templates/src/university/faculty/programs.html:123
-#: templates/src/university/faculty/programs.html:140
-#: templates/src/university/faculty/programs.html:209
-#: templates/src/university/faculty/programs.html:262
-#: templates/src/university/faculty/projects.html:101
-#: templates/src/university/faculty/publics.html:58
-#: templates/src/university/faculty/publics.html:99
-#: templates/src/university/faculty/publics.html:131
+#: ui/templates/src/content/index.html:358
+#: ui/templates/src/university/department/achievements.html:87
+#: ui/templates/src/university/department/materials.html:109
+#: ui/templates/src/university/department/projects.html:96
+#: ui/templates/src/university/department/publics.html:58
+#: ui/templates/src/university/department/publics.html:99
+#: ui/templates/src/university/department/publics.html:131
+#: ui/templates/src/university/division/index.html:363
+#: ui/templates/src/university/division/index.html:404
+#: ui/templates/src/university/division/index.html:436
+#: ui/templates/src/university/faculty/achievements.html:91
+#: ui/templates/src/university/faculty/materials.html:114
+#: ui/templates/src/university/faculty/personals.html:128
+#: ui/templates/src/university/faculty/programs.html:123
+#: ui/templates/src/university/faculty/programs.html:140
+#: ui/templates/src/university/faculty/programs.html:209
+#: ui/templates/src/university/faculty/programs.html:262
+#: ui/templates/src/university/faculty/projects.html:101
+#: ui/templates/src/university/faculty/publics.html:58
+#: ui/templates/src/university/faculty/publics.html:99
+#: ui/templates/src/university/faculty/publics.html:131
 msgid ""
 "If you are looking for details related to this page, unfortunately they have "
 "not yet been downloaded. Remind the site management to insert data!"
@@ -627,11 +628,11 @@ msgstr ""
 "Егер сіз осы бетке қатысты мәліметтерді іздесеңіз, өкінішке орай, олар әлі "
 "жүктелмеген. Сайт басшылығына деректерді енгізуді ескертіңіз!"
 
-#: templates/src/index.html:78
+#: ui/templates/src/index.html:80
 msgid "Our programs"
 msgstr "Біздің бағдарламалар"
 
-#: templates/src/index.html:81
+#: ui/templates/src/index.html:83
 msgid ""
 "We are a bachelor's, master's degree in pedagogy and offer additional "
 "educational programs"
@@ -639,28 +640,28 @@ msgstr ""
 "Біз педагогика бакалавры, магистр дәрежесі мен қосымша білім беру "
 "бағдарламаларын ұсынамыз"
 
-#: templates/src/index.html:169 templates/src/index.html:185
-#: templates/src/index.html:257 templates/src/index.html:377
+#: ui/templates/src/index.html:182 ui/templates/src/index.html:201
+#: ui/templates/src/index.html:286 ui/templates/src/index.html:434
 msgid "View all"
 msgstr "Барлығын қарап шығу"
 
-#: templates/src/index.html:230
+#: ui/templates/src/index.html:252
 msgid "Events taking place at the University"
 msgstr "Университетте өтетін іс-шаралар"
 
-#: templates/src/index.html:275
+#: ui/templates/src/index.html:305
 msgid "About of University"
 msgstr "Университет туралы"
 
-#: templates/src/index.html:279
+#: ui/templates/src/index.html:309
 msgid "Learn more about our university, which is almost a century old"
 msgstr "Бір ғасырға жуық тарихы бар университетіміз туралы көбірек біліңіз"
 
-#: templates/src/index.html:286
+#: ui/templates/src/index.html:316
 msgid "Our University"
 msgstr "Біздің Университет"
 
-#: templates/src/index.html:289
+#: ui/templates/src/index.html:319
 msgid ""
 "\n"
 "                            The Golden Cradle of education and science, the "
@@ -688,51 +689,51 @@ msgstr ""
 "және шетелде жұмыс істейді. Университет түлектері оқу орнына алғыстарын "
 "білдіреді!"
 
-#: templates/src/index.html:303
-#: templates/src/university/department/index.html:22
-#: templates/src/university/department/index.html:112
-#: templates/src/university/department/index.html:200
-#: templates/src/university/department/index.html:293
-#: templates/src/university/department/index.html:400
-#: templates/src/university/division/index.html:34
-#: templates/src/university/division/index.html:125
-#: templates/src/university/division/index.html:156
-#: templates/src/university/faculty/index.html:47
-#: templates/src/university/faculty/index.html:149
-#: templates/src/university/faculty/index.html:243
-#: templates/src/university/faculty/index.html:342
-#: templates/src/university/faculty/index.html:454
-#: templates/src/university/faculty/index.html:543
-#: templates/src/university/faculty/index.html:580
-#: templates/src/university/faculty/index.html:617
+#: ui/templates/src/index.html:335
+#: ui/templates/src/university/department/index.html:22
+#: ui/templates/src/university/department/index.html:112
+#: ui/templates/src/university/department/index.html:200
+#: ui/templates/src/university/department/index.html:293
+#: ui/templates/src/university/department/index.html:400
+#: ui/templates/src/university/division/index.html:22
+#: ui/templates/src/university/division/index.html:67
+#: ui/templates/src/university/division/index.html:108
+#: ui/templates/src/university/faculty/index.html:47
+#: ui/templates/src/university/faculty/index.html:149
+#: ui/templates/src/university/faculty/index.html:243
+#: ui/templates/src/university/faculty/index.html:342
+#: ui/templates/src/university/faculty/index.html:454
+#: ui/templates/src/university/faculty/index.html:543
+#: ui/templates/src/university/faculty/index.html:580
+#: ui/templates/src/university/faculty/index.html:617
 msgid "Read more"
 msgstr "Толығырақ"
 
-#: templates/src/index.html:320
+#: ui/templates/src/index.html:353
 msgid "Students"
 msgstr "Студент"
 
-#: templates/src/index.html:324
+#: ui/templates/src/index.html:357
 msgid "Grant"
 msgstr "Грант"
 
-#: templates/src/index.html:328
+#: ui/templates/src/index.html:361
 msgid "Bachelor"
 msgstr "Бакалавр"
 
-#: templates/src/index.html:332
+#: ui/templates/src/index.html:365
 msgid "Master stundent"
 msgstr "Магистр"
 
-#: templates/src/index.html:336
+#: ui/templates/src/index.html:369
 msgid "Doctoral student"
 msgstr "Докторант"
 
-#: templates/src/index.html:349
+#: ui/templates/src/index.html:381
 msgid "Academic learning"
 msgstr "Академиялық оқыту"
 
-#: templates/src/index.html:353
+#: ui/templates/src/index.html:385
 msgid ""
 "Faculties, Institute of postgraduate education, college and structural "
 "divisions of departments"
@@ -740,11 +741,11 @@ msgstr ""
 "Факультеттер, жоғары оқу орнынан кейінгі білім беру институты, колледж және "
 "кафедралардың құрылымдық бөлімшелері"
 
-#: templates/src/index.html:395
+#: ui/templates/src/index.html:452
 msgid "Our partners"
 msgstr "Біздің серіктестер"
 
-#: templates/src/index.html:399
+#: ui/templates/src/index.html:456
 msgid ""
 "Our university cooperates with leading educational and scientific "
 "organizations to ensure the high quality of education and professional "
@@ -753,169 +754,173 @@ msgstr ""
 "Біздің университет студенттердің жоғары сапалы білімі мен кәсіби өсуін "
 "қамтамасыз ету үшін жетекші білім беру және ғылыми ұйымдармен ынтымақтасады"
 
-#: templates/src/index.html:423
+#: ui/templates/src/index.html:504
 msgid "Contact us"
 msgstr "Бізбен хабарласыңыз"
 
-#: templates/src/index.html:427
+#: ui/templates/src/index.html:508
 msgid "All the resources you can contact us"
 msgstr "Бізбен байланыса алатын барлық ресурстар"
 
-#: templates/src/index.html:447
+#: ui/templates/src/index.html:529
 msgid "Address"
 msgstr "Мекен-жайы"
 
-#: templates/src/index.html:448
+#: ui/templates/src/index.html:530
 msgid "Shymkent, A. Baitursynov N13"
 msgstr "Шымкент, А. Байтұрсынов N 13"
 
-#: templates/src/index.html:459
+#: ui/templates/src/index.html:543
 msgid "Selection committee"
 msgstr "Қабылдау комиссиясы"
 
-#: templates/src/index.html:474
+#: ui/templates/src/index.html:560
 msgid "University office"
 msgstr "Университет кеңсесі"
 
-#: templates/src/index.html:486
+#: ui/templates/src/index.html:574
 msgid "Call center"
 msgstr "Call орталық"
 
-#: templates/src/index.html:501
+#: ui/templates/src/index.html:591
 msgid "Helplines"
 msgstr "Сенім телефондары"
 
-#: templates/src/programs.html:15
+#: ui/templates/src/programs.html:15
 msgid "Cipher codes and names of specialties for a given program"
 msgstr "Берілген бағдарламаның шифрлық кодтары мен мамандықтарының атаулары"
 
-#: templates/src/programs.html:28
-#: templates/src/university/department/programs.html:27
-#: templates/src/university/faculty/programs.html:29
+#: ui/templates/src/programs.html:28
+#: ui/templates/src/university/department/programs.html:27
+#: ui/templates/src/university/faculty/programs.html:29
 msgid "Detailed information:"
 msgstr "Толық ақпарат:"
 
-#: templates/src/programs.html:47
-#: templates/src/university/department/programs.html:62
-#: templates/src/university/faculty/programs.html:81
-#: templates/src/university/faculty/programs.html:168
-#: templates/src/university/faculty/programs.html:223
+#: ui/templates/src/programs.html:47
+#: ui/templates/src/university/department/programs.html:62
+#: ui/templates/src/university/faculty/programs.html:81
+#: ui/templates/src/university/faculty/programs.html:168
+#: ui/templates/src/university/faculty/programs.html:223
 msgid "Program cipher code"
 msgstr "Бағдарламаның шифр коды"
 
-#: templates/src/programs.html:50
-#: templates/src/university/department/programs.html:65
-#: templates/src/university/faculty/programs.html:84
-#: templates/src/university/faculty/programs.html:171
-#: templates/src/university/faculty/programs.html:226
+#: ui/templates/src/programs.html:50
+#: ui/templates/src/university/department/programs.html:65
+#: ui/templates/src/university/faculty/programs.html:84
+#: ui/templates/src/university/faculty/programs.html:171
+#: ui/templates/src/university/faculty/programs.html:226
 msgid "Program name"
 msgstr "Бағдарлама"
 
-#: templates/src/programs.html:53
-#: templates/src/university/department/programs.html:68
-#: templates/src/university/faculty/programs.html:87
-#: templates/src/university/faculty/programs.html:174
-#: templates/src/university/faculty/programs.html:229
+#: ui/templates/src/programs.html:53
+#: ui/templates/src/university/department/programs.html:68
+#: ui/templates/src/university/faculty/programs.html:87
+#: ui/templates/src/university/faculty/programs.html:174
+#: ui/templates/src/university/faculty/programs.html:229
 msgid "Source link"
 msgstr "URL сілтемесі"
 
-#: templates/src/publics/index.html:6
-#: templates/src/university/department/layouts.html:111
-#: templates/src/university/faculty/layouts.html:110
+#: ui/templates/src/publics/index.html:6
+#: ui/templates/src/university/department/layouts.html:111
+#: ui/templates/src/university/faculty/layouts.html:110
 msgid "Publications"
 msgstr "Жарияланымдар"
 
-#: templates/src/publics/public_detail.html:90
+#: ui/templates/src/publics/public_detail.html:90
 msgid "Similar"
 msgstr "Осыған ұқсас"
 
-#: templates/src/university/department/documents.html:6
-#: templates/src/university/department/layouts.html:93
+#: ui/templates/src/university/department/documents.html:6
+#: ui/templates/src/university/department/layouts.html:93
 msgid "Department documents"
 msgstr "Кафедра құжаттары"
 
-#: templates/src/university/department/index.html:109
-#: templates/src/university/faculty/index.html:141
-#: templates/src/university/faculty/layouts.html:65
-#: templates/src/university/faculty/personals.html:7
+#: ui/templates/src/university/department/index.html:109
+#: ui/templates/src/university/faculty/index.html:141
+#: ui/templates/src/university/faculty/layouts.html:65
+#: ui/templates/src/university/faculty/personals.html:7
 msgid "Faculty members"
 msgstr "Факультет мүшелері"
 
-#: templates/src/university/department/index.html:197
-#: templates/src/university/department/layouts.html:84
-#: templates/src/university/faculty/index.html:240
-#: templates/src/university/faculty/layouts.html:83
-#: templates/src/university/faculty/projects.html:6
+#: ui/templates/src/university/department/index.html:197
+#: ui/templates/src/university/department/layouts.html:84
+#: ui/templates/src/university/faculty/index.html:240
+#: ui/templates/src/university/faculty/layouts.html:83
+#: ui/templates/src/university/faculty/projects.html:6
 msgid "Science projects"
 msgstr "Ғылыми жобалар"
 
-#: templates/src/university/department/layouts.html:48
+#: ui/templates/src/university/department/layouts.html:48
 msgid "Department about"
 msgstr "Кафедра туралы"
 
-#: templates/src/university/department/layouts.html:57
+#: ui/templates/src/university/department/layouts.html:57
 msgid "Department members"
 msgstr "Кафедра мүшелері"
 
-#: templates/src/university/department/layouts.html:75
+#: ui/templates/src/university/department/layouts.html:75
 msgid "Оқу материалдары"
 msgstr "Оқу материалдары"
 
-#: templates/src/university/department/programs.html:15
+#: ui/templates/src/university/department/programs.html:15
 msgid "Specialty ciphers and names of the Department"
 msgstr "Мамандық шифры және кафедра атауы"
 
-#: templates/src/university/division/about.html:7
+#: ui/templates/src/university/division/about.html:7
 msgid "About division"
 msgstr "Бөлім туралы"
 
-#: templates/src/university/division/index.html:31
-msgid "composition"
-msgstr "құрамы"
-
-#: templates/src/university/division/index.html:122
+#: ui/templates/src/university/division/index.html:17
 msgid "Departments within the management board"
 msgstr "Басышылық құрамындағы департаменттер"
 
-#: templates/src/university/division/index.html:153
+#: ui/templates/src/university/division/index.html:58
+msgid "Divisions within the management board"
+msgstr "Басышылық құрамындағы орталық/бөлімдер"
+
+#: ui/templates/src/university/division/index.html:60
 msgid "Divisions within the departments board"
 msgstr "Департамент құрамындағы орталық/бөлімдер"
 
-#: templates/src/university/faculty/about.html:7
-#: templates/src/university/faculty/layouts.html:56
+#: ui/templates/src/university/division/index.html:103
+msgid "composition"
+msgstr "құрамы"
+
+#: ui/templates/src/university/faculty/about.html:7
+#: ui/templates/src/university/faculty/layouts.html:56
 msgid "Faculty about"
 msgstr "Факультет туралы"
 
-#: templates/src/university/faculty/about.html:9
-#: templates/src/university/faculty/layouts.html:134
+#: ui/templates/src/university/faculty/about.html:9
+#: ui/templates/src/university/faculty/layouts.html:134
 msgid "Institute about"
 msgstr "Институт жайлы"
 
-#: templates/src/university/faculty/about.html:11
-#: templates/src/university/faculty/layouts.html:230
+#: ui/templates/src/university/faculty/about.html:11
+#: ui/templates/src/university/faculty/layouts.html:230
 msgid "College about"
 msgstr "Колледж туралы"
 
-#: templates/src/university/faculty/documents.html:6
-#: templates/src/university/faculty/layouts.html:161
+#: ui/templates/src/university/faculty/documents.html:6
+#: ui/templates/src/university/faculty/layouts.html:161
 msgid "Institute documents"
 msgstr "Институт құжаттары"
 
-#: templates/src/university/faculty/index.html:143
-#: templates/src/university/faculty/layouts.html:143
-#: templates/src/university/faculty/personals.html:9
+#: ui/templates/src/university/faculty/index.html:143
+#: ui/templates/src/university/faculty/layouts.html:143
+#: ui/templates/src/university/faculty/personals.html:9
 msgid "Institute members"
 msgstr "Институт мүшелері"
 
-#: templates/src/university/faculty/index.html:145
-#: templates/src/university/faculty/layouts.html:212
+#: ui/templates/src/university/faculty/index.html:145
+#: ui/templates/src/university/faculty/layouts.html:212
 msgid "College members"
 msgstr "Колледж құрамы"
 
-#: templates/src/university/faculty/layouts.html:221
+#: ui/templates/src/university/faculty/layouts.html:221
 msgid "College documents"
 msgstr "Колледж құжаттары"
 
-#: templates/src/university/faculty/programs.html:16
+#: ui/templates/src/university/faculty/programs.html:16
 msgid "Specialty ciphers and names of the departments assigned by the faculty"
 msgstr "Мамандық шифрлары және факультет тағайындаған кафедралардың атаулары"

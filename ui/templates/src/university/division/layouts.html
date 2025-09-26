@@ -4,59 +4,87 @@
 
 
 {% block content %}
-    <div class="container mx-auto px-4">
+    <div class="max-w-screen-2xl w-full mx-auto px-4 grid gap-8">
         <!-- Header -->
-        <div>
-            <div
-                style="background-image: url('{% if division.poster %}{{ division.poster.url }}{% else %}/static/images/poster.png{% endif %}');"
-                class="h-80 bg-cover bg-center"
-            ></div>
-            <div class="flex h-full w-full py-5 border-b">
-                <div class="flex items-center justify-center gap-4">
-                    <img
-                        src="{% if division.image %}{{ division.image.url }}{% else %}{% static '/images/icon.png' %}{% endif %}"
-                        alt="Image"
-                        class="w-28 rounded-full border"
-                    />
-                    <div class="grid">
-                        <h1 class="font-bold text-2xl md:text-3xl lg:text-4xl xl:text-6xl">
-                            {{ division.name }}
-                        </h1>
-                        <span class="text-gray-500">{{ division.get_div_type_display }}</span>
+        <div class="grid gap-4 py-8 border-b border-border-200">
+            <div class="w-full flex flex-col items-center gap-4">
+                <img
+                    src="{% if division.image %}{{ division.image.url }}{% else %}{% static '/images/icon.png' %}{% endif %}"
+                    alt="Image"
+                    class="w-36 rounded-full border border-border-200"
+                />
+                <div class="grid gap-2 text-center">
+                    <h1 class="font-semibold text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
+                        {{ division.name }}
+                    </h1>
+                    <span class="text-muted">{{ division.get_div_type_display }}</span>
+                    <div class="relative">
                         {% if division.parent %}
-                            <a href="{% url 'division_detail' division.parent.slug %}" class="font-medium text-blue-600 hover:underline">{{ division.parent.name }}</a>
+                            <a 
+                                href="{% url 'division_detail' division.parent.slug %}" 
+                                class="font-medium text-primary-600 hover:underline"
+                            >
+                                {{ division.parent.name }}
+                            </a>
                         {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Navbar -->
-        <ul class="flex">
-            <li>
-                {% url 'division_detail' division.slug as division_detail_url %}
-                <a
-                    href="{{ division_detail_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == division_detail_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
-                >
-                    {% translate 'Home page' %}
-                </a>
-            </li>
-            <li>
-                {% url 'division_about' division.slug as division_about_url %}
-                <a
-                    href="{{ division_about_url }}"
-                    class="border-b-4 block whitespace-nowrap p-2 transition-all hover:border-blue-700 {% if request.path == division_about_url %}border-b-blue-700{% else %}border-b-transparent{% endif %}"
-                >
-                    {% if LANGUAGE_CODE == 'ru' %}О{% elif LANGUAGE_CODE == 'en' %}About{% endif %}
-                    {{ division.get_div_type_display }}
-                    {% if LANGUAGE_CODE == 'kk' %}жайлы{% endif %}
-                </a>
-            </li>
-        </ul>
+            
+            <nav class="flex gap-1 lg:hidden">
+                <div class="relative">
+                    {% url 'division_detail' division.slug as division_detail_url %}
+                    <a
+                        href="{{ division_detail_url }}"
+                        class="flex whitespace-nowrap p-2 border-b-4 border-transparent transition-all {% if request.path == division_detail_url %}border-b-primary-600{% else %}hover:border-b-primary-600{% endif %}"
+                    >
+                        {% translate 'Home page' %}
+                    </a>
+                </div>
 
-        <div>
-            {% block division_content %}
-            {% endblock division_content %}
+                <div class="relative">
+                    {% url 'division_about' division.slug as division_about_url %}
+                    <a
+                        href="{{ division_about_url }}"
+                        class="flex whitespace-nowrap p-2 border-b-4 border-transparent transition-all {% if request.path == division_about_url %}border-b-primary-600{% else %}hover:border-b-primary-600{% endif %}"
+                    >
+                        {% if LANGUAGE_CODE == 'ru' %}О{% elif LANGUAGE_CODE == 'en' %}About{% endif %}
+                        {{ division.get_div_type_display }}
+                        {% if LANGUAGE_CODE == 'kk' %}жайлы{% endif %}
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="flex items-start gap-8 pb-8">
+            <!-- Sidebar -->
+            <ul class="hidden lg:grid gap-1 w-64 sticky top-16">
+                <li>
+                    {% url 'division_detail' division.slug as division_detail_url %}
+                    <a
+                        href="{{ division_detail_url }}"
+                        class="flex py-2 px-4 rounded-xl transition-all {% if request.path == division_detail_url %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}"
+                    >
+                        {% translate 'Home page' %}
+                    </a>
+                </li>
+                <li>
+                    {% url 'division_about' division.slug as division_about_url %}
+                    <a
+                        href="{{ division_about_url }}"
+                        class="flex py-2 px-4 rounded-xl transition-all {% if request.path == division_about_url %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}"
+                    >
+                        {% if LANGUAGE_CODE == 'ru' %}О{% elif LANGUAGE_CODE == 'en' %}About{% endif %}
+                        {{ division.get_div_type_display }}
+                        {% if LANGUAGE_CODE == 'kk' %}жайлы{% endif %}
+                    </a>
+                </li>
+            </ul>
+
+            <div class="flex-1">
+                {% block division_content %}
+                {% endblock division_content %}
+            </div>
         </div>
     </div>
 {% endblock content %}
