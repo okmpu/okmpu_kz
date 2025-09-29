@@ -12,14 +12,14 @@ def news_view(request, pk=None):
             'item': item,
             'similar_items': similar_items
         }
-        return render(request, 'src/publics/public_detail.html', context)
+        return render(request, 'app/publics/public_detail.html', context)
     else:
         items = Public.objects.filter(public_type='news')
         context = {
             'code': 'news',
             'items': items
         }
-        return render(request, 'src/publics/index.html', context)
+        return render(request, 'app/publics/index.html', context)
 
 
 # Announcement pages
@@ -32,11 +32,11 @@ def announcement_view(request, pk=None):
             'item': item,
             'similar_items': similar_items
         }
-        return render(request, 'src/publics/public_detail.html', context)
+        return render(request, 'app/publics/public_detail.html', context)
     else:
         items = Public.objects.filter(public_type='ann')
         context = {
             'code': 'announcement',
             'items': items
         }
-        return render(request, 'src/publics/index.html', context)
+        return render(request, 'app/publics/index.html', context)

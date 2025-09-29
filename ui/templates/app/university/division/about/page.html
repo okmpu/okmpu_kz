@@ -1,0 +1,17 @@
+{% extends 'app/university/division/layouts.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block title %}
+    {% translate 'About division' %}
+{% endblock %}
+
+
+{% block division_content %}
+    <div class="">
+        <div class="text-justify text-muted">
+            {{ division.about|safe }}
+        </div>
+    </div>
+{% endblock division_content %}

@@ -28,7 +28,7 @@ def content_detail(request, category_slug, sub_category_slug, section_slug, cont
         'open_section_ids': open_section_ids,
     }
 
-    return render(request, 'src/content/index.html', context)
+    return render(request, 'app/content/page.html', context)
 
 
 # Division detail
@@ -49,7 +49,7 @@ def division_detail(request, slug):
         'events': events,
         'announcements': announcements
     }
-    return render(request, 'src/university/division/index.html', context)
+    return render(request, 'app/university/division/page.html', context)
 
 
 # Division about
@@ -58,4 +58,4 @@ def division_about(request, slug):
     context = {
         'division': item,
     }
-    return render(request, 'src/university/division/about.html', context)
+    return render(request, 'app/university/division/about/page.html', context)

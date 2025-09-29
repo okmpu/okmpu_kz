@@ -35,7 +35,7 @@ def department_detail_view(request, slug):
         'events': events,
         'announcements': announcements,
     }
-    return render(request, 'src/university/department/index.html', context)
+    return render(request, 'app/university/department/index.html', context)
 
 
 # Department programs
@@ -49,7 +49,7 @@ def department_programs_view(request, slug):
         'programs': programs,
         'specialities': specialities,
     }
-    return render(request, 'src/university/department/programs.html', context)
+    return render(request, 'app/university/department/programs.html', context)
 
 
 # Department personals
@@ -87,7 +87,7 @@ def department_personals_view(request, slug):
             },
         ]
     }
-    return render(request, 'src/university/department/personals/index.html', context)
+    return render(request, 'app/university/department/personals/index.html', context)
 
 
 def department_documents_view(request, slug):
@@ -98,7 +98,7 @@ def department_documents_view(request, slug):
         'department': department,
         'documents': documents,
     }
-    return render(request, 'src/university/department/documents.html', context)
+    return render(request, 'app/university/department/documents.html', context)
 
 
 def department_materials_view(request, slug):
@@ -109,7 +109,7 @@ def department_materials_view(request, slug):
         'department': department,
         'materials': materials,
     }
-    return render(request, 'src/university/department/materials.html', context)
+    return render(request, 'app/university/department/materials.html', context)
 
 
 def department_projects_view(request, slug):
@@ -120,7 +120,7 @@ def department_projects_view(request, slug):
         'department': department,
         'projects': projects,
     }
-    return render(request, 'src/university/department/projects.html', context)
+    return render(request, 'app/university/department/projects.html', context)
 
 
 def department_achievements_view(request, slug):
@@ -131,7 +131,7 @@ def department_achievements_view(request, slug):
         'department': department,
         'achievements': achievements,
     }
-    return render(request, 'src/university/department/achievements.html', context)
+    return render(request, 'app/university/department/achievements.html', context)
 
 
 def department_publics_view(request, slug):
@@ -146,7 +146,7 @@ def department_publics_view(request, slug):
         'events': events,
         'announcements': announcements,
     }
-    return render(request, 'src/university/department/publics.html', context)
+    return render(request, 'app/university/department/publics.html', context)
 
 
 # Department about
@@ -156,7 +156,7 @@ def department_about_view(request, slug):
     context = {
         'department': department,
     }
-    return render(request, 'src/university/department/about.html', context)
+    return render(request, 'app/university/department/about.html', context)
 
 
 # Personal detail
@@ -172,4 +172,4 @@ def personal_detail_view(request, personal_pk):
         'personal': personal,
         'materials': materials
     }
-    return render(request, 'src/university/department/personals/detail.html', context)
+    return render(request, 'app/university/department/personals/detail.html', context)

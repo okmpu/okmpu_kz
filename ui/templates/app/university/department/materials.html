@@ -1,16 +1,16 @@
-{% extends 'src/university/faculty/layouts.html' %}
+{% extends 'app/university/department/layouts.html' %}
 {% load static %}
 {% load i18n %}
 
 {% block title %}
-    {% translate 'Edu materials' %} - Zhanibekov University
+    Оқу материалдары - Zhanibekov University
 {% endblock %}
 
-{% block faculty_content %}
+{% block department_content %}
 <div class="py-8">
     <!-- Materials -->
     {% if materials|length > 0 %}
-        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {% for item in materials %}
                 <div 
                     data-modal-target="materials-modal-{{ item.id }}" data-modal-toggle="materials-modal-{{ item.id }}"
@@ -27,9 +27,6 @@
                         <h1 class="font-semibold line-clamp-2">
                             {{ item.title }}
                         </h1>
-                        <div class="font-semibold text-base text-blue-700">
-                            {{ item.department.name }}
-                        </div>
                         <div class="flex items-center gap-2 text-gray-500">
                             <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
@@ -38,6 +35,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- Main modal -->
                 <div id="materials-modal-{{ item.id }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-screen-2xl max-h-full">
@@ -56,9 +54,6 @@
                                         <h1 class="font-semibold text-xl">
                                             {{ item.title }}
                                         </h1>
-                                        <div class="font-semibold text-base text-blue-700">
-                                            {{ item.department.name }}
-                                        </div>
                                         <div class="grid text-gray-500">
                                             <div class="flex items-center gap-2">
                                                 <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -86,7 +81,7 @@
                                                     <span class="text-gray-500">{{ file.material.title }}</span>
                                                 </div>
                                             </div>
-    
+
                                             <a href="{{ file.file.url }}"
                                                 target="_blank"
                                                 class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
@@ -116,4 +111,4 @@
         </div>
     {% endif %}
 </div>
-{% endblock faculty_content %}
+{% endblock department_content %}

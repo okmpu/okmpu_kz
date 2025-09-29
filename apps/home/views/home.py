@@ -23,7 +23,7 @@ def home(request):
         'academics': academics,
         'partners': partners
     }
-    return render(request, 'src/index.html', context)
+    return render(request, 'app/page.html', context)
 
 
 def search(request):
@@ -38,7 +38,7 @@ def search(request):
         'query': query,
         'results': results
     }
-    return render(request, 'src/search.html', context)
+    return render(request, 'app/search/page.html', context)
 
 
 # Program page
@@ -49,7 +49,7 @@ def program_detail(request, slug):
     context = {
         'program': program
     }
-    return render(request, 'src/programs.html', context)
+    return render(request, 'app/programs/page.html', context)
 
 
 # Blog
@@ -57,4 +57,4 @@ def program_detail(request, slug):
 def blog_rector(request):
 
     context = {}
-    return render(request, 'src/blog_rector.html', context)
+    return render(request, 'app/blog_rector/page.html', context)

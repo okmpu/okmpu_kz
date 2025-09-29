@@ -13,7 +13,7 @@ def faculties_view(request):
     context = {
         'faculties': faculties
     }
-    return render(request, 'src/university/faculties.html', context)
+    return render(request, 'app/university/faculties.html', context)
 
 
 # Faculty detail
@@ -66,7 +66,7 @@ def faculty_detail_view(request, slug):
         context['events'] = events
         context['announcements'] = announcements
 
-    return render(request, 'src/university/faculty/index.html', context)
+    return render(request, 'app/university/faculty/index.html', context)
 
 
 # Faculty personals
@@ -110,7 +110,7 @@ def faculty_personals_view(request, slug):
         personals = Personal.objects.filter(faculty=faculty).exclude(p_type='deans_office').order_by('order')
         context['personals'] = personals
 
-    return render(request, 'src/university/faculty/personals.html', context)
+    return render(request, 'app/university/faculty/personals.html', context)
 
 
 # Faculty programs
@@ -127,7 +127,7 @@ def faculty_programs_view(request, slug):
     elif faculty.faculty_type == 'institute':
         context['programs'] = Program.objects.exclude(slug='bachelor')
 
-    return render(request, 'src/university/faculty/programs.html', context)
+    return render(request, 'app/university/faculty/programs.html', context)
 
 
 # Faculty edu materials
@@ -139,7 +139,7 @@ def faculty_materials_view(request, slug):
         'faculty': faculty,
         'materials': materials
     }
-    return render(request, 'src/university/faculty/materials.html', context)
+    return render(request, 'app/university/faculty/materials.html', context)
 
 
 # Faculty projects
@@ -151,7 +151,7 @@ def faculty_projects_view(request, slug):
         'faculty': faculty,
         'projects': projects
     }
-    return render(request, 'src/university/faculty/projects.html', context)
+    return render(request, 'app/university/faculty/projects.html', context)
 
 
 # Faculty documents
@@ -163,7 +163,7 @@ def faculty_documents_view(request, slug):
         'faculty': faculty,
         'documents': documents,
     }
-    return render(request, 'src/university/faculty/documents.html', context)
+    return render(request, 'app/university/faculty/documents.html', context)
 
 
 # Faculty achievements
@@ -175,7 +175,7 @@ def faculty_achievements_view(request, slug):
         'faculty': faculty,
         'achievements': achievements
     }
-    return render(request, 'src/university/faculty/achievements.html', context)
+    return render(request, 'app/university/faculty/achievements.html', context)
 
 
 # Faculty publics
@@ -202,7 +202,7 @@ def faculty_publics_view(request, slug):
         'events': events,
         'announcements': announcements,
     }
-    return render(request, 'src/university/faculty/publics.html', context)
+    return render(request, 'app/university/faculty/publics.html', context)
 
 
 # Faculty about
@@ -212,4 +212,4 @@ def faculty_about_view(request, slug):
     context = {
         'faculty': faculty,
     }
-    return render(request, 'src/university/faculty/about.html', context)
+    return render(request, 'app/university/faculty/about.html', context)
