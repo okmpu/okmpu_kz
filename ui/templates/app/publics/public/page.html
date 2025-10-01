@@ -1,0 +1,209 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block title %}{{ item.title }}
+{% endblock %}
+
+{% block content %}
+<div class="max-w-screen-2xl w-full mx-auto px-4 flex gap-4 items-start">
+    <button 
+        data-drawer-target="publics-sidebar" 
+        data-drawer-toggle="publics-sidebar" 
+        aria-controls="publics-sidebar"
+        type="button"
+        class="fixed inline-flex items-center p-2 bg-white shadow z-10 rounded-lg md:hidden hover:bg-secondary-100 focus:outline-none focus:ring-2 focus:ring-secondary-200"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-menu-icon lucide-menu">
+            <path d="M4 5h16" />
+            <path d="M4 12h16" />
+            <path d="M4 19h16" />
+        </svg>
+    </button>
+
+    <aside 
+        id="publics-sidebar"
+        class="fixed top-0 left-0 z-50 md:sticky md:z-0 md:top-12 w-64 h-screen bg-white md:h-auto transition-transform -translate-x-full md:translate-x-0"
+        aria-label="Sidebar"
+    >
+        <div class="h-full my-4 mx-2 overflow-y-auto md:border md:border-border-200 md:rounded-xl">
+            <ul class="space-y-1">
+                <li>
+                    <a href="{% url 'news' %}"
+                        class="flex items-center p-2 rounded-lg {% if request.path == '/publics/news/' %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}">
+                        <span class="ms-3">{% translate 'News' %}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'announcements' %}"
+                        class="flex items-center p-2 rounded-lg {% if request.path == '/publics/announcements/' %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}">
+                        <span class="ms-3">{% translate 'Announcements' %}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div class="flex-1 flex gap-4 items-start flex-col xl:flex-row">
+        <!-- Public detail -->
+        <div class="flex-1">
+            <div class="grid border-b border-border-200 gap-4 py-4">
+                {% if item.poster %}
+                <img src="{{ item.poster.url }}" class="rounded-xl" alt="">
+                {% endif %}
+                <h1 class="text-2xl lg:text-3xl xl:text-4xl font-medium">{{ item.title }}</h1>
+                <div class="flex justify-between text-muted">
+                    <div class="flex gap-1 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-clock3-icon lucide-clock-3">
+                            <path d="M12 6v6h4" />
+                            <circle cx="12" cy="12" r="10" />
+                        </svg>
+                        <span>{{ item.date_created|date:"j F Y, H:i" }}</span>
+                    </div>
+
+                    <div class="flex gap-1 items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-user-round-icon lucide-user-round">
+                            <circle cx="12" cy="8" r="5" />
+                            <path d="M20 21a8 8 0 0 0-16 0" />
+                        </svg>
+                        <span>{{ item.user.first_name }} {{ item.user.last_name }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="py-4 text-muted text-justify">
+                {{ item.description|safe }}
+            </div>
+
+            <div class="grid gap-2 py-4">
+                {% for file in item.public_files.all %}
+                <div class="flex justify-between items-center border rounded-md py-2 px-4">
+                    <div class="flex gap-2 items-center">
+                        <svg class="w-8 h-8 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-1 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Zm2-5a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 4a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0v-3Z"
+                                clip-rule="evenodd" />
+                        </svg>
+
+                        <div class="flex-1 max-w-screen-md">
+                            <h1 class="text-foreground text-xl font-semibold line-clamp-1">
+                                {{ file.title }}
+                            </h1>
+                        </div>
+                    </div>
+
+                    <a href="{{ file.file.url }}" target="_blank"
+                        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg px-3 py-2.5 text-center"
+                        type="button">
+                        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4" />
+                        </svg>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Similar publics -->
+        <div class="sticky top-10 grid gap-4 w-full xl:w-96 py-4">
+            <h1 class="text-xl font-medium">{% translate 'Similar' %}</h1>
+            <div class="grid gap-2">
+                {% for item in similar_items %}
+                    {% if code == 'news' %}
+                        <a 
+                            href="{% url 'news_detail' item.id %}"
+                            class="flex border border-border-200 rounded-xl shadow overflow-hidden transition-all hover:bg-secondary-100"
+                            data-aos="fade-up"
+                        >
+                            <div class="w-36">
+                                <div class="aspect-video overflow-hidden bg-primary-600">
+                                    <img 
+                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}"
+                                        class="w-full" alt="{{ item.title }}"
+                                    >
+                                </div>
+                            </div>
+                            <div class="flex-1 p-2">
+                                <h1 class="font-medium line-clamp-1">{{ item.title }}</h1>
+                                <div class="flex gap-1 items-center text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-clock3-icon lucide-clock-3">
+                                        <path d="M12 6v6h4" />
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    <span class="text-sm">{{ item.date_created|date:"j F Y, H:i" }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% elif code == 'event' %}
+                        <a 
+                            href="{% url 'event_detail' item.id %}"
+                            class="block border border-border-200 rounded-xl overflow-hidden transition-all hover:bg-secondary-100"
+                        >
+                            <div class="w-36">
+                                <div class="aspect-video overflow-hidden bg-primary-600">
+                                    <img 
+                                        src="{% if item.poster %}{{ item.poster.url }}{% else %}{% static '/images/poster.png' %}{% endif %}"
+                                        class="w-full" alt="{{ item.title }}"
+                                    >
+                                </div>
+                            </div>
+                            <div class="flex-1 p-2">
+                                <h1 class="font-medium line-clamp-1">{{ item.title }}</h1>
+                                <div class="flex gap-1 items-center text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-clock3-icon lucide-clock-3">
+                                        <path d="M12 6v6h4" />
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    <span class="text-sm">{{ item.date_created|date:"j F Y, H:i" }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% else %}
+                        <a 
+                            href="{% url 'announcement' item.pk %}"
+                            class="flex border border-border-200 rounded-xl shadow overflow-hidden transition-all hover:bg-secondary-100"
+                        >
+                            <div class="p-6 flex justify-center items-center text-white bg-amber-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-megaphone-icon lucide-megaphone">
+                                    <path
+                                        d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
+                                    <path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14" />
+                                    <path d="M8 6v8" />
+                                </svg>
+                            </div>
+
+                            <div class="flex-1 flex flex-col gap-1 p-2">
+                                <h1 class="font-medium line-clamp-2">{{ item.title }}</h1>
+                                <div class="flex gap-1 items-center text-muted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock3-icon lucide-clock-3">
+                                        <path d="M12 6v6h4" />
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    <span class="text-sm">{{ item.date_created|date:"j F Y, H:i" }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
