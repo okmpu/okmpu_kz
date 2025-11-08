@@ -126,7 +126,7 @@
             </div>
 
             <div class="relative pt-4">
-                {% if content.text_contents.all|length > 0 or content.image_contents.all|length > 0 or content.file_contents.all|length > 0 or content.staff_contents.all|length > 0 %}
+                {% if content.text_contents.all|length > 0 or content.image_contents.all|length > 0 or content.file_contents.all|length > 0 or content.staff_contents.all|length > 0 or content.popup_contents.all|length > 0 %}
                     <div class="relative grid gap-8">
                         <!-- Text contents -->
                         {% include './components/text-content.html' %}
