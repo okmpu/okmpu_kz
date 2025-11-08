@@ -393,7 +393,7 @@
                             href="{% url 'faculty_detail' item.slug %}" 
                             class="swiper-slide p-6 rounded-xl border border-border-200 transition-all hover:bg-secondary-100"
                         >
-                            <div class="w-36 h-36 rounded-full border overflow-hidden mx-auto">
+                            <div class="w-36 h-36 rounded-full border border-border-200 overflow-hidden mx-auto">
                                 <img src="{% if item.image %}{{ item.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}" class="w-full h-full" alt="">
                             </div>
                             <div class="grid gap-4 text-center mt-2">

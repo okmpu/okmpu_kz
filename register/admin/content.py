@@ -2,7 +2,8 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 from django_summernote.admin import SummernoteModelAdminMixin
-from register.models.content import Category, Content, TextContent, FileContent, ImageContent, StaffContent
+from register.models.content import Category, Content, TextContent, FileContent, ImageContent, StaffContent, \
+    PopupContent
 
 
 # Category
@@ -40,12 +41,19 @@ class StaffContentTabular(SummernoteModelAdminMixin, TranslationStackedInline):
     extra = 0
 
 
+# PopupContent
+class PopupContentInline(SummernoteModelAdminMixin, TranslationStackedInline):
+    model = PopupContent
+    extra = 0
+
+
+# ContentAdmin
 class ContentAdmin(TranslationAdmin):
     list_display = ('title', 'slug', 'category', 'order', )
     list_filter = ('category',)
     search_fields = ('title', 'slug', )
     prepopulated_fields = {'slug': ('title_en', )}
-    inlines = [TextContentTabular, ImageContentTabular, FileContentTabular, StaffContentTabular, ]
+    inlines = [TextContentTabular, ImageContentTabular, FileContentTabular, StaffContentTabular, PopupContentInline, ]
 
 
 admin.site.register(Category, CategoryAdmin)

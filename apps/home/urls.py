@@ -15,8 +15,11 @@ urlpatterns = [
     path('publics/announcements/<pk>/', public.announcement_view, name='announcement'),
 
     # content urls
-    path('content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/', content.content_detail,
-         name='content_detail'),
-    path('university/division/<slug>/', content.division_detail, name='division_detail'),
+    path(
+        'content/<category_slug>/<sub_category_slug>/<section_slug>/<content_slug>/',
+         content.content_detail_view,
+         name='content_detail'
+    ),
+    path('university/division/<slug>/', content.division_detail_view, name='division_detail'),
     path('university/division/<slug>/about', content.division_about, name='division_about'),
 ]

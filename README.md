@@ -1,5 +1,5 @@
 ![Zhanibekov university](/ui/static/images/logo.png "Zhanibekov university")
-# Zhanibekov university manage system
+# Zhanibekov university
 
 Ө.Жәнібеков атындағы Оңтүстік Қазақстан педагогикалық университетінің 
 (Zhanibekov university) мәліметтер қорларын жергілікті және қашықтықтан 

@@ -17,15 +17,16 @@
         href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet"
     />
-    <!-- CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Packages CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />  <!-- AOS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />  <!-- Swiper JS -->
 </head>
 
 <body class="min-h-screen flex flex-col font-inter text-sm 2xl:text-base 3xl:text-lg text-foreground">
     <div class="flex-1">
         <!-- Header -->
-        <header class="sticky top-0 z-40 lg:relative border-b bg-white border-border-200">
+        <header class="sticky top-0 z-10 lg:relative border-b bg-white border-border-200">
             <!-- Resources -->
             <div class="bg-amber-500">
                 <div class="w-full min-w-xs max-w-screen-2xl mx-auto px-4 py-2 flex gap-4 justify-between overflow-x-auto">
@@ -56,7 +57,7 @@
             <!-- Branding header -->
             <div class="max-w-screen-2xl w-full mx-auto px-4 flex justify-between items-center">
                 <a href="{% url 'home' %}" class="flex items-center">
-                    <img src="{% static '/images/logo.png' %}" class="w-42" alt="Zhanibekov university logo" />
+                    <img src="{% static '/images/logo.png' %}" class="w-36 md:w-42" alt="Zhanibekov university logo" />
                 </a>
 
                 <div class="hidden lg:block">
@@ -95,7 +96,7 @@
                         </button>
 
                         <div 
-                            id="search-modal" 
+                            id="search-modal"
                             tabindex="-1" 
                             aria-hidden="true"
                             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
@@ -133,7 +134,7 @@
                     <form action="{% url 'set_language' %}" method="post" class="hidden lg:flex items-center space-x-4">
                         {% csrf_token %}
                         
-                        <div class="relative">
+                        <div class="relative w-28">
                             <select 
                                 name="language" 
                                 onchange="this.form.submit()" 
@@ -432,10 +433,10 @@
             <div class="md:flex md:gap-10">
                 <div class="mb-6 md:mb-0">
                     <a href="{% url 'home' %}" class="flex items-center">
-                        <img src="{% static '/images/logo.png' %}" class="w-48" alt="Zhanibekov university logo" />
+                        <img src="{% static '/images/logo.png' %}" class="w-36 md:w-48" alt="Zhanibekov university logo" />
                     </a>
                 </div>
-                <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <div class="grid grid-cols-2 gap-8 sm:grid-cols-3">
                     <div class="flex flex-col gap-4">
                         <h2 class="font-medium text-foreground">
                             {% translate 'Navigation' %}
@@ -518,7 +519,7 @@
             
             <div class="sm:flex sm:items-center sm:justify-between">
                 <span class="text-muted sm:text-center">
-                    © 2024
+                    © 2025
                     <a href="https://flowbite.com/" class="hover:underline">Zhanibekov University.</a>
                     {% translate 'All copyrights are protected.' %}
                 </span>

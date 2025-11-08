@@ -68,7 +68,8 @@ class TextContent(models.Model):
     class Meta:
         verbose_name = _('Text content')
         verbose_name_plural = _('Text contents')
-        ordering = ('order',)
+        ordering = ('order', )
+
 
 # File content
 class ImageContent(models.Model):
@@ -131,3 +132,23 @@ class StaffContent(models.Model):
         verbose_name = _('Staff content')
         verbose_name_plural = _('Staff contents')
         ordering = ('order', )
+
+
+# Popup content
+class PopupContent(models.Model):
+    content = models.ForeignKey(
+        Content, on_delete=models.CASCADE, related_name='popup_contents', verbose_name=_('Content')
+    )
+    title = models.CharField(verbose_name=_('Title'), max_length=128)
+    description = models.TextField(verbose_name=_('Description'), blank=True, null=True)
+    order = models.PositiveIntegerField(_('Order'), default=0)
+
+    def __str__(self):
+        return 'ID: {} '.format(self.pk) + _('Popup content')
+
+
+    class Meta:
+        verbose_name = _('Popup content')
+        verbose_name_plural = _('Popup contents')
+        ordering = ('order', )
+
