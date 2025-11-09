@@ -5,6 +5,23 @@ from register.validators import validate_file_size, validate_poster
 from register.models.university import Faculty, Department, Division
 
 
+# Resource
+# ----------------------------------------------------------------------------------------------------------------------
+class Resource(models.Model):
+    label = models.CharField(_('Label'), max_length=128)
+    url = models.URLField(_('URL'))
+    new_tab = models.BooleanField(_('New tab'), default=False)
+    order = models.PositiveSmallIntegerField(_('Order'), default=0)
+
+    def __str__(self):
+        return self.label
+
+    class Meta:
+        verbose_name = _('Resource')
+        verbose_name_plural = _('Resources')
+        ordering = ('order', )
+
+
 # Headliner
 # ----------------------------------------------------------------------------------------------------------------------
 class Headliner(models.Model):

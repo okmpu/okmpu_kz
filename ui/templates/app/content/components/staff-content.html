@@ -5,8 +5,8 @@
     <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
         {% for item in content.staff_contents.all %}
             <div
-                data-modal-target="default-modal-{{ item.id }}" 
-                data-modal-toggle="default-modal-{{ item.id }}" 
+                data-modal-target="staff-modal-{{ item.id }}" 
+                data-modal-toggle="staff-modal-{{ item.id }}" 
                 class="grid gap-4 text-center border border-border-200 p-4 rounded-xl cursor-pointer shadow transition-all hover:bg-secondary-100"
             >
                 <img 
@@ -23,17 +23,17 @@
             
             <!-- Main modal -->
             <div 
-                id="default-modal-{{ item.id }}" 
+                id="staff-modal-{{ item.id }}" 
                 tabindex="-1" 
                 aria-hidden="true" 
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
             >
                 <div class="relative p-4 w-full max-w-screen-xl max-h-full">
-                    <div class="relative bg-white rounded-lg shadow">
+                    <div class="relative bg-white rounded-xl shadow">
                         <button 
                             type="button" 
-                            class="fixed top-2 right-6 bg-secondary-100 hover:bg-secondary-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" 
-                            data-modal-hide="default-modal-{{ item.id }}"
+                            class="fixed top-2 right-6 bg-secondary-100 hover:bg-secondary-200 hover:text-foreground rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center" 
+                            data-modal-hide="staff-modal-{{ item.id }}"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-08 15:45+0500\n"
+"POT-Creation-Date: 2025-11-09 12:09+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: core/settings.py:113
+#: core/settings.py:111
 msgid "Kazakh"
 msgstr "Қазақша"
 
-#: core/settings.py:114
+#: core/settings.py:112
 msgid "Russian"
 msgstr "Русский"
 
-#: core/settings.py:115
+#: core/settings.py:113
 msgid "English"
 msgstr "English"
 
@@ -73,8 +73,8 @@ msgstr "Иелік категория"
 msgid "Multiple"
 msgstr "Көпмәнділік"
 
-#: register/models/content.py:22 register/models/publics.py:38
-#: register/models/university.py:192
+#: register/models/content.py:22 register/models/publics.py:12
+#: register/models/publics.py:55 register/models/university.py:192
 msgid "URL"
 msgstr "URL"
 
@@ -85,11 +85,11 @@ msgstr "Жаңа бет"
 #: register/models/content.py:24 register/models/content.py:45
 #: register/models/content.py:63 register/models/content.py:81
 #: register/models/content.py:100 register/models/content.py:126
-#: register/models/content.py:144 register/models/publics.py:18
-#: register/models/publics.py:39 register/models/university.py:27
-#: register/models/university.py:91 register/models/university.py:150
-#: register/models/university.py:166 register/models/university.py:326
-#: register/models/university.py:347
+#: register/models/content.py:144 register/models/publics.py:14
+#: register/models/publics.py:35 register/models/publics.py:56
+#: register/models/university.py:27 register/models/university.py:91
+#: register/models/university.py:150 register/models/university.py:166
+#: register/models/university.py:326 register/models/university.py:347
 msgid "Order"
 msgstr "Реттілік"
 
@@ -102,14 +102,14 @@ msgid "Categories"
 msgstr "Категориялар"
 
 #: register/models/content.py:41 register/models/content.py:142
-#: register/models/publics.py:11 register/models/publics.py:70
-#: register/models/publics.py:91 register/models/university.py:241
+#: register/models/publics.py:28 register/models/publics.py:87
+#: register/models/publics.py:108 register/models/university.py:241
 #: register/models/university.py:291 register/models/university.py:342
 msgid "Title"
 msgstr "Тақырып"
 
 #: register/models/content.py:43 register/models/content.py:143
-#: register/models/publics.py:77 register/models/university.py:219
+#: register/models/publics.py:94 register/models/university.py:219
 #: register/models/university.py:296 register/models/university.py:325
 msgid "Description"
 msgstr "Сипаттама"
@@ -206,60 +206,76 @@ msgstr "Қалқымалы контент"
 msgid "Popup contents"
 msgstr "Қалқымалы контенттер"
 
-#: register/models/publics.py:13 register/models/publics.py:35
-#: register/models/publics.py:73 register/models/university.py:22
+#: register/models/publics.py:11
+msgid "Label"
+msgstr "Атауы"
+
+#: register/models/publics.py:13
+msgid "New tab"
+msgstr "Жаңа қойынды"
+
+#: register/models/publics.py:20
+msgid "Resource"
+msgstr "Ресурс"
+
+#: register/models/publics.py:21 ui/templates/components/footer.html:48
+msgid "Resources"
+msgstr "Ресурстар"
+
+#: register/models/publics.py:30 register/models/publics.py:52
+#: register/models/publics.py:90 register/models/university.py:22
 #: register/models/university.py:50 register/models/university.py:82
 msgid "Poster"
 msgstr "Постер"
 
-#: register/models/publics.py:16 register/models/university.py:149
+#: register/models/publics.py:33 register/models/university.py:149
 msgid "About"
 msgstr "Өзі туралы"
 
-#: register/models/publics.py:17
+#: register/models/publics.py:34
 msgid "Source URL"
 msgstr "URL мекен-жайы"
 
-#: register/models/publics.py:19
+#: register/models/publics.py:36
 msgid "Is archive"
 msgstr "Мұрағат болып табылады"
 
-#: register/models/publics.py:25
+#: register/models/publics.py:42
 msgid "Headliner"
 msgstr "Хэдлайнер"
 
-#: register/models/publics.py:26
+#: register/models/publics.py:43
 msgid "Headliners"
 msgstr "Хэдлайнерлер"
 
-#: register/models/publics.py:33
+#: register/models/publics.py:50
 msgid "Partner name"
 msgstr "Серіктес атауы"
 
-#: register/models/publics.py:45
+#: register/models/publics.py:62
 msgid "Partner"
 msgstr "Серіктес"
 
-#: register/models/publics.py:46
+#: register/models/publics.py:63
 msgid "Partners"
 msgstr "Серіктестер"
 
-#: register/models/publics.py:54 register/models/publics.py:90
+#: register/models/publics.py:71 register/models/publics.py:107
 #: ui/templates/app/page.html:195 ui/templates/app/publics/page.html:38
 #: ui/templates/app/publics/public/page.html:37
 #: ui/templates/app/university/department/publics.html:15
 #: ui/templates/app/university/division/page.html:339
 #: ui/templates/app/university/faculty/index.html:541
 #: ui/templates/app/university/faculty/publics.html:15
-#: ui/templates/base.html:449
+#: ui/templates/components/footer.html:22
 msgid "News"
 msgstr "Жаңалықтар"
 
-#: register/models/publics.py:55
+#: register/models/publics.py:72
 msgid "Announcement"
 msgstr "Хабарландыру"
 
-#: register/models/publics.py:59 register/models/university.py:10
+#: register/models/publics.py:76 register/models/university.py:10
 #: register/models/university.py:33 register/models/university.py:43
 #: register/models/university.py:107 register/models/university.py:126
 #: register/models/university.py:184 register/models/university.py:207
@@ -269,7 +285,7 @@ msgstr "Хабарландыру"
 msgid "Faculty"
 msgstr "Факультет"
 
-#: register/models/publics.py:63 register/models/university.py:62
+#: register/models/publics.py:80 register/models/university.py:62
 #: register/models/university.py:130 register/models/university.py:188
 #: register/models/university.py:211 register/models/university.py:239
 #: register/models/university.py:284 register/models/university.py:316
@@ -279,50 +295,50 @@ msgstr "Факультет"
 msgid "Department"
 msgstr "Кафедра"
 
-#: register/models/publics.py:67 register/models/university.py:97
+#: register/models/publics.py:84 register/models/university.py:97
 #: register/models/university.py:116 register/models/university.py:134
 #: register/models/university.py:288 register/models/university.py:320
 msgid "Division"
 msgstr "Бөлім"
 
-#: register/models/publics.py:68 register/models/university.py:135
+#: register/models/publics.py:85 register/models/university.py:135
 #: register/models/university.py:289 register/models/university.py:321
 msgid "Warning! This field is not relevant for faculties and departments"
 msgstr "Ескерту! Бұл өріс факультеттер мен кафедралар үшін емес"
 
-#: register/models/publics.py:71
+#: register/models/publics.py:88
 msgid "Public type"
 msgstr "Публикация типі"
 
-#: register/models/publics.py:76 register/models/university.py:214
+#: register/models/publics.py:93 register/models/university.py:214
 #: register/models/university.py:244
 msgid "Author"
 msgstr "Автор"
 
-#: register/models/publics.py:78 register/models/university.py:220
+#: register/models/publics.py:95 register/models/university.py:220
 #: register/models/university.py:246 register/models/university.py:297
 msgid "Date created"
 msgstr "Шыққан уақыты"
 
-#: register/models/publics.py:84
+#: register/models/publics.py:101
 msgid "Public"
 msgstr "Публикация"
 
-#: register/models/publics.py:85
+#: register/models/publics.py:102
 msgid "Publics"
 msgstr "Публикациялар"
 
-#: register/models/publics.py:93 register/models/university.py:216
+#: register/models/publics.py:110 register/models/university.py:216
 #: register/models/university.py:263 register/models/university.py:293
 #: register/models/university.py:344
 msgid "File"
 msgstr "Файл"
 
-#: register/models/publics.py:101
+#: register/models/publics.py:118
 msgid "Public file"
 msgstr "Публикация құжаты"
 
-#: register/models/publics.py:102
+#: register/models/publics.py:119
 msgid "Public files"
 msgstr "Публикация құжаттары"
 
@@ -343,7 +359,8 @@ msgid "About the faculty"
 msgstr "Факультет жайлы"
 
 #: register/models/university.py:34
-#: ui/templates/app/university/faculties.html:6 ui/templates/base.html:462
+#: ui/templates/app/university/faculties.html:6
+#: ui/templates/components/footer.html:35
 msgid "Faculties"
 msgstr "Факультеттер"
 
@@ -599,8 +616,9 @@ msgstr ""
 #: ui/templates/app/university/faculty/layouts.html:47
 #: ui/templates/app/university/faculty/layouts.html:125
 #: ui/templates/app/university/faculty/layouts.html:185
-#: ui/templates/base.html:170 ui/templates/base.html:325
-#: ui/templates/base.html:446
+#: ui/templates/components/footer.html:19
+#: ui/templates/components/nav-drawer.html:71
+#: ui/templates/components/navigation.html:14
 msgid "Home page"
 msgstr "Басты бет"
 
@@ -622,7 +640,7 @@ msgstr ""
 #: ui/templates/app/university/division/page.html:344
 #: ui/templates/app/university/faculty/index.html:615
 #: ui/templates/app/university/faculty/publics.html:20
-#: ui/templates/base.html:452
+#: ui/templates/components/footer.html:25
 msgid "Announcements"
 msgstr "Хабарландырулар"
 
@@ -636,7 +654,7 @@ msgstr "Барлығын қарап шығу"
 #: ui/templates/app/university/division/page.html:349
 #: ui/templates/app/university/faculty/index.html:578
 #: ui/templates/app/university/faculty/publics.html:25
-#: ui/templates/base.html:455
+#: ui/templates/components/footer.html:28
 msgid "Events"
 msgstr "Іс-шаралар"
 
@@ -867,11 +885,11 @@ msgstr "Бөлім туралы"
 
 #: ui/templates/app/university/division/page.html:17
 msgid "Departments within the management board"
-msgstr "Басышылық құрамындағы департаменттер"
+msgstr "Басшылық құрамындағы департаменттер"
 
 #: ui/templates/app/university/division/page.html:58
 msgid "Divisions within the management board"
-msgstr "Басышылық құрамындағы орталық/бөлімдер"
+msgstr "Басшылық құрамындағы орталық/бөлімдер"
 
 #: ui/templates/app/university/division/page.html:60
 msgid "Divisions within the departments board"
@@ -920,18 +938,13 @@ msgstr "Колледж құжаттары"
 msgid "Specialty ciphers and names of the departments assigned by the faculty"
 msgstr "Мамандық шифрлары және факультет тағайындаған кафедралардың атаулары"
 
-#: ui/templates/base.html:43 ui/templates/base.html:495
-msgid "Library"
-msgstr "Кітапхана"
-
-#: ui/templates/base.html:442
+#: ui/templates/components/footer.html:15
 msgid "Navigation"
 msgstr "Навигация"
 
-#: ui/templates/base.html:475
-msgid "Resources"
-msgstr "Ресурстар"
-
-#: ui/templates/base.html:524
+#: ui/templates/components/footer.html:73
 msgid "All copyrights are protected."
 msgstr "Барлық авторлық құқықтар қорғалған."
+
+#~ msgid "Library"
+#~ msgstr "Кітапхана"
