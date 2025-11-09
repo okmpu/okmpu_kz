@@ -1,8 +1,13 @@
-![Zhanibekov university](/ui/static/images/logo.png "Zhanibekov university")
+<p align="center">
+    <img 
+        src="ui/static/images/logo.png" 
+        alt="Zhanibekov logo" width="160" 
+    />
+</p>
+<p align="center">
+    <a href="https://zhanibekov.edu.kz" style="font-weight: 600">Ресми сілтеме</a>
+</p>
+
 # Zhanibekov university
-
 Ө.Жәнібеков атындағы Оңтүстік Қазақстан педагогикалық университетінің 
-(Zhanibekov university) мәліметтер қорларын жергілікті және қашықтықтан 
-басқару жүйесі
-
-Ресми сілтеме: [zhanibekov.edu.kz](https://zhanibekov.edu.kz/).
+(Zhanibekov university) ресми сайты
