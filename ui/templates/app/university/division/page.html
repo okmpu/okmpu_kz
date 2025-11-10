@@ -15,7 +15,7 @@
         <div class="grid gap-4">
             <div class="flex items-center justify-between">
                 <h1 class="font-medium text-base md:text-xl">{% translate 'Departments within the management board' %}</h1>
-                <a 
+                <!-- <a 
                     href="#" 
                     class="flex gap-1 items-center text-primary-600 hover:underline"
                 >
@@ -26,7 +26,7 @@
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
                     </svg>
-                </a>
+                </a> -->
             </div>
             <div class="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {% for sub_item in departments %}
@@ -60,7 +60,7 @@
                         {% translate 'Divisions within the departments board' %}
                     {% endif %}
                 </h1>
-                <a 
+                <!-- <a 
                     href="#" 
                     class="flex gap-1 items-center text-primary-600 hover:underline"
                 >
@@ -71,7 +71,7 @@
                         <path d="M5 12h14" />
                         <path d="m12 5 7 7-7 7" />
                     </svg>
-                </a>
+                </a> -->
             </div>
             <div class="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {% for sub_item in divisions %}
@@ -97,12 +97,12 @@
     {% endif %}
 
     <!-- Personals -->
-    {% if division.division_personals.all|length > 0 %}
+    {% if personals|length > 0 %}
         <div class="grid gap-4">
             <div class="flex justify-between items-center">
                 <h1 class="font-medium text-base md:text-xl">{{ division.get_div_type_display }} {% translate 'composition' %}</h1>
                 <a 
-                    href="#" 
+                    href="{% url 'division_personals' division.slug %}" 
                     class="flex gap-1 items-center text-primary-600 hover:underline"
                 >
                     <span>{% translate 'Read more' %}</span>
@@ -116,7 +116,7 @@
             </div>
 
             <div class="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {% for item in division.division_personals.all %}
+                {% for item in personals %}
                     <div 
                         data-modal-target="staff-modal-{{ item.id }}" 
                         data-modal-toggle="staff-modal-{{ item.id }}"
@@ -199,7 +199,7 @@
     {% endif %}
 
     <!-- Documents -->
-    <div class="w-full bg-white">
+    <div class="w-full">
         <ul 
             class="flex gap-1 flex-wrap font-medium text-center"
             id="documentTab" 
@@ -208,8 +208,8 @@
             data-tabs-active-classes="border-b-4 border-b-primary-600"
             data-tabs-inactive-classes="text-muted"
         >
-            {% for document in division.division_documents.all %}
-                <li class="">
+            {% for document in documents %}
+                <li class="relative">
                     <button 
                         id="{{ document.slug }}-tab" 
                         data-tabs-target="#{{ document.slug }}" 
@@ -224,7 +224,7 @@
             {% endfor %}
         </ul>
         <div id="documentTabContent">
-            {% for document in division.division_documents.all %}
+            {% for document in documents %}
                 <div 
                     class="hidden" 
                     id="{{ document.slug }}" 
@@ -236,7 +236,7 @@
                     </span>
 
                     <div class="grid gap-2">
-                        {% for doc_file in document.document_files.all %}
+                        {% for doc_file in document.document_files.all|slice:":6" %}
                             <div class="flex justify-between items-center border border-border-200 rounded-xl shadow py-2 px-4">
                                 <div class="flex gap-2 items-center flex-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -327,6 +327,20 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
+        <div class="mt-4 flex justify-center">
+            <a 
+                href="{% url 'division_docs' division.slug %}" 
+                class="flex gap-1 items-center text-primary-600 hover:underline"
+            >
+                <span>{% translate 'Read more' %}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-arrow-right-icon lucide-arrow-right">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                </svg>
+            </a>
         </div>
     </div>
 

@@ -41,7 +41,28 @@
                         {% translate 'Home page' %}
                     </a>
                 </div>
-
+                {% if division.division_personals.all %}
+                    <div class="relative">
+                        {% url 'division_personals' division.slug as division_personals_url %}
+                        <a
+                            href="{{ division_personals_url }}"
+                            class="flex whitespace-nowrap p-2 border-b-4 border-transparent transition-all {% if request.path == division_personals_url %}border-b-primary-600{% else %}hover:border-b-primary-600{% endif %}"
+                        >
+                            {% translate 'Personals' %}
+                        </a>
+                    </div>
+                {% endif %}
+                {% if division.division_documents.all %}
+                    <div class="relative">
+                        {% url 'division_docs' division.slug as division_docs_url %}
+                        <a
+                            href="{{ division_docs_url }}"
+                            class="flex whitespace-nowrap p-2 border-b-4 border-transparent transition-all {% if request.path == division_docs_url %}border-b-primary-600{% else %}hover:border-b-primary-600{% endif %}"
+                        >
+                            {% translate 'Documents' %}
+                        </a>
+                    </div>
+                {% endif %}
                 <div class="relative">
                     {% url 'division_about' division.slug as division_about_url %}
                     <a
@@ -68,6 +89,28 @@
                         {% translate 'Home page' %}
                     </a>
                 </li>
+                {% if division.division_personals.all %}
+                    <li>
+                        {% url 'division_personals' division.slug as division_personals_url %}
+                        <a
+                            href="{{ division_personals_url }}"
+                            class="flex py-2 px-4 rounded-xl transition-all {% if request.path == division_personals_url %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}"
+                        >
+                            {% translate 'Personals' %}
+                        </a>
+                    </li>
+                {% endif %}
+                {% if division.division_documents.all %}
+                    <li>
+                        {% url 'division_docs' division.slug as division_docs_url %}
+                        <a
+                            href="{{ division_docs_url }}"
+                            class="flex py-2 px-4 rounded-xl transition-all {% if request.path == division_docs_url %}bg-primary-600 text-white{% else %}hover:bg-secondary-100{% endif %}"
+                        >
+                            {% translate 'Documents' %}
+                        </a>
+                    </li>
+                {% endif %}
                 <li>
                     {% url 'division_about' division.slug as division_about_url %}
                     <a

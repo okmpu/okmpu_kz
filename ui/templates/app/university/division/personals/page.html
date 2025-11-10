@@ -1,0 +1,104 @@
+{% extends 'app/university/division/layouts.html' %}
+{% load static %}
+{% load i18n %}
+
+
+{% block title %}
+    {% translate 'Division personals' %}
+{% endblock %}
+
+
+{% block division_content %}
+<div class="relative">
+    <!-- Personals -->
+    {% if personals|length > 0 %}
+        <div class="grid gap-4">
+            <div class="flex justify-between items-center">
+                <h1 class="font-medium text-base md:text-xl">{{ division.get_div_type_display }} {% translate 'composition' %}</h1>
+                
+            </div>
+
+            <div class="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {% for item in personals %}
+                    <div 
+                        data-modal-target="staff-modal-{{ item.id }}" 
+                        data-modal-toggle="staff-modal-{{ item.id }}"
+                        class="grid gap-2 text-center p-4 cursor-pointer border border-border-200 overflow-hidden rounded-lg transition-all hover:bg-secondary-100"
+                    >
+                        <img 
+                            src="{% if item.image %}{{ item.image.url }}{% else %}{% static '/images/card.png' %}{% endif %}"
+                            class="rounded-full w-32 h-32 mx-auto border-2 border-border-200" alt="{{ item.full_name }}"
+                        >
+                        <div class="relative">
+                            <h1 class="font-medium line-clamp-2">{{ item.full_name }}</h1>
+                            <span class="text-muted line-clamp-2">{{ item.profession }}</span>
+                        </div>
+                    </div>
+                    <!-- Main modal -->
+                    <div
+                        id="staff-modal-{{ item.id }}" 
+                        tabindex="-1" 
+                        aria-hidden="true"
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-screen-xl max-h-full">
+                            <!-- Modal content -->
+                            <div class="relative bg-white h-full rounded-lg overflow-hidden shadow">
+                                <button 
+                                    type="button"
+                                    class="fixed top-2 right-6 bg-white hover:bg-secondary-200 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                    data-modal-hide="staff-modal-{{ item.id }}"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x">
+                                        <path d="M18 6 6 18" />
+                                        <path d="m6 6 12 12" />
+                                    </svg>
+                                </button>
+
+                                <div class="flex flex-col p-6">
+                                    <div class="text-center grid gap-4">
+                                        <img 
+                                            src="{% if item.image %}{{ item.image.url }}{% else %}{% static 'images/card.png' %}{% endif %}"
+                                            alt="Image" 
+                                            class="w-40 h-40 rounded-full border-2 border-border-200 mx-auto" 
+                                        />
+                                        <div class="grid gap-2 border-b border-border-200 pb-4">
+                                            <h1 class="text-xl font-medium">{{ item.full_name }}</h1>
+                                            <span class="text-muted">{{ item.profession }}</span>
+                                            <div class="relative">
+                                                {% if item.phone %}
+                                                    <div class="flex justify-center items-center text-primary-600 gap-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone">
+                                                            <path
+                                                                d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+                                                        </svg>
+                                                        <a href="#" class="underline">{{ item.phone }}</a>
+                                                    </div>
+                                                {% endif %}
+                                                {% if item.email %}
+                                                    <div class="flex justify-center items-center gap-2 text-primary-600">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail">
+                                                            <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                                                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                                                        </svg>
+                                                        <span>{{ item.email }}</span>
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="text-muted text-justify">
+                                            {{ item.about|safe }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock division_content %}

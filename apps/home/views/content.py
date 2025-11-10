@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from register.models.content import Category, Content
 from register.models.publics import Public
-from register.models.university import Division
+from register.models.university import Division, Personal, Document
 
 
 # Content detail
@@ -40,6 +40,9 @@ def division_detail_view(request, slug):
     item = get_object_or_404(Division, slug=slug)
     departments = item.children.filter(div_type='department')
     divisions = item.children.filter(div_type='div')
+    personals = Personal.objects.filter(division=item)[:4]
+    documents = Document.objects.filter(division=item)
+
     news = Public.objects.filter(public_type='news', division=item)
     events = Public.objects.filter(public_type='news', division=item)
     announcements = Public.objects.filter(public_type='ann', division=item)
@@ -48,6 +51,9 @@ def division_detail_view(request, slug):
         'division': item,
         'departments': departments,
         'divisions': divisions,
+        'personals': personals,
+        'documents': documents,
+
         'news': news,
         'events': events,
         'announcements': announcements
@@ -55,10 +61,38 @@ def division_detail_view(request, slug):
     return render(request, 'app/university/division/page.html', context)
 
 
+# Division personals page
+def division_personals_view(request, slug):
+    item = get_object_or_404(Division, slug=slug)
+    personals = Personal.objects.filter(division=item)
+
+    context = {
+        'division': item,
+        'personals': personals,
+    }
+    return render(request, 'app/university/division/personals/page.html', context)
+
+
+# Division personals page
+def division_docs_view(request, slug):
+    item = get_object_or_404(Division, slug=slug)
+    documents = Document.objects.filter(division=item)
+
+    context = {
+        'division': item,
+        'documents': documents,
+    }
+    return render(request, 'app/university/division/docs/page.html', context)
+
+
+
 # Division about page
 def division_about(request, slug):
     item = get_object_or_404(Division, slug=slug)
+    personals = Personal.objects.filter(division=item)
+
     context = {
         'division': item,
+        'personals': personals,
     }
     return render(request, 'app/university/division/about/page.html', context)

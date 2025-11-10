@@ -20,6 +20,10 @@ urlpatterns = [
          content.content_detail_view,
          name='content_detail'
     ),
+
+    # division urls
     path('university/division/<slug>/', content.division_detail_view, name='division_detail'),
+    path('university/division/personals/<slug>/', content.division_personals_view, name='division_personals'),
+    path('university/division/docs/<slug>/', content.division_docs_view, name='division_docs'),
     path('university/division/<slug>/about', content.division_about, name='division_about'),
 ]
