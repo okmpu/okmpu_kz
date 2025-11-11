@@ -1,7 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 from register.models.content import Content
-from register.models.university import Program, Faculty
+from register.models.university import Program, Faculty, Department, Division
 from register.models.publics import Headliner, Partner, Public
 
 
@@ -27,18 +27,26 @@ def home(request):
 
 
 def search(request):
-    query = request.GET.get('query', '')
-    results = None
+    query = request.GET.get('query', '').strip()
 
-    if query:
-        results = Content.objects.filter(
-            Q(title__icontains=query) | Q(description__icontains=query)
-        )
+    if not query:
+        return render(request, 'components/app/home/search/search_initial.html')
+
+    contents = Content.objects.filter(
+        Q(title__icontains=query) | Q(description__icontains=query)
+    )
+    faculties = Faculty.objects.filter(name__icontains=query)
+    departments = Department.objects.filter(name__icontains=query)
+    divisions = Division.objects.filter(name__icontains=query)
+
     context = {
         'query': query,
-        'results': results
+        'contents': contents,
+        'faculties': faculties,
+        'departments': departments,
+        'divisions': divisions,
     }
-    return render(request, 'app/search/page.html', context)
+    return render(request, 'components/app/home/search/search_results.html', context)
 
 
 # Program page

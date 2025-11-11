@@ -21,32 +21,22 @@
     <div class="mt-8">
         <nav class="grid gap-2">
             <div class="flex gap-2">
-                <form class="w-full flex-1" action="{% url 'search' %}" method="get">   
-                    <div class="relative">
-                        <input 
-                            type="search" 
-                            id="search-search" 
-                            name="query" 
-                            class="block w-full px-3 py-2 border border-border-300 rounded-lg focus:ring-primary-600 focus:border-primary-600" 
-                            placeholder="Іздеу..." 
-                            required 
-                        />
-                        <button 
-                            type="submit" 
-                            class="rounded-lg p-2 absolute end-2 bottom-[3px] right-1 focus:ring-4 focus:outline-none focus:ring-secondary-300"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
-                                <path d="m21 21-4.34-4.34" />
-                                <circle cx="11" cy="11" r="8" />
-                            </svg>
-                        </button>
-                    </div>
-                </form>
+                <button 
+                    type="button"
+                    data-modal-target="search-modal" 
+                    data-modal-toggle="search-modal"
+                    class="relative w-full rounded-lg border border-border-200 cursor-pointer"
+                >   
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search absolute top-[10px] right-2">
+                        <path d="m21 21-4.34-4.34" />
+                        <circle cx="11" cy="11" r="8" />
+                    </svg>
+                </button>
 
                 <form action="{% url 'set_language' %}" method="post" class="flex items-center space-x-4">
                     {% csrf_token %}
-                    <div class="relative w-full">
+                    <div class="relative w-28">
                         <select 
                             name="language" 
                             onchange="this.form.submit()" 

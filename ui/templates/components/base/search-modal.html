@@ -1,0 +1,45 @@
+<div 
+    id="search-modal"
+    tabindex="-1" 
+    aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+    <div class="relative p-4 w-full max-w-screen-xl max-h-full">
+        <div class="relative bg-white rounded-xl shadow-sm overflow-hidden">
+            <div class="w-full">   
+                <label for="search-search" class="mb-2 font-medium sr-only">Search</label>
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        name="query"
+                        hx-get="{% url 'search' %}"
+                        hx-trigger="keyup changed delay:300ms"
+                        hx-indicator="#spinner"
+                        hx-target="#results"
+                        class="block w-full p-3 text-base border border-border-300 bg-secondary-50 focus:ring-secondary-200" 
+                        placeholder="Іздеу..." 
+                        required 
+                    />
+                    <button 
+                        class="absolute bottom-1 right-2 p-2 rounded-lg hover:bg-secondary-200 cursor-pointer focus:ring-2 focus:outline-none focus:ring-secondary-200"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search-icon lucide-search">
+                            <path d="m21 21-4.34-4.34" />
+                            <circle cx="11" cy="11" r="8" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <div id="spinner" class="hidden text-sm text-gray-400 mt-1">Жүктелуде...</div>
+                <div id="results" class="relative mt-2">
+                    <div>
+                        <p class="text-muted text-center">Не іздедіңіз?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -18,21 +18,21 @@
         rel="stylesheet"
     />
 
-    <!-- Packages CSS -->
+    <!-- CSS CDNs -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />  <!-- AOS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />  <!-- Swiper JS -->
 </head>
 
 <body class="min-h-screen flex flex-col font-inter text-sm 2xl:text-base 3xl:text-lg text-foreground">
-    {% include 'components/nav-drawer.html' %}
-    {% include 'components/search-modal.html' %}
+    {% include 'components/base/nav-drawer.html' %}
+    {% include 'components/base/search-modal.html' %}
 
     <div class="flex-1">
         <header class="sticky top-0 z-10 lg:relative border-b bg-white border-border-200">
-            {% include 'components/header.html' %}
+            {% include 'components/base/header.html' %}
         </header>
         <nav class="bg-white lg:border-b border-border-200 lg:sticky lg:top-0 lg:z-40">
-            {% include 'components/navigation.html' %}
+            {% include 'components/base/navigation.html' %}
         </nav>
 
         <main>
@@ -42,14 +42,15 @@
     </div>
 
     <footer class="bg-white border-t border-border-200">
-        {% include 'components/footer.html' %}
+        {% include 'components/base/footer.html' %}
     </footer>
     
     
-    <!-- CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- CDNs -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>  <!-- Flowbite -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>  <!-- Swiper JS -->
+     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>  <!-- HTMX -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>  <!-- AOS -->
     <script>
         AOS.init();
     </script>

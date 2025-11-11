@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-09 12:09+0500\n"
+"POT-Creation-Date: 2025-11-11 12:50+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,6 +100,7 @@ msgid "Category"
 msgstr "Категория"
 
 #: register/models/content.py:31
+#: ui/templates/components/app/home/search/search_results.html:8
 msgid "Categories"
 msgstr "Категории"
 
@@ -220,7 +221,7 @@ msgstr "Новая влкадка"
 msgid "Resource"
 msgstr "Ресурс"
 
-#: register/models/publics.py:21 ui/templates/components/footer.html:48
+#: register/models/publics.py:21 ui/templates/components/base/footer.html:48
 msgid "Resources"
 msgstr "Ресурсы"
 
@@ -266,10 +267,10 @@ msgstr "Партнеры"
 #: ui/templates/app/page.html:195 ui/templates/app/publics/page.html:38
 #: ui/templates/app/publics/public/page.html:37
 #: ui/templates/app/university/department/publics.html:15
-#: ui/templates/app/university/division/page.html:339
+#: ui/templates/app/university/division/page.html:355
 #: ui/templates/app/university/faculty/index.html:541
 #: ui/templates/app/university/faculty/publics.html:15
-#: ui/templates/components/footer.html:22
+#: ui/templates/components/base/footer.html:22
 msgid "News"
 msgstr "Новости"
 
@@ -362,7 +363,8 @@ msgstr "О факультете"
 
 #: register/models/university.py:34
 #: ui/templates/app/university/faculties.html:6
-#: ui/templates/components/footer.html:35
+#: ui/templates/components/app/home/search/search_results.html:29
+#: ui/templates/components/base/footer.html:35
 msgid "Faculties"
 msgstr "Факультеты"
 
@@ -371,6 +373,7 @@ msgid "About the department"
 msgstr "О кафедре"
 
 #: register/models/university.py:63
+#: ui/templates/components/app/home/search/search_results.html:52
 msgid "Departments"
 msgstr "Кафедры"
 
@@ -399,6 +402,7 @@ msgid "Parent division"
 msgstr "Родительский отдел"
 
 #: register/models/university.py:98
+#: ui/templates/components/app/home/search/search_results.html:75
 msgid "Divisions"
 msgstr "Отделы"
 
@@ -441,6 +445,8 @@ msgid "Personal"
 msgstr "Персонал"
 
 #: register/models/university.py:157
+#: ui/templates/app/university/division/layouts.html:51
+#: ui/templates/app/university/division/layouts.html:99
 msgid "Personals"
 msgstr "Персоналы"
 
@@ -512,6 +518,8 @@ msgid "Document"
 msgstr "Документ"
 
 #: register/models/university.py:333
+#: ui/templates/app/university/division/layouts.html:62
+#: ui/templates/app/university/division/layouts.html:110
 msgid "Documents"
 msgstr "Документы"
 
@@ -569,9 +577,9 @@ msgstr ""
 #: ui/templates/app/university/department/publics.html:56
 #: ui/templates/app/university/department/publics.html:97
 #: ui/templates/app/university/department/publics.html:129
-#: ui/templates/app/university/division/page.html:380
-#: ui/templates/app/university/division/page.html:421
-#: ui/templates/app/university/division/page.html:453
+#: ui/templates/app/university/division/page.html:396
+#: ui/templates/app/university/division/page.html:437
+#: ui/templates/app/university/division/page.html:469
 #: ui/templates/app/university/faculty/achievements.html:89
 #: ui/templates/app/university/faculty/materials.html:112
 #: ui/templates/app/university/faculty/personals.html:126
@@ -593,9 +601,9 @@ msgstr "Предупреждение о создании контента"
 #: ui/templates/app/university/department/publics.html:58
 #: ui/templates/app/university/department/publics.html:99
 #: ui/templates/app/university/department/publics.html:131
-#: ui/templates/app/university/division/page.html:382
-#: ui/templates/app/university/division/page.html:423
-#: ui/templates/app/university/division/page.html:455
+#: ui/templates/app/university/division/page.html:398
+#: ui/templates/app/university/division/page.html:439
+#: ui/templates/app/university/division/page.html:471
 #: ui/templates/app/university/faculty/achievements.html:91
 #: ui/templates/app/university/faculty/materials.html:114
 #: ui/templates/app/university/faculty/personals.html:128
@@ -617,13 +625,13 @@ msgstr ""
 #: ui/templates/app/page.html:7
 #: ui/templates/app/university/department/layouts.html:39
 #: ui/templates/app/university/division/layouts.html:41
-#: ui/templates/app/university/division/layouts.html:68
+#: ui/templates/app/university/division/layouts.html:89
 #: ui/templates/app/university/faculty/layouts.html:47
 #: ui/templates/app/university/faculty/layouts.html:125
 #: ui/templates/app/university/faculty/layouts.html:185
-#: ui/templates/components/footer.html:19
-#: ui/templates/components/nav-drawer.html:71
-#: ui/templates/components/navigation.html:14
+#: ui/templates/components/base/footer.html:19
+#: ui/templates/components/base/nav-drawer.html:61
+#: ui/templates/components/base/navigation.html:13
 msgid "Home page"
 msgstr "Главная"
 
@@ -642,10 +650,10 @@ msgstr ""
 #: ui/templates/app/page.html:144 ui/templates/app/publics/page.html:44
 #: ui/templates/app/publics/public/page.html:43
 #: ui/templates/app/university/department/publics.html:20
-#: ui/templates/app/university/division/page.html:344
+#: ui/templates/app/university/division/page.html:360
 #: ui/templates/app/university/faculty/index.html:615
 #: ui/templates/app/university/faculty/publics.html:20
-#: ui/templates/components/footer.html:25
+#: ui/templates/components/base/footer.html:25
 msgid "Announcements"
 msgstr "Объявления"
 
@@ -656,10 +664,10 @@ msgstr "Посмотреть все"
 
 #: ui/templates/app/page.html:248
 #: ui/templates/app/university/department/publics.html:25
-#: ui/templates/app/university/division/page.html:349
+#: ui/templates/app/university/division/page.html:365
 #: ui/templates/app/university/faculty/index.html:578
 #: ui/templates/app/university/faculty/publics.html:25
-#: ui/templates/components/footer.html:28
+#: ui/templates/components/base/footer.html:28
 msgid "Events"
 msgstr "Мероприятия"
 
@@ -715,6 +723,7 @@ msgstr ""
 #: ui/templates/app/university/division/page.html:22
 #: ui/templates/app/university/division/page.html:67
 #: ui/templates/app/university/division/page.html:108
+#: ui/templates/app/university/division/page.html:337
 #: ui/templates/app/university/faculty/index.html:47
 #: ui/templates/app/university/faculty/index.html:149
 #: ui/templates/app/university/faculty/index.html:243
@@ -788,19 +797,19 @@ msgstr "Адрес"
 msgid "Shymkent, A. Baitursynov N13"
 msgstr "Шымкент, А. Байтурсынов N 13"
 
-#: ui/templates/app/page.html:543
+#: ui/templates/app/page.html:546
 msgid "Selection committee"
 msgstr "Отборочная комиссия"
 
-#: ui/templates/app/page.html:560
+#: ui/templates/app/page.html:570
 msgid "University office"
 msgstr "Университетский офис"
 
-#: ui/templates/app/page.html:574
+#: ui/templates/app/page.html:585
 msgid "Call center"
 msgstr "Call центр"
 
-#: ui/templates/app/page.html:591
+#: ui/templates/app/page.html:602
 msgid "Helplines"
 msgstr "Линии помощи"
 
@@ -888,6 +897,10 @@ msgstr "Шифры специальностей и названия кафедр
 msgid "About division"
 msgstr "Об отделе"
 
+#: ui/templates/app/university/division/docs/page.html:7
+msgid "Division documents"
+msgstr "Документы отдела"
+
 #: ui/templates/app/university/division/page.html:17
 msgid "Departments within the management board"
 msgstr "Департаменты правления"
@@ -901,8 +914,13 @@ msgid "Divisions within the departments board"
 msgstr "Подразделения в составе департаментов"
 
 #: ui/templates/app/university/division/page.html:103
+#: ui/templates/app/university/division/personals/page.html:17
 msgid "composition"
 msgstr "состав"
+
+#: ui/templates/app/university/division/personals/page.html:7
+msgid "Division personals"
+msgstr "Сотрудники отдела"
 
 #: ui/templates/app/university/faculty/about.html:7
 #: ui/templates/app/university/faculty/layouts.html:56
@@ -943,13 +961,15 @@ msgstr "Документы колледжа"
 msgid "Specialty ciphers and names of the departments assigned by the faculty"
 msgstr "Шифры специальностей и названия кафедр, присвоенные факультетом"
 
-#: ui/templates/components/footer.html:15
+#: ui/templates/components/app/home/search/search_results.html:97
+msgid "No result found"
+msgstr "Результат не найден"
+
+#: ui/templates/components/base/footer.html:15
 msgid "Navigation"
 msgstr "Навигация"
 
-#: ui/templates/components/footer.html:73
+#: ui/templates/components/base/footer.html:73
 msgid "All copyrights are protected."
 msgstr "Все авторские права защищены."
 
-#~ msgid "Library"
-#~ msgstr "Библиотека"

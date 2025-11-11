@@ -1,0 +1,98 @@
+{% load i18n %}
+{% load static %}
+
+
+<div class="grid gap-4 items-start grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+    {% if contents %}
+        <div class="grid gap-2">
+            <h1 class="font-medium">{% translate 'Categories' %}</h1>
+            <ul class="grid gap-2">
+                {% for item in contents %}
+                    <li>
+                        <a 
+                            href="{% url 'content_detail' item.category.parent.parent.slug item.category.parent.slug item.category.slug item.slug %}"
+                            class="flex items-center justify-between px-4 py-2 rounded-xl border border-border-200 transition-all hover:bg-secondary-100"                                
+                        >
+                            <div class="grid">
+                                <h1 class="line-clamp-1">{{ item.title }}</h1>
+                                <span class="text-muted text-sm">{{ item.category.parent.name }}</span>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if faculties %}
+        <div class="grid gap-2">
+            <h1 class="font-medium">{% translate 'Faculties' %}</h1>
+            <ul class="grid gap-2">
+                {% for item in faculties %}
+                <li>
+                    <a 
+                        href="{% url 'faculty_detail' item.slug %}"
+                        class="flex items-center gap-2 px-4 py-2 border border-border-200 rounded-xl transition-all hover:bg-secondary-100"
+                    >
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" class="w-6 h-6 rounded-full" alt="">
+                        {% else %}
+                            <img src="{% static 'images/icon.png' %}" class="w-6 h-6 rounded-full" alt="">
+                        {% endif %}
+                        <h1 class="line-clamp-2 flex-1">{{ item.name }}</h1>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if departments %}
+        <div class="grid gap-2">
+            <h1 class="font-medium">{% translate 'Departments' %}</h1>
+            <ul class="grid gap-2">
+                {% for item in departments %}
+                <li>
+                    <a 
+                        href="{% url 'department_detail' item.slug %}"
+                        class="flex items-center gap-2 px-4 py-2 border border-border-200 rounded-xl transition-all hover:bg-secondary-100"
+                    >
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" class="w-6 h-6 rounded-full" alt="">
+                        {% else %}
+                            <img src="{% static 'images/icon.png' %}" class="w-6 h-6 rounded-full" alt="">
+                        {% endif %}
+                        <h1 class="line-clamp-2 flex-1">{{ item.name }}</h1>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if divisions %}
+        <div class="grid gap-2">
+            <h1 class="font-medium">{% translate 'Divisions' %}</h1>
+            <ul class="grid gap-2">
+                {% for item in divisions %}
+                <li>
+                    <a 
+                        href="{% url 'division_detail' item.slug %}"
+                        class="flex items-center gap-2 px-4 py-2 border border-border-200 rounded-xl transition-all hover:bg-secondary-100"
+                    >
+                        {% if item.image %}
+                            <img src="{{ item.image.url }}" class="w-6 h-6 rounded-full" alt="">
+                        {% else %}
+                            <img src="{% static 'images/icon.png' %}" class="w-6 h-6 rounded-full" alt="">
+                        {% endif %}
+                        <h1 class="line-clamp-2 flex-1">{{ item.name }}</h1>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+{% if not contents and not faculties and not departments and not divisions %}
+    <p class="text-muted text-center">{% translate 'No result found' %}</p>
+{% endif %}
