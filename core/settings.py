@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG') == 'True'
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS').split(',')
 
 
 # Application definition
@@ -28,10 +28,7 @@ INSTALLED_APPS = [
     'django_cleanup.apps.CleanupConfig',
     'django_summernote',
     'tailwind',
-    'django_browser_reload',
     'ui',
-
-    # Main app
     'register.apps.RegisterConfig',
 
     'apps.home.apps.HomeConfig',
@@ -43,8 +40,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'core.middleware.CustomLocaleMiddleware',
-    # 'django.middleware.locale.LocaleMiddleware',
+    'core.middleware.ForceKazakhLanguageMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'core.middleware.AllowIframeMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,6 +50,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
+
+if DEBUG:
+    INSTALLED_APPS += ['django_browser_reload']
+    MIDDLEWARE += [
+        'django_browser_reload.middleware.BrowserReloadMiddleware',
+    ]
+
 
 USE_ACCEPT_LANGUAGE_HEADER = False
 ROOT_URLCONF = 'core.urls'
@@ -120,6 +124,8 @@ MODELTRANSLATION_TRANSLATION_FILES = (
     'register.translations.university',
     'register.translations.content',
 )
+
+LANGUAGE_COOKIE_NAME = 'language'
 
 LOCALE_PATHS = [
     BASE_DIR / 'locales'

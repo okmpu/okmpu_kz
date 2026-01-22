@@ -1,9 +1,8 @@
-from django.urls import resolve
 from django.utils import translation
-from django.utils.deprecation import MiddlewareMixin
 
 
 # Iframe
+# ----------------------------------------------------------------------------------------------------------------------
 class AllowIframeMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -16,12 +15,33 @@ class AllowIframeMiddleware:
 
 
 # Locale
-class CustomLocaleMiddleware(MiddlewareMixin):
-    def process_request(self, request):
-        language = request.session.get('django_language') or request.COOKIES.get('django_language')
+# ----------------------------------------------------------------------------------------------------------------------
+class ForceKazakhLanguageMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
 
-        if not language:
-            language = 'kk'
+    def __call__(self, request):
+        cookie_name = 'language'
 
-        translation.activate(language)
-        request.LANGUAGE_CODE = language
+        if cookie_name not in request.COOKIES:
+            translation.activate('kk')
+            request.LANGUAGE_CODE = 'kk'
+        else:
+            lang = request.COOKIES.get(cookie_name)
+            translation.activate(lang)
+            request.LANGUAGE_CODE = lang
+
+        response = self.get_response(request)
+
+        if cookie_name not in request.COOKIES:
+            response.set_cookie(
+                key=cookie_name,
+                value='kk',
+                max_age=60 * 60 * 24 * 30,
+                path='/',
+                samesite='Lax',
+                secure=False,
+                httponly=False,
+            )
+
+        return response
