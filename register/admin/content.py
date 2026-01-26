@@ -1,13 +1,16 @@
 from django.contrib import admin
+from django.contrib.admin import register
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
 from django_summernote.admin import SummernoteModelAdminMixin
+from register.forms.content import TextContentForm, StaffContentForm, PopupContentForm
 from register.models.content import Category, Content, TextContent, FileContent, ImageContent, StaffContent, \
     PopupContent
 
 
 # Category
 # ----------------------------------------------------------------------------------------------------------------------
+@register(Category)
 class CategoryAdmin(TranslationAdmin):
     list_display = ('name', 'slug', 'app_name', 'parent', 'multiple', 'order', )
     list_filter = ('parent', 'app_name', 'multiple',)
@@ -18,8 +21,9 @@ class CategoryAdmin(TranslationAdmin):
 # Content
 # ----------------------------------------------------------------------------------------------------------------------
 # TextContent
-class TextContentTabular(SummernoteModelAdminMixin, TranslationTabularInline):
+class TextContentTabular(TranslationStackedInline):
     model = TextContent
+    form = TextContentForm
     extra = 0
 
 
@@ -36,25 +40,30 @@ class FileContentTabular(TranslationStackedInline):
 
 
 # StaffContent
-class StaffContentTabular(SummernoteModelAdminMixin, TranslationStackedInline):
+class StaffContentTabular(TranslationStackedInline):
     model = StaffContent
+    form = StaffContentForm
     extra = 0
 
 
 # PopupContent
-class PopupContentInline(SummernoteModelAdminMixin, TranslationStackedInline):
+class PopupContentInline(TranslationStackedInline):
     model = PopupContent
+    form = PopupContentForm
     extra = 0
 
 
 # ContentAdmin
+@register(Content)
 class ContentAdmin(TranslationAdmin):
     list_display = ('title', 'slug', 'category', 'order', )
     list_filter = ('category',)
     search_fields = ('title', 'slug', )
     prepopulated_fields = {'slug': ('title_en', )}
-    inlines = [TextContentTabular, ImageContentTabular, FileContentTabular, StaffContentTabular, PopupContentInline, ]
-
-
-admin.site.register(Category, CategoryAdmin)
-admin.site.register(Content, ContentAdmin)
+    inlines = [
+        TextContentTabular,
+        ImageContentTabular,
+        FileContentTabular,
+        StaffContentTabular,
+        PopupContentInline,
+    ]

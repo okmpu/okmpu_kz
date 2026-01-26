@@ -11,6 +11,7 @@ class Category(models.Model):
         ('content', _('Content app')),
         ('university', _('University app')),
     )
+
     name = models.CharField(_('Name'), max_length=100)
     slug = models.SlugField(_('Slug'), max_length=100)
     app_name = models.CharField(_('App name'), choices=APP_NAME, default='none')
@@ -151,4 +152,3 @@ class PopupContent(models.Model):
         verbose_name = _('Popup content')
         verbose_name_plural = _('Popup contents')
         ordering = ('order', )
-

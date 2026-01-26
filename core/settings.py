@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',
     'django_summernote',
+    'ckeditor',
     'tailwind',
     'ui',
     'register.apps.RegisterConfig',
@@ -171,3 +172,58 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ----------------------------------------------------------------------------------------------------------------------
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SILENCED_SYSTEM_CHECKS = ['security.W019']
+
+
+# CKEditor settings
+# ----------------------------------------------------------------------------------------------------------------------
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono-lisa',
+        'defaultLanguage': 'ru',
+        'width': 840,
+        'height': 420,
+        'removePlugins': 'autogrow',
+
+        'toolbar': [
+            {
+                'name': 'styles',
+                'items': ['Format']
+            },
+            {
+                'name': 'basicstyles',
+                'items': ['Bold', 'Italic', 'Underline', '-', 'RemoveFormat']
+            },
+            {
+                'name': 'paragraph',
+                'items': [
+                    'NumberedList', 'BulletedList', '-',
+                    'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock',
+                ]
+            },
+            {
+                'name': 'insert',
+                'items': ['Image', 'Table', 'Mathjax', ]
+            },
+            {
+                'name': 'document',
+                'items': ['Source', '-', 'Preview', '-', 'Maximize']
+            },
+        ],
+        'format_tags': 'p;h2;h3;h4',
+
+        'mathJaxLib': 'https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 4,
+
+        'extraPlugins': ','.join([
+            'mathjax',
+            'uploadimage',
+            'autogrow',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath',
+        ]),
+    }
+}
