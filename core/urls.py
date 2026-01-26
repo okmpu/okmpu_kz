@@ -6,7 +6,6 @@ from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('summernote/', include('django_summernote.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
     # apps...
