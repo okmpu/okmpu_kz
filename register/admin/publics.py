@@ -1,22 +1,29 @@
 from django.contrib import admin
-from django_summernote.admin import SummernoteModelAdmin
+from django.contrib.admin import register
 from modeltranslation.admin import TranslationAdmin
+from register.forms.publics import PublicForm
 from register.models.publics import Headliner, Partner, Public, PublicFile, Resource
 
 
 # Resource
+# ----------------------------------------------------------------------------------------------------------------------
+@register(Resource)
 class ResourceAdmin(TranslationAdmin):
     list_display = ('label', 'url', 'new_tab', 'order', )
     list_filter = ('new_tab', )
 
 
 # Headliner
+# ----------------------------------------------------------------------------------------------------------------------
+@register(Headliner)
 class HeadlinerAdmin(TranslationAdmin):
     list_display = ('title', 'poster', 'src', 'order', )
     search_fields = ('title', )
 
 
 # Partner
+# ----------------------------------------------------------------------------------------------------------------------
+@register(Partner)
 class PartnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'url', 'order', )
 
@@ -28,14 +35,10 @@ class PublicFileTab(admin.TabularInline):
     extra = 0
 
 
-class PublicAdmin(TranslationAdmin, SummernoteModelAdmin):
+@register(Public)
+class PublicAdmin(TranslationAdmin):
     list_display = ('title', 'public_type', 'user', 'date_created', )
     search_fields = ('title', )
     list_filter = ('public_type', )
+    form = PublicForm
     inlines = (PublicFileTab, )
-
-
-admin.site.register(Headliner, HeadlinerAdmin)
-admin.site.register(Partner, PartnerAdmin)
-admin.site.register(Public, PublicAdmin)
-admin.site.register(Resource, ResourceAdmin)

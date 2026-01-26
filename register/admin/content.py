@@ -1,8 +1,6 @@
-from django.contrib import admin
 from django.contrib.admin import register
 from modeltranslation.admin import TranslationAdmin
 from modeltranslation.admin import TranslationTabularInline, TranslationStackedInline
-from django_summernote.admin import SummernoteModelAdminMixin
 from register.forms.content import TextContentForm, StaffContentForm, PopupContentForm
 from register.models.content import Category, Content, TextContent, FileContent, ImageContent, StaffContent, \
     PopupContent

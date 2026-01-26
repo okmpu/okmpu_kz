@@ -103,6 +103,7 @@ class Public(models.Model):
         ordering = ('-date_created', )
 
 
+# PublicFile
 class PublicFile(models.Model):
     own = models.ForeignKey(Public, on_delete=models.CASCADE, related_name='public_files', verbose_name=_('News'))
     title = models.CharField(_('Title'), max_length=128, default='')
