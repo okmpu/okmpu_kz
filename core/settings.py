@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_cleanup.apps.CleanupConfig',
     'ckeditor',
+    'ckeditor_uploader',
     'tailwind',
     'ui',
     'register.apps.RegisterConfig',
@@ -211,9 +212,12 @@ CKEDITOR_CONFIGS = {
             },
         ],
         'format_tags': 'p;h2;h3;h4',
-
         'mathJaxLib': 'https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_HTML',
         'tabSpaces': 4,
+
+        'image_upload_url': '/ckeditor/upload/',
+        'filebrowserUploadUrl': '/ckeditor/upload/',
+        'filebrowserBrowseUrl': '/ckeditor/browse/',
 
         'extraPlugins': ','.join([
             'mathjax',
